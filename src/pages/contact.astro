@@ -1,0 +1,20 @@
+---
+import Base from '../layouts/Base.astro';
+import { ContactPage } from '../components/pages/ContactPage';
+import { getEntry } from 'astro:content';
+
+const page = await getEntry('pages', 'contact');
+const d = page.data;
+---
+
+<Base title={d.seo_title ?? d.title} description={d.seo_description}>
+  <ContactPage
+    client:load
+    heroHeading={d.hero_heading}
+    heroSubheading={d.hero_subheading}
+    email={d.email}
+    phone={d.phone}
+    address={d.address}
+    calendlyUrl={d.calendly_url}
+  />
+</Base>

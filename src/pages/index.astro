@@ -1,0 +1,31 @@
+---
+import Base from '../layouts/Base.astro';
+import { HomePage } from '../components/home/HomePage';
+import { getEntry } from 'astro:content';
+
+const page = await getEntry('pages', 'home');
+const d = page.data;
+---
+
+<Base title={d.seo_title ?? d.title} description={d.seo_description}>
+  <HomePage
+    client:load
+    heroLabel={d.hero_label}
+    heroHeading={d.hero_heading}
+    heroSubheading={d.hero_subheading}
+    heroCtaText={d.hero_cta_text}
+    heroCtaUrl={d.hero_cta_url}
+    stat1Number={d.hero_stat_1_number}
+    stat1Label={d.hero_stat_1_label}
+    stat2Number={d.hero_stat_2_number}
+    stat2Label={d.hero_stat_2_label}
+    heroQuote={d.hero_quote}
+    heroQuoteAuthor={d.hero_quote_author}
+    heroQuoteRole={d.hero_quote_role}
+    kateHeading={d.kate_heading}
+    kateBio={d.kate_bio}
+    kateQuote={d.kate_quote}
+    ctaHeading={d.cta_heading}
+    ctaText={d.cta_text}
+  />
+</Base>
