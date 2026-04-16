@@ -1,8 +1,6 @@
 ---
 import { getCollection, render } from 'astro:content';
 import BlogPost from '../../layouts/BlogPost.astro';
-import { Navbar } from '../../components/Navbar';
-import { Footer } from '../../components/Footer';
 
 export async function getStaticPaths() {
   const posts = await getCollection('blog');
@@ -25,7 +23,5 @@ const { Content } = await render(post);
   image={post.data.image}
   category={post.data.category}
 >
-  <Navbar client:load />
   <Content />
-  <Footer client:load />
 </BlogPost>

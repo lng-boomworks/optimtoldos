@@ -1,5 +1,7 @@
 ---
 import Base from './Base.astro';
+import { Navbar } from '../components/Navbar';
+import { Footer } from '../components/Footer';
 
 interface Props {
   title: string;
@@ -58,6 +60,7 @@ const categoryLabels: Record<string, string> = {
     <script is:inline type="application/ld+json" set:html={JSON.stringify(articleSchema)} />
   </Fragment>
 
+  <Navbar client:load />
   <div class="bg-white">
     <!-- Hero -->
     <section class="bg-navy pt-32 pb-16">
@@ -103,4 +106,5 @@ const categoryLabels: Record<string, string> = {
       </div>
     </section>
   </div>
+  <Footer />
 </Base>
