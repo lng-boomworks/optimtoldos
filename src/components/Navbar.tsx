@@ -1,17 +1,18 @@
 import { useState, useEffect } from "react";
 import { Menu, X } from "lucide-react";
 import { Button } from "./Button";
+import { url } from "../utils/paths";
 
 const navLinks = [
-  { name: "Inicio", path: "/" },
-  { name: "Toldos", path: "/toldos" },
-  { name: "Pérgolas", path: "/pergolas" },
-  { name: "Cortinas de Cristal", path: "/cortinas-de-cristal" },
-  { name: "Velas", path: "/velas-de-sombra" },
-  { name: "Ventanas PVC", path: "/ventanas-pvc" },
-  { name: "Galería", path: "/galeria" },
-  { name: "Blog", path: "/blog" },
-  { name: "Contacto", path: "/contacto" },
+  { name: "Inicio", path: url("/") },
+  { name: "Toldos", path: url("/toldos") },
+  { name: "Pérgolas", path: url("/pergolas") },
+  { name: "Cortinas de Cristal", path: url("/cortinas-de-cristal") },
+  { name: "Velas", path: url("/velas-de-sombra") },
+  { name: "Ventanas PVC", path: url("/ventanas-pvc") },
+  { name: "Galería", path: url("/galeria") },
+  { name: "Blog", path: url("/blog") },
+  { name: "Contacto", path: url("/contacto") },
 ];
 
 export function Navbar() {
@@ -37,9 +38,9 @@ export function Navbar() {
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-[72px] flex items-center justify-between">
         {/* Logo */}
-        <a href="/" className="flex items-center group">
+        <a href={url("/")} className="flex items-center group">
           <img
-            src={isScrolled ? "/images/logos/logo-sticky.png" : "/images/logos/logo-2x.png"}
+            src={isScrolled ? url("/images/logos/logo-sticky.png") : url("/images/logos/logo-2x.png")}
             alt="OptimToldos"
             className="h-10 w-auto transition-all duration-300"
           />
@@ -71,7 +72,7 @@ export function Navbar() {
               );
             })}
           </ul>
-          <Button variant="gold" href="/presupuesto">
+          <Button variant="gold" href={url("/presupuesto")}>
             Presupuesto Gratis
           </Button>
         </nav>
@@ -117,7 +118,7 @@ export function Navbar() {
             })}
           </ul>
           <div className="pt-4 border-t border-border">
-            <Button variant="gold" href="/presupuesto" className="w-full">
+            <Button variant="gold" href={url("/presupuesto")} className="w-full">
               Presupuesto Gratis
             </Button>
           </div>

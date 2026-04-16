@@ -1,4 +1,5 @@
 import type React from "react";
+import { url } from "../utils/paths";
 
 interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   variant?: "primary" | "ghost" | "outline-white" | "white" | "gold";
@@ -57,7 +58,7 @@ export function Button({
       );
     }
     return (
-      <a href={href} className={classes}>
+      <a href={url(href)} className={classes}>
         {content}
       </a>
     );

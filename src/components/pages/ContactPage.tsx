@@ -4,6 +4,7 @@ import { Footer } from "../Footer";
 import { FadeIn } from "../FadeIn";
 import { Button } from "../Button";
 import { Mail, Phone, Calendar, CheckCircle2 } from "lucide-react";
+import { url } from "../../utils/paths";
 
 interface ContactPageProps {
   heroHeading?: string;
@@ -147,7 +148,7 @@ export function ContactPage({
                       <label className="flex items-start gap-3 cursor-pointer">
                         <input type="checkbox" name="consent" required className="w-5 h-5 mt-1 text-teal-deep bg-cream border-border focus:ring-teal-mid rounded" />
                         <span className="text-sm text-text-muted leading-relaxed">
-                          I consent to my details being stored to respond to this enquiry, in line with the <a href="/privacy" target="_blank" className="text-teal-mid underline">Privacy Notice</a>. <span className="text-red-500">*</span>
+                          I consent to my details being stored to respond to this enquiry, in line with the <a href={url("/privacy")} target="_blank" className="text-teal-mid underline">Privacy Notice</a>. <span className="text-red-500">*</span>
                         </span>
                       </label>
                     </div>

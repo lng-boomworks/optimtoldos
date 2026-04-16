@@ -1,42 +1,43 @@
 import { AnimatedHeading } from "../AnimatedHeading";
 import { FadeIn } from "../FadeIn";
 import { SunRay } from "../SunRay";
+import { url } from "../../utils/paths";
 
 const products = [
   {
     title: "Toldos",
     description:
       "Toldos extensibles, verticales y de punto para terrazas, balcones y comercios.",
-    image: "/images/gallery/toldo-cofre-extensible.jpg",
-    href: "/toldos",
+    image: url("/images/gallery/toldo-cofre-extensible.jpg"),
+    href: url("/toldos"),
   },
   {
     title: "Pérgolas Bioclimáticas",
     description:
       "Pérgolas de aluminio con lamas orientables, motorización y LED integrado.",
-    image: "/images/pergolas/pergola-bioclimatica.jpg",
-    href: "/pergolas",
+    image: url("/images/pergolas/pergola-bioclimatica.jpg"),
+    href: url("/pergolas"),
   },
   {
     title: "Cortinas de Cristal",
     description:
       "Paneles de cristal plegables sin perfiles para cerrar terrazas sin perder vistas.",
-    image: "/images/cortinas/cortina-cristal-1.jpg",
-    href: "/cortinas-de-cristal",
+    image: url("/images/cortinas/cortina-cristal-1.jpg"),
+    href: url("/cortinas-de-cristal"),
   },
   {
     title: "Velas de Sombra",
     description:
       "Velas tensadas de diseño arquitectónico para protección UV con estilo.",
-    image: "/images/velas/vela-tensada.jpg",
-    href: "/velas-de-sombra",
+    image: url("/images/velas/vela-tensada.jpg"),
+    href: url("/velas-de-sombra"),
   },
   {
     title: "Ventanas y Puertas PVC",
     description:
       "Sistemas de PVC de alta eficiencia energética: correderas, abatibles y oscilobatientes.",
-    image: "/images/ventanas/ventanas-cortizo.jpg",
-    href: "/ventanas-pvc",
+    image: url("/images/ventanas/ventanas-cortizo.jpg"),
+    href: url("/ventanas-pvc"),
   },
 ];
 

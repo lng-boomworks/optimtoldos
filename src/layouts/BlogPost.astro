@@ -2,6 +2,7 @@
 import Base from './Base.astro';
 import { Navbar } from '../components/Navbar';
 import { Footer } from '../components/Footer';
+import { url } from '../utils/paths';
 
 interface Props {
   title: string;
@@ -87,7 +88,7 @@ const categoryLabels: Record<string, string> = {
 
     <!-- Back to blog -->
     <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 pb-16">
-      <a href="/blog" class="inline-flex items-center gap-2 text-terracotta font-medium hover:underline">
+      <a href={url("/blog")} class="inline-flex items-center gap-2 text-terracotta font-medium hover:underline">
         <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
           <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18" />
         </svg>
@@ -100,7 +101,7 @@ const categoryLabels: Record<string, string> = {
       <div class="max-w-3xl mx-auto px-4 text-center">
         <h2 class="font-serif text-2xl md:text-3xl text-navy mb-4">¿Necesitas asesoramiento?</h2>
         <p class="text-text-muted mb-8">Te ayudamos a elegir la mejor solución para tu espacio. Presupuesto gratuito y sin compromiso.</p>
-        <a href="/presupuesto" class="inline-block bg-terracotta hover:bg-terracotta-dark text-white font-medium rounded-xl px-8 py-3 transition-colors">
+        <a href={url("/presupuesto")} class="inline-block bg-terracotta hover:bg-terracotta-dark text-white font-medium rounded-xl px-8 py-3 transition-colors">
           Solicitar Presupuesto
         </a>
       </div>

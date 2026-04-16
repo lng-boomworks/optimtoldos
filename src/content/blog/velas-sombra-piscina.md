@@ -5,6 +5,7 @@ date: "2026-03-10"
 author: "Optim Toldos"
 tags: ["velas de sombra", "piscinas", "protección UV", "alicante"]
 category: "guias"
+image: "/images/blog/velas-sombra-piscina.jpg"
 ---
 
 **Las velas de sombra son la solución ideal para piscinas en Alicante: bloquean entre el 90% y el 98% de la radiación ultravioleta, permiten la circulación del aire, no retienen el calor y aportan un diseño elegante que transforma cualquier zona de baño.** A diferencia de las pérgolas rígidas, las velas crean sombras dinámicas y orgánicas que se integran con el paisaje, y su coste es entre un 50% y un 70% inferior al de una estructura fija equivalente. Para una piscina media de 8x4 metros, una configuración de dos velas triangulares que cubra la zona de descanso cuesta entre 1.200 y 3.500 euros instaladas, dependiendo del material y el sistema de anclaje.

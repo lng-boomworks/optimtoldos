@@ -1,18 +1,20 @@
+import { url } from "../utils/paths";
+
 export function Footer() {
   const productLinks = [
-    { name: "Toldos", path: "/toldos" },
-    { name: "Pérgolas", path: "/pergolas" },
-    { name: "Cortinas de Cristal", path: "/cortinas-de-cristal" },
-    { name: "Velas de Sombra", path: "/velas-de-sombra" },
-    { name: "Ventanas PVC", path: "/ventanas-pvc" },
+    { name: "Toldos", path: url("/toldos") },
+    { name: "Pérgolas", path: url("/pergolas") },
+    { name: "Cortinas de Cristal", path: url("/cortinas-de-cristal") },
+    { name: "Velas de Sombra", path: url("/velas-de-sombra") },
+    { name: "Ventanas PVC", path: url("/ventanas-pvc") },
   ];
 
   const companyLinks = [
-    { name: "Sobre Nosotros", path: "/sobre-nosotros" },
-    { name: "Galería", path: "/galeria" },
-    { name: "Contacto", path: "/contacto" },
-    { name: "Blog", path: "/blog" },
-    { name: "Presupuesto Gratis", path: "/presupuesto" },
+    { name: "Sobre Nosotros", path: url("/sobre-nosotros") },
+    { name: "Galería", path: url("/galeria") },
+    { name: "Contacto", path: url("/contacto") },
+    { name: "Blog", path: url("/blog") },
+    { name: "Presupuesto Gratis", path: url("/presupuesto") },
   ];
 
   return (
@@ -21,9 +23,9 @@ export function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 lg:gap-8">
           {/* Brand */}
           <div className="lg:col-span-2">
-            <a href="/" className="inline-block mb-5">
+            <a href={url("/")} className="inline-block mb-5">
               <img
-                src="/images/logos/logo-footer.png"
+                src={url("/images/logos/logo-footer.png")}
                 alt="OptimToldos"
                 loading="lazy"
                 decoding="async"

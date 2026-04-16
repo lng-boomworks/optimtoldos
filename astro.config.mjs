@@ -4,7 +4,8 @@ import tailwindcss from '@tailwindcss/vite';
 import sitemap from '@astrojs/sitemap';
 
 export default defineConfig({
-  site: 'https://optimtoldos.com',
+  site: 'https://lng-boomworks.github.io',
+  base: '/optimtoldos',
   integrations: [
     react(),
     sitemap({

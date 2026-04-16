@@ -1,11 +1,12 @@
 import { FadeIn } from "../FadeIn";
 import { Lightbulb, BarChart3, Users, Wrench, ArrowRight } from "lucide-react";
+import { url } from "../../utils/paths";
 
 const services = [
-  { icon: Lightbulb, title: "Service One", desc: "A brief description of this service and the value it provides to your clients.", link: "/services" },
-  { icon: BarChart3, title: "Service Two", desc: "A brief description of this service and the value it provides to your clients.", link: "/services" },
-  { icon: Users, title: "Service Three", desc: "A brief description of this service and the value it provides to your clients.", featured: true, link: "/services" },
-  { icon: Wrench, title: "Service Four", desc: "A brief description of this service and the value it provides to your clients.", link: "/services" },
+  { icon: Lightbulb, title: "Service One", desc: "A brief description of this service and the value it provides to your clients.", link: url("/services") },
+  { icon: BarChart3, title: "Service Two", desc: "A brief description of this service and the value it provides to your clients.", link: url("/services") },
+  { icon: Users, title: "Service Three", desc: "A brief description of this service and the value it provides to your clients.", featured: true, link: url("/services") },
+  { icon: Wrench, title: "Service Four", desc: "A brief description of this service and the value it provides to your clients.", link: url("/services") },
 ];
 
 export function Services() {

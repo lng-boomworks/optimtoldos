@@ -5,6 +5,7 @@ date: "2026-03-28"
 author: "Optim Toldos"
 tags: ["cortinas de cristal", "cerramientos", "terrazas", "alicante"]
 category: "guias"
+image: "/images/blog/cerrar-terraza-cortinas-cristal.jpg"
 ---
 
 **Las cortinas de cristal son un sistema de paneles de vidrio templado sin perfilería vertical que se pliegan en acordeón para cerrar una terraza sin perder vistas ni luminosidad.** El precio medio en Alicante oscila entre 280 € y 450 € por metro cuadrado instalado, lo que sitúa el coste total de un cerramiento típico de terraza (8-12 m²) entre 2.500 € y 5.500 €. Es la forma más elegante de convertir una terraza abierta en un espacio utilizable durante todo el año, manteniendo la sensación de exterior que define el estilo de vida mediterráneo.

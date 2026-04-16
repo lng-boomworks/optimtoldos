@@ -1,13 +1,14 @@
 import { AnimatedHeading } from "../AnimatedHeading";
 import { FadeIn } from "../FadeIn";
 import { Button } from "../Button";
+import { url } from "../../utils/paths";
 
 export function HeroSection() {
   return (
     <section className="relative min-h-[85vh] flex items-center overflow-hidden">
       {/* Background image */}
       <img
-        src="/images/gallery/hero-toldos-2025.jpg"
+        src={url("/images/gallery/hero-toldos-2025.jpg")}
         alt="Toldo extensible en terraza soleada"
         className="absolute inset-0 w-full h-full object-cover"
       />

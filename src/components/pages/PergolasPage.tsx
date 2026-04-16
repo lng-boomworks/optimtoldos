@@ -4,6 +4,7 @@ import { FadeIn } from "../FadeIn";
 import { AnimatedHeading } from "../AnimatedHeading";
 import { Button } from "../Button";
 import { FAQSection } from "../FAQSection";
+import { url } from "../../utils/paths";
 
 const pergolasFaqs = [
   {
@@ -71,7 +72,7 @@ export function PergolasPage() {
         <div className="flex flex-col bg-white">
           {/* Hero */}
           <section className="relative min-h-[60vh] flex items-center justify-center overflow-hidden">
-            <img src="/images/pergolas/pergola-bioclimatica-2024.jpg" alt="Pérgola bioclimática instalada en terraza" className="absolute inset-0 w-full h-full object-cover" />
+            <img src={url("/images/pergolas/pergola-bioclimatica-2024.jpg")} alt="Pérgola bioclimática instalada en terraza" className="absolute inset-0 w-full h-full object-cover" />
             <div className="absolute inset-0 bg-black/40" />
             <div className="relative z-10 max-w-4xl mx-auto px-4 text-center py-20">
               <FadeIn>
@@ -113,7 +114,7 @@ export function PergolasPage() {
                 {features.map((feature, i) => (
                   <FadeIn key={feature.title} delay={i * 0.1}>
                     <div className="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition-shadow duration-300">
-                      <img src={feature.image} alt={feature.title} loading="lazy" decoding="async" className="w-full aspect-[16/10] object-cover" />
+                      <img src={url(feature.image)} alt={feature.title} loading="lazy" decoding="async" className="w-full aspect-[16/10] object-cover" />
                       <div className="p-8">
                         <h3 className="font-serif text-xl text-navy mb-3">
                           {feature.title}

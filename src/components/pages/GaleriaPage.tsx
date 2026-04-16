@@ -4,6 +4,7 @@ import { Footer } from "../Footer";
 import { FadeIn } from "../FadeIn";
 import { AnimatedHeading } from "../AnimatedHeading";
 import { Button } from "../Button";
+import { url } from "../../utils/paths";
 
 type Category = "Todos" | "Toldos" | "Pérgolas" | "Cortinas de Cristal" | "Velas" | "Ventanas PVC";
 
@@ -91,7 +92,7 @@ export function GaleriaPage() {
                   <FadeIn key={`${activeFilter}-${project.title}`} delay={i * 0.05}>
                     <div className="group relative aspect-[4/3] rounded-2xl overflow-hidden cursor-pointer">
                       <img
-                        src={project.image}
+                        src={url(project.image)}
                         alt={project.title}
                         loading="lazy"
                         decoding="async"

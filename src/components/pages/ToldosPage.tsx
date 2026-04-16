@@ -4,6 +4,7 @@ import { FadeIn } from "../FadeIn";
 import { AnimatedHeading } from "../AnimatedHeading";
 import { Button } from "../Button";
 import { FAQSection } from "../FAQSection";
+import { url } from "../../utils/paths";
 
 const toldosFaqs = [
   {
@@ -87,7 +88,7 @@ export function ToldosPage() {
         <div className="flex flex-col bg-white">
           {/* Hero */}
           <section className="relative min-h-[60vh] flex items-center justify-center overflow-hidden">
-            <img src="/images/gallery/toldo-awning-hero.jpg" alt="Toldos de calidad en Alicante" className="absolute inset-0 w-full h-full object-cover" />
+            <img src={url("/images/gallery/toldo-awning-hero.jpg")} alt="Toldos de calidad en Alicante" className="absolute inset-0 w-full h-full object-cover" />
             <div className="absolute inset-0 bg-black/40" />
             <div className="relative z-10 max-w-4xl mx-auto px-4 text-center py-20">
               <FadeIn>
@@ -128,7 +129,7 @@ export function ToldosPage() {
                 {productTypes.map((product, i) => (
                   <FadeIn key={product.title} delay={i * 0.1}>
                     <div className="bg-white rounded-2xl overflow-hidden h-full border-t-[3px] border-terracotta shadow-sm hover:shadow-md transition-shadow duration-300">
-                      <img src={product.image} alt={product.title} loading="lazy" decoding="async" className="w-full aspect-[16/10] object-cover" />
+                      <img src={url(product.image)} alt={product.title} loading="lazy" decoding="async" className="w-full aspect-[16/10] object-cover" />
                       <div className="p-8">
                         <h3 className="font-serif text-xl text-navy mb-3">
                           {product.title}
