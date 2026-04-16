@@ -1,0 +1,86 @@
+---
+import Base from '../../layouts/Base.astro';
+import { getCollection } from 'astro:content';
+import { Navbar } from '../../components/Navbar';
+import { Footer } from '../../components/Footer';
+
+const posts = (await getCollection('blog')).sort(
+  (a, b) => new Date(b.data.date).getTime() - new Date(a.data.date).getTime()
+);
+
+const breadcrumbs = [
+  { name: 'Inicio', url: 'https://optimtoldos.com/' },
+  { name: 'Blog', url: 'https://optimtoldos.com/blog' },
+];
+
+const categoryLabels: Record<string, string> = {
+  guias: 'Guías',
+  consejos: 'Consejos',
+  tendencias: 'Tendencias',
+  normativa: 'Normativa',
+  'casos-de-exito': 'Casos de Éxito',
+};
+---
+
+<Base title="Blog | Optim Toldos — Guías y Consejos de Protección Solar" description="Guías, consejos y novedades sobre toldos, pérgolas bioclimáticas, cortinas de cristal, velas de sombra y ventanas PVC en Alicante." breadcrumbs={breadcrumbs}>
+  <Navbar client:load />
+
+  <main>
+    <!-- Hero -->
+    <section class="bg-navy pt-32 pb-20">
+      <div class="max-w-4xl mx-auto px-4 text-center">
+        <h1 class="font-serif text-4xl md:text-5xl text-white mb-6">Blog</h1>
+        <p class="text-lg text-white/70 max-w-2xl mx-auto">
+          Guías, consejos y novedades sobre protección solar y vida exterior en Alicante
+        </p>
+      </div>
+    </section>
+
+    <!-- Posts Grid -->
+    <section class="bg-white py-20 md:py-28">
+      <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        {posts.length === 0 ? (
+          <p class="text-center text-text-muted text-lg">Próximamente: artículos y guías sobre protección solar.</p>
+        ) : (
+          <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
+            {posts.map((post) => (
+              <a
+                href={`/blog/${post.id}`}
+                class="group block rounded-2xl overflow-hidden bg-white border border-border shadow-sm hover:shadow-md transition-shadow duration-300"
+              >
+                {post.data.image ? (
+                  <div class="relative overflow-hidden aspect-[16/10]">
+                    <img
+                      src={post.data.image}
+                      alt={post.data.title}
+                      class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                      loading="lazy"
+                    />
+                  </div>
+                ) : (
+                  <div class="aspect-[16/10] bg-gradient-to-br from-terracotta/20 to-gold/10" />
+                )}
+                <div class="p-6">
+                  <span class="inline-block font-mono text-xs tracking-wide text-terracotta uppercase mb-2">
+                    {categoryLabels[post.data.category] || post.data.category}
+                  </span>
+                  <h2 class="font-serif text-xl text-navy mb-2 group-hover:text-terracotta transition-colors">
+                    {post.data.title}
+                  </h2>
+                  <p class="text-text-muted text-sm leading-relaxed mb-3 line-clamp-2">
+                    {post.data.description}
+                  </p>
+                  <span class="text-text-muted/60 text-xs">
+                    {new Date(post.data.date).toLocaleDateString('es-ES', { year: 'numeric', month: 'long', day: 'numeric' })}
+                  </span>
+                </div>
+              </a>
+            ))}
+          </div>
+        )}
+      </div>
+    </section>
+  </main>
+
+  <Footer client:load />
+</Base>

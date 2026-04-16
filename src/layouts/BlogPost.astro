@@ -1,0 +1,106 @@
+---
+import Base from './Base.astro';
+
+interface Props {
+  title: string;
+  description: string;
+  date: string;
+  updated?: string;
+  author: string;
+  image?: string;
+  category: string;
+}
+
+const { title, description, date, updated, author, image, category } = Astro.props;
+const breadcrumbs = [
+  { name: 'Inicio', url: 'https://optimtoldos.com/' },
+  { name: 'Blog', url: 'https://optimtoldos.com/blog' },
+  { name: title, url: `https://optimtoldos.com${Astro.url.pathname}` },
+];
+
+const articleSchema = {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": title,
+  "description": description,
+  "datePublished": date,
+  ...(updated && { "dateModified": updated }),
+  "author": {
+    "@type": "Organization",
+    "name": author,
+    "url": "https://optimtoldos.com"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Optim Toldos",
+    "url": "https://optimtoldos.com"
+  },
+  ...(image && {
+    "image": `https://optimtoldos.com${image}`
+  }),
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": `https://optimtoldos.com${Astro.url.pathname}`
+  }
+};
+
+const categoryLabels: Record<string, string> = {
+  guias: 'Guías',
+  consejos: 'Consejos',
+  tendencias: 'Tendencias',
+  normativa: 'Normativa',
+  'casos-de-exito': 'Casos de Éxito',
+};
+---
+
+<Base title={`${title} | Blog | Optim Toldos`} description={description} type="article" breadcrumbs={breadcrumbs}>
+  <Fragment slot="head">
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(articleSchema)} />
+  </Fragment>
+
+  <div class="bg-white">
+    <!-- Hero -->
+    <section class="bg-navy pt-32 pb-16">
+      <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <span class="inline-block font-mono tracking-[0.15em] text-gold text-xs uppercase mb-4">
+          {categoryLabels[category] || category}
+        </span>
+        <h1 class="font-serif text-3xl md:text-4xl lg:text-5xl text-white mb-4 leading-tight">
+          {title}
+        </h1>
+        <p class="text-white/60 text-sm">
+          {author} &middot; {new Date(date).toLocaleDateString('es-ES', { year: 'numeric', month: 'long', day: 'numeric' })}
+          {updated && <span> &middot; Actualizado {new Date(updated).toLocaleDateString('es-ES', { year: 'numeric', month: 'long', day: 'numeric' })}</span>}
+        </p>
+      </div>
+    </section>
+
+    <!-- Content -->
+    <article class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-20">
+      <div class="prose prose-lg max-w-none prose-headings:font-serif prose-headings:text-navy prose-a:text-terracotta hover:prose-a:text-terracotta-dark prose-strong:text-navy">
+        <slot />
+      </div>
+    </article>
+
+    <!-- Back to blog -->
+    <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 pb-16">
+      <a href="/blog" class="inline-flex items-center gap-2 text-terracotta font-medium hover:underline">
+        <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18" />
+        </svg>
+        Volver al blog
+      </a>
+    </div>
+
+    <!-- CTA -->
+    <section class="bg-sand py-16">
+      <div class="max-w-3xl mx-auto px-4 text-center">
+        <h2 class="font-serif text-2xl md:text-3xl text-navy mb-4">¿Necesitas asesoramiento?</h2>
+        <p class="text-text-muted mb-8">Te ayudamos a elegir la mejor solución para tu espacio. Presupuesto gratuito y sin compromiso.</p>
+        <a href="/presupuesto" class="inline-block bg-terracotta hover:bg-terracotta-dark text-white font-medium rounded-xl px-8 py-3 transition-colors">
+          Solicitar Presupuesto
+        </a>
+      </div>
+    </section>
+  </div>
+</Base>

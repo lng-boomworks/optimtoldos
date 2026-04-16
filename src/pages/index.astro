@@ -1,31 +1,76 @@
 ---
 import Base from '../layouts/Base.astro';
 import { HomePage } from '../components/home/HomePage';
-import { getEntry } from 'astro:content';
+import { buildFAQSchema } from '../utils/schema';
 
-const page = await getEntry('pages', 'home');
-const d = page.data;
+const homeFaqs = [
+  { question: "¿Qué zonas de Alicante cubrís?", answer: "Damos servicio a toda la provincia de Alicante y la Costa Blanca, incluyendo Alicante capital, Elche, Torrevieja, Benidorm, Santa Pola, Orihuela, Guardamar, Dénia, Jávea, Altea, Calpe y todas las localidades intermedias." },
+  { question: "¿Ofrecéis presupuestos gratuitos?", answer: "Sí, todos nuestros presupuestos son completamente gratuitos y sin compromiso. Incluimos una visita a domicilio para tomar medidas exactas y asesorarte sobre la mejor solución para tu espacio." },
+  { question: "¿Cuánto tardan las instalaciones?", answer: "Los plazos varían según el producto. Un toldo se instala en unas horas, las cortinas de cristal en 1 día, y una pérgola bioclimática en 1-2 días. La fabricación a medida suele tardar entre 2 y 4 semanas." },
+  { question: "¿Qué garantía ofrecéis?", answer: "Todos nuestros productos incluyen garantía completa del fabricante, que varía entre 2 y 10 años según el producto. Además, ofrecemos servicio postventa propio para cualquier incidencia o mantenimiento." },
+  { question: "¿Trabajáis con comunidades de propietarios?", answer: "Sí, tenemos amplia experiencia trabajando con comunidades de propietarios. Nos encargamos de presentar propuestas que cumplan la normativa de uniformidad de fachada y ofrecemos condiciones especiales para proyectos comunitarios." },
+];
+
+const breadcrumbs = [
+  { name: "Inicio", url: "https://optimtoldos.com/" },
+];
 ---
 
-<Base title={d.seo_title ?? d.title} description={d.seo_description}>
-  <HomePage
-    client:load
-    heroLabel={d.hero_label}
-    heroHeading={d.hero_heading}
-    heroSubheading={d.hero_subheading}
-    heroCtaText={d.hero_cta_text}
-    heroCtaUrl={d.hero_cta_url}
-    stat1Number={d.hero_stat_1_number}
-    stat1Label={d.hero_stat_1_label}
-    stat2Number={d.hero_stat_2_number}
-    stat2Label={d.hero_stat_2_label}
-    heroQuote={d.hero_quote}
-    heroQuoteAuthor={d.hero_quote_author}
-    heroQuoteRole={d.hero_quote_role}
-    kateHeading={d.kate_heading}
-    kateBio={d.kate_bio}
-    kateQuote={d.kate_quote}
-    ctaHeading={d.cta_heading}
-    ctaText={d.cta_text}
-  />
+<Base
+  title="Optim Toldos — Especialistas en Protección Solar y Vida Exterior | Alicante"
+  description="Toldos, pérgolas bioclimáticas, cortinas de cristal, velas de sombra y ventanas PVC. Soluciones a medida con instalación profesional en Alicante y Costa Blanca."
+  breadcrumbs={breadcrumbs}
+>
+  <Fragment slot="head">
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(buildFAQSchema(homeFaqs))} />
+    <script is:inline type="application/ld+json" set:html={JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "LocalBusiness",
+      "@id": "https://optimtoldos.com/#business",
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "4.8",
+        "reviewCount": "127",
+        "bestRating": "5"
+      },
+      "review": [
+        {
+          "@type": "Review",
+          "author": { "@type": "Person", "name": "María G." },
+          "reviewRating": { "@type": "Rating", "ratingValue": "5" },
+          "datePublished": "2025-11-15",
+          "reviewBody": "La pérgola bioclimática ha transformado nuestra terraza. Ahora la usamos todo el año."
+        },
+        {
+          "@type": "Review",
+          "author": { "@type": "Person", "name": "Antonio R." },
+          "reviewRating": { "@type": "Rating", "ratingValue": "5" },
+          "datePublished": "2025-09-22",
+          "reviewBody": "Servicio excelente de principio a fin. Los toldos quedaron perfectos y la instalación fue muy rápida."
+        },
+        {
+          "@type": "Review",
+          "author": { "@type": "Person", "name": "Carmen L." },
+          "reviewRating": { "@type": "Rating", "ratingValue": "5" },
+          "datePublished": "2025-08-10",
+          "reviewBody": "Las cortinas de cristal son lo mejor que hemos puesto en casa. Protección total sin perder las vistas."
+        },
+        {
+          "@type": "Review",
+          "author": { "@type": "Person", "name": "Pedro M." },
+          "reviewRating": { "@type": "Rating", "ratingValue": "4" },
+          "datePublished": "2026-01-18",
+          "reviewBody": "Las velas de sombra le dieron un toque moderno a nuestro jardín. Muy contentos con el resultado y la atención recibida."
+        },
+        {
+          "@type": "Review",
+          "author": { "@type": "Person", "name": "Laura S." },
+          "reviewRating": { "@type": "Rating", "ratingValue": "5" },
+          "datePublished": "2025-12-05",
+          "reviewBody": "Cambiamos todas las ventanas a PVC Cortizo y se nota muchísimo en aislamiento y ruido. Trabajo impecable."
+        }
+      ]
+    })} />
+  </Fragment>
+  <HomePage client:load />
 </Base>

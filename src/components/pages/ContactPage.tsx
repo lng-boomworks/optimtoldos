@@ -29,12 +29,12 @@ export function ContactPage({
   return (
     <>
       <Navbar />
-      <main className="pt-[72px]">
+      <main>
         <div className="flex flex-col bg-cream min-h-screen pb-24">
-          <section className="py-20 text-center px-4">
+          <section className="bg-navy pt-32 pb-20 text-center px-4">
             <FadeIn>
-              <h1 className="mb-6">{heroHeading}</h1>
-              <p className="text-xl text-text-muted">{heroSubheading}</p>
+              <h1 className="text-white mb-6">{heroHeading}</h1>
+              <p className="text-xl text-white/70">{heroSubheading}</p>
             </FadeIn>
           </section>
 

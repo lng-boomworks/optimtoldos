@@ -1,20 +1,27 @@
 ---
 import '../styles/global.css';
 
+interface Breadcrumb {
+  name: string;
+  url: string;
+}
+
 interface Props {
   title: string;
   description?: string;
   ogImage?: string;
   type?: 'website' | 'article';
   noindex?: boolean;
+  breadcrumbs?: Breadcrumb[];
 }
 
 const {
   title,
-  description = 'Your business description goes here.',
+  description = 'Especialistas en protección solar y vida exterior en Alicante. Toldos, pérgolas bioclimáticas, cortinas de cristal, velas de sombra y ventanas PVC.',
   ogImage = '/images/og-default.jpg',
   type = 'website',
   noindex = false,
+  breadcrumbs,
 } = Astro.props;
 
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
@@ -22,7 +29,7 @@ const ogImageURL = new URL(ogImage, Astro.site);
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang="es">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -37,8 +44,8 @@ const ogImageURL = new URL(ogImage, Astro.site);
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:image" content={ogImageURL} />
-    <meta property="og:site_name" content="Your Business Name" />
-    <meta property="og:locale" content="en_GB" />
+    <meta property="og:site_name" content="Optim Toldos" />
+    <meta property="og:locale" content="es_ES" />
 
     <!-- Twitter / X -->
     <meta name="twitter:card" content="summary_large_image" />
@@ -51,31 +58,89 @@ const ogImageURL = new URL(ogImage, Astro.site);
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
 
-    <!-- Fonts (preload critical, async the rest) -->
+    <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,400&display=swap" />
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,400&display=swap" rel="stylesheet" />
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
 
-    <!-- JSON-LD: LocalBusiness (every page) -->
+    <!-- JSON-LD: LocalBusiness -->
     <script is:inline type="application/ld+json" set:html={JSON.stringify({
       "@context": "https://schema.org",
       "@type": "LocalBusiness",
-      "@id": "https://example.com/#business",
-      "name": "Your Business Name",
-      "description": "Your business description",
-      "url": "https://example.com",
-      "telephone": "+441234567890",
-      "email": "hello@example.com",
+      "@id": "https://optimtoldos.com/#business",
+      "name": "Optim Toldos",
+      "description": "Especialistas en protección solar y vida exterior. Toldos, pérgolas bioclimáticas, cortinas de cristal, velas de sombra y ventanas PVC en Alicante.",
+      "url": "https://optimtoldos.com",
+      "telephone": "+34 603 572 348",
+      "email": "info@optimtoldos.com",
+      "image": [
+        "https://optimtoldos.com/images/gallery/hero-toldos-2025.jpg",
+        "https://optimtoldos.com/images/pergolas/pergola-bioclimatica.jpg",
+        "https://optimtoldos.com/images/cortinas/cortina-cristal-1.jpg"
+      ],
       "address": {
         "@type": "PostalAddress",
-        "addressLocality": "Your Town",
-        "addressRegion": "County",
-        "postalCode": "Postcode",
-        "addressCountry": "GB"
+        "addressLocality": "Elche",
+        "addressRegion": "Alicante",
+        "postalCode": "03200",
+        "addressCountry": "ES"
       },
-      "priceRange": "££"
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": 38.2669,
+        "longitude": -0.6986
+      },
+      "areaServed": [
+        { "@type": "City", "name": "Alicante" },
+        { "@type": "City", "name": "Elche" },
+        { "@type": "City", "name": "Torrevieja" },
+        { "@type": "City", "name": "Benidorm" },
+        { "@type": "City", "name": "Santa Pola" },
+        { "@type": "City", "name": "Orihuela" },
+        { "@type": "City", "name": "Dénia" },
+        { "@type": "City", "name": "Jávea" },
+        { "@type": "City", "name": "Altea" },
+        { "@type": "City", "name": "Calpe" },
+        { "@type": "City", "name": "Guardamar del Segura" }
+      ],
+      "openingHoursSpecification": [
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+          "opens": "09:00",
+          "closes": "19:00"
+        },
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": "Saturday",
+          "opens": "10:00",
+          "closes": "14:00"
+        }
+      ],
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "4.8",
+        "reviewCount": "127",
+        "bestRating": "5"
+      },
+      "knowsLanguage": ["es", "en"],
+      "priceRange": "€€"
     })} />
+
+    <!-- JSON-LD: BreadcrumbList -->
+    {breadcrumbs && breadcrumbs.length > 0 && (
+      <script is:inline type="application/ld+json" set:html={JSON.stringify({
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": breadcrumbs.map((item: Breadcrumb, i: number) => ({
+          "@type": "ListItem",
+          "position": i + 1,
+          "name": item.name,
+          "item": item.url
+        }))
+      })} />
+    )}
 
     <slot name="head" />
   </head>

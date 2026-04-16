@@ -17,6 +17,31 @@ The master template lives at `~/Development/websites/astro-starter-template`. **
 
 ## Responsibilities
 
+### Stage 4.5 — Design Planning (BEFORE any code changes)
+
+**CRITICAL — Read UX references before building.** Every site must look unique. Before touching any code, read the design reference files and make layout decisions.
+
+#### 4.5.1 Read the UX/UI Design References
+
+Read these files from `pipeline/references/ux-design/`:
+
+1. **`industry-layouts.md`** — Find the matching industry section. Note the recommended hero pattern, section order, colour tendency, typography, and unique elements for this business type.
+2. **`hero-patterns.md`** — Use the decision matrix to choose a hero pattern based on: business type + brand personality + available assets. Do NOT default to text-forward minimal every time.
+3. **`section-rhythm.md`** — Plan the section order. Do NOT use the same Hero → Services → CTA pattern for every site. Vary the order based on business goals.
+4. **`cta-and-social-proof.md`** — Decide on CTA pattern and social proof placement.
+5. **`typography-and-imagery.md`** — Plan typography treatment and image strategy (or no-image fallback).
+
+#### 4.5.2 Write a Design Plan
+
+Before proceeding to Stage 5, write a brief `04_design_plan.md` in the prospect folder with:
+- **Hero pattern chosen** and why (reference the hero-patterns.md pattern name)
+- **Section order** for the home page (list the sections in order)
+- **Background rhythm** (which sections get light/dark/accent treatment)
+- **Key visual differences** from the last site built (the "No Two Alike" rule)
+- **Image strategy** (Unsplash images from brand guide, or no-image fallback technique)
+
+This plan ensures deliberate design decisions rather than defaulting to template structure.
+
 ### Stage 5 — Customise the Design
 
 #### 5.1 Copy the Template
@@ -149,11 +174,51 @@ Save a `06_build_report.md` to `~/Development/websites/{slug}/` with:
 - Page list with file sizes
 - Notes on anything the Content Writer or Brand Analyst should revisit
 
+### Stage 6.5 — Design Quality Gate (BEFORE deploying)
+
+Before deploying, run a design critique against your own build. This catches template-sameness and missing elements before the prospect sees the site.
+
+#### 6.5.1 Self-Critique Checklist
+
+Review the built site against these criteria:
+
+**Layout Uniqueness:**
+- [ ] Hero pattern matches the design plan (not the default text-forward minimal)
+- [ ] Section order differs from the last site built
+- [ ] Background rhythm varies (not all-white or all-cream sections)
+- [ ] At least one section breaks the standard centered-text-with-padding pattern
+
+**Visual Completeness:**
+- [ ] Hero has imagery OR a deliberate no-image fallback (gradient, pattern, illustration) — NOT just text on a plain background
+- [ ] Social proof is present somewhere on the homepage (testimonial, stars, stats, or logo bar)
+- [ ] "Meet the Owner" or personal section is included if the content has bio data
+- [ ] Phone number appears in at least 3 locations (navbar, CTA, footer)
+- [ ] Services page has real content, NOT template placeholders ("Service One", "Service Two")
+
+**Industry Appropriateness:**
+- [ ] The layout feels right for this business type (check `industry-layouts.md`)
+- [ ] Colour palette matches the industry tendency from the brand guide
+- [ ] Typography weight/style matches the brand personality
+
+**Technical Quality:**
+- [ ] All navigation links include the `/{slug}/` base path
+- [ ] No template placeholder text visible anywhere
+- [ ] FadeIn animations don't create invisible content gaps
+- [ ] Mobile responsive (check at 375px width)
+
+If any critical items fail, fix them before deploying. Save the critique as `06.5_design_critique.md`.
+
 ### Stage 7 — Deploy to GitHub Pages
 
 **GitHub account:** `lng-boomworks`
 **Repo naming:** repo name = `{slug}` (matching the website folder name)
 **Live URL pattern:** `https://lng-boomworks.github.io/{slug}`
+
+**CRITICAL — NEVER do any of these:**
+- NEVER use `npx gh-pages -d dist` — it creates a `gh-pages` branch that conflicts with the Actions workflow
+- NEVER set Pages source to "Deploy from a branch" — incompatible with `actions/deploy-pages@v4`
+- NEVER push to a `gh-pages` branch — it's silently ignored when source is "GitHub Actions"
+- NEVER delete the deploy.yml workflow — source code on `main`, GitHub Actions builds and deploys
 
 #### 7.0 Set the GitHub Pages base path (CRITICAL)
 
@@ -166,6 +231,14 @@ base: '/{slug}',
 The `base` path is **required** for GitHub Pages project sites. Without it, all CSS and JS asset paths will be wrong and the site will appear unstyled. After setting this, rebuild:
 ```bash
 npm run build
+```
+
+#### 7.0.1 Ensure `.nojekyll` exists (CRITICAL)
+
+Verify that `public/.nojekyll` exists (it should already be in the template). This empty file tells GitHub Pages to skip Jekyll processing. Without it, Jekyll ignores the `_astro/` directory (underscore prefix), causing ALL CSS and JS to return 404/503 errors — the site will appear completely unstyled.
+
+```bash
+touch public/.nojekyll
 ```
 
 #### 7.1 Add the GitHub Actions workflow
@@ -253,6 +326,16 @@ gh api repos/lng-boomworks/{slug}/pages -X PUT -f build_type=workflow 2>/dev/nul
 
 The workflow triggered by the push in step 7.2 will handle the deployment automatically.
 
+**Troubleshooting:** If the workflow fails with "Branch 'main' is not allowed to deploy to github-pages due to environment protection rules", the `github-pages` environment has stale protection rules. Fix: go to Settings > Environments > github-pages and DELETE the environment entirely, then re-run the workflow. It recreates the environment fresh without restrictions.
+
+#### 7.3.1 Verify default branch is `main`
+
+```bash
+gh repo edit lng-boomworks/{slug} --default-branch main
+```
+
+If the default branch is anything other than `main` (e.g., `gh-pages`), you won't be able to delete obsolete branches and the workflow may not trigger correctly.
+
 #### 7.4 Capture Live URL
 
 The site will be live at: `https://lng-boomworks.github.io/{slug}`
@@ -262,9 +345,11 @@ Note: GitHub Pages can take 1-2 minutes to propagate after the first deploy.
 #### 7.5 Smoke Test
 
 Visit each page on the live URL and verify:
-- Pages load with full CSS styling (if unstyled, the `base` path is wrong)
+- Pages load with full CSS styling (if unstyled, check: `base` path in astro.config.mjs, `.nojekyll` in public/)
 - Images display correctly
-- Navigation links work and include the base path
+- Navigation links work between ALL pages (if 404s, React component hrefs are missing `/{slug}/` prefix — see Stage 5.5)
+- Service page shows real business content, NOT "Service One/Two/Three" template placeholders
+- Phone numbers are correct everywhere (Navbar desktop + mobile, FinalCTA, ServicesPage CTA)
 - Contact form renders (even if not yet connected to Web3Forms)
 - Site is mobile-responsive
 

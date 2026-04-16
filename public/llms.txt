@@ -1,21 +1,48 @@
-# Your Business Name
+# Optim Toldos
 
-> Your business tagline.
+> Especialistas en protección solar y vida exterior en Alicante, España.
 
-Description of your business and what you do.
+Optim Toldos es una empresa con sede en Elche (Alicante) con más de 15 años de experiencia en el diseño, fabricación e instalación de soluciones de protección solar y cerramientos para viviendas y negocios en toda la provincia de Alicante y la Costa Blanca. Más de 2.000 instalaciones realizadas.
 
-## Services
-- Service One
-- Service Two
-- Service Three
+## Servicios
 
-## Contact
-- Phone: 01234 567890
-- Email: hello@example.com
-- Address: Your Town, County, Postcode
+- Toldos a medida: extensibles, verticales, punto recto, capota y ventana. Tejidos acrílicos e impermeables, motorización opcional, cofre de protección. Más de 200 colores disponibles.
+  https://optimtoldos.com/toldos
 
-## Key pages
-- Home: https://example.com/
-- Services: https://example.com/services
-- About: https://example.com/about
-- Contact: https://example.com/contact
+- Pérgolas bioclimáticas: aluminio con lamas orientables de 0° a 135°, motorización inteligente, iluminación LED integrada, sensor de lluvia automático. Uso 365 días al año.
+  https://optimtoldos.com/pergolas
+
+- Cortinas de cristal: paneles de cristal templado de seguridad (8-10mm) plegables sin perfiles verticales. Plegado total, protección climática completa, aislamiento acústico.
+  https://optimtoldos.com/cortinas-de-cristal
+
+- Velas de sombra: triangulares, rectangulares y personalizadas. 95% protección UV certificada, reducción de temperatura hasta 50°C, vida útil 10+ años.
+  https://optimtoldos.com/velas-de-sombra
+
+- Ventanas y puertas PVC: correderas, abatibles y oscilobatientes. Reducción de hasta 70% en pérdidas térmicas, aislamiento acústico hasta 47dB, certificación CE.
+  https://optimtoldos.com/ventanas-pvc
+
+## Zona de servicio
+
+Alicante, Elche, Torrevieja, Benidorm, Santa Pola, Orihuela, Guardamar, Dénia, Jávea, Altea, Calpe y toda la provincia de Alicante / Costa Blanca.
+
+## Contacto
+
+- Teléfono: +34 603 572 348
+- Email: info@optimtoldos.com
+- Ubicación: Elche, Alicante 03200, España
+- Horario: Lunes a Viernes 9:00-19:00, Sábados 10:00-14:00
+- Web: https://optimtoldos.com
+
+## Páginas principales
+
+- Inicio: https://optimtoldos.com/
+- Toldos: https://optimtoldos.com/toldos
+- Pérgolas bioclimáticas: https://optimtoldos.com/pergolas
+- Cortinas de cristal: https://optimtoldos.com/cortinas-de-cristal
+- Velas de sombra: https://optimtoldos.com/velas-de-sombra
+- Ventanas PVC: https://optimtoldos.com/ventanas-pvc
+- Galería de proyectos: https://optimtoldos.com/galeria
+- Sobre nosotros: https://optimtoldos.com/sobre-nosotros
+- Contacto: https://optimtoldos.com/contacto
+- Presupuesto gratis: https://optimtoldos.com/presupuesto
+- Blog: https://optimtoldos.com/blog

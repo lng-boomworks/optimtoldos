@@ -31,13 +31,13 @@ export function ServicesPage({
   return (
     <>
       <Navbar />
-      <main className="pt-[72px]">
+      <main>
         <div className="flex flex-col bg-white">
-          <section className="bg-cream py-20 md:py-32">
+          <section className="bg-navy pt-32 pb-20 md:pb-24">
             <div className="max-w-4xl mx-auto px-4 text-center">
               <FadeIn>
-                <h1 className="mb-6">{heroHeading}</h1>
-                <p className="text-xl text-text-muted">{heroSubheading}</p>
+                <h1 className="text-white mb-6">{heroHeading}</h1>
+                <p className="text-xl text-white/70">{heroSubheading}</p>
               </FadeIn>
             </div>
           </section>

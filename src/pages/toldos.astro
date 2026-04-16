@@ -1,0 +1,61 @@
+---
+import Base from '../layouts/Base.astro';
+import { ToldosPage } from '../components/pages/ToldosPage';
+import { buildServiceSchema, buildFAQSchema } from '../utils/schema';
+
+const serviceSchema = buildServiceSchema({
+  name: "Toldos a Medida en Alicante",
+  description: "Fabricación e instalación de toldos extensibles, verticales, punto recto y capota a medida.",
+  serviceType: "Instalación de toldos",
+  url: "https://optimtoldos.com/toldos",
+  offers: [
+    { name: "Toldo Brazo Extensible" },
+    { name: "Toldo Punto Recto" },
+    { name: "Toldo Vertical / Screen" },
+    { name: "Toldo Capota" },
+    { name: "Toldo de Ventana" },
+  ],
+});
+
+const faqSchema = buildFAQSchema([
+  {
+    question: "¿Cuánto cuesta un toldo extensible en Alicante?",
+    answer: "El precio de un toldo extensible en Alicante oscila entre 350€ y 1.500€, dependiendo de las medidas, el tipo de tejido (acrílico o impermeable), la motorización y si incluye cofre de protección. En Optim Toldos ofrecemos presupuestos gratuitos y personalizados sin compromiso.",
+  },
+  {
+    question: "¿Qué tipo de toldo es mejor para una terraza?",
+    answer: "Para terrazas, el toldo de brazo extensible es la opción más popular por su versatilidad y cobertura. Para terrazas con mucho viento en la Costa Blanca, recomendamos modelos con sensor de viento y cofre de protección. El toldo vertical o screen es ideal como complemento lateral.",
+  },
+  {
+    question: "¿Cuánto dura un toldo bien mantenido?",
+    answer: "Un toldo de calidad con tejido acrílico bien mantenido tiene una vida útil de 10 a 15 años. Recomendamos recogerlo en días de viento fuerte, limpiarlo una vez al año con agua y jabón neutro, y asegurarse de que el tejido esté seco antes de recogerlo.",
+  },
+  {
+    question: "¿Es mejor un toldo con o sin cofre?",
+    answer: "El cofre de protección es muy recomendable, especialmente en zonas costeras como Alicante donde la brisa marina y la sal pueden deteriorar el tejido. El cofre protege la lona cuando está recogida y puede alargar su vida útil entre un 30% y un 50%.",
+  },
+  {
+    question: "¿Se puede motorizar un toldo existente?",
+    answer: "Sí, en la mayoría de los casos es posible motorizar un toldo manual existente. Las opciones incluyen motor con mando a distancia, sensor de viento para recogida automática, sensor de sol y integración con sistemas domóticos.",
+  },
+  {
+    question: "¿Necesito licencia para instalar un toldo en mi terraza?",
+    answer: "Generalmente no se necesita licencia de obras para instalar un toldo en una vivienda privada. Sin embargo, en comunidades de propietarios es necesario contar con la aprobación de la comunidad, especialmente respecto al color y modelo para mantener la uniformidad de la fachada.",
+  },
+]);
+---
+
+<Base
+  title="Toldos a Medida | Optim Toldos — Alicante"
+  description="Toldos extensibles, verticales, de punto y capota. Fabricación a medida con instalación profesional en Alicante y Costa Blanca."
+  breadcrumbs={[
+    { name: "Inicio", url: "https://optimtoldos.com/" },
+    { name: "Toldos", url: "https://optimtoldos.com/toldos" },
+  ]}
+>
+  <Fragment slot="head">
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(serviceSchema)} />
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+  </Fragment>
+  <ToldosPage client:load />
+</Base>

@@ -5,9 +5,24 @@ interface FadeInProps {
   delay?: number;
   direction?: "up" | "down" | "left" | "right" | "none";
   className?: string;
+  duration?: number;
 }
 
-export function FadeIn({ children, delay = 0, direction = "up", className = "" }: FadeInProps) {
+const directionOffsets: Record<string, string> = {
+  up: "translateY(30px)",
+  down: "translateY(-30px)",
+  left: "translateX(30px)",
+  right: "translateX(-30px)",
+  none: "none",
+};
+
+export function FadeIn({
+  children,
+  delay = 0,
+  direction = "up",
+  className = "",
+  duration = 0.7,
+}: FadeInProps) {
   const ref = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -21,17 +36,9 @@ export function FadeIn({ children, delay = 0, direction = "up", className = "" }
       return;
     }
 
-    const initialTransforms: Record<string, string> = {
-      up: "translateY(24px)",
-      down: "translateY(-24px)",
-      left: "translateX(24px)",
-      right: "translateX(-24px)",
-      none: "none",
-    };
-
     el.style.opacity = "0";
-    el.style.transform = initialTransforms[direction];
-    el.style.transition = `opacity 0.6s ease ${delay}s, transform 0.6s ease ${delay}s`;
+    el.style.transform = directionOffsets[direction];
+    el.style.transition = `opacity ${duration}s cubic-bezier(0.16, 1, 0.3, 1) ${delay}s, transform ${duration}s cubic-bezier(0.16, 1, 0.3, 1) ${delay}s`;
 
     const observer = new IntersectionObserver(
       ([entry]) => {
@@ -46,7 +53,7 @@ export function FadeIn({ children, delay = 0, direction = "up", className = "" }
 
     observer.observe(el);
     return () => observer.disconnect();
-  }, [delay, direction]);
+  }, [delay, direction, duration]);
 
   return (
     <div ref={ref} className={className}>
@@ -54,3 +61,5 @@ export function FadeIn({ children, delay = 0, direction = "up", className = "" }
     </div>
   );
 }
+
+export default FadeIn;

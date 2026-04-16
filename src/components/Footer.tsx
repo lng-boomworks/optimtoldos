@@ -1,61 +1,103 @@
 export function Footer() {
+  const productLinks = [
+    { name: "Toldos", path: "/toldos" },
+    { name: "Pérgolas", path: "/pergolas" },
+    { name: "Cortinas de Cristal", path: "/cortinas-de-cristal" },
+    { name: "Velas de Sombra", path: "/velas-de-sombra" },
+    { name: "Ventanas PVC", path: "/ventanas-pvc" },
+  ];
+
+  const companyLinks = [
+    { name: "Sobre Nosotros", path: "/sobre-nosotros" },
+    { name: "Galería", path: "/galeria" },
+    { name: "Contacto", path: "/contacto" },
+    { name: "Blog", path: "/blog" },
+    { name: "Presupuesto Gratis", path: "/presupuesto" },
+  ];
+
   return (
-    <footer className="bg-charcoal text-white/70">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 lg:py-20">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12 lg:gap-8">
+    <footer className="bg-white border-t border-border">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 lg:gap-8">
           {/* Brand */}
-          <div>
-            <a href="/" className="flex items-center gap-3 mb-6">
-              <span className="font-serif text-[26px] font-medium text-white tracking-tight">Your Business</span>
+          <div className="lg:col-span-2">
+            <a href="/" className="inline-block mb-5">
+              <img
+                src="/images/logos/logo-footer.png"
+                alt="OptimToldos"
+                loading="lazy"
+                decoding="async"
+                className="h-10 w-auto"
+              />
             </a>
-            <p className="text-[15px] leading-relaxed mb-6 max-w-sm">
-              Your business tagline goes here.
+            <p className="text-text-muted text-[15px] leading-relaxed max-w-sm mb-5">
+              Especialistas en protección solar y vida exterior en la provincia
+              de Alicante. Fabricación a medida e instalación profesional.
             </p>
-            <div className="flex flex-col gap-2 text-[14px]">
-              <a href="tel:01234567890" className="hover:text-white transition-colors">01234 567890</a>
-              <a href="mailto:hello@example.com" className="hover:text-white transition-colors">hello@example.com</a>
-              <span>Your Town, County, Postcode</span>
+            <div className="flex flex-col gap-1.5 text-sm text-text-muted">
+              <span>Elche, Alicante</span>
+              <a
+                href="mailto:info@optimtoldos.com"
+                className="hover:text-terracotta transition-colors"
+              >
+                info@optimtoldos.com
+              </a>
+              <a
+                href="tel:+34603572348"
+                className="hover:text-terracotta transition-colors"
+              >
+                +34 603 572 348
+              </a>
             </div>
           </div>
 
-          {/* Navigation */}
+          {/* Products */}
           <div>
-            <h4 className="text-white font-medium mb-6">Navigation</h4>
-            <ul className="flex flex-col gap-3 text-[15px]">
-              <li><a href="/" className="hover:text-white transition-colors">Home</a></li>
-              <li><a href="/services" className="hover:text-white transition-colors">Services</a></li>
-              <li><a href="/about" className="hover:text-white transition-colors">About</a></li>
-              <li><a href="/contact" className="hover:text-white transition-colors">Contact</a></li>
+            <h4 className="text-navy font-medium text-sm uppercase tracking-wide mb-4">
+              Productos
+            </h4>
+            <ul className="flex flex-col gap-2.5">
+              {productLinks.map((link) => (
+                <li key={link.path}>
+                  <a
+                    href={link.path}
+                    className="text-text-muted text-[15px] hover:text-terracotta transition-colors"
+                  >
+                    {link.name}
+                  </a>
+                </li>
+              ))}
             </ul>
           </div>
 
-          {/* Legal & Contact */}
+          {/* Company */}
           <div>
-            <h4 className="text-white font-medium mb-6">Legal & Contact</h4>
-            <ul className="flex flex-col gap-3 text-[15px]">
-              <li><a href="/privacy" className="hover:text-white transition-colors">Privacy Notice</a></li>
-              <li><a href="/contact" className="hover:text-white transition-colors">Contact Us</a></li>
-              <li className="pt-2">
-                <a
-                  href="/contact"
-                  className="inline-block px-4 py-2 border border-white/20 rounded hover:bg-white/10 hover:text-white transition-colors text-sm font-medium"
-                >
-                  Book a Free Call
-                </a>
-              </li>
+            <h4 className="text-navy font-medium text-sm uppercase tracking-wide mb-4">
+              Empresa
+            </h4>
+            <ul className="flex flex-col gap-2.5">
+              {companyLinks.map((link) => (
+                <li key={link.path}>
+                  <a
+                    href={link.path}
+                    className="text-text-muted text-[15px] hover:text-terracotta transition-colors"
+                  >
+                    {link.name}
+                  </a>
+                </li>
+              ))}
             </ul>
           </div>
         </div>
 
-        <div className="mt-16 pt-8 border-t border-white/10 flex flex-col md:flex-row justify-between items-center gap-6">
-          <p className="text-sm">&copy; {new Date().getFullYear()} Your Business. All rights reserved.</p>
-          <div className="flex flex-wrap justify-center gap-2">
-            {["Professional", "Experienced", "Insured", "Free initial consultation"].map((badge) => (
-              <div key={badge} className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/5 border border-white/10 text-xs font-medium text-white/80">
-                {badge}
-              </div>
-            ))}
-          </div>
+        {/* Bottom bar */}
+        <div className="mt-10 pt-6 border-t border-border flex flex-col sm:flex-row justify-between items-center gap-3">
+          <p className="text-text-muted text-sm">
+            &copy; 2026 OptimToldos. Todos los derechos reservados.
+          </p>
+          <p className="text-text-muted/60 text-xs">
+            Elche &middot; Alicante &middot; Costa Blanca
+          </p>
         </div>
       </div>
     </footer>

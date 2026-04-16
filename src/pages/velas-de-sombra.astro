@@ -1,0 +1,36 @@
+---
+import Base from '../layouts/Base.astro';
+import { VelasPage } from '../components/pages/VelasPage';
+import { buildFAQSchema, buildServiceSchema } from '../utils/schema';
+
+const velasFaqs = [
+  { question: "¿Cuánto cuesta una vela de sombra a medida?", answer: "El precio de una vela de sombra a medida en Alicante varía entre 200€ y 1.500€ según el tamaño, el material (HDPE o poliéster con PVC) y el sistema de anclaje. Las velas triangulares son más económicas que las rectangulares o las formas personalizadas." },
+  { question: "¿Qué material es mejor para una vela de sombra?", answer: "Depende del uso. El HDPE (polietileno de alta densidad) es transpirable, ideal para zonas de piscina ya que permite el paso del aire y bloquea hasta el 95% de los rayos UV. El poliéster con recubrimiento de PVC es impermeable y protege también de la lluvia, perfecto para zonas de comedor exterior." },
+  { question: "¿Las velas de sombra aguantan la lluvia?", answer: "Depende del material. Las velas de HDPE son permeables y no protegen de la lluvia, solo del sol. Las velas de poliéster con PVC son impermeables y sí protegen de la lluvia. Es importante que la vela tenga una inclinación mínima del 20% para que el agua escurra correctamente." },
+  { question: "¿Cómo se fijan las velas de sombra?", answer: "Las velas se pueden anclar a postes de acero, placas murales en paredes, árboles resistentes o estructuras existentes. Lo más importante es que los puntos de anclaje soporten la tensión necesaria. En Optim Toldos realizamos un estudio del espacio para determinar la mejor configuración." },
+  { question: "¿Cuánto dura una vela de sombra?", answer: "Una vela de sombra de calidad con tejido estabilizado contra rayos UV tiene una vida útil de 10 a 15 años. Recomendamos retirarla en invierno si no se usa para alargar su vida útil, aunque muchos clientes en Alicante las mantienen instaladas todo el año sin problema." },
+];
+
+const breadcrumbs = [
+  { name: "Inicio", url: "https://optimtoldos.com/" },
+  { name: "Velas de Sombra", url: "https://optimtoldos.com/velas-de-sombra" },
+];
+---
+
+<Base
+  title="Velas de Sombra | Optim Toldos — Alicante"
+  description="Velas de sombra tensadas con protección UV certificada. Diseño triangular, rectangular y personalizado para terrazas y jardines en Alicante."
+  breadcrumbs={breadcrumbs}
+>
+  <Fragment slot="head">
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(buildServiceSchema({
+      name: "Velas de Sombra en Alicante",
+      description: "Diseño e instalación de velas de sombra tensadas con protección UV certificada para terrazas, jardines y piscinas.",
+      serviceType: "Instalación de velas de sombra",
+      url: "https://optimtoldos.com/velas-de-sombra",
+      offers: [{ name: "Vela Triangular" }, { name: "Vela Rectangular" }, { name: "Vela Personalizada" }],
+    }))} />
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(buildFAQSchema(velasFaqs))} />
+  </Fragment>
+  <VelasPage client:load />
+</Base>

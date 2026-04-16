@@ -1,0 +1,59 @@
+---
+import Base from '../layouts/Base.astro';
+import { CortinasPage } from '../components/pages/CortinasPage';
+import { buildServiceSchema, buildFAQSchema } from '../utils/schema';
+
+const serviceSchema = buildServiceSchema({
+  name: "Cortinas de Cristal en Alicante",
+  description: "Instalación de cortinas de cristal templado plegables sin perfiles verticales para cerramientos de terrazas.",
+  serviceType: "Instalación de cortinas de cristal",
+  url: "https://optimtoldos.com/cortinas-de-cristal",
+  offers: [
+    { name: "Cortina de Cristal Plegable" },
+    { name: "Cortina de Cristal Abatible" },
+    { name: "Cerramiento de Cristal" },
+  ],
+});
+
+const faqSchema = buildFAQSchema([
+  {
+    question: "¿Cuánto cuestan las cortinas de cristal por metro cuadrado?",
+    answer: "El precio de las cortinas de cristal oscila entre 250€ y 450€ por metro cuadrado en Alicante, dependiendo de la altura, el grosor del cristal (8mm o 10mm) y el número de paneles. Te ofrecemos presupuesto gratuito con visita incluida.",
+  },
+  {
+    question: "¿Las cortinas de cristal aíslan del frío?",
+    answer: "Las cortinas de cristal ofrecen una protección significativa contra el viento y el frío, aunque no son herméticas como una ventana fija. En Alicante, donde los inviernos son suaves, suelen ser suficientes para disfrutar de la terraza todo el año con una diferencia de temperatura notable respecto al exterior.",
+  },
+  {
+    question: "¿Se pueden cerrar completamente las cortinas de cristal?",
+    answer: "Sí, los paneles se cierran completamente con un mínimo espacio entre ellos. Sin embargo, no son totalmente herméticas como un cerramiento fijo de obra. Esto permite cierta ventilación natural que evita la condensación.",
+  },
+  {
+    question: "¿Qué grosor de cristal se usa en las cortinas de cristal?",
+    answer: "Utilizamos cristal templado de seguridad de 8mm o 10mm de grosor, dependiendo de las dimensiones y la exposición al viento. El cristal templado es hasta 5 veces más resistente que el cristal normal y, en caso de rotura, se fragmenta en pequeños trozos sin aristas cortantes.",
+  },
+  {
+    question: "¿Se empañan las cortinas de cristal?",
+    answer: "La condensación puede producirse en días fríos y húmedos, especialmente si hay diferencia de temperatura entre interior y exterior. Una correcta instalación con sistema de ventilación regulable minimiza este efecto. En el clima de Alicante, la condensación es poco frecuente.",
+  },
+  {
+    question: "¿Se pueden instalar cortinas de cristal en una pérgola?",
+    answer: "Sí, es una de las combinaciones más demandadas. Las cortinas de cristal complementan perfectamente una pérgola bioclimática, creando un espacio exterior cerrado y protegido que se puede disfrutar los 365 días del año.",
+  },
+]);
+---
+
+<Base
+  title="Cortinas de Cristal | Optim Toldos — Alicante"
+  description="Cortinas de cristal templado plegables sin perfiles verticales. Cierra tu terraza sin perder las vistas. Instalación profesional en Alicante y Costa Blanca."
+  breadcrumbs={[
+    { name: "Inicio", url: "https://optimtoldos.com/" },
+    { name: "Cortinas de Cristal", url: "https://optimtoldos.com/cortinas-de-cristal" },
+  ]}
+>
+  <Fragment slot="head">
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(serviceSchema)} />
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+  </Fragment>
+  <CortinasPage client:load />
+</Base>
