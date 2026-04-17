@@ -1,0 +1,47 @@
+---
+import Base from '../../layouts/Base.astro';
+import { CortinasPage } from '../../components/pages/CortinasPage';
+import { buildServiceSchema, buildFAQSchema } from '../../utils/schema';
+import { t } from '../../i18n/index';
+import { getAlternateUrls } from '../../i18n/routes';
+
+const alternateUrls = getAlternateUrls('glass-curtains');
+
+const serviceSchema = buildServiceSchema({
+  name: t('en', 'curtains.hero.heading'),
+  description: t('en', 'curtains.hero.description'),
+  serviceType: "Glass Curtain Installation",
+  url: "https://optimtoldos.com/en/glass-curtains",
+  offers: [
+    { name: "Folding Glass Curtain" },
+    { name: "Hinged Glass Curtain" },
+    { name: "Glass Enclosure" },
+  ],
+});
+
+const faqSchema = buildFAQSchema([
+  { question: t('en', 'curtains.faq.1.q'), answer: t('en', 'curtains.faq.1.a') },
+  { question: t('en', 'curtains.faq.2.q'), answer: t('en', 'curtains.faq.2.a') },
+  { question: t('en', 'curtains.faq.3.q'), answer: t('en', 'curtains.faq.3.a') },
+  { question: t('en', 'curtains.faq.4.q'), answer: t('en', 'curtains.faq.4.a') },
+  { question: t('en', 'curtains.faq.5.q'), answer: t('en', 'curtains.faq.5.a') },
+  { question: t('en', 'curtains.faq.6.q'), answer: t('en', 'curtains.faq.6.a') },
+]);
+---
+
+<Base
+  title="Glass Curtains | Optim Toldos — Alicante"
+  description="Frameless folding tempered glass panels. Enclose your terrace without losing the views. Professional installation in Alicante and Costa Blanca."
+  locale="en"
+  alternateUrls={alternateUrls}
+  breadcrumbs={[
+    { name: "Home", url: "https://optimtoldos.com/en/" },
+    { name: "Glass Curtains", url: "https://optimtoldos.com/en/glass-curtains" },
+  ]}
+>
+  <Fragment slot="head">
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(serviceSchema)} />
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+  </Fragment>
+  <CortinasPage client:load locale="en" />
+</Base>

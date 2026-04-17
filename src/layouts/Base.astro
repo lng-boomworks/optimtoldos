@@ -1,6 +1,8 @@
 ---
 import '../styles/global.css';
 import { url } from '../utils/paths';
+import type { Locale } from '../i18n/index';
+import { ogLocales } from '../i18n/index';
 
 interface Breadcrumb {
   name: string;
@@ -14,6 +16,8 @@ interface Props {
   type?: 'website' | 'article';
   noindex?: boolean;
   breadcrumbs?: Breadcrumb[];
+  locale?: Locale;
+  alternateUrls?: { locale: string; href: string }[];
 }
 
 const {
@@ -23,6 +27,8 @@ const {
   type = 'website',
   noindex = false,
   breadcrumbs,
+  locale = 'es' as Locale,
+  alternateUrls = [],
 } = Astro.props;
 
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
@@ -30,7 +36,7 @@ const ogImageURL = new URL(ogImage, Astro.site);
 ---
 
 <!doctype html>
-<html lang="es">
+<html lang={locale}>
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -46,7 +52,13 @@ const ogImageURL = new URL(ogImage, Astro.site);
     <meta property="og:description" content={description} />
     <meta property="og:image" content={ogImageURL} />
     <meta property="og:site_name" content="Optim Toldos" />
-    <meta property="og:locale" content="es_ES" />
+    <meta property="og:locale" content={ogLocales[locale]} />
+    {alternateUrls.map(alt => (
+      <link rel="alternate" hreflang={alt.locale} href={alt.href} />
+    ))}
+    {alternateUrls.length > 0 && (
+      <link rel="alternate" hreflang="x-default" href={alternateUrls.find(a => a.locale === 'es')?.href ?? alternateUrls[0].href} />
+    )}
 
     <!-- Twitter / X -->
     <meta name="twitter:card" content="summary_large_image" />
@@ -73,7 +85,9 @@ const ogImageURL = new URL(ogImage, Astro.site);
       "@type": "LocalBusiness",
       "@id": "https://optimtoldos.com/#business",
       "name": "Optim Toldos",
-      "description": "Especialistas en protección solar y vida exterior. Toldos, pérgolas bioclimáticas, cortinas de cristal, velas de sombra y ventanas PVC en Alicante.",
+      "description": locale === 'en'
+        ? "Specialists in solar protection and outdoor living. Awnings, bioclimatic pergolas, glass curtains, shade sails and PVC windows in Alicante."
+        : "Especialistas en protección solar y vida exterior. Toldos, pérgolas bioclimáticas, cortinas de cristal, velas de sombra y ventanas PVC en Alicante.",
       "url": "https://optimtoldos.com",
       "telephone": "+34 603 572 348",
       "email": "info@optimtoldos.com",

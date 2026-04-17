@@ -1,6 +1,6 @@
 ---
 import { getCollection, render } from 'astro:content';
-import BlogPost from '../../layouts/BlogPost.astro';
+import BlogPost from '../../../layouts/BlogPost.astro';
 
 export async function getStaticPaths() {
   const posts = await getCollection('blog');
@@ -24,7 +24,7 @@ const { Content } = await render(post);
   category={post.data.category}
   tags={post.data.tags}
   slug={post.id}
-  locale="es"
+  locale="en"
 >
   <Content />
 </BlogPost>

@@ -2,6 +2,9 @@
 import Base from '../layouts/Base.astro';
 import { VentanasPage } from '../components/pages/VentanasPage';
 import { buildFAQSchema, buildServiceSchema } from '../utils/schema';
+import { getAlternateUrls } from '../i18n/routes';
+
+const alternateUrls = getAlternateUrls('pvc-windows');
 
 const ventanasFaqs = [
   { question: "¿Qué es mejor: ventanas de PVC o aluminio?", answer: "Las ventanas de PVC ofrecen un aislamiento térmico hasta un 40% superior al aluminio gracias a sus perfiles multicámara. Son más eficientes energéticamente, reducen más el ruido exterior y no se corroen con la brisa marina. El aluminio es más delgado y puede ser mejor para grandes ventanales. En el clima de Alicante, el PVC es la opción más eficiente." },
@@ -22,6 +25,8 @@ const breadcrumbs = [
   title="Ventanas y Puertas PVC | Optim Toldos — Alicante"
   description="Ventanas y puertas de PVC de alta eficiencia energética. Aislamiento térmico y acústico superior. Instalación profesional en Alicante."
   breadcrumbs={breadcrumbs}
+  locale="es"
+  alternateUrls={alternateUrls}
 >
   <Fragment slot="head">
     <script is:inline type="application/ld+json" set:html={JSON.stringify(buildServiceSchema({
@@ -33,5 +38,5 @@ const breadcrumbs = [
     }))} />
     <script is:inline type="application/ld+json" set:html={JSON.stringify(buildFAQSchema(ventanasFaqs))} />
   </Fragment>
-  <VentanasPage client:load />
+  <VentanasPage client:load locale="es" />
 </Base>

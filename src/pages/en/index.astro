@@ -1,0 +1,82 @@
+---
+import Base from '../../layouts/Base.astro';
+import { HomePage } from '../../components/home/HomePage';
+import { buildFAQSchema } from '../../utils/schema';
+import { t } from '../../i18n/index';
+import { getAlternateUrls } from '../../i18n/routes';
+
+const alternateUrls = getAlternateUrls('home');
+
+const homeFaqs = [
+  { question: t('en', 'home.faq.1.q'), answer: t('en', 'home.faq.1.a') },
+  { question: t('en', 'home.faq.2.q'), answer: t('en', 'home.faq.2.a') },
+  { question: t('en', 'home.faq.3.q'), answer: t('en', 'home.faq.3.a') },
+  { question: t('en', 'home.faq.4.q'), answer: t('en', 'home.faq.4.a') },
+  { question: t('en', 'home.faq.5.q'), answer: t('en', 'home.faq.5.a') },
+];
+
+const breadcrumbs = [
+  { name: "Home", url: "https://optimtoldos.com/en/" },
+];
+---
+
+<Base
+  title="Optim Toldos — Solar Protection & Outdoor Living Specialists | Alicante"
+  description="Awnings, bioclimatic pergolas, glass curtains, shade sails and PVC windows. Custom solutions with professional installation in Alicante and Costa Blanca."
+  locale="en"
+  alternateUrls={alternateUrls}
+  breadcrumbs={breadcrumbs}
+>
+  <Fragment slot="head">
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(buildFAQSchema(homeFaqs))} />
+    <script is:inline type="application/ld+json" set:html={JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "LocalBusiness",
+      "@id": "https://optimtoldos.com/#business",
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "4.8",
+        "reviewCount": "127",
+        "bestRating": "5"
+      },
+      "review": [
+        {
+          "@type": "Review",
+          "author": { "@type": "Person", "name": "María G." },
+          "reviewRating": { "@type": "Rating", "ratingValue": "5" },
+          "datePublished": "2025-11-15",
+          "reviewBody": "The bioclimatic pergola has transformed our terrace. We now use it all year round."
+        },
+        {
+          "@type": "Review",
+          "author": { "@type": "Person", "name": "Antonio R." },
+          "reviewRating": { "@type": "Rating", "ratingValue": "5" },
+          "datePublished": "2025-09-22",
+          "reviewBody": "Excellent service from start to finish. The awnings look perfect and the installation was very fast."
+        },
+        {
+          "@type": "Review",
+          "author": { "@type": "Person", "name": "Carmen L." },
+          "reviewRating": { "@type": "Rating", "ratingValue": "5" },
+          "datePublished": "2025-08-10",
+          "reviewBody": "The glass curtains are the best thing we've installed at home. Total protection without losing the views."
+        },
+        {
+          "@type": "Review",
+          "author": { "@type": "Person", "name": "Pedro M." },
+          "reviewRating": { "@type": "Rating", "ratingValue": "4" },
+          "datePublished": "2026-01-18",
+          "reviewBody": "The shade sails gave our garden a modern touch. Very happy with the result and the service."
+        },
+        {
+          "@type": "Review",
+          "author": { "@type": "Person", "name": "Laura S." },
+          "reviewRating": { "@type": "Rating", "ratingValue": "5" },
+          "datePublished": "2025-12-05",
+          "reviewBody": "We replaced all our windows with Cortizo PVC and the difference in insulation and noise is huge. Impeccable work."
+        }
+      ]
+    })} />
+  </Fragment>
+  <HomePage client:load locale="en" />
+</Base>

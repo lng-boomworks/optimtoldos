@@ -1,6 +1,7 @@
 # Optim Toldos
 
 > Especialistas en protección solar y vida exterior en Alicante, España.
+> This site is available in Spanish (default) and English (/en/).
 
 Optim Toldos es una empresa con sede en Elche (Alicante) con más de 15 años de experiencia en el diseño, fabricación e instalación de soluciones de protección solar y cerramientos para viviendas y negocios en toda la provincia de Alicante y la Costa Blanca. Más de 2.000 instalaciones realizadas.
 

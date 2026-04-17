@@ -1,0 +1,43 @@
+---
+import Base from '../../layouts/Base.astro';
+import { VentanasPage } from '../../components/pages/VentanasPage';
+import { buildFAQSchema, buildServiceSchema } from '../../utils/schema';
+import { t } from '../../i18n/index';
+import { getAlternateUrls } from '../../i18n/routes';
+
+const alternateUrls = getAlternateUrls('pvc-windows');
+
+const windowsFaqs = [
+  { question: t('en', 'windows.faq.1.q'), answer: t('en', 'windows.faq.1.a') },
+  { question: t('en', 'windows.faq.2.q'), answer: t('en', 'windows.faq.2.a') },
+  { question: t('en', 'windows.faq.3.q'), answer: t('en', 'windows.faq.3.a') },
+  { question: t('en', 'windows.faq.4.q'), answer: t('en', 'windows.faq.4.a') },
+  { question: t('en', 'windows.faq.5.q'), answer: t('en', 'windows.faq.5.a') },
+  { question: t('en', 'windows.faq.6.q'), answer: t('en', 'windows.faq.6.a') },
+];
+
+const breadcrumbs = [
+  { name: "Home", url: "https://optimtoldos.com/en/" },
+  { name: "PVC Windows", url: "https://optimtoldos.com/en/pvc-windows" },
+];
+---
+
+<Base
+  title="PVC Windows & Doors | Optim Toldos — Alicante"
+  description="High energy-efficiency PVC windows and doors. Superior thermal and acoustic insulation. Professional installation in Alicante."
+  locale="en"
+  alternateUrls={alternateUrls}
+  breadcrumbs={breadcrumbs}
+>
+  <Fragment slot="head">
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(buildServiceSchema({
+      name: t('en', 'windows.hero.heading'),
+      description: t('en', 'windows.hero.description'),
+      serviceType: "PVC Window Installation",
+      url: "https://optimtoldos.com/en/pvc-windows",
+      offers: [{ name: "Sliding PVC Window" }, { name: "Casement PVC Window" }, { name: "Tilt-and-Turn PVC Window" }],
+    }))} />
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(buildFAQSchema(windowsFaqs))} />
+  </Fragment>
+  <VentanasPage client:load locale="en" />
+</Base>

@@ -1,6 +1,9 @@
 ---
 import Base from '../layouts/Base.astro';
 import { PresupuestoPage } from '../components/pages/PresupuestoPage';
+import { getAlternateUrls } from '../i18n/routes';
+
+const alternateUrls = getAlternateUrls('quote');
 
 const schema = {
   "@context": "https://schema.org",
@@ -20,9 +23,9 @@ const breadcrumbs = [
 ];
 ---
 
-<Base title="Presupuesto Gratis | Optim Toldos — Alicante" description="Solicita tu presupuesto gratuito y sin compromiso. Toldos, pérgolas bioclimáticas, cortinas de cristal, velas de sombra y ventanas PVC en Alicante." breadcrumbs={breadcrumbs}>
+<Base title="Presupuesto Gratis | Optim Toldos — Alicante" description="Solicita tu presupuesto gratuito y sin compromiso. Toldos, pérgolas bioclimáticas, cortinas de cristal, velas de sombra y ventanas PVC en Alicante." breadcrumbs={breadcrumbs} locale="es" alternateUrls={alternateUrls}>
   <Fragment slot="head">
     <script is:inline type="application/ld+json" set:html={JSON.stringify(schema)} />
   </Fragment>
-  <PresupuestoPage client:load />
+  <PresupuestoPage client:load locale="es" />
 </Base>

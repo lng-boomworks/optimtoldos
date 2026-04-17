@@ -3,47 +3,36 @@ import { Footer } from "../Footer";
 import { FadeIn } from "../FadeIn";
 import { AnimatedHeading } from "../AnimatedHeading";
 import { Button } from "../Button";
+import { localizedUrl } from "../../utils/paths";
+import { t, type Locale } from "../../i18n/index";
 
-const values = [
-  {
-    title: "Calidad",
-    desc: "Solo trabajamos con los mejores fabricantes europeos.",
-  },
-  {
-    title: "Cercanía",
-    desc: "Somos de aquí. Conocemos tu clima, tu estilo de vida.",
-  },
-  {
-    title: "Transparencia",
-    desc: "Presupuestos claros, sin sorpresas, sin letra pequeña.",
-  },
-  {
-    title: "Compromiso",
-    desc: "No terminamos hasta que estés 100% satisfecho.",
-  },
-];
+const valueCount = 4;
+const certCount = 5;
+const teamCount = 3;
 
-const areas = [
-  "Alicante",
-  "Elche",
-  "Torrevieja",
-  "Benidorm",
-  "Santa Pola",
-  "Orihuela",
-  "Guardamar",
-  "Dénia",
-  "Jávea",
-  "Altea",
-  "Calpe",
-];
+const cityKeys = [
+  'cities.alicante', 'cities.elche', 'cities.torrevieja', 'cities.benidorm',
+  'cities.santa_pola', 'cities.orihuela', 'cities.guardamar', 'cities.denia',
+  'cities.javea', 'cities.altea', 'cities.calpe',
+] as const;
 
-const team = [
-  { name: "Carlos Martínez", role: "Director General" },
-  { name: "Ana García", role: "Directora Comercial" },
-  { name: "Miguel López", role: "Jefe de Instalaciones" },
-];
+export function SobreNosotrosPage({ locale = 'es' }: { locale?: Locale }) {
+  const values = Array.from({ length: valueCount }, (_, i) => ({
+    title: t(locale, `about.values.${i + 1}.title` as any),
+    desc: t(locale, `about.values.${i + 1}.description` as any),
+  }));
 
-export function SobreNosotrosPage() {
+  const certifications = Array.from({ length: certCount }, (_, i) =>
+    t(locale, `about.certifications.${i + 1}` as any)
+  );
+
+  const team = Array.from({ length: teamCount }, (_, i) => ({
+    name: t(locale, `about.team.${i + 1}.name` as any),
+    role: t(locale, `about.team.${i + 1}.role` as any),
+  }));
+
+  const areas = cityKeys.map((key) => t(locale, key as any));
+
   return (
     <>
       <Navbar />
@@ -54,14 +43,13 @@ export function SobreNosotrosPage() {
             <div className="absolute inset-0 bg-black/20" />
             <div className="relative z-10 max-w-4xl mx-auto px-4 text-center py-20">
               <AnimatedHeading
-                text="Sobre Nosotros"
+                text={t(locale, 'about.hero.heading')}
                 tag="h1"
                 className="text-white mb-6"
               />
               <FadeIn delay={0.2}>
                 <p className="text-lg md:text-xl text-white/80 max-w-2xl mx-auto">
-                  Desde 2009 creando espacios exteriores excepcionales en
-                  la Costa Blanca
+                  {t(locale, 'about.hero.description')}
                 </p>
               </FadeIn>
             </div>
@@ -72,7 +60,7 @@ export function SobreNosotrosPage() {
             <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
               <FadeIn className="text-center mb-16">
                 <AnimatedHeading
-                  text="Nuestra Historia"
+                  text={t(locale, 'about.story.heading')}
                   tag="h2"
                   className="text-navy"
                 />
@@ -81,20 +69,10 @@ export function SobreNosotrosPage() {
                 <FadeIn>
                   <div className="space-y-6">
                     <p className="text-text-muted leading-relaxed">
-                      Optim Toldos naci&oacute; en 2009 en Elche con una
-                      misi&oacute;n clara: ofrecer soluciones de
-                      protecci&oacute;n solar y vida exterior de la
-                      m&aacute;xima calidad a precios competitivos. Desde
-                      nuestros inicios, nos hemos especializado en entender las
-                      necesidades &uacute;nicas del clima
-                      mediterr&aacute;neo y la vida al aire libre que define la
-                      Costa Blanca.
+                      {t(locale, 'about.story.paragraph1')}
                     </p>
                     <p className="text-text-muted leading-relaxed">
-                      Hoy, con m&aacute;s de 2.000 instalaciones realizadas en
-                      toda la provincia de Alicante, seguimos fieles a nuestro
-                      compromiso: productos a medida, instalaci&oacute;n
-                      profesional y un servicio postventa que nos distingue.
+                      {t(locale, 'about.story.paragraph2')}
                     </p>
                   </div>
                 </FadeIn>
@@ -110,7 +88,7 @@ export function SobreNosotrosPage() {
             <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
               <FadeIn className="text-center mb-16">
                 <AnimatedHeading
-                  text="Nuestros Valores"
+                  text={t(locale, 'about.values.heading')}
                   tag="h2"
                   className="text-navy"
                 />
@@ -140,24 +118,16 @@ export function SobreNosotrosPage() {
             <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
               <FadeIn className="text-center mb-16">
                 <AnimatedHeading
-                  text="Certificaciones y Marcas"
+                  text={t(locale, 'about.certifications.heading')}
                   tag="h2"
                   className="text-navy"
                 />
                 <p className="text-text-muted mt-4 max-w-2xl mx-auto">
-                  Trabajamos exclusivamente con fabricantes l&iacute;deres del
-                  sector para garantizar la m&aacute;xima calidad en cada
-                  proyecto.
+                  {t(locale, 'about.certifications.description')}
                 </p>
               </FadeIn>
               <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4">
-                {[
-                  "Fabricantes certificados CE",
-                  "Tejidos Dickson® y Sauleda®",
-                  "Perfiles de aluminio Gaviota Simbac®",
-                  "Ventanas Cortizo® y Aluplast®",
-                  "Garantía de fabricante en todos los productos",
-                ].map((cert, i) => (
+                {certifications.map((cert, i) => (
                   <FadeIn key={cert} delay={i * 0.08}>
                     <div className="bg-sand-light border border-sand rounded-xl px-5 py-4 text-center h-full flex items-center justify-center">
                       <span className="text-sm font-medium text-navy">
@@ -175,7 +145,7 @@ export function SobreNosotrosPage() {
             <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
               <FadeIn className="text-center mb-16">
                 <AnimatedHeading
-                  text="Nuestra Zona de Servicio"
+                  text={t(locale, 'about.serviceArea.heading')}
                   tag="h2"
                   className="text-navy"
                 />
@@ -183,9 +153,7 @@ export function SobreNosotrosPage() {
               <div className="grid lg:grid-cols-2 gap-12 items-center">
                 <FadeIn>
                   <p className="text-text-muted leading-relaxed mb-8">
-                    Damos servicio a toda la provincia de Alicante y la Costa
-                    Blanca. Desde D&eacute;nia hasta Torrevieja, nuestro equipo
-                    de instaladores profesionales llega a donde nos necesites.
+                    {t(locale, 'about.serviceArea.description')}
                   </p>
                   <div className="flex flex-wrap gap-3">
                     {areas.map((area) => (
@@ -201,7 +169,7 @@ export function SobreNosotrosPage() {
                 <FadeIn delay={0.2}>
                   <div className="aspect-[4/3] rounded-2xl bg-sand flex items-center justify-center">
                     <span className="text-text-muted text-lg">
-                      Mapa de zona de servicio
+                      {t(locale, 'about.serviceArea.map_placeholder')}
                     </span>
                   </div>
                 </FadeIn>
@@ -214,7 +182,7 @@ export function SobreNosotrosPage() {
             <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
               <FadeIn className="text-center mb-16">
                 <AnimatedHeading
-                  text="Nuestro Equipo"
+                  text={t(locale, 'about.team.heading')}
                   tag="h2"
                   className="text-navy"
                 />
@@ -239,18 +207,17 @@ export function SobreNosotrosPage() {
           <section className="bg-navy py-20 md:py-24">
             <FadeIn className="max-w-3xl mx-auto px-4 text-center">
               <h2 className="font-serif text-3xl md:text-4xl text-white mb-6">
-                &iquest;Quieres conocernos mejor?
+                {t(locale, 'about.cta.heading')}
               </h2>
               <p className="text-lg text-white/70 mb-10">
-                Vis&iacute;tanos en Elche o llama para una consulta sin
-                compromiso.
+                {t(locale, 'about.cta.description')}
               </p>
               <div className="flex flex-wrap gap-4 justify-center">
-                <Button variant="gold" href="/contacto">
-                  Contactar
+                <Button variant="gold" href={localizedUrl("/contacto", locale)}>
+                  {t(locale, 'about.cta.contact')}
                 </Button>
-                <Button variant="outline-white" href="/presupuesto">
-                  Solicitar Presupuesto
+                <Button variant="outline-white" href={localizedUrl("/presupuesto", locale)}>
+                  {t(locale, 'about.cta.quote')}
                 </Button>
               </div>
             </FadeIn>

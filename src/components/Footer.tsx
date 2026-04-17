@@ -1,20 +1,31 @@
-import { url } from "../utils/paths";
+import { url, localizedUrl } from "../utils/paths";
+import { t, type Locale } from "../i18n/index";
+import { slugMap, type PageId } from "../i18n/slugs";
 
-export function Footer() {
+interface FooterProps {
+  locale?: Locale;
+}
+
+function footerPath(pageId: PageId, locale: Locale): string {
+  const slug = slugMap[pageId][locale];
+  return localizedUrl(slug ? `/${slug}` : '/', locale);
+}
+
+export function Footer({ locale = 'es' }: FooterProps) {
   const productLinks = [
-    { name: "Toldos", path: url("/toldos") },
-    { name: "Pérgolas", path: url("/pergolas") },
-    { name: "Cortinas de Cristal", path: url("/cortinas-de-cristal") },
-    { name: "Velas de Sombra", path: url("/velas-de-sombra") },
-    { name: "Ventanas PVC", path: url("/ventanas-pvc") },
+    { name: t(locale, 'nav.awnings'), path: footerPath('awnings', locale) },
+    { name: t(locale, 'nav.pergolas'), path: footerPath('pergolas', locale) },
+    { name: t(locale, 'nav.curtains'), path: footerPath('glass-curtains', locale) },
+    { name: t(locale, 'nav.sails'), path: footerPath('shade-sails', locale) },
+    { name: t(locale, 'nav.windows'), path: footerPath('pvc-windows', locale) },
   ];
 
   const companyLinks = [
-    { name: "Sobre Nosotros", path: url("/sobre-nosotros") },
-    { name: "Galería", path: url("/galeria") },
-    { name: "Contacto", path: url("/contacto") },
-    { name: "Blog", path: url("/blog") },
-    { name: "Presupuesto Gratis", path: url("/presupuesto") },
+    { name: t(locale, 'footer.about'), path: footerPath('about-us', locale) },
+    { name: t(locale, 'footer.gallery'), path: footerPath('gallery', locale) },
+    { name: t(locale, 'footer.contact'), path: footerPath('contact', locale) },
+    { name: t(locale, 'footer.blog'), path: footerPath('blog', locale) },
+    { name: t(locale, 'footer.quote'), path: footerPath('quote', locale) },
   ];
 
   return (
@@ -23,7 +34,7 @@ export function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 lg:gap-8">
           {/* Brand */}
           <div className="lg:col-span-2">
-            <a href={url("/")} className="inline-block mb-5">
+            <a href={localizedUrl("/", locale)} className="inline-block mb-5">
               <img
                 src={url("/images/logos/logo-footer.png")}
                 alt="OptimToldos"
@@ -33,11 +44,10 @@ export function Footer() {
               />
             </a>
             <p className="text-text-muted text-[15px] leading-relaxed max-w-sm mb-5">
-              Especialistas en protección solar y vida exterior en la provincia
-              de Alicante. Fabricación a medida e instalación profesional.
+              {t(locale, 'footer.description')}
             </p>
             <div className="flex flex-col gap-1.5 text-sm text-text-muted">
-              <span>Elche, Alicante</span>
+              <span>{t(locale, 'footer.location')}</span>
               <a
                 href="mailto:info@optimtoldos.com"
                 className="hover:text-terracotta transition-colors"
@@ -56,7 +66,7 @@ export function Footer() {
           {/* Products */}
           <div>
             <h4 className="text-navy font-medium text-sm uppercase tracking-wide mb-4">
-              Productos
+              {t(locale, 'footer.products_heading')}
             </h4>
             <ul className="flex flex-col gap-2.5">
               {productLinks.map((link) => (
@@ -75,7 +85,7 @@ export function Footer() {
           {/* Company */}
           <div>
             <h4 className="text-navy font-medium text-sm uppercase tracking-wide mb-4">
-              Empresa
+              {t(locale, 'footer.company_heading')}
             </h4>
             <ul className="flex flex-col gap-2.5">
               {companyLinks.map((link) => (
@@ -95,10 +105,10 @@ export function Footer() {
         {/* Bottom bar */}
         <div className="mt-10 pt-6 border-t border-border flex flex-col sm:flex-row justify-between items-center gap-3">
           <p className="text-text-muted text-sm">
-            &copy; 2026 OptimToldos. Todos los derechos reservados.
+            &copy; 2026 OptimToldos. {t(locale, 'footer.copyright')}
           </p>
           <p className="text-text-muted/60 text-xs">
-            Elche &middot; Alicante &middot; Costa Blanca
+            {t(locale, 'footer.region')}
           </p>
         </div>
       </div>

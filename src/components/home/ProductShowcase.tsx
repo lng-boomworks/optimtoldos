@@ -1,47 +1,48 @@
 import { AnimatedHeading } from "../AnimatedHeading";
 import { FadeIn } from "../FadeIn";
 import { SunRay } from "../SunRay";
-import { url } from "../../utils/paths";
+import { url, localizedUrl } from "../../utils/paths";
+import { t, type Locale } from "../../i18n/index";
+import { slugMap } from "../../i18n/slugs";
 
-const products = [
-  {
-    title: "Toldos",
-    description:
-      "Toldos extensibles, verticales y de punto para terrazas, balcones y comercios.",
-    image: url("/images/gallery/toldo-cofre-extensible.jpg"),
-    href: url("/toldos"),
-  },
-  {
-    title: "Pérgolas Bioclimáticas",
-    description:
-      "Pérgolas de aluminio con lamas orientables, motorización y LED integrado.",
-    image: url("/images/pergolas/pergola-bioclimatica.jpg"),
-    href: url("/pergolas"),
-  },
-  {
-    title: "Cortinas de Cristal",
-    description:
-      "Paneles de cristal plegables sin perfiles para cerrar terrazas sin perder vistas.",
-    image: url("/images/cortinas/cortina-cristal-1.jpg"),
-    href: url("/cortinas-de-cristal"),
-  },
-  {
-    title: "Velas de Sombra",
-    description:
-      "Velas tensadas de diseño arquitectónico para protección UV con estilo.",
-    image: url("/images/velas/vela-tensada.jpg"),
-    href: url("/velas-de-sombra"),
-  },
-  {
-    title: "Ventanas y Puertas PVC",
-    description:
-      "Sistemas de PVC de alta eficiencia energética: correderas, abatibles y oscilobatientes.",
-    image: url("/images/ventanas/ventanas-cortizo.jpg"),
-    href: url("/ventanas-pvc"),
-  },
-];
+interface ProductShowcaseProps {
+  locale?: Locale;
+}
 
-export function ProductShowcase() {
+export function ProductShowcase({ locale = 'es' }: ProductShowcaseProps) {
+  const products = [
+    {
+      title: t(locale, 'home.products.1.title'),
+      description: t(locale, 'home.products.1.description'),
+      image: url("/images/gallery/toldo-cofre-extensible.jpg"),
+      href: localizedUrl(`/${slugMap.awnings[locale]}`, locale),
+    },
+    {
+      title: t(locale, 'home.products.2.title'),
+      description: t(locale, 'home.products.2.description'),
+      image: url("/images/pergolas/pergola-bioclimatica.jpg"),
+      href: localizedUrl(`/${slugMap.pergolas[locale]}`, locale),
+    },
+    {
+      title: t(locale, 'home.products.3.title'),
+      description: t(locale, 'home.products.3.description'),
+      image: url("/images/cortinas/cortina-cristal-1.jpg"),
+      href: localizedUrl(`/${slugMap['glass-curtains'][locale]}`, locale),
+    },
+    {
+      title: t(locale, 'home.products.4.title'),
+      description: t(locale, 'home.products.4.description'),
+      image: url("/images/velas/vela-tensada.jpg"),
+      href: localizedUrl(`/${slugMap['shade-sails'][locale]}`, locale),
+    },
+    {
+      title: t(locale, 'home.products.5.title'),
+      description: t(locale, 'home.products.5.description'),
+      image: url("/images/ventanas/ventanas-cortizo.jpg"),
+      href: localizedUrl(`/${slugMap['pvc-windows'][locale]}`, locale),
+    },
+  ];
+
   return (
     <section id="productos" className="section-sand py-24">
       <SunRay className="mb-8" />
@@ -49,14 +50,13 @@ export function ProductShowcase() {
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
         <div className="text-center mb-16">
           <AnimatedHeading
-            text="Nuestras Soluciones"
+            text={t(locale, 'home.products.heading')}
             tag="h2"
             className="mb-4"
           />
           <FadeIn delay={0.2} direction="up">
             <p className="text-muted text-lg max-w-2xl mx-auto">
-              Productos de protecci&oacute;n solar y vida exterior
-              dise&ntilde;ados a tu medida
+              {t(locale, 'home.products.subheading')}
             </p>
           </FadeIn>
         </div>
@@ -86,7 +86,7 @@ export function ProductShowcase() {
                     {product.description}
                   </p>
                   <span className="text-terracotta text-sm font-medium inline-flex items-center gap-1 group-hover:gap-2 transition-all duration-200">
-                    Ver m&aacute;s
+                    {t(locale, 'home.products.more')}
                     <span aria-hidden="true">&rarr;</span>
                   </span>
                 </div>

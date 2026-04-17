@@ -4,6 +4,8 @@ import { Navbar } from '../components/Navbar';
 import { Footer } from '../components/Footer';
 import RelatedPosts from '../components/RelatedPosts.astro';
 import { url } from '../utils/paths';
+import type { Locale } from '../i18n/index';
+import { dateLocales } from '../i18n/index';
 
 interface Props {
   title: string;
@@ -15,9 +17,11 @@ interface Props {
   category: string;
   tags?: string[];
   slug?: string;
+  locale?: Locale;
+  alternateUrls?: { locale: string; href: string }[];
 }
 
-const { title, description, date, updated, author, image, category, tags = [], slug = '' } = Astro.props;
+const { title, description, date, updated, author, image, category, tags = [], slug = '', locale = 'es' as Locale, alternateUrls = [] } = Astro.props;
 const breadcrumbs = [
   { name: 'Inicio', url: 'https://optimtoldos.com/' },
   { name: 'Blog', url: 'https://optimtoldos.com/blog' },
@@ -50,7 +54,18 @@ const articleSchema = {
   }
 };
 
-const categoryLabels: Record<string, string> = {
+const categoryLabels: Record<string, string> = locale === 'en' ? {
+  guias: 'Guides',
+  consejos: 'Tips',
+  tendencias: 'Trends',
+  normativa: 'Regulations',
+  'casos-de-exito': 'Case Studies',
+  guides: 'Guides',
+  tips: 'Tips',
+  trends: 'Trends',
+  regulations: 'Regulations',
+  'case-studies': 'Case Studies',
+} : {
   guias: 'Guías',
   consejos: 'Consejos',
   tendencias: 'Tendencias',
@@ -59,12 +74,12 @@ const categoryLabels: Record<string, string> = {
 };
 ---
 
-<Base title={`${title} | Blog | Optim Toldos`} description={description} type="article" breadcrumbs={breadcrumbs}>
+<Base title={`${title} | Blog | Optim Toldos`} description={description} type="article" breadcrumbs={breadcrumbs} locale={locale} alternateUrls={alternateUrls}>
   <Fragment slot="head">
     <script is:inline type="application/ld+json" set:html={JSON.stringify(articleSchema)} />
   </Fragment>
 
-  <Navbar client:load />
+  <Navbar client:load locale={locale} />
   <div class="bg-white">
     <!-- Hero -->
     <section class="bg-navy pt-32 pb-16">
@@ -76,8 +91,8 @@ const categoryLabels: Record<string, string> = {
           {title}
         </h1>
         <p class="text-white/60 text-sm">
-          {author} &middot; {new Date(date).toLocaleDateString('es-ES', { year: 'numeric', month: 'long', day: 'numeric' })}
-          {updated && <span> &middot; Actualizado {new Date(updated).toLocaleDateString('es-ES', { year: 'numeric', month: 'long', day: 'numeric' })}</span>}
+          {author} &middot; {new Date(date).toLocaleDateString(dateLocales[locale], { year: 'numeric', month: 'long', day: 'numeric' })}
+          {updated && <span> &middot; {locale === 'en' ? 'Updated' : 'Actualizado'} {new Date(updated).toLocaleDateString(dateLocales[locale], { year: 'numeric', month: 'long', day: 'numeric' })}</span>}
         </p>
       </div>
     </section>
@@ -95,7 +110,7 @@ const categoryLabels: Record<string, string> = {
         <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
           <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18" />
         </svg>
-        Volver al blog
+        {locale === 'en' ? 'Back to blog' : 'Volver al blog'}
       </a>
     </div>
 
@@ -105,13 +120,13 @@ const categoryLabels: Record<string, string> = {
     <!-- CTA -->
     <section class="bg-sand py-16">
       <div class="max-w-3xl mx-auto px-4 text-center">
-        <h2 class="font-serif text-2xl md:text-3xl text-navy mb-4">¿Necesitas asesoramiento?</h2>
-        <p class="text-text-muted mb-8">Te ayudamos a elegir la mejor solución para tu espacio. Presupuesto gratuito y sin compromiso.</p>
+        <h2 class="font-serif text-2xl md:text-3xl text-navy mb-4">{locale === 'en' ? 'Need advice?' : '¿Necesitas asesoramiento?'}</h2>
+        <p class="text-text-muted mb-8">{locale === 'en' ? 'We help you choose the best solution for your space. Free, no-obligation quote.' : 'Te ayudamos a elegir la mejor solución para tu espacio. Presupuesto gratuito y sin compromiso.'}</p>
         <a href={url("/presupuesto")} class="inline-block bg-terracotta hover:bg-terracotta-dark text-white font-medium rounded-xl px-8 py-3 transition-colors">
-          Solicitar Presupuesto
+          {locale === 'en' ? 'Request a Quote' : 'Solicitar Presupuesto'}
         </a>
       </div>
     </section>
   </div>
-  <Footer />
+  <Footer client:load locale={locale} />
 </Base>

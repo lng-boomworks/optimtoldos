@@ -1,0 +1,42 @@
+---
+import Base from '../../layouts/Base.astro';
+import { VelasPage } from '../../components/pages/VelasPage';
+import { buildFAQSchema, buildServiceSchema } from '../../utils/schema';
+import { t } from '../../i18n/index';
+import { getAlternateUrls } from '../../i18n/routes';
+
+const alternateUrls = getAlternateUrls('shade-sails');
+
+const sailsFaqs = [
+  { question: t('en', 'sails.faq.1.q'), answer: t('en', 'sails.faq.1.a') },
+  { question: t('en', 'sails.faq.2.q'), answer: t('en', 'sails.faq.2.a') },
+  { question: t('en', 'sails.faq.3.q'), answer: t('en', 'sails.faq.3.a') },
+  { question: t('en', 'sails.faq.4.q'), answer: t('en', 'sails.faq.4.a') },
+  { question: t('en', 'sails.faq.5.q'), answer: t('en', 'sails.faq.5.a') },
+];
+
+const breadcrumbs = [
+  { name: "Home", url: "https://optimtoldos.com/en/" },
+  { name: "Shade Sails", url: "https://optimtoldos.com/en/shade-sails" },
+];
+---
+
+<Base
+  title="Shade Sails | Optim Toldos — Alicante"
+  description="Tensioned shade sails with certified UV protection. Triangular, rectangular and custom designs for terraces and gardens in Alicante."
+  locale="en"
+  alternateUrls={alternateUrls}
+  breadcrumbs={breadcrumbs}
+>
+  <Fragment slot="head">
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(buildServiceSchema({
+      name: t('en', 'sails.hero.heading'),
+      description: t('en', 'sails.hero.description'),
+      serviceType: "Shade Sail Installation",
+      url: "https://optimtoldos.com/en/shade-sails",
+      offers: [{ name: "Triangular Sail" }, { name: "Rectangular Sail" }, { name: "Custom Sail" }],
+    }))} />
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(buildFAQSchema(sailsFaqs))} />
+  </Fragment>
+  <VelasPage client:load locale="en" />
+</Base>

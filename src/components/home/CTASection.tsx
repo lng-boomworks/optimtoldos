@@ -1,8 +1,15 @@
 import { AnimatedHeading } from "../AnimatedHeading";
 import { FadeIn } from "../FadeIn";
 import { Button } from "../Button";
+import { localizedUrl } from "../../utils/paths";
+import { t, type Locale } from "../../i18n/index";
+import { slugMap } from "../../i18n/slugs";
 
-export function CTASection() {
+interface CTASectionProps {
+  locale?: Locale;
+}
+
+export function CTASection({ locale = 'es' }: CTASectionProps) {
   return (
     <section className="relative section-navy py-24">
       {/* Top terracotta accent line */}
@@ -10,25 +17,24 @@ export function CTASection() {
 
       <div className="mx-auto max-w-7xl px-6 lg:px-8 text-center">
         <AnimatedHeading
-          text="¿Listo Para Transformar Tu Espacio?"
+          text={t(locale, 'home.cta.heading')}
           tag="h2"
           className="text-white mb-6"
         />
 
         <FadeIn delay={0.2} direction="up">
           <p className="text-white/70 text-lg max-w-2xl mx-auto mb-10 leading-relaxed">
-            Solicita tu presupuesto gratuito y sin compromiso. Te visitamos,
-            medimos y asesoramos sin coste.
+            {t(locale, 'home.cta.description')}
           </p>
         </FadeIn>
 
         <FadeIn delay={0.4} direction="up">
           <div className="flex flex-wrap justify-center gap-4">
-            <Button variant="gold" href="/contacto">
-              Solicitar Presupuesto
+            <Button variant="gold" href={localizedUrl(`/${slugMap.contact[locale]}`, locale)}>
+              {t(locale, 'home.cta.quote')}
             </Button>
             <Button variant="outline-white" href="tel:+34603572348">
-              Ll&aacute;manos
+              {t(locale, 'home.cta.call')}
             </Button>
           </div>
         </FadeIn>

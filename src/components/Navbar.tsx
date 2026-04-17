@@ -1,24 +1,35 @@
 import { useState, useEffect } from "react";
 import { Menu, X } from "lucide-react";
 import { Button } from "./Button";
-import { url } from "../utils/paths";
+import { url, localizedUrl } from "../utils/paths";
+import { t, type Locale } from "../i18n/index";
+import { slugMap, type PageId } from "../i18n/slugs";
 
-const navLinks = [
-  { name: "Inicio", path: url("/") },
-  { name: "Toldos", path: url("/toldos") },
-  { name: "Pérgolas", path: url("/pergolas") },
-  { name: "Cortinas de Cristal", path: url("/cortinas-de-cristal") },
-  { name: "Velas", path: url("/velas-de-sombra") },
-  { name: "Ventanas PVC", path: url("/ventanas-pvc") },
-  { name: "Galería", path: url("/galeria") },
-  { name: "Blog", path: url("/blog") },
-  { name: "Contacto", path: url("/contacto") },
-];
+interface NavbarProps {
+  locale?: Locale;
+}
 
-export function Navbar() {
+function navPath(pageId: PageId, locale: Locale): string {
+  const slug = slugMap[pageId][locale];
+  return localizedUrl(slug ? `/${slug}` : '/', locale);
+}
+
+export function Navbar({ locale = 'es' }: NavbarProps) {
   const [location, setLocation] = useState("");
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+
+  const navLinks = [
+    { name: t(locale, 'nav.home'), path: navPath('home', locale) },
+    { name: t(locale, 'nav.awnings'), path: navPath('awnings', locale) },
+    { name: t(locale, 'nav.pergolas'), path: navPath('pergolas', locale) },
+    { name: t(locale, 'nav.curtains'), path: navPath('glass-curtains', locale) },
+    { name: t(locale, 'nav.sails'), path: navPath('shade-sails', locale) },
+    { name: t(locale, 'nav.windows'), path: navPath('pvc-windows', locale) },
+    { name: t(locale, 'nav.gallery'), path: navPath('gallery', locale) },
+    { name: t(locale, 'nav.blog'), path: navPath('blog', locale) },
+    { name: t(locale, 'nav.contact'), path: navPath('contact', locale) },
+  ];
 
   useEffect(() => {
     setLocation(window.location.pathname);
@@ -38,7 +49,7 @@ export function Navbar() {
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-[72px] flex items-center justify-between">
         {/* Logo */}
-        <a href={url("/")} className="flex items-center group">
+        <a href={localizedUrl("/", locale)} className="flex items-center group">
           <img
             src={isScrolled ? url("/images/logos/logo-sticky.png") : url("/images/logos/logo-2x.png")}
             alt="OptimToldos"
@@ -72,8 +83,8 @@ export function Navbar() {
               );
             })}
           </ul>
-          <Button variant="gold" href={url("/presupuesto")}>
-            Presupuesto Gratis
+          <Button variant="gold" href={navPath('quote', locale)}>
+            {t(locale, 'nav.quote')}
           </Button>
         </nav>
 
@@ -81,7 +92,7 @@ export function Navbar() {
         <button
           className={`lg:hidden p-2 transition-colors ${isScrolled ? "text-navy" : "text-white"}`}
           onClick={() => setIsMobileMenuOpen((prev) => !prev)}
-          aria-label="Abrir menú"
+          aria-label={t(locale, 'nav.menu_open')}
         >
           {isMobileMenuOpen ? (
             <X className="w-6 h-6" />
@@ -118,8 +129,8 @@ export function Navbar() {
             })}
           </ul>
           <div className="pt-4 border-t border-border">
-            <Button variant="gold" href={url("/presupuesto")} className="w-full">
-              Presupuesto Gratis
+            <Button variant="gold" href={navPath('quote', locale)} className="w-full">
+              {t(locale, 'nav.quote')}
             </Button>
           </div>
         </div>

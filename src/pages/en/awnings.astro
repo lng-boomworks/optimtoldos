@@ -1,0 +1,49 @@
+---
+import Base from '../../layouts/Base.astro';
+import { ToldosPage } from '../../components/pages/ToldosPage';
+import { buildServiceSchema, buildFAQSchema } from '../../utils/schema';
+import { t } from '../../i18n/index';
+import { getAlternateUrls } from '../../i18n/routes';
+
+const alternateUrls = getAlternateUrls('awnings');
+
+const serviceSchema = buildServiceSchema({
+  name: t('en', 'awnings.hero.heading'),
+  description: t('en', 'awnings.hero.description'),
+  serviceType: "Awning Installation",
+  url: "https://optimtoldos.com/en/awnings",
+  offers: [
+    { name: t('en', 'awnings.product.1.title') },
+    { name: t('en', 'awnings.product.2.title') },
+    { name: t('en', 'awnings.product.3.title') },
+    { name: t('en', 'awnings.product.4.title') },
+    { name: t('en', 'awnings.product.5.title') },
+  ],
+});
+
+const faqSchema = buildFAQSchema([
+  { question: t('en', 'awnings.faq.1.q'), answer: t('en', 'awnings.faq.1.a') },
+  { question: t('en', 'awnings.faq.2.q'), answer: t('en', 'awnings.faq.2.a') },
+  { question: t('en', 'awnings.faq.3.q'), answer: t('en', 'awnings.faq.3.a') },
+  { question: t('en', 'awnings.faq.4.q'), answer: t('en', 'awnings.faq.4.a') },
+  { question: t('en', 'awnings.faq.5.q'), answer: t('en', 'awnings.faq.5.a') },
+  { question: t('en', 'awnings.faq.6.q'), answer: t('en', 'awnings.faq.6.a') },
+]);
+---
+
+<Base
+  title="Custom Awnings | Optim Toldos — Alicante"
+  description="Retractable, vertical, fixed-arm and canopy awnings. Made to measure with professional installation in Alicante and Costa Blanca."
+  locale="en"
+  alternateUrls={alternateUrls}
+  breadcrumbs={[
+    { name: "Home", url: "https://optimtoldos.com/en/" },
+    { name: "Awnings", url: "https://optimtoldos.com/en/awnings" },
+  ]}
+>
+  <Fragment slot="head">
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(serviceSchema)} />
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+  </Fragment>
+  <ToldosPage client:load locale="en" />
+</Base>

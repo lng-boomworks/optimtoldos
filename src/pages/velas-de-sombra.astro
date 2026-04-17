@@ -2,6 +2,9 @@
 import Base from '../layouts/Base.astro';
 import { VelasPage } from '../components/pages/VelasPage';
 import { buildFAQSchema, buildServiceSchema } from '../utils/schema';
+import { getAlternateUrls } from '../i18n/routes';
+
+const alternateUrls = getAlternateUrls('shade-sails');
 
 const velasFaqs = [
   { question: "¿Cuánto cuesta una vela de sombra a medida?", answer: "El precio de una vela de sombra a medida en Alicante varía entre 200€ y 1.500€ según el tamaño, el material (HDPE o poliéster con PVC) y el sistema de anclaje. Las velas triangulares son más económicas que las rectangulares o las formas personalizadas." },
@@ -21,6 +24,8 @@ const breadcrumbs = [
   title="Velas de Sombra | Optim Toldos — Alicante"
   description="Velas de sombra tensadas con protección UV certificada. Diseño triangular, rectangular y personalizado para terrazas y jardines en Alicante."
   breadcrumbs={breadcrumbs}
+  locale="es"
+  alternateUrls={alternateUrls}
 >
   <Fragment slot="head">
     <script is:inline type="application/ld+json" set:html={JSON.stringify(buildServiceSchema({
@@ -32,5 +37,5 @@ const breadcrumbs = [
     }))} />
     <script is:inline type="application/ld+json" set:html={JSON.stringify(buildFAQSchema(velasFaqs))} />
   </Fragment>
-  <VelasPage client:load />
+  <VelasPage client:load locale="es" />
 </Base>

@@ -2,21 +2,18 @@ import { Navbar } from "../Navbar";
 import { Footer } from "../Footer";
 import { FadeIn } from "../FadeIn";
 import { AnimatedHeading } from "../AnimatedHeading";
-import { Button } from "../Button";
+import { t, type Locale } from "../../i18n/index";
 
-const productOptions = [
-  "Toldos",
-  "Pérgolas Bioclimáticas",
-  "Cortinas de Cristal",
-  "Velas de Sombra",
-  "Ventanas y Puertas PVC",
-  "Otro",
-];
+const productOptionCount = 6;
 
 const inputClasses =
   "w-full bg-sand border border-border rounded-xl px-4 py-3 text-text-body focus:ring-2 focus:ring-terracotta/30 focus:border-terracotta outline-none transition-colors";
 
-export function PresupuestoPage() {
+export function PresupuestoPage({ locale = 'es' }: { locale?: Locale }) {
+  const productOptions = Array.from({ length: productOptionCount }, (_, i) =>
+    t(locale, `quote.form.product_option.${i + 1}` as any)
+  );
+
   return (
     <>
       <Navbar />
@@ -26,14 +23,13 @@ export function PresupuestoPage() {
           <section className="bg-terracotta pt-32 pb-20">
             <div className="max-w-4xl mx-auto px-4 text-center">
               <AnimatedHeading
-                text="Presupuesto Gratis"
+                text={t(locale, 'quote.hero.heading')}
                 tag="h1"
                 className="text-white mb-6"
               />
               <FadeIn delay={0.2}>
                 <p className="text-lg text-white/80 max-w-2xl mx-auto">
-                  Rellena el formulario y recibir&aacute;s tu presupuesto
-                  personalizado sin compromiso.
+                  {t(locale, 'quote.hero.description')}
                 </p>
               </FadeIn>
             </div>
@@ -49,40 +45,40 @@ export function PresupuestoPage() {
                 >
                   <div>
                     <label className="block text-sm font-medium text-text-body mb-2">
-                      Nombre completo
+                      {t(locale, 'quote.form.name_label')}
                     </label>
                     <input
                       type="text"
-                      placeholder="Tu nombre y apellidos"
+                      placeholder={t(locale, 'quote.form.name_placeholder')}
                       className={inputClasses}
                     />
                   </div>
                   <div>
                     <label className="block text-sm font-medium text-text-body mb-2">
-                      Email
+                      {t(locale, 'quote.form.email_label')}
                     </label>
                     <input
                       type="email"
-                      placeholder="tu@email.com"
+                      placeholder={t(locale, 'quote.form.email_placeholder')}
                       className={inputClasses}
                     />
                   </div>
                   <div>
                     <label className="block text-sm font-medium text-text-body mb-2">
-                      Tel&eacute;fono
+                      {t(locale, 'quote.form.phone_label')}
                     </label>
                     <input
                       type="tel"
-                      placeholder="+34 600 000 000"
+                      placeholder={t(locale, 'quote.form.phone_placeholder')}
                       className={inputClasses}
                     />
                   </div>
                   <div>
                     <label className="block text-sm font-medium text-text-body mb-2">
-                      Tipo de producto
+                      {t(locale, 'quote.form.product_label')}
                     </label>
                     <select className={inputClasses}>
-                      <option value="">Seleccionar...</option>
+                      <option value="">{t(locale, 'quote.form.product_placeholder')}</option>
                       {productOptions.map((opt) => (
                         <option key={opt} value={opt}>
                           {opt}
@@ -92,37 +88,37 @@ export function PresupuestoPage() {
                   </div>
                   <div>
                     <label className="block text-sm font-medium text-text-body mb-2">
-                      Ubicaci&oacute;n / Direcci&oacute;n de instalaci&oacute;n
+                      {t(locale, 'quote.form.location_label')}
                     </label>
                     <input
                       type="text"
-                      placeholder="Dirección donde se realizará la instalación"
+                      placeholder={t(locale, 'quote.form.location_placeholder')}
                       className={inputClasses}
                     />
                   </div>
                   <div>
                     <label className="block text-sm font-medium text-text-body mb-2">
-                      Medidas aproximadas
+                      {t(locale, 'quote.form.measurements_label')}
                     </label>
                     <input
                       type="text"
-                      placeholder="Ej: 4m x 3m"
+                      placeholder={t(locale, 'quote.form.measurements_placeholder')}
                       className={inputClasses}
                     />
                   </div>
                   <div>
                     <label className="block text-sm font-medium text-text-body mb-2">
-                      Descripci&oacute;n del proyecto
+                      {t(locale, 'quote.form.description_label')}
                     </label>
                     <textarea
                       rows={5}
-                      placeholder="Cuéntanos los detalles de tu proyecto..."
+                      placeholder={t(locale, 'quote.form.description_placeholder')}
                       className={inputClasses}
                     />
                   </div>
                   <div>
                     <label className="block text-sm font-medium text-text-body mb-2">
-                      Subir fotos (opcional)
+                      {t(locale, 'quote.form.photos_label')}
                     </label>
                     <div className="border-2 border-dashed border-border rounded-xl p-8 text-center hover:border-terracotta/50 transition-colors cursor-pointer">
                       <svg
@@ -139,7 +135,7 @@ export function PresupuestoPage() {
                         />
                       </svg>
                       <p className="text-text-muted text-sm">
-                        Arrastra fotos aqu&iacute; o haz clic para seleccionar
+                        {t(locale, 'quote.form.photos_placeholder')}
                       </p>
                     </div>
                   </div>
@@ -148,11 +144,11 @@ export function PresupuestoPage() {
                       type="submit"
                       className="w-full bg-terracotta hover:bg-terracotta-dark text-white font-medium rounded-xl px-8 py-4 text-lg transition-colors duration-200"
                     >
-                      Solicitar Presupuesto
+                      {t(locale, 'quote.form.submit')}
                     </button>
                   </div>
                   <p className="text-center text-text-muted text-sm pt-2">
-                    &iquest;Prefieres llamar? Contacta con nosotros al{" "}
+                    {t(locale, 'quote.form.call_prefix')}{" "}
                     <a
                       href="tel:+34603572348"
                       className="text-terracotta font-medium hover:underline"

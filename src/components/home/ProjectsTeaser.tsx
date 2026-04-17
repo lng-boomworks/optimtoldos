@@ -1,28 +1,35 @@
 import { AnimatedHeading } from "../AnimatedHeading";
 import { FadeIn } from "../FadeIn";
 import { Button } from "../Button";
+import { localizedUrl } from "../../utils/paths";
+import { t, type Locale } from "../../i18n/index";
+import { slugMap } from "../../i18n/slugs";
 
-const projects = [
-  {
-    title: "Pérgola bioclimática en chalet, Alicante",
-    gradient: "from-terracotta/15 via-gold/10 to-sand",
-  },
-  {
-    title: "Cortinas de cristal en ático, Elche",
-    gradient: "from-navy/10 via-olive/10 to-sand-light",
-  },
-  {
-    title: "Toldos extensibles para restaurante, Santa Pola",
-    gradient: "from-olive/15 via-sand to-warm-white",
-  },
-];
+interface ProjectsTeaserProps {
+  locale?: Locale;
+}
 
-export function ProjectsTeaser() {
+export function ProjectsTeaser({ locale = 'es' }: ProjectsTeaserProps) {
+  const projects = [
+    {
+      title: t(locale, 'home.projects.1.title'),
+      gradient: "from-terracotta/15 via-gold/10 to-sand",
+    },
+    {
+      title: t(locale, 'home.projects.2.title'),
+      gradient: "from-navy/10 via-olive/10 to-sand-light",
+    },
+    {
+      title: t(locale, 'home.projects.3.title'),
+      gradient: "from-olive/15 via-sand to-warm-white",
+    },
+  ];
+
   return (
     <section className="section-sand py-24">
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
         <div className="text-center mb-16">
-          <AnimatedHeading text="Proyectos Destacados" tag="h2" />
+          <AnimatedHeading text={t(locale, 'home.projects.heading')} tag="h2" />
         </div>
 
         <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
@@ -40,8 +47,8 @@ export function ProjectsTeaser() {
 
         <FadeIn delay={0.5} direction="up">
           <div className="text-center mt-12">
-            <Button variant="ghost" href="/galeria">
-              Ver Galer&iacute;a Completa
+            <Button variant="ghost" href={localizedUrl(`/${slugMap.gallery[locale]}`, locale)}>
+              {t(locale, 'home.projects.cta')}
             </Button>
           </div>
         </FadeIn>

@@ -1,11 +1,12 @@
 ---
-import Base from '../../layouts/Base.astro';
+import Base from '../../../layouts/Base.astro';
 import { getCollection } from 'astro:content';
-import { Navbar } from '../../components/Navbar';
-import { Footer } from '../../components/Footer';
-import { url } from '../../utils/paths';
-import { buildCollectionPageSchema } from '../../utils/schema';
-import { getAlternateUrls } from '../../i18n/routes';
+import { Navbar } from '../../../components/Navbar';
+import { Footer } from '../../../components/Footer';
+import { url } from '../../../utils/paths';
+import { buildCollectionPageSchema } from '../../../utils/schema';
+import { t } from '../../../i18n/index';
+import { getAlternateUrls } from '../../../i18n/routes';
 
 const alternateUrls = getAlternateUrls('blog');
 
@@ -14,34 +15,45 @@ const posts = (await getCollection('blog')).sort(
 );
 
 const breadcrumbs = [
-  { name: 'Inicio', url: 'https://optimtoldos.com/' },
-  { name: 'Blog', url: 'https://optimtoldos.com/blog' },
+  { name: 'Home', url: 'https://optimtoldos.com/en/' },
+  { name: 'Blog', url: 'https://optimtoldos.com/en/blog' },
 ];
 
 const categoryLabels: Record<string, string> = {
-  guias: 'Guías',
-  consejos: 'Consejos',
-  tendencias: 'Tendencias',
-  normativa: 'Normativa',
-  'casos-de-exito': 'Casos de Éxito',
+  guias: 'Guides',
+  consejos: 'Tips',
+  tendencias: 'Trends',
+  normativa: 'Regulations',
+  'casos-de-exito': 'Case Studies',
+  guides: 'Guides',
+  tips: 'Tips',
+  trends: 'Trends',
+  regulations: 'Regulations',
+  'case-studies': 'Case Studies',
 };
 
 const collectionSchema = buildCollectionPageSchema({
   name: "Blog | Optim Toldos",
-  description: "Guías, consejos y novedades sobre toldos, pérgolas bioclimáticas, cortinas de cristal, velas de sombra y ventanas PVC en Alicante.",
-  url: "https://optimtoldos.com/blog",
+  description: "Guides, tips and news about awnings, bioclimatic pergolas, glass curtains, shade sails and PVC windows in Alicante.",
+  url: "https://optimtoldos.com/en/blog",
   items: posts.map((post) => ({
     name: post.data.title,
-    url: `https://optimtoldos.com/blog/${post.id}`,
+    url: `https://optimtoldos.com/en/blog/${post.id}`,
   })),
 });
 ---
 
-<Base title="Blog | Optim Toldos — Guías y Consejos de Protección Solar" description="Guías, consejos y novedades sobre toldos, pérgolas bioclimáticas, cortinas de cristal, velas de sombra y ventanas PVC en Alicante." breadcrumbs={breadcrumbs} locale="es" alternateUrls={alternateUrls}>
+<Base
+  title="Blog | Optim Toldos — Solar Protection Guides & Tips"
+  description="Guides, tips and news about awnings, bioclimatic pergolas, glass curtains, shade sails and PVC windows in Alicante."
+  locale="en"
+  alternateUrls={alternateUrls}
+  breadcrumbs={breadcrumbs}
+>
   <Fragment slot="head">
     <script is:inline type="application/ld+json" set:html={JSON.stringify(collectionSchema)} />
   </Fragment>
-  <Navbar client:load locale="es" />
+  <Navbar client:load locale="en" />
 
   <main>
     <!-- Hero -->
@@ -49,7 +61,7 @@ const collectionSchema = buildCollectionPageSchema({
       <div class="max-w-4xl mx-auto px-4 text-center">
         <h1 class="font-serif text-4xl md:text-5xl text-white mb-6">Blog</h1>
         <p class="text-lg text-white/70 max-w-2xl mx-auto">
-          Guías, consejos y novedades sobre protección solar y vida exterior en Alicante
+          Guides, tips and news about solar protection and outdoor living in Alicante
         </p>
       </div>
     </section>
@@ -58,12 +70,12 @@ const collectionSchema = buildCollectionPageSchema({
     <section class="bg-white py-20 md:py-28">
       <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         {posts.length === 0 ? (
-          <p class="text-center text-text-muted text-lg">Próximamente: artículos y guías sobre protección solar.</p>
+          <p class="text-center text-text-muted text-lg">Coming soon: articles and guides on solar protection.</p>
         ) : (
           <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
             {posts.map((post) => (
               <a
-                href={url(`/blog/${post.id}`)}
+                href={url(`/en/blog/${post.id}`)}
                 class="group block rounded-2xl overflow-hidden bg-white border border-border shadow-sm hover:shadow-md transition-shadow duration-300"
               >
                 {post.data.image ? (
@@ -89,7 +101,7 @@ const collectionSchema = buildCollectionPageSchema({
                     {post.data.description}
                   </p>
                   <span class="text-text-muted/60 text-xs">
-                    {new Date(post.data.date).toLocaleDateString('es-ES', { year: 'numeric', month: 'long', day: 'numeric' })}
+                    {new Date(post.data.date).toLocaleDateString('en-GB', { year: 'numeric', month: 'long', day: 'numeric' })}
                   </span>
                 </div>
               </a>
@@ -100,5 +112,5 @@ const collectionSchema = buildCollectionPageSchema({
     </section>
   </main>
 
-  <Footer client:load locale="es" />
+  <Footer client:load locale="en" />
 </Base>

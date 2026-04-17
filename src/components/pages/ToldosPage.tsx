@@ -5,83 +5,38 @@ import { AnimatedHeading } from "../AnimatedHeading";
 import { Button } from "../Button";
 import { FAQSection } from "../FAQSection";
 import { ServiceAreaSection } from "../ServiceAreaSection";
-import { url } from "../../utils/paths";
+import { url, localizedUrl } from "../../utils/paths";
+import { t, type Locale } from "../../i18n/index";
 
-const toldosFaqs = [
-  {
-    question: "¿Cuánto cuesta un toldo extensible en Alicante?",
-    answer: "El precio de un toldo extensible en Alicante oscila entre 350€ y 1.500€, dependiendo de las medidas, el tipo de tejido (acrílico o impermeable), la motorización y si incluye cofre de protección. En Optim Toldos ofrecemos presupuestos gratuitos y personalizados sin compromiso.",
-  },
-  {
-    question: "¿Qué tipo de toldo es mejor para una terraza?",
-    answer: "Para terrazas, el toldo de brazo extensible es la opción más popular por su versatilidad y cobertura. Para terrazas con mucho viento en la Costa Blanca, recomendamos modelos con sensor de viento y cofre de protección. El toldo vertical o screen es ideal como complemento lateral.",
-  },
-  {
-    question: "¿Cuánto dura un toldo bien mantenido?",
-    answer: "Un toldo de calidad con tejido acrílico bien mantenido tiene una vida útil de 10 a 15 años. Recomendamos recogerlo en días de viento fuerte, limpiarlo una vez al año con agua y jabón neutro, y asegurarse de que el tejido esté seco antes de recogerlo.",
-  },
-  {
-    question: "¿Es mejor un toldo con o sin cofre?",
-    answer: "El cofre de protección es muy recomendable, especialmente en zonas costeras como Alicante donde la brisa marina y la sal pueden deteriorar el tejido. El cofre protege la lona cuando está recogida y puede alargar su vida útil entre un 30% y un 50%.",
-  },
-  {
-    question: "¿Se puede motorizar un toldo existente?",
-    answer: "Sí, en la mayoría de los casos es posible motorizar un toldo manual existente. Las opciones incluyen motor con mando a distancia, sensor de viento para recogida automática, sensor de sol y integración con sistemas domóticos.",
-  },
-  {
-    question: "¿Necesito licencia para instalar un toldo en mi terraza?",
-    answer: "Generalmente no se necesita licencia de obras para instalar un toldo en una vivienda privada. Sin embargo, en comunidades de propietarios es necesario contar con la aprobación de la comunidad, especialmente respecto al color y modelo para mantener la uniformidad de la fachada.",
-  },
+const productImages = [
+  "/images/gallery/toldo-cofre-extensible.jpg",
+  "/images/gallery/toldo-punto-recto.jpg",
+  "/images/gallery/toldo-palilleria.jpg",
+  "/images/gallery/toldo-cofre.png",
+  "/images/gallery/toldo-ventana.jpg",
 ];
 
-const productTypes = [
-  {
-    title: "Brazo Extensible",
-    desc: "El toldo clásico para terrazas y balcones. Brazos articulados con cofre opcional para máxima protección del tejido.",
-    image: "/images/gallery/toldo-cofre-extensible.jpg",
-  },
-  {
-    title: "Punto Recto",
-    desc: "Ideal para ventanas y escaparates. Brazos rectos con inclinación regulable.",
-    image: "/images/gallery/toldo-punto-recto.jpg",
-  },
-  {
-    title: "Vertical / Screen",
-    desc: "Cortinas enrollables verticales para fachadas, pérgolas y cerramientos. Protección solar y privacidad.",
-    image: "/images/gallery/toldo-palilleria.jpg",
-  },
-  {
-    title: "Capota",
-    desc: "Toldos curvos de estilo clásico para comercios, restaurantes y entradas elegantes.",
-    image: "/images/gallery/toldo-cofre.png",
-  },
-  {
-    title: "Ventana",
-    desc: "Toldos compactos para ventanas. Protección solar directa con mínimo impacto visual.",
-    image: "/images/gallery/toldo-ventana.jpg",
-  },
-];
+const featureCount = 4;
+const productCount = 5;
+const faqCount = 6;
 
-const features = [
-  {
-    title: "Tejidos Acrílicos e Impermeables",
-    desc: "Máxima durabilidad y resistencia al sol",
-  },
-  {
-    title: "Motorización Opcional",
-    desc: "Control remoto, sensor viento y sensor sol",
-  },
-  {
-    title: "Cofre de Protección",
-    desc: "Mantiene el tejido protegido cuando está recogido",
-  },
-  {
-    title: "Amplia Carta de Colores",
-    desc: "Más de 200 colores y diseños disponibles",
-  },
-];
+export function ToldosPage({ locale = 'es' }: { locale?: Locale }) {
+  const productTypes = Array.from({ length: productCount }, (_, i) => ({
+    title: t(locale, `awnings.product.${i + 1}.title` as any),
+    desc: t(locale, `awnings.product.${i + 1}.description` as any),
+    image: productImages[i],
+  }));
 
-export function ToldosPage() {
+  const features = Array.from({ length: featureCount }, (_, i) => ({
+    title: t(locale, `awnings.features.${i + 1}.title` as any),
+    desc: t(locale, `awnings.features.${i + 1}.description` as any),
+  }));
+
+  const faqs = Array.from({ length: faqCount }, (_, i) => ({
+    question: t(locale, `awnings.faq.${i + 1}.q` as any),
+    answer: t(locale, `awnings.faq.${i + 1}.a` as any),
+  }));
+
   return (
     <>
       <Navbar />
@@ -94,23 +49,22 @@ export function ToldosPage() {
             <div className="relative z-10 max-w-4xl mx-auto px-4 text-center py-20">
               <FadeIn>
                 <span className="inline-block font-mono tracking-[0.2em] text-gold text-sm mb-6">
-                  TOLDOS
+                  {t(locale, 'awnings.hero.tagline')}
                 </span>
               </FadeIn>
               <AnimatedHeading
-                text="Toldos a Medida Para Cada Espacio"
+                text={t(locale, 'awnings.hero.heading')}
                 tag="h1"
                 className="text-white mb-6"
               />
               <FadeIn delay={0.2}>
                 <p className="text-lg md:text-xl text-white/80 max-w-2xl mx-auto mb-10">
-                  Protecci&oacute;n solar elegante y funcional para terrazas, balcones y
-                  comercios. Fabricaci&oacute;n a medida e instalaci&oacute;n profesional.
+                  {t(locale, 'awnings.hero.description')}
                 </p>
               </FadeIn>
               <FadeIn delay={0.4}>
-                <Button variant="primary" href="/presupuesto">
-                  Solicitar Presupuesto
+                <Button variant="primary" href={localizedUrl("/presupuesto", locale)}>
+                  {t(locale, 'awnings.hero.cta')}
                 </Button>
               </FadeIn>
             </div>
@@ -121,7 +75,7 @@ export function ToldosPage() {
             <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
               <FadeIn className="text-center mb-16">
                 <AnimatedHeading
-                  text="Tipos de Toldos"
+                  text={t(locale, 'awnings.types.heading')}
                   tag="h2"
                   className="text-navy"
                 />
@@ -151,7 +105,7 @@ export function ToldosPage() {
             <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
               <FadeIn className="text-center mb-16">
                 <AnimatedHeading
-                  text="Características"
+                  text={t(locale, 'awnings.features.heading')}
                   tag="h2"
                   className="text-navy"
                 />
@@ -175,23 +129,22 @@ export function ToldosPage() {
           </section>
 
           {/* FAQ */}
-          <FAQSection faqs={toldosFaqs} />
+          <FAQSection faqs={faqs} locale={locale} />
 
           {/* Service Area */}
-          <ServiceAreaSection serviceName="Instalamos toldos" />
+          <ServiceAreaSection serviceName={t(locale, 'awnings.serviceArea')} locale={locale} />
 
           {/* CTA */}
           <section className="bg-navy py-20 md:py-24">
             <FadeIn className="max-w-3xl mx-auto px-4 text-center">
               <h2 className="font-serif text-3xl md:text-4xl text-white mb-6">
-                &iquest;Necesitas un toldo a medida?
+                {t(locale, 'awnings.cta.heading')}
               </h2>
               <p className="text-lg text-white/70 mb-10">
-                Te asesoramos sin compromiso y te ofrecemos un presupuesto
-                personalizado.
+                {t(locale, 'awnings.cta.description')}
               </p>
-              <Button variant="gold" href="/presupuesto">
-                Solicitar Presupuesto Gratis
+              <Button variant="gold" href={localizedUrl("/presupuesto", locale)}>
+                {t(locale, 'awnings.cta.quote')}
               </Button>
             </FadeIn>
           </section>

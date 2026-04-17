@@ -1,9 +1,15 @@
 import { AnimatedHeading } from "../AnimatedHeading";
 import { FadeIn } from "../FadeIn";
 import { Button } from "../Button";
-import { url } from "../../utils/paths";
+import { url, localizedUrl } from "../../utils/paths";
+import { t, type Locale } from "../../i18n/index";
+import { slugMap } from "../../i18n/slugs";
 
-export function HeroSection() {
+interface HeroSectionProps {
+  locale?: Locale;
+}
+
+export function HeroSection({ locale = 'es' }: HeroSectionProps) {
   return (
     <section className="relative min-h-[85vh] flex items-center overflow-hidden">
       {/* Background image */}
@@ -20,31 +26,29 @@ export function HeroSection() {
       <div className="relative z-10 mx-auto w-full max-w-7xl px-6 py-24 lg:px-8">
         <FadeIn delay={0.1} direction="up">
           <p className="font-mono text-xs tracking-[0.2em] text-gold uppercase mb-6">
-            Protecci&oacute;n Solar &amp; Vida Exterior
+            {t(locale, 'home.hero.tagline')}
           </p>
         </FadeIn>
 
         <AnimatedHeading
-          text="Transforma tu espacio exterior"
+          text={t(locale, 'home.hero.heading')}
           tag="h1"
           className="text-white max-w-3xl mb-6"
         />
 
         <FadeIn delay={0.4} direction="up">
           <p className="max-w-2xl text-lg text-white/80 leading-relaxed mb-10">
-            Toldos, p&eacute;rgolas bioclim&aacute;ticas, cortinas de cristal y
-            m&aacute;s. Soluciones a medida con instalaci&oacute;n profesional en
-            toda la provincia de Alicante.
+            {t(locale, 'home.hero.description')}
           </p>
         </FadeIn>
 
         <FadeIn delay={0.6} direction="up">
           <div className="flex flex-wrap gap-4">
-            <Button variant="primary" href="/contacto">
-              Presupuesto Gratis
+            <Button variant="primary" href={localizedUrl(`/${slugMap.contact[locale]}`, locale)}>
+              {t(locale, 'home.hero.cta_quote')}
             </Button>
             <Button variant="outline-white" href="#productos">
-              Ver Productos
+              {t(locale, 'home.hero.cta_products')}
             </Button>
           </div>
         </FadeIn>

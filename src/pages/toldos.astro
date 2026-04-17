@@ -2,6 +2,9 @@
 import Base from '../layouts/Base.astro';
 import { ToldosPage } from '../components/pages/ToldosPage';
 import { buildServiceSchema, buildFAQSchema } from '../utils/schema';
+import { getAlternateUrls } from '../i18n/routes';
+
+const alternateUrls = getAlternateUrls('awnings');
 
 const serviceSchema = buildServiceSchema({
   name: "Toldos a Medida en Alicante",
@@ -48,6 +51,8 @@ const faqSchema = buildFAQSchema([
 <Base
   title="Toldos a Medida | Optim Toldos — Alicante"
   description="Toldos extensibles, verticales, de punto y capota. Fabricación a medida con instalación profesional en Alicante y Costa Blanca."
+  locale="es"
+  alternateUrls={alternateUrls}
   breadcrumbs={[
     { name: "Inicio", url: "https://optimtoldos.com/" },
     { name: "Toldos", url: "https://optimtoldos.com/toldos" },
@@ -57,5 +62,5 @@ const faqSchema = buildFAQSchema([
     <script is:inline type="application/ld+json" set:html={JSON.stringify(serviceSchema)} />
     <script is:inline type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
   </Fragment>
-  <ToldosPage client:load />
+  <ToldosPage client:load locale="es" />
 </Base>

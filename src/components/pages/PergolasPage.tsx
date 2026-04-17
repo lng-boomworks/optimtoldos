@@ -5,67 +5,36 @@ import { AnimatedHeading } from "../AnimatedHeading";
 import { Button } from "../Button";
 import { FAQSection } from "../FAQSection";
 import { ServiceAreaSection } from "../ServiceAreaSection";
-import { url } from "../../utils/paths";
+import { url, localizedUrl } from "../../utils/paths";
+import { t, type Locale } from "../../i18n/index";
 
-const pergolasFaqs = [
-  {
-    question: "¿Cuánto cuesta una pérgola bioclimática en Alicante?",
-    answer: "El precio de una pérgola bioclimática en Alicante varía entre 3.000€ y 12.000€ según las dimensiones, acabados y opciones como motorización, iluminación LED o sensor de lluvia. En Optim Toldos realizamos una visita gratuita para tomar medidas y ofrecerte un presupuesto personalizado.",
-  },
-  {
-    question: "¿Qué diferencia hay entre una pérgola bioclimática y un toldo?",
-    answer: "La pérgola bioclimática es una estructura fija de aluminio con lamas orientables que permite regular la luz y ventilación. A diferencia del toldo, ofrece protección contra la lluvia, se puede usar los 365 días del año y aumenta el valor de la propiedad. El toldo es más económico y flexible, pero no ofrece protección completa.",
-  },
-  {
-    question: "¿Necesito licencia de obra para una pérgola bioclimática?",
-    answer: "En la mayoría de municipios de Alicante se requiere una comunicación previa o licencia de obra menor. Los requisitos varían según el ayuntamiento y las dimensiones de la estructura. En Optim Toldos te asesoramos sobre la normativa local y te ayudamos con la documentación necesaria.",
-  },
-  {
-    question: "¿Las pérgolas bioclimáticas necesitan mantenimiento?",
-    answer: "El mantenimiento es mínimo. Recomendamos limpiar las lamas 2 veces al año con agua y jabón neutro y revisar el motor anualmente. La estructura de aluminio es resistente a la corrosión, ideal para el clima costero de Alicante.",
-  },
-  {
-    question: "¿Se pueden integrar cortinas de cristal en una pérgola?",
-    answer: "Sí, las cortinas de cristal son el complemento perfecto para una pérgola bioclimática. También se pueden añadir toldos verticales, screens y estores zip como cerramientos laterales, creando un espacio cerrado utilizable todo el año.",
-  },
-  {
-    question: "¿Cuánto tarda la instalación de una pérgola bioclimática?",
-    answer: "La fabricación suele tardar entre 3 y 4 semanas desde la confirmación del pedido. La instalación en sí se realiza normalmente en 1 a 2 días laborables, dependiendo de la complejidad del proyecto.",
-  },
+const featureImages = [
+  "/images/pergolas/pergola-bioclimatica.jpg",
+  "/images/pergolas/pergola-costablanca.jpg",
+  "/images/pergolas/pergola-restaurante.png",
+  "/images/pergolas/pergola-design-1.png",
 ];
 
-const features = [
-  {
-    title: "Lamas Orientables",
-    desc: "Controla la entrada de luz y ventilación girando las lamas de 0° a 135°.",
-    image: "/images/pergolas/pergola-bioclimatica.jpg",
-  },
-  {
-    title: "Motorización Inteligente",
-    desc: "Apertura y cierre motorizado con mando a distancia o app móvil.",
-    image: "/images/pergolas/pergola-costablanca.jpg",
-  },
-  {
-    title: "Iluminación LED",
-    desc: "LED integrado para crear el ambiente perfecto en tus noches de verano.",
-    image: "/images/pergolas/pergola-restaurante.png",
-  },
-  {
-    title: "Sensor de Lluvia",
-    desc: "Las lamas se cierran automáticamente al detectar lluvia. Protección sin preocupaciones.",
-    image: "/images/pergolas/pergola-design-1.png",
-  },
-];
+const featureCount = 4;
+const benefitCount = 5;
+const faqCount = 6;
 
-const benefits = [
-  "Uso 365 días al año — lluvia, sol o viento",
-  "Aumenta el valor de tu propiedad",
-  "Estructura de aluminio resistente a la corrosión",
-  "Personalización total: medidas, colores y acabados",
-  "Integración con sistemas domóticos",
-];
+export function PergolasPage({ locale = 'es' }: { locale?: Locale }) {
+  const features = Array.from({ length: featureCount }, (_, i) => ({
+    title: t(locale, `pergolas.features.${i + 1}.title` as any),
+    desc: t(locale, `pergolas.features.${i + 1}.description` as any),
+    image: featureImages[i],
+  }));
 
-export function PergolasPage() {
+  const benefits = Array.from({ length: benefitCount }, (_, i) =>
+    t(locale, `pergolas.benefits.${i + 1}` as any)
+  );
+
+  const faqs = Array.from({ length: faqCount }, (_, i) => ({
+    question: t(locale, `pergolas.faq.${i + 1}.q` as any),
+    answer: t(locale, `pergolas.faq.${i + 1}.a` as any),
+  }));
+
   return (
     <>
       <Navbar />
@@ -78,24 +47,22 @@ export function PergolasPage() {
             <div className="relative z-10 max-w-4xl mx-auto px-4 text-center py-20">
               <FadeIn>
                 <span className="inline-block font-mono tracking-[0.2em] text-gold text-sm mb-6">
-                  P&Eacute;RGOLAS BIOCLIM&Aacute;TICAS
+                  {t(locale, 'pergolas.hero.tagline')}
                 </span>
               </FadeIn>
               <AnimatedHeading
-                text="Vive Tu Terraza Todo el Año"
+                text={t(locale, 'pergolas.hero.heading')}
                 tag="h1"
                 className="text-white mb-6"
               />
               <FadeIn delay={0.2}>
                 <p className="text-lg md:text-xl text-white/80 max-w-2xl mx-auto mb-10">
-                  P&eacute;rgolas de aluminio con lamas orientables que regulan luz,
-                  ventilaci&oacute;n y protecci&oacute;n contra la lluvia. El sal&oacute;n
-                  exterior definitivo.
+                  {t(locale, 'pergolas.hero.description')}
                 </p>
               </FadeIn>
               <FadeIn delay={0.4}>
-                <Button variant="primary" href="/presupuesto">
-                  Solicitar Presupuesto
+                <Button variant="primary" href={localizedUrl("/presupuesto", locale)}>
+                  {t(locale, 'pergolas.hero.cta')}
                 </Button>
               </FadeIn>
             </div>
@@ -106,7 +73,7 @@ export function PergolasPage() {
             <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
               <FadeIn className="text-center mb-16">
                 <AnimatedHeading
-                  text="Características Premium"
+                  text={t(locale, 'pergolas.features.heading')}
                   tag="h2"
                   className="text-navy"
                 />
@@ -136,7 +103,7 @@ export function PergolasPage() {
             <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
               <FadeIn className="text-center mb-16">
                 <AnimatedHeading
-                  text="Beneficios"
+                  text={t(locale, 'pergolas.benefits.heading')}
                   tag="h2"
                   className="text-navy"
                 />
@@ -167,27 +134,26 @@ export function PergolasPage() {
           </section>
 
           {/* FAQ */}
-          <FAQSection faqs={pergolasFaqs} />
+          <FAQSection faqs={faqs} locale={locale} />
 
           {/* Service Area */}
-          <ServiceAreaSection serviceName="Instalamos pérgolas bioclimáticas" />
+          <ServiceAreaSection serviceName={t(locale, 'pergolas.serviceArea')} locale={locale} />
 
           {/* CTA */}
           <section className="bg-navy py-20 md:py-24">
             <FadeIn className="max-w-3xl mx-auto px-4 text-center">
               <h2 className="font-serif text-3xl md:text-4xl text-white mb-6">
-                El sal&oacute;n exterior que siempre so&ntilde;aste
+                {t(locale, 'pergolas.cta.heading')}
               </h2>
               <p className="text-lg text-white/70 mb-10">
-                Dise&ntilde;amos e instalamos tu p&eacute;rgola bioclim&aacute;tica a
-                medida. Consulta sin compromiso.
+                {t(locale, 'pergolas.cta.description')}
               </p>
               <div className="flex flex-col sm:flex-row justify-center gap-4">
-                <Button variant="gold" href="/presupuesto">
-                  Solicitar Presupuesto Gratis
+                <Button variant="gold" href={localizedUrl("/presupuesto", locale)}>
+                  {t(locale, 'pergolas.cta.quote')}
                 </Button>
-                <Button variant="outline-white" href="/contacto">
-                  Contactar
+                <Button variant="outline-white" href={localizedUrl("/contacto", locale)}>
+                  {t(locale, 'pergolas.cta.contact')}
                 </Button>
               </div>
             </FadeIn>

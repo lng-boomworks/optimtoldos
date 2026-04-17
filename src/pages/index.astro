@@ -2,6 +2,9 @@
 import Base from '../layouts/Base.astro';
 import { HomePage } from '../components/home/HomePage';
 import { buildFAQSchema } from '../utils/schema';
+import { getAlternateUrls } from '../i18n/routes';
+
+const alternateUrls = getAlternateUrls('home');
 
 const homeFaqs = [
   { question: "¿Qué zonas de Alicante cubrís?", answer: "Damos servicio a toda la provincia de Alicante y la Costa Blanca, incluyendo Alicante capital, Elche, Torrevieja, Benidorm, Santa Pola, Orihuela, Guardamar, Dénia, Jávea, Altea, Calpe y todas las localidades intermedias." },
@@ -20,6 +23,8 @@ const breadcrumbs = [
   title="Optim Toldos — Especialistas en Protección Solar y Vida Exterior | Alicante"
   description="Toldos, pérgolas bioclimáticas, cortinas de cristal, velas de sombra y ventanas PVC. Soluciones a medida con instalación profesional en Alicante y Costa Blanca."
   breadcrumbs={breadcrumbs}
+  locale="es"
+  alternateUrls={alternateUrls}
 >
   <Fragment slot="head">
     <script is:inline type="application/ld+json" set:html={JSON.stringify(buildFAQSchema(homeFaqs))} />
@@ -72,5 +77,5 @@ const breadcrumbs = [
       ]
     })} />
   </Fragment>
-  <HomePage client:load />
+  <HomePage client:load locale="es" />
 </Base>

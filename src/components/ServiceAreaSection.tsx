@@ -1,21 +1,24 @@
 import { SERVICE_CITIES } from "../data/cities";
-import { url } from "../utils/paths";
+import { localizedUrl } from "../utils/paths";
+import { t, type Locale } from "../i18n/index";
+import { slugMap } from "../i18n/slugs";
 
 interface ServiceAreaSectionProps {
   serviceName: string;
+  locale?: Locale;
 }
 
-export function ServiceAreaSection({ serviceName }: ServiceAreaSectionProps) {
+export function ServiceAreaSection({ serviceName, locale = 'es' }: ServiceAreaSectionProps) {
+  const heading = t(locale, 'serviceArea.heading').replace('{serviceName}', serviceName);
+
   return (
     <section className="bg-sand py-20">
       <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
         <h2 className="font-serif text-2xl md:text-3xl text-navy mb-4">
-          {serviceName} en toda la provincia de Alicante
+          {heading}
         </h2>
         <p className="text-text-muted max-w-2xl mx-auto mb-10 leading-relaxed">
-          Nuestro equipo de instaladores profesionales da servicio desde Dénia hasta
-          Torrevieja, incluyendo el área metropolitana de Alicante y el interior de la
-          provincia. Presupuesto gratuito y sin compromiso en tu zona.
+          {t(locale, 'serviceArea.description')}
         </p>
         <div className="flex flex-wrap justify-center gap-2 mb-10">
           {SERVICE_CITIES.map((city) => (
@@ -28,10 +31,10 @@ export function ServiceAreaSection({ serviceName }: ServiceAreaSectionProps) {
           ))}
         </div>
         <a
-          href={url("/presupuesto")}
+          href={localizedUrl(`/${slugMap.quote[locale]}`, locale)}
           className="inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-full text-[15px] font-semibold bg-gold text-navy hover:bg-gold-light transition-all"
         >
-          Solicitar Presupuesto en Tu Zona
+          {t(locale, 'serviceArea.cta')}
         </a>
       </div>
     </section>

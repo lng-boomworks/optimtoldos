@@ -1,0 +1,33 @@
+---
+import Base from '../../layouts/Base.astro';
+import { ContactoPage } from '../../components/pages/ContactoPage';
+import { buildContactPageSchema } from '../../utils/schema';
+import { t } from '../../i18n/index';
+import { getAlternateUrls } from '../../i18n/routes';
+
+const alternateUrls = getAlternateUrls('contact');
+
+const schema = buildContactPageSchema({
+  url: "https://optimtoldos.com/en/contact",
+  telephone: "+34 603 572 348",
+  email: "info@optimtoldos.com",
+});
+
+const breadcrumbs = [
+  { name: "Home", url: "https://optimtoldos.com/en/" },
+  { name: "Contact", url: "https://optimtoldos.com/en/contact" },
+];
+---
+
+<Base
+  title="Contact | Optim Toldos — Alicante"
+  description="Contact Optim Toldos in Elche, Alicante. Awnings, pergolas, glass curtains, shade sails and PVC windows. Free, no-obligation quote."
+  locale="en"
+  alternateUrls={alternateUrls}
+  breadcrumbs={breadcrumbs}
+>
+  <Fragment slot="head">
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(schema)} />
+  </Fragment>
+  <ContactoPage client:load locale="en" />
+</Base>

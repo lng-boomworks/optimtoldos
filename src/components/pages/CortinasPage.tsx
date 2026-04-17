@@ -5,77 +5,38 @@ import { AnimatedHeading } from "../AnimatedHeading";
 import { Button } from "../Button";
 import { FAQSection } from "../FAQSection";
 import { ServiceAreaSection } from "../ServiceAreaSection";
-import { url } from "../../utils/paths";
+import { url, localizedUrl } from "../../utils/paths";
+import { t, type Locale } from "../../i18n/index";
 
-const cortinasFaqs = [
-  {
-    question: "¿Cuánto cuestan las cortinas de cristal por metro cuadrado?",
-    answer: "El precio de las cortinas de cristal oscila entre 250€ y 450€ por metro cuadrado en Alicante, dependiendo de la altura, el grosor del cristal (8mm o 10mm) y el número de paneles. Te ofrecemos presupuesto gratuito con visita incluida.",
-  },
-  {
-    question: "¿Las cortinas de cristal aíslan del frío?",
-    answer: "Las cortinas de cristal ofrecen una protección significativa contra el viento y el frío, aunque no son herméticas como una ventana fija. En Alicante, donde los inviernos son suaves, suelen ser suficientes para disfrutar de la terraza todo el año con una diferencia de temperatura notable respecto al exterior.",
-  },
-  {
-    question: "¿Se pueden cerrar completamente las cortinas de cristal?",
-    answer: "Sí, los paneles se cierran completamente con un mínimo espacio entre ellos. Sin embargo, no son totalmente herméticas como un cerramiento fijo de obra. Esto permite cierta ventilación natural que evita la condensación.",
-  },
-  {
-    question: "¿Qué grosor de cristal se usa en las cortinas de cristal?",
-    answer: "Utilizamos cristal templado de seguridad de 8mm o 10mm de grosor, dependiendo de las dimensiones y la exposición al viento. El cristal templado es hasta 5 veces más resistente que el cristal normal y, en caso de rotura, se fragmenta en pequeños trozos sin aristas cortantes.",
-  },
-  {
-    question: "¿Se empañan las cortinas de cristal?",
-    answer: "La condensación puede producirse en días fríos y húmedos, especialmente si hay diferencia de temperatura entre interior y exterior. Una correcta instalación con sistema de ventilación regulable minimiza este efecto. En el clima de Alicante, la condensación es poco frecuente.",
-  },
-  {
-    question: "¿Se pueden instalar cortinas de cristal en una pérgola?",
-    answer: "Sí, es una de las combinaciones más demandadas. Las cortinas de cristal complementan perfectamente una pérgola bioclimática, creando un espacio exterior cerrado y protegido que se puede disfrutar los 365 días del año.",
-  },
+const featureImages = [
+  "/images/cortinas/cortina-cristal-1.jpg",
+  "/images/cortinas/cortina-cristal-abatible.jpg",
+  "/images/cortinas/cortina-cristalera.jpg",
+  "/images/cortinas/cortina-cristal-2x.png",
 ];
 
-const features = [
-  {
-    title: "Sin Perfiles Verticales",
-    desc: "Visión panorámica sin interrupciones. Cristal de suelo a techo.",
-    image: "/images/cortinas/cortina-cristal-1.jpg",
-  },
-  {
-    title: "Plegado Total",
-    desc: "Los paneles se pliegan completamente a un lado. Terraza abierta cuando quieras.",
-    image: "/images/cortinas/cortina-cristal-abatible.jpg",
-  },
-  {
-    title: "Protección Climática",
-    desc: "Barrera eficaz contra viento, lluvia y frío sin renunciar a la luz natural.",
-    image: "/images/cortinas/cortina-cristalera.jpg",
-  },
-  {
-    title: "Aislamiento Acústico",
-    desc: "Reduce significativamente el ruido exterior para mayor confort.",
-    image: "/images/cortinas/cortina-cristal-2x.png",
-  },
-];
+const featureCount = 4;
+const stepCount = 3;
+const faqCount = 6;
 
-const steps = [
-  {
-    num: "01",
-    title: "Medición",
-    desc: "Visitamos tu espacio y tomamos medidas exactas.",
-  },
-  {
-    num: "02",
-    title: "Fabricación",
-    desc: "Cristal templado de seguridad fabricado a medida.",
-  },
-  {
-    num: "03",
-    title: "Instalación",
-    desc: "Montaje profesional con acabado impecable.",
-  },
-];
+export function CortinasPage({ locale = 'es' }: { locale?: Locale }) {
+  const features = Array.from({ length: featureCount }, (_, i) => ({
+    title: t(locale, `curtains.features.${i + 1}.title` as any),
+    desc: t(locale, `curtains.features.${i + 1}.description` as any),
+    image: featureImages[i],
+  }));
 
-export function CortinasPage() {
+  const steps = Array.from({ length: stepCount }, (_, i) => ({
+    num: t(locale, `curtains.howItWorks.${i + 1}.num` as any),
+    title: t(locale, `curtains.howItWorks.${i + 1}.title` as any),
+    desc: t(locale, `curtains.howItWorks.${i + 1}.description` as any),
+  }));
+
+  const faqs = Array.from({ length: faqCount }, (_, i) => ({
+    question: t(locale, `curtains.faq.${i + 1}.q` as any),
+    answer: t(locale, `curtains.faq.${i + 1}.a` as any),
+  }));
+
   return (
     <>
       <Navbar />
@@ -88,24 +49,22 @@ export function CortinasPage() {
             <div className="relative z-10 max-w-4xl mx-auto px-4 text-center py-20">
               <FadeIn>
                 <span className="inline-block font-mono tracking-[0.2em] text-gold text-sm mb-6">
-                  CORTINAS DE CRISTAL
+                  {t(locale, 'curtains.hero.tagline')}
                 </span>
               </FadeIn>
               <AnimatedHeading
-                text="Cierra Tu Terraza Sin Perder las Vistas"
+                text={t(locale, 'curtains.hero.heading')}
                 tag="h1"
                 className="text-white mb-6"
               />
               <FadeIn delay={0.2}>
                 <p className="text-lg md:text-xl text-white/80 max-w-2xl mx-auto mb-10">
-                  Paneles de cristal templado plegables y sin perfiles verticales.
-                  M&aacute;xima protecci&oacute;n contra viento y lluvia manteniendo la
-                  luminosidad y las vistas abiertas.
+                  {t(locale, 'curtains.hero.description')}
                 </p>
               </FadeIn>
               <FadeIn delay={0.4}>
-                <Button variant="primary" href="/presupuesto">
-                  Solicitar Presupuesto
+                <Button variant="primary" href={localizedUrl("/presupuesto", locale)}>
+                  {t(locale, 'curtains.hero.cta')}
                 </Button>
               </FadeIn>
             </div>
@@ -116,7 +75,7 @@ export function CortinasPage() {
             <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
               <FadeIn className="text-center mb-16">
                 <AnimatedHeading
-                  text="Ventajas del Cristal Templado"
+                  text={t(locale, 'curtains.features.heading')}
                   tag="h2"
                   className="text-navy"
                 />
@@ -146,7 +105,7 @@ export function CortinasPage() {
             <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
               <FadeIn className="text-center mb-16">
                 <AnimatedHeading
-                  text="¿Cómo Funcionan?"
+                  text={t(locale, 'curtains.howItWorks.heading')}
                   tag="h2"
                   className="text-navy"
                 />
@@ -170,27 +129,26 @@ export function CortinasPage() {
           </section>
 
           {/* FAQ */}
-          <FAQSection faqs={cortinasFaqs} />
+          <FAQSection faqs={faqs} locale={locale} />
 
           {/* Service Area */}
-          <ServiceAreaSection serviceName="Instalamos cortinas de cristal" />
+          <ServiceAreaSection serviceName={t(locale, 'curtains.serviceArea')} locale={locale} />
 
           {/* CTA */}
           <section className="bg-navy py-20 md:py-24">
             <FadeIn className="max-w-3xl mx-auto px-4 text-center">
               <h2 className="font-serif text-3xl md:text-4xl text-white mb-6">
-                Disfruta de tu terraza los 365 d&iacute;as del a&ntilde;o
+                {t(locale, 'curtains.cta.heading')}
               </h2>
               <p className="text-lg text-white/70 mb-10">
-                Cristal templado de seguridad, instalaci&oacute;n profesional y
-                garant&iacute;a completa. Pide tu presupuesto sin compromiso.
+                {t(locale, 'curtains.cta.description')}
               </p>
               <div className="flex flex-col sm:flex-row justify-center gap-4">
-                <Button variant="gold" href="/presupuesto">
-                  Solicitar Presupuesto Gratis
+                <Button variant="gold" href={localizedUrl("/presupuesto", locale)}>
+                  {t(locale, 'curtains.cta.quote')}
                 </Button>
-                <Button variant="outline-white" href="/contacto">
-                  Contactar
+                <Button variant="outline-white" href={localizedUrl("/contacto", locale)}>
+                  {t(locale, 'curtains.cta.contact')}
                 </Button>
               </div>
             </FadeIn>

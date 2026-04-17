@@ -1,0 +1,38 @@
+---
+import Base from '../../layouts/Base.astro';
+import { PresupuestoPage } from '../../components/pages/PresupuestoPage';
+import { t } from '../../i18n/index';
+import { getAlternateUrls } from '../../i18n/routes';
+
+const alternateUrls = getAlternateUrls('quote');
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "name": "Free Quote",
+  "description": "Request your free, no-obligation quote. Awnings, bioclimatic pergolas, glass curtains, shade sails and PVC windows in Alicante.",
+  "url": "https://optimtoldos.com/en/free-quote",
+  "potentialAction": {
+    "@type": "CommunicateAction",
+    "target": "https://optimtoldos.com/en/free-quote",
+  },
+};
+
+const breadcrumbs = [
+  { name: "Home", url: "https://optimtoldos.com/en/" },
+  { name: "Free Quote", url: "https://optimtoldos.com/en/free-quote" },
+];
+---
+
+<Base
+  title="Free Quote | Optim Toldos — Alicante"
+  description="Request your free, no-obligation quote. Awnings, bioclimatic pergolas, glass curtains, shade sails and PVC windows in Alicante."
+  locale="en"
+  alternateUrls={alternateUrls}
+  breadcrumbs={breadcrumbs}
+>
+  <Fragment slot="head">
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(schema)} />
+  </Fragment>
+  <PresupuestoPage client:load locale="en" />
+</Base>

@@ -2,6 +2,9 @@
 import Base from '../layouts/Base.astro';
 import { CortinasPage } from '../components/pages/CortinasPage';
 import { buildServiceSchema, buildFAQSchema } from '../utils/schema';
+import { getAlternateUrls } from '../i18n/routes';
+
+const alternateUrls = getAlternateUrls('glass-curtains');
 
 const serviceSchema = buildServiceSchema({
   name: "Cortinas de Cristal en Alicante",
@@ -46,6 +49,8 @@ const faqSchema = buildFAQSchema([
 <Base
   title="Cortinas de Cristal | Optim Toldos — Alicante"
   description="Cortinas de cristal templado plegables sin perfiles verticales. Cierra tu terraza sin perder las vistas. Instalación profesional en Alicante y Costa Blanca."
+  locale="es"
+  alternateUrls={alternateUrls}
   breadcrumbs={[
     { name: "Inicio", url: "https://optimtoldos.com/" },
     { name: "Cortinas de Cristal", url: "https://optimtoldos.com/cortinas-de-cristal" },
@@ -55,5 +60,5 @@ const faqSchema = buildFAQSchema([
     <script is:inline type="application/ld+json" set:html={JSON.stringify(serviceSchema)} />
     <script is:inline type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
   </Fragment>
-  <CortinasPage client:load />
+  <CortinasPage client:load locale="es" />
 </Base>

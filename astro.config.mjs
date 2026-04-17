@@ -6,9 +6,21 @@ import sitemap from '@astrojs/sitemap';
 export default defineConfig({
   site: 'https://lng-boomworks.github.io',
   base: '/optimtoldos',
+  i18n: {
+    defaultLocale: 'es',
+    locales: ['es', 'en'],
+    routing: {
+      prefixDefaultLocale: false,
+    },
+  },
   integrations: [
     react(),
-    sitemap(),
+    sitemap({
+      i18n: {
+        defaultLocale: 'es',
+        locales: { es: 'es', en: 'en' },
+      },
+    }),
   ],
   output: 'static',
   vite: {

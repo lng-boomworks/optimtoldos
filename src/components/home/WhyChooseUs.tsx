@@ -1,44 +1,45 @@
 import { AnimatedHeading } from "../AnimatedHeading";
 import { FadeIn } from "../FadeIn";
+import { t, type Locale } from "../../i18n/index";
 
-const features = [
-  {
-    icon: "M",
-    color: "bg-terracotta/10 text-terracotta",
-    title: "A Medida",
-    description:
-      "Cada solución se diseña y fabrica según las medidas exactas de tu espacio.",
-  },
-  {
-    icon: "I",
-    color: "bg-olive/10 text-olive",
-    title: "Instalación Profesional",
-    description:
-      "Nuestro equipo de instaladores certificados garantiza un acabado perfecto.",
-  },
-  {
-    icon: "G",
-    color: "bg-gold/10 text-gold",
-    title: "Garantía Total",
-    description:
-      "Todos nuestros productos incluyen garantía completa de fabricante.",
-  },
-  {
-    icon: "E",
-    color: "bg-navy/10 text-navy",
-    title: "Expertos Locales",
-    description:
-      "Conocemos el clima y las necesidades de la Costa Blanca como nadie.",
-  },
-];
+interface WhyChooseUsProps {
+  locale?: Locale;
+}
 
-export function WhyChooseUs() {
+export function WhyChooseUs({ locale = 'es' }: WhyChooseUsProps) {
+  const features = [
+    {
+      icon: "M",
+      color: "bg-terracotta/10 text-terracotta",
+      title: t(locale, 'home.why.1.title'),
+      description: t(locale, 'home.why.1.description'),
+    },
+    {
+      icon: "I",
+      color: "bg-olive/10 text-olive",
+      title: t(locale, 'home.why.2.title'),
+      description: t(locale, 'home.why.2.description'),
+    },
+    {
+      icon: "G",
+      color: "bg-gold/10 text-gold",
+      title: t(locale, 'home.why.3.title'),
+      description: t(locale, 'home.why.3.description'),
+    },
+    {
+      icon: "E",
+      color: "bg-navy/10 text-navy",
+      title: t(locale, 'home.why.4.title'),
+      description: t(locale, 'home.why.4.description'),
+    },
+  ];
+
   return (
     <section className="bg-white py-24">
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
         <div className="text-center mb-16">
           <AnimatedHeading
-            text="¿Por Qué Elegir Optim Toldos?"
+            text={t(locale, 'home.why.heading')}
             tag="h2"
           />
         </div>

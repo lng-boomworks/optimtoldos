@@ -1,0 +1,40 @@
+---
+import Base from '../../layouts/Base.astro';
+import { GaleriaPage } from '../../components/pages/GaleriaPage';
+import { buildCollectionPageSchema } from '../../utils/schema';
+import { t } from '../../i18n/index';
+import { getAlternateUrls } from '../../i18n/routes';
+
+const alternateUrls = getAlternateUrls('gallery');
+
+const schema = buildCollectionPageSchema({
+  name: "Project Gallery",
+  description: "Gallery of completed projects: awnings, bioclimatic pergolas, glass curtains and more in Alicante and Costa Blanca.",
+  url: "https://optimtoldos.com/en/gallery",
+  items: [
+    { name: "Awnings", url: "https://optimtoldos.com/en/gallery" },
+    { name: "Pergolas", url: "https://optimtoldos.com/en/gallery" },
+    { name: "Glass Curtains", url: "https://optimtoldos.com/en/gallery" },
+    { name: "Shade Sails", url: "https://optimtoldos.com/en/gallery" },
+    { name: "PVC Windows", url: "https://optimtoldos.com/en/gallery" },
+  ],
+});
+
+const breadcrumbs = [
+  { name: "Home", url: "https://optimtoldos.com/en/" },
+  { name: "Gallery", url: "https://optimtoldos.com/en/gallery" },
+];
+---
+
+<Base
+  title="Project Gallery | Optim Toldos — Alicante"
+  description="Gallery of completed projects: awnings, bioclimatic pergolas, glass curtains and more in Alicante and Costa Blanca."
+  locale="en"
+  alternateUrls={alternateUrls}
+  breadcrumbs={breadcrumbs}
+>
+  <Fragment slot="head">
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(schema)} />
+  </Fragment>
+  <GaleriaPage client:load locale="en" />
+</Base>

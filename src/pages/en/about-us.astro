@@ -1,0 +1,34 @@
+---
+import Base from '../../layouts/Base.astro';
+import { SobreNosotrosPage } from '../../components/pages/SobreNosotrosPage';
+import { buildOrganizationSchema } from '../../utils/schema';
+import { t } from '../../i18n/index';
+import { getAlternateUrls } from '../../i18n/routes';
+
+const alternateUrls = getAlternateUrls('about-us');
+
+const schema = buildOrganizationSchema({
+  name: "Optim Toldos",
+  description: "Specialists in solar protection and outdoor living with over 15 years of experience in Alicante.",
+  url: "https://optimtoldos.com",
+  foundingDate: "2009",
+});
+
+const breadcrumbs = [
+  { name: "Home", url: "https://optimtoldos.com/en/" },
+  { name: "About Us", url: "https://optimtoldos.com/en/about-us" },
+];
+---
+
+<Base
+  title="About Us | Optim Toldos — Alicante"
+  description="Over 15 years of experience in awnings, pergolas and solar protection in Elche and the province of Alicante."
+  locale="en"
+  alternateUrls={alternateUrls}
+  breadcrumbs={breadcrumbs}
+>
+  <Fragment slot="head">
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(schema)} />
+  </Fragment>
+  <SobreNosotrosPage client:load locale="en" />
+</Base>

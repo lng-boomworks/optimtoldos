@@ -4,45 +4,68 @@ import { Footer } from "../Footer";
 import { FadeIn } from "../FadeIn";
 import { AnimatedHeading } from "../AnimatedHeading";
 import { Button } from "../Button";
-import { url } from "../../utils/paths";
+import { url, localizedUrl } from "../../utils/paths";
+import { t, type Locale } from "../../i18n/index";
 
-type Category = "Todos" | "Toldos" | "Pérgolas" | "Cortinas de Cristal" | "Velas" | "Ventanas PVC";
+type CategoryKey = "all" | "awnings" | "pergolas" | "curtains" | "sails" | "windows";
 
-const categories: Category[] = [
-  "Todos",
-  "Toldos",
-  "Pérgolas",
-  "Cortinas de Cristal",
-  "Velas",
-  "Ventanas PVC",
+const categoryKeys: CategoryKey[] = [
+  "all",
+  "awnings",
+  "pergolas",
+  "curtains",
+  "sails",
+  "windows",
 ];
 
-const projects: { title: string; category: Category; image: string }[] = [
-  { title: "Toldo extensible terraza", category: "Toldos", image: "/images/gallery/toldo-cofre-extensible.jpg" },
-  { title: "Toldo brazo articulado", category: "Toldos", image: "/images/gallery/toldo-brazos-invisibles.jpg" },
-  { title: "Toldo punto recto", category: "Toldos", image: "/images/gallery/toldo-punto-recto.jpg" },
-  { title: "Toldo monobloc", category: "Toldos", image: "/images/gallery/toldo-monobloc.jpg" },
-  { title: "Toldo de ventana", category: "Toldos", image: "/images/gallery/toldo-ventana.jpg" },
-  { title: "Pérgola bioclimática jardín", category: "Pérgolas", image: "/images/pergolas/pergola-bioclimatica.jpg" },
-  { title: "Pérgola terraza restaurante", category: "Pérgolas", image: "/images/pergolas/pergola-restaurante.png" },
-  { title: "Pérgola Costa Blanca", category: "Pérgolas", image: "/images/pergolas/pergola-costablanca.jpg" },
-  { title: "Cortina de cristal panorámica", category: "Cortinas de Cristal", image: "/images/cortinas/cortina-cristal-1.jpg" },
-  { title: "Cortina de cristal abatible", category: "Cortinas de Cristal", image: "/images/cortinas/cortina-cristal-abatible.jpg" },
-  { title: "Cerramiento cristal terraza", category: "Cortinas de Cristal", image: "/images/cortinas/cortina-cristalera.jpg" },
-  { title: "Vela triangular", category: "Velas", image: "/images/velas/vela-1.jpg" },
-  { title: "Vela rectangular jardín", category: "Velas", image: "/images/velas/vela-rectangular.jpg" },
-  { title: "Vela de forma libre", category: "Velas", image: "/images/velas/vela-freeform.jpg" },
-  { title: "Ventanas PVC Cortizo", category: "Ventanas PVC", image: "/images/ventanas/ventanas-cortizo.jpg" },
-  { title: "Ventanas PVC Aluplast", category: "Ventanas PVC", image: "/images/ventanas/ventanas-aluplast.jpg" },
+const projectCount = 16;
+
+const projectImages = [
+  "/images/gallery/toldo-cofre-extensible.jpg",
+  "/images/gallery/toldo-brazos-invisibles.jpg",
+  "/images/gallery/toldo-punto-recto.jpg",
+  "/images/gallery/toldo-monobloc.jpg",
+  "/images/gallery/toldo-ventana.jpg",
+  "/images/pergolas/pergola-bioclimatica.jpg",
+  "/images/pergolas/pergola-restaurante.png",
+  "/images/pergolas/pergola-costablanca.jpg",
+  "/images/cortinas/cortina-cristal-1.jpg",
+  "/images/cortinas/cortina-cristal-abatible.jpg",
+  "/images/cortinas/cortina-cristalera.jpg",
+  "/images/velas/vela-1.jpg",
+  "/images/velas/vela-rectangular.jpg",
+  "/images/velas/vela-freeform.jpg",
+  "/images/ventanas/ventanas-cortizo.jpg",
+  "/images/ventanas/ventanas-aluplast.jpg",
 ];
 
-export function GaleriaPage() {
-  const [activeFilter, setActiveFilter] = useState<Category>("Todos");
+const projectCategoryKeys: CategoryKey[] = [
+  "awnings", "awnings", "awnings", "awnings", "awnings",
+  "pergolas", "pergolas", "pergolas",
+  "curtains", "curtains", "curtains",
+  "sails", "sails", "sails",
+  "windows", "windows",
+];
+
+export function GaleriaPage({ locale = 'es' }: { locale?: Locale }) {
+  const [activeFilter, setActiveFilter] = useState<CategoryKey>("all");
+
+  const categories = categoryKeys.map((key) => ({
+    key,
+    label: t(locale, `gallery.filter.${key}` as any),
+  }));
+
+  const projects = Array.from({ length: projectCount }, (_, i) => ({
+    title: t(locale, `gallery.project.${i + 1}.title` as any),
+    categoryKey: projectCategoryKeys[i],
+    categoryLabel: t(locale, `gallery.filter.${projectCategoryKeys[i]}` as any),
+    image: projectImages[i],
+  }));
 
   const filtered =
-    activeFilter === "Todos"
+    activeFilter === "all"
       ? projects
-      : projects.filter((p) => p.category === activeFilter);
+      : projects.filter((p) => p.categoryKey === activeFilter);
 
   return (
     <>
@@ -53,14 +76,13 @@ export function GaleriaPage() {
           <section className="bg-navy pt-32 pb-20">
             <div className="max-w-4xl mx-auto px-4 text-center">
               <AnimatedHeading
-                text="Galería de Proyectos"
+                text={t(locale, 'gallery.hero.heading')}
                 tag="h1"
                 className="text-white mb-6"
               />
               <FadeIn delay={0.2}>
                 <p className="text-lg text-white/70 max-w-2xl mx-auto">
-                  Descubre algunos de nuestros trabajos m&aacute;s recientes en
-                  la provincia de Alicante
+                  {t(locale, 'gallery.hero.description')}
                 </p>
               </FadeIn>
             </div>
@@ -73,15 +95,15 @@ export function GaleriaPage() {
               <div className="flex flex-wrap gap-3 justify-center mb-12">
                 {categories.map((cat) => (
                   <button
-                    key={cat}
-                    onClick={() => setActiveFilter(cat)}
+                    key={cat.key}
+                    onClick={() => setActiveFilter(cat.key)}
                     className={`rounded-full px-4 py-2 text-sm font-medium transition-colors duration-200 ${
-                      activeFilter === cat
+                      activeFilter === cat.key
                         ? "bg-terracotta text-white"
                         : "bg-sand text-text-muted hover:bg-terracotta-pale"
                     }`}
                   >
-                    {cat}
+                    {cat.label}
                   </button>
                 ))}
               </div>
@@ -104,7 +126,7 @@ export function GaleriaPage() {
                             {project.title}
                           </h3>
                           <span className="text-white/70 text-sm">
-                            {project.category}
+                            {project.categoryLabel}
                           </span>
                         </div>
                       </div>
@@ -119,14 +141,13 @@ export function GaleriaPage() {
           <section className="bg-sand py-20">
             <FadeIn className="max-w-3xl mx-auto px-4 text-center">
               <h2 className="font-serif text-3xl md:text-4xl text-navy mb-6">
-                &iquest;Te gusta lo que ves?
+                {t(locale, 'gallery.cta.heading')}
               </h2>
               <p className="text-lg text-text-muted mb-10">
-                Podemos hacer lo mismo por tu espacio. Pide tu presupuesto sin
-                compromiso.
+                {t(locale, 'gallery.cta.description')}
               </p>
-              <Button variant="primary" href="/presupuesto">
-                Solicitar Presupuesto
+              <Button variant="primary" href={localizedUrl("/presupuesto", locale)}>
+                {t(locale, 'gallery.cta.quote')}
               </Button>
             </FadeIn>
           </section>

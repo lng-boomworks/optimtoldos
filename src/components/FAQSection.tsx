@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { FadeIn } from "./FadeIn";
 import { AnimatedHeading } from "./AnimatedHeading";
+import { t, type Locale } from "../i18n/index";
 
 interface FAQ {
   question: string;
@@ -10,16 +11,18 @@ interface FAQ {
 interface FAQSectionProps {
   faqs: FAQ[];
   heading?: string;
+  locale?: Locale;
 }
 
-export function FAQSection({ faqs, heading = "Preguntas Frecuentes" }: FAQSectionProps) {
+export function FAQSection({ faqs, heading, locale = 'es' }: FAQSectionProps) {
+  const displayHeading = heading ?? t(locale, 'faqSection.heading');
   const [openIndex, setOpenIndex] = useState<number | null>(null);
 
   return (
     <section className="bg-sand-light py-20 md:py-28">
       <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
         <FadeIn className="text-center mb-16">
-          <AnimatedHeading text={heading} tag="h2" className="text-navy" />
+          <AnimatedHeading text={displayHeading} tag="h2" className="text-navy" />
         </FadeIn>
         <div className="space-y-4">
           {faqs.map((faq, i) => {
