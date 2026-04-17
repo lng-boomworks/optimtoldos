@@ -1,8 +1,28 @@
 ---
 import Base from '../layouts/Base.astro';
 import { PresupuestoPage } from '../components/pages/PresupuestoPage';
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "name": "Presupuesto Gratis",
+  "description": "Solicita tu presupuesto gratuito y sin compromiso. Toldos, pérgolas bioclimáticas, cortinas de cristal, velas de sombra y ventanas PVC en Alicante.",
+  "url": "https://optimtoldos.com/presupuesto",
+  "potentialAction": {
+    "@type": "CommunicateAction",
+    "target": "https://optimtoldos.com/presupuesto",
+  },
+};
+
+const breadcrumbs = [
+  { name: "Inicio", url: "https://optimtoldos.com/" },
+  { name: "Presupuesto", url: "https://optimtoldos.com/presupuesto" },
+];
 ---
 
-<Base title="Presupuesto Gratis | Optim Toldos — Alicante" description="Solicita tu presupuesto gratuito y sin compromiso. Toldos, p\u00e9rgolas bioclim\u00e1ticas, cortinas de cristal, velas de sombra y ventanas PVC en Alicante.">
+<Base title="Presupuesto Gratis | Optim Toldos — Alicante" description="Solicita tu presupuesto gratuito y sin compromiso. Toldos, pérgolas bioclimáticas, cortinas de cristal, velas de sombra y ventanas PVC en Alicante." breadcrumbs={breadcrumbs}>
+  <Fragment slot="head">
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(schema)} />
+  </Fragment>
   <PresupuestoPage client:load />
 </Base>

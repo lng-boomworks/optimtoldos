@@ -42,6 +42,38 @@ const testimonials = [
     rating: 5,
     date: "2025-12-05",
   },
+  {
+    quote:
+      "Nos instalaron una pérgola bioclimática en el ático y el resultado es espectacular. Muy profesionales en todo momento.",
+    name: "Francisco J.",
+    location: "San Vicente del Raspeig",
+    rating: 5,
+    date: "2026-02-08",
+  },
+  {
+    quote:
+      "Pusimos toldos en toda la fachada del restaurante y los clientes están encantados. Resistentes al viento de la costa.",
+    name: "Elena M.",
+    location: "El Campello",
+    rating: 5,
+    date: "2025-10-12",
+  },
+  {
+    quote:
+      "Las cortinas de cristal nos permiten disfrutar de la terraza incluso en invierno. Una inversión que ha merecido la pena.",
+    name: "Javier A.",
+    location: "Villajoyosa",
+    rating: 5,
+    date: "2026-03-01",
+  },
+  {
+    quote:
+      "Con las ventanas nuevas de PVC se nota mucho la diferencia en invierno. En Alcoy hace más frío que en la costa y el aislamiento es clave.",
+    name: "Rosa T.",
+    location: "Alcoy",
+    rating: 5,
+    date: "2025-07-20",
+  },
 ];
 
 function StarRating({ rating }: { rating: number }) {

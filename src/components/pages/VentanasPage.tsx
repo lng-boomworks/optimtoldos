@@ -4,6 +4,7 @@ import { FadeIn } from "../FadeIn";
 import { AnimatedHeading } from "../AnimatedHeading";
 import { Button } from "../Button";
 import { FAQSection } from "../FAQSection";
+import { ServiceAreaSection } from "../ServiceAreaSection";
 import { url } from "../../utils/paths";
 
 const apertureTypes = [
@@ -146,6 +147,9 @@ export function VentanasPage() {
 
           {/* FAQ */}
           <FAQSection faqs={ventanasFaqs} />
+
+          {/* Service Area */}
+          <ServiceAreaSection serviceName="Instalamos ventanas PVC" />
 
           {/* CTA */}
           <section className="bg-navy py-20 md:py-24">

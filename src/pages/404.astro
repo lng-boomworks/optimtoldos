@@ -1,0 +1,64 @@
+---
+import Base from '../layouts/Base.astro';
+import { Navbar } from '../components/Navbar';
+import { Footer } from '../components/Footer';
+import { url } from '../utils/paths';
+---
+
+<Base title="Página no encontrada | Optim Toldos" description="La página que buscas no existe o ha sido trasladada." noindex={true}>
+  <Navbar client:load />
+
+  <main>
+    <section class="bg-navy pt-32 pb-20">
+      <div class="max-w-3xl mx-auto px-4 text-center">
+        <span class="font-mono text-gold text-sm tracking-widest uppercase mb-4 block">Error 404</span>
+        <h1 class="font-serif text-4xl md:text-5xl text-white mb-6">Página no encontrada</h1>
+        <p class="text-lg text-white/70 max-w-xl mx-auto mb-10">
+          Lo sentimos, la página que buscas no existe o ha sido trasladada.
+        </p>
+        <div class="flex flex-col sm:flex-row justify-center gap-4">
+          <a href={url("/")} class="inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-full text-[15px] font-medium bg-terracotta text-white hover:bg-terracotta-dark transition-all">
+            Volver al inicio
+          </a>
+          <a href={url("/contacto")} class="inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-full text-[15px] font-medium border-[1.5px] border-white text-white hover:bg-white/10 transition-all">
+            Contactar
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <section class="bg-white py-16">
+      <div class="max-w-4xl mx-auto px-4">
+        <h2 class="font-serif text-2xl text-navy text-center mb-8">Páginas populares</h2>
+        <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+          <a href={url("/toldos")} class="block p-5 rounded-xl border border-border hover:border-terracotta/30 hover:shadow-sm transition-all">
+            <h3 class="font-medium text-navy mb-1">Toldos</h3>
+            <p class="text-sm text-text-muted">Extensibles, verticales y capota a medida</p>
+          </a>
+          <a href={url("/pergolas")} class="block p-5 rounded-xl border border-border hover:border-terracotta/30 hover:shadow-sm transition-all">
+            <h3 class="font-medium text-navy mb-1">Pérgolas Bioclimáticas</h3>
+            <p class="text-sm text-text-muted">Lamas orientables, uso 365 días</p>
+          </a>
+          <a href={url("/cortinas-de-cristal")} class="block p-5 rounded-xl border border-border hover:border-terracotta/30 hover:shadow-sm transition-all">
+            <h3 class="font-medium text-navy mb-1">Cortinas de Cristal</h3>
+            <p class="text-sm text-text-muted">Cierra tu terraza sin perder las vistas</p>
+          </a>
+          <a href={url("/velas-de-sombra")} class="block p-5 rounded-xl border border-border hover:border-terracotta/30 hover:shadow-sm transition-all">
+            <h3 class="font-medium text-navy mb-1">Velas de Sombra</h3>
+            <p class="text-sm text-text-muted">Protección UV con diseño moderno</p>
+          </a>
+          <a href={url("/ventanas-pvc")} class="block p-5 rounded-xl border border-border hover:border-terracotta/30 hover:shadow-sm transition-all">
+            <h3 class="font-medium text-navy mb-1">Ventanas PVC</h3>
+            <p class="text-sm text-text-muted">Aislamiento térmico y acústico</p>
+          </a>
+          <a href={url("/blog")} class="block p-5 rounded-xl border border-border hover:border-terracotta/30 hover:shadow-sm transition-all">
+            <h3 class="font-medium text-navy mb-1">Blog</h3>
+            <p class="text-sm text-text-muted">Guías y consejos de protección solar</p>
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <Footer client:load />
+</Base>

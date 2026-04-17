@@ -1,0 +1,72 @@
+---
+import { getCollection } from 'astro:content';
+import { url } from '../utils/paths';
+
+interface Props {
+  currentSlug: string;
+  category: string;
+  tags: string[];
+}
+
+const { currentSlug, category, tags } = Astro.props;
+
+const allPosts = await getCollection('blog');
+
+const scored = allPosts
+  .filter((post) => post.id !== currentSlug)
+  .map((post) => {
+    let score = 0;
+    if (post.data.category === category) score += 2;
+    const postTags = post.data.tags ?? [];
+    for (const tag of tags) {
+      if (postTags.includes(tag)) score += 1;
+    }
+    return { post, score };
+  })
+  .filter(({ score }) => score > 0)
+  .sort((a, b) => b.score - a.score)
+  .slice(0, 3);
+
+const categoryLabels: Record<string, string> = {
+  guias: 'Guías',
+  consejos: 'Consejos',
+  tendencias: 'Tendencias',
+  normativa: 'Normativa',
+  'casos-de-exito': 'Casos de Éxito',
+};
+---
+
+{scored.length > 0 && (
+  <section class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 pb-12">
+    <h2 class="font-serif text-2xl text-navy mb-6">Artículos relacionados</h2>
+    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      {scored.map(({ post }) => (
+        <a
+          href={url(`/blog/${post.id}`)}
+          class="group block rounded-xl overflow-hidden border border-border hover:shadow-md transition-shadow"
+        >
+          {post.data.image ? (
+            <div class="relative overflow-hidden aspect-[16/10]">
+              <img
+                src={url(post.data.image)}
+                alt={post.data.title}
+                class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                loading="lazy"
+              />
+            </div>
+          ) : (
+            <div class="aspect-[16/10] bg-gradient-to-br from-terracotta/20 to-gold/10" />
+          )}
+          <div class="p-4">
+            <span class="font-mono text-xs tracking-wide text-terracotta uppercase">
+              {categoryLabels[post.data.category] || post.data.category}
+            </span>
+            <h3 class="font-serif text-base text-navy mt-1 group-hover:text-terracotta transition-colors line-clamp-2">
+              {post.data.title}
+            </h3>
+          </div>
+        </a>
+      ))}
+    </div>
+  </section>
+)}

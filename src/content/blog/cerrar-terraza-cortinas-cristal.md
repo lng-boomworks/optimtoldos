@@ -86,7 +86,7 @@ Este es uno de los puntos más importantes y donde más dudas surgen. La normati
 
 ### Normativa urbanística
 
-- **PGOU de Alicante:** verifica que tu terraza permite cerramiento en la normativa urbanística de tu zona. En general, las cortinas de cristal no se consideran cerramiento fijo y tienen una regulación más laxa que las ventanas de aluminio o PVC.
+- **PGOU de Alicante:** verifica que tu terraza permite cerramiento en la normativa urbanística de tu zona. En general, las cortinas de cristal no se consideran cerramiento fijo y tienen una regulación más laxa que las [ventanas de aluminio o PVC](/optimtoldos/ventanas-pvc).
 - **Edificios protegidos:** si tu edificio tiene algún grado de protección patrimonial, necesitarás autorización específica de Patrimonio.
 
 **Nuestra recomendación:** antes de comprar, consulta con tu administrador de fincas sobre la posición de la comunidad y llama al departamento de urbanismo de tu ayuntamiento. Nosotros te asesoramos en todo el proceso.
@@ -226,7 +226,7 @@ Esta es la combinación premium que maximiza el uso de tu terraza durante los 36
 - **Resultado:** una solución más económica que la anterior, con protección parcial contra lluvia (solo cuando el toldo está desplegado).
 - **Precio orientativo (4 × 2,5 m):** 1.500 € – 2.500 € (toldo) + 3.500 € – 4.500 € (cortinas) = **5.000 € – 7.000 € total**.
 
-Consulta más opciones de combinación en nuestra página de [pérgolas bioclimáticas](/pergolas).
+Consulta más opciones de combinación en nuestra página de [pérgolas bioclimáticas](/optimtoldos/pergolas).
 
 ---
 
@@ -274,7 +274,7 @@ El viento de Poniente es el gran enemigo de las terrazas en Alicante. Caliente, 
 
 ### Reducción de la factura energética
 
-Al crear una cámara de aire adicional entre el exterior y el interior de la vivienda, las cortinas de cristal reducen las pérdidas de calor en invierno y la ganancia térmica en verano (si se combinan con protección solar). Estudios del IDAE estiman un ahorro energético del 10 % al 20 % en climatización para viviendas con terrazas acristaladas correctamente ventiladas.
+Al crear una cámara de aire adicional entre el exterior y el interior de la vivienda, las cortinas de cristal reducen las pérdidas de calor en invierno y la ganancia térmica en verano (si se combinan con protección solar). Estudios del IDAE estiman un ahorro energético del 10 % al 20 % en climatización para viviendas con terrazas acristaladas correctamente ventiladas. Para maximizar el ahorro, combínalas con [ventanas de PVC de alta eficiencia](/optimtoldos/blog/ventanas-pvc-ahorro-energetico).
 
 ### Protección contra salitre y calima
 
@@ -286,4 +286,4 @@ El salitre corroe el mobiliario metálico y deteriora los textiles en cuestión 
 
 Si vives en Alicante y tienes una terraza que no usas tanto como te gustaría por culpa del viento, el frío invernal o la lluvia ocasional, las cortinas de cristal son probablemente la inversión con mejor retorno que puedes hacer en tu vivienda. Con una inversión de 3.000 € a 5.500 € consigues duplicar el tiempo de uso de tu terraza y aumentar el valor de tu inmueble por encima de lo que has invertido.
 
-Consulta todas las opciones disponibles en nuestra página de [cortinas de cristal](/cortinas-de-cristal) o **[solicita tu presupuesto gratuito y sin compromiso](/presupuesto)**. Visitamos tu terraza, tomamos medidas y te presentamos una propuesta detallada en 48 horas.
+Consulta todas las opciones disponibles en nuestra página de [cortinas de cristal](/optimtoldos/cortinas-de-cristal) o **[solicita tu presupuesto gratuito y sin compromiso](/optimtoldos/presupuesto)**. Visitamos tu terraza, tomamos medidas y te presentamos una propuesta detallada en 48 horas.

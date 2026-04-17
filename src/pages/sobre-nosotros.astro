@@ -1,8 +1,24 @@
 ---
 import Base from '../layouts/Base.astro';
 import { SobreNosotrosPage } from '../components/pages/SobreNosotrosPage';
+import { buildOrganizationSchema } from '../utils/schema';
+
+const schema = buildOrganizationSchema({
+  name: "Optim Toldos",
+  description: "Especialistas en protección solar y vida exterior con más de 15 años de experiencia en Alicante.",
+  url: "https://optimtoldos.com",
+  foundingDate: "2009",
+});
+
+const breadcrumbs = [
+  { name: "Inicio", url: "https://optimtoldos.com/" },
+  { name: "Sobre Nosotros", url: "https://optimtoldos.com/sobre-nosotros" },
+];
 ---
 
-<Base title="Sobre Nosotros | Optim Toldos — Alicante" description="M\u00e1s de 15 a\u00f1os de experiencia en toldos, p\u00e9rgolas y protecci\u00f3n solar en Elche y toda la provincia de Alicante.">
+<Base title="Sobre Nosotros | Optim Toldos — Alicante" description="Más de 15 años de experiencia en toldos, pérgolas y protección solar en Elche y toda la provincia de Alicante." breadcrumbs={breadcrumbs}>
+  <Fragment slot="head">
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(schema)} />
+  </Fragment>
   <SobreNosotrosPage client:load />
 </Base>

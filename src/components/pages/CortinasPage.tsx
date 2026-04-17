@@ -4,6 +4,7 @@ import { FadeIn } from "../FadeIn";
 import { AnimatedHeading } from "../AnimatedHeading";
 import { Button } from "../Button";
 import { FAQSection } from "../FAQSection";
+import { ServiceAreaSection } from "../ServiceAreaSection";
 import { url } from "../../utils/paths";
 
 const cortinasFaqs = [
@@ -170,6 +171,9 @@ export function CortinasPage() {
 
           {/* FAQ */}
           <FAQSection faqs={cortinasFaqs} />
+
+          {/* Service Area */}
+          <ServiceAreaSection serviceName="Instalamos cortinas de cristal" />
 
           {/* CTA */}
           <section className="bg-navy py-20 md:py-24">

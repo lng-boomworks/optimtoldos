@@ -4,6 +4,7 @@ import { FadeIn } from "../FadeIn";
 import { AnimatedHeading } from "../AnimatedHeading";
 import { Button } from "../Button";
 import { FAQSection } from "../FAQSection";
+import { ServiceAreaSection } from "../ServiceAreaSection";
 import { url } from "../../utils/paths";
 
 const shapes = [
@@ -144,6 +145,9 @@ export function VelasPage() {
 
           {/* FAQ */}
           <FAQSection faqs={velasFaqs} />
+
+          {/* Service Area */}
+          <ServiceAreaSection serviceName="Instalamos velas de sombra" />
 
           {/* CTA */}
           <section className="bg-navy py-20 md:py-24">

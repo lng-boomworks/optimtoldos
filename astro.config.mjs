@@ -8,12 +8,7 @@ export default defineConfig({
   base: '/optimtoldos',
   integrations: [
     react(),
-    sitemap({
-      filter: (page) =>
-        !page.endsWith('/about/') &&
-        !page.endsWith('/services/') &&
-        !page.endsWith('/contact/'),
-    }),
+    sitemap(),
   ],
   output: 'static',
   vite: {

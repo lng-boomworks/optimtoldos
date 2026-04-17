@@ -2,6 +2,7 @@
 import Base from './Base.astro';
 import { Navbar } from '../components/Navbar';
 import { Footer } from '../components/Footer';
+import RelatedPosts from '../components/RelatedPosts.astro';
 import { url } from '../utils/paths';
 
 interface Props {
@@ -12,9 +13,11 @@ interface Props {
   author: string;
   image?: string;
   category: string;
+  tags?: string[];
+  slug?: string;
 }
 
-const { title, description, date, updated, author, image, category } = Astro.props;
+const { title, description, date, updated, author, image, category, tags = [], slug = '' } = Astro.props;
 const breadcrumbs = [
   { name: 'Inicio', url: 'https://optimtoldos.com/' },
   { name: 'Blog', url: 'https://optimtoldos.com/blog' },
@@ -95,6 +98,9 @@ const categoryLabels: Record<string, string> = {
         Volver al blog
       </a>
     </div>
+
+    <!-- Related Posts -->
+    <RelatedPosts currentSlug={slug} category={category} tags={tags} />
 
     <!-- CTA -->
     <section class="bg-sand py-16">

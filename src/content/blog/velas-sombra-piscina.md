@@ -8,7 +8,7 @@ category: "guias"
 image: "/images/blog/velas-sombra-piscina.jpg"
 ---
 
-**Las velas de sombra son la solución ideal para piscinas en Alicante: bloquean entre el 90% y el 98% de la radiación ultravioleta, permiten la circulación del aire, no retienen el calor y aportan un diseño elegante que transforma cualquier zona de baño.** A diferencia de las pérgolas rígidas, las velas crean sombras dinámicas y orgánicas que se integran con el paisaje, y su coste es entre un 50% y un 70% inferior al de una estructura fija equivalente. Para una piscina media de 8x4 metros, una configuración de dos velas triangulares que cubra la zona de descanso cuesta entre 1.200 y 3.500 euros instaladas, dependiendo del material y el sistema de anclaje.
+**Las velas de sombra son la solución ideal para piscinas en Alicante: bloquean entre el 90% y el 98% de la radiación ultravioleta, permiten la circulación del aire, no retienen el calor y aportan un diseño elegante que transforma cualquier zona de baño.** A diferencia de las [pérgolas](/optimtoldos/pergolas) rígidas, las velas crean sombras dinámicas y orgánicas que se integran con el paisaje, y su coste es entre un 50% y un 70% inferior al de una estructura fija equivalente. Para una piscina media de 8x4 metros, una configuración de dos velas triangulares que cubra la zona de descanso cuesta entre 1.200 y 3.500 euros instaladas, dependiendo del material y el sistema de anclaje.
 
 En esta guía te explicamos todo lo que necesitas saber para elegir, instalar y mantener velas de sombra en tu piscina, con especial atención a las condiciones climáticas de Alicante.
 
@@ -113,7 +113,7 @@ Las velas de sombra ofrecen una versatilidad de diseño que pocas estructuras de
 
 **3. Tres triángulos en abanico**: Configuración premium que cubre grandes superficies con un efecto visual espectacular. Cobertura de 35-50 m². Precio: 3.000-5.500 euros instaladas.
 
-**4. Combinación vela + pérgola**: Una [pérgola bioclimática](/pergolas) para la zona de comedor y velas de sombra para la zona de baño. Es la solución más completa y versátil.
+**4. Combinación vela + pérgola**: Una [pérgola bioclimática](/optimtoldos/pergolas) para la zona de comedor y velas de sombra para la zona de baño. Es la solución más completa y versátil.
 
 ### Colores más solicitados para zona de piscina en Alicante
 
@@ -212,8 +212,8 @@ Alicante es, sin exageración, el lugar ideal para las velas de sombra en piscin
 
 Absolutamente. De hecho, las combinaciones más exitosas que instalamos en Alicante son:
 
-- **Vela de sombra + [pérgola bioclimática](/pergolas)**: La pérgola cubre la zona de comedor (protección total con lamas orientables) y las velas cubren la zona de tumbonas y borde de piscina. Es la combinación perfecta.
-- **Vela de sombra + [toldo extensible](/toldos)**: Si la piscina está junto a la vivienda, un toldo en la fachada puede complementar la sombra de las velas.
+- **Vela de sombra + [pérgola bioclimática](/optimtoldos/pergolas)**: La pérgola cubre la zona de comedor (protección total con lamas orientables) y las velas cubren la zona de tumbonas y borde de piscina. Es la combinación perfecta (lee nuestra [comparativa de pérgola bioclimática vs toldo](/optimtoldos/blog/pergola-bioclimatica-vs-toldo) para decidir).
+- **Vela de sombra + [toldo extensible](/optimtoldos/toldos)**: Si la piscina está junto a la vivienda, un toldo en la fachada puede complementar la sombra de las velas.
 - **Varias velas a diferentes alturas**: Crear capas de sombra con velas superpuestas aumenta la protección UV y genera un efecto visual extraordinario.
 
 ## Preguntas frecuentes
@@ -238,4 +238,4 @@ En la mayoría de los casos en Alicante, las velas de sombra con mástiles de ha
 
 Una instalación típica de dos velas triangulares con dos mástiles y dos anclajes a pared se completa en 1-2 días. Si se necesitan cimentaciones nuevas para los mástiles, hay que añadir 3-5 días de fraguado del hormigón.
 
-Si estás pensando en dar sombra a tu piscina en Alicante, consulta nuestra [gama de velas de sombra](/velas-de-sombra) o [solicita un presupuesto personalizado](/presupuesto). Realizamos una visita para medir el espacio, evaluar las opciones de anclaje y proponerte la configuración ideal para tu piscina.
+Si estás pensando en dar sombra a tu piscina en Alicante, consulta nuestra [gama de velas de sombra](/optimtoldos/velas-de-sombra) o [solicita un presupuesto personalizado](/optimtoldos/presupuesto). Realizamos una visita para medir el espacio, evaluar las opciones de anclaje y proponerte la configuración ideal para tu piscina.

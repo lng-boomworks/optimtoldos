@@ -4,6 +4,7 @@ import { FadeIn } from "../FadeIn";
 import { AnimatedHeading } from "../AnimatedHeading";
 import { Button } from "../Button";
 import { FAQSection } from "../FAQSection";
+import { ServiceAreaSection } from "../ServiceAreaSection";
 import { url } from "../../utils/paths";
 
 const toldosFaqs = [
@@ -175,6 +176,9 @@ export function ToldosPage() {
 
           {/* FAQ */}
           <FAQSection faqs={toldosFaqs} />
+
+          {/* Service Area */}
+          <ServiceAreaSection serviceName="Instalamos toldos" />
 
           {/* CTA */}
           <section className="bg-navy py-20 md:py-24">

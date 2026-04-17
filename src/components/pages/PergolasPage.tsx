@@ -4,6 +4,7 @@ import { FadeIn } from "../FadeIn";
 import { AnimatedHeading } from "../AnimatedHeading";
 import { Button } from "../Button";
 import { FAQSection } from "../FAQSection";
+import { ServiceAreaSection } from "../ServiceAreaSection";
 import { url } from "../../utils/paths";
 
 const pergolasFaqs = [
@@ -167,6 +168,9 @@ export function PergolasPage() {
 
           {/* FAQ */}
           <FAQSection faqs={pergolasFaqs} />
+
+          {/* Service Area */}
+          <ServiceAreaSection serviceName="Instalamos pérgolas bioclimáticas" />
 
           {/* CTA */}
           <section className="bg-navy py-20 md:py-24">

@@ -1,8 +1,30 @@
 ---
 import Base from '../layouts/Base.astro';
 import { GaleriaPage } from '../components/pages/GaleriaPage';
+import { buildCollectionPageSchema } from '../utils/schema';
+
+const schema = buildCollectionPageSchema({
+  name: "Galería de Proyectos",
+  description: "Galería de proyectos realizados: toldos, pérgolas bioclimáticas, cortinas de cristal y más en Alicante y Costa Blanca.",
+  url: "https://optimtoldos.com/galeria",
+  items: [
+    { name: "Toldos", url: "https://optimtoldos.com/galeria" },
+    { name: "Pérgolas", url: "https://optimtoldos.com/galeria" },
+    { name: "Cortinas de Cristal", url: "https://optimtoldos.com/galeria" },
+    { name: "Velas de Sombra", url: "https://optimtoldos.com/galeria" },
+    { name: "Ventanas PVC", url: "https://optimtoldos.com/galeria" },
+  ],
+});
+
+const breadcrumbs = [
+  { name: "Inicio", url: "https://optimtoldos.com/" },
+  { name: "Galería", url: "https://optimtoldos.com/galeria" },
+];
 ---
 
-<Base title="Galer\u00eda de Proyectos | Optim Toldos — Alicante" description="Galer\u00eda de proyectos realizados: toldos, p\u00e9rgolas bioclim\u00e1ticas, cortinas de cristal y m\u00e1s en Alicante y Costa Blanca.">
+<Base title="Galería de Proyectos | Optim Toldos — Alicante" description="Galería de proyectos realizados: toldos, pérgolas bioclimáticas, cortinas de cristal y más en Alicante y Costa Blanca." breadcrumbs={breadcrumbs}>
+  <Fragment slot="head">
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(schema)} />
+  </Fragment>
   <GaleriaPage client:load />
 </Base>

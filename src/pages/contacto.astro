@@ -1,8 +1,23 @@
 ---
 import Base from '../layouts/Base.astro';
 import { ContactoPage } from '../components/pages/ContactoPage';
+import { buildContactPageSchema } from '../utils/schema';
+
+const schema = buildContactPageSchema({
+  url: "https://optimtoldos.com/contacto",
+  telephone: "+34 603 572 348",
+  email: "info@optimtoldos.com",
+});
+
+const breadcrumbs = [
+  { name: "Inicio", url: "https://optimtoldos.com/" },
+  { name: "Contacto", url: "https://optimtoldos.com/contacto" },
+];
 ---
 
-<Base title="Contacto | Optim Toldos — Alicante" description="Contacta con Optim Toldos en Elche, Alicante. Toldos, p\u00e9rgolas, cortinas de cristal, velas de sombra y ventanas PVC. Presupuesto sin compromiso.">
+<Base title="Contacto | Optim Toldos — Alicante" description="Contacta con Optim Toldos en Elche, Alicante. Toldos, pérgolas, cortinas de cristal, velas de sombra y ventanas PVC. Presupuesto sin compromiso." breadcrumbs={breadcrumbs}>
+  <Fragment slot="head">
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(schema)} />
+  </Fragment>
   <ContactoPage client:load />
 </Base>
