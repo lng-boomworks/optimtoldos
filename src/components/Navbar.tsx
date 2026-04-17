@@ -6,14 +6,8 @@ import { url, localizedUrl } from "../utils/paths";
 import { t, type Locale } from "../i18n/index";
 import { slugMap, type PageId } from "../i18n/slugs";
 
-interface AlternateUrl {
-  locale: string;
-  href: string;
-}
-
 interface NavbarProps {
   locale?: Locale;
-  alternates?: AlternateUrl[];
 }
 
 function navPath(pageId: PageId, locale: Locale): string {
@@ -21,7 +15,7 @@ function navPath(pageId: PageId, locale: Locale): string {
   return localizedUrl(slug ? `/${slug}` : '/', locale);
 }
 
-export function Navbar({ locale = 'es', alternates = [] }: NavbarProps) {
+export function Navbar({ locale = 'es' }: NavbarProps) {
   const [location, setLocation] = useState("");
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -93,13 +87,10 @@ export function Navbar({ locale = 'es', alternates = [] }: NavbarProps) {
           <Button variant="gold" href={navPath('quote', locale)}>
             {t(locale, 'nav.quote')}
           </Button>
-          {alternates.length > 0 && (
-            <LanguageSwitcher
-              currentLocale={locale}
-              alternates={alternates}
-              className={isScrolled ? "text-text-muted hover:text-navy" : "text-white/90 hover:text-white"}
-            />
-          )}
+          <LanguageSwitcher
+            currentLocale={locale}
+            className={isScrolled ? "text-text-muted hover:text-navy" : "text-white/90 hover:text-white"}
+          />
         </nav>
 
         {/* Mobile toggle */}
@@ -146,13 +137,10 @@ export function Navbar({ locale = 'es', alternates = [] }: NavbarProps) {
             <Button variant="gold" href={navPath('quote', locale)} className="w-full">
               {t(locale, 'nav.quote')}
             </Button>
-            {alternates.length > 0 && (
-              <LanguageSwitcher
-                currentLocale={locale}
-                alternates={alternates}
-                className="text-text-muted hover:text-navy justify-center"
-              />
-            )}
+            <LanguageSwitcher
+              currentLocale={locale}
+              className="text-text-muted hover:text-navy justify-center"
+            />
           </div>
         </div>
       </div>
