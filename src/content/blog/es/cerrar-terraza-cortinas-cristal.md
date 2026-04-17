@@ -5,6 +5,7 @@ date: "2026-03-28"
 author: "Optim Toldos"
 tags: ["cortinas de cristal", "cerramientos", "terrazas", "alicante"]
 category: "guias"
+locale: "es"
 image: "/images/blog/cerrar-terraza-cortinas-cristal.jpg"
 ---
 

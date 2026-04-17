@@ -36,7 +36,7 @@ export function VentanasPage({ locale = 'es' }: { locale?: Locale }) {
 
   return (
     <>
-      <Navbar />
+      <Navbar locale={locale} />
       <main>
         <div className="flex flex-col bg-white">
           {/* Hero */}
@@ -161,7 +161,7 @@ export function VentanasPage({ locale = 'es' }: { locale?: Locale }) {
           </section>
         </div>
       </main>
-      <Footer />
+      <Footer locale={locale} />
     </>
   );
 }

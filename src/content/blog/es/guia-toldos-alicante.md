@@ -5,7 +5,9 @@ date: "2026-04-10"
 author: "Optim Toldos"
 tags: ["toldos", "terrazas", "alicante", "protección solar"]
 category: "guias"
+locale: "es"
 image: "/images/blog/guia-toldos-alicante.jpg"
+translationOf: "en/guide-awnings-alicante"
 ---
 
 ## Resumen rápido

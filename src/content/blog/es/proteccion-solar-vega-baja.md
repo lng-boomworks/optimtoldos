@@ -6,6 +6,7 @@ author: "Optim Toldos"
 image: "/images/blog/proteccion-solar-vega-baja.jpg"
 tags: ["vega-baja", "orihuela", "torrevieja", "guardamar", "toldos", "pergolas"]
 category: "guias"
+locale: "es"
 ---
 
 ## Resumen rápido

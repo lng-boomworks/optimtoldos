@@ -6,6 +6,7 @@ author: "Optim Toldos"
 image: "/images/blog/ventanas-pvc-interior-alicante.jpg"
 tags: ["alcoy", "elda", "petrer", "novelda", "ventanas-pvc", "aislamiento"]
 category: "guias"
+locale: "es"
 ---
 
 ## Resumen rápido

@@ -5,6 +5,7 @@ date: "2026-03-10"
 author: "Optim Toldos"
 tags: ["velas de sombra", "piscinas", "protección UV", "alicante"]
 category: "guias"
+locale: "es"
 image: "/images/blog/velas-sombra-piscina.jpg"
 ---
 

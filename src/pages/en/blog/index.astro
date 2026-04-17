@@ -10,9 +10,14 @@ import { getAlternateUrls } from '../../../i18n/routes';
 
 const alternateUrls = getAlternateUrls('blog');
 
-const posts = (await getCollection('blog')).sort(
-  (a, b) => new Date(b.data.date).getTime() - new Date(a.data.date).getTime()
-);
+const allPosts = await getCollection('blog');
+const posts = allPosts
+  .filter((p) => (p.data.locale ?? 'es') === 'en')
+  .sort((a, b) => new Date(b.data.date).getTime() - new Date(a.data.date).getTime());
+
+function postSlug(id: string): string {
+  return id.replace(/^es\//, '').replace(/^en\//, '');
+}
 
 const breadcrumbs = [
   { name: 'Home', url: 'https://optimtoldos.com/en/' },
@@ -38,7 +43,7 @@ const collectionSchema = buildCollectionPageSchema({
   url: "https://optimtoldos.com/en/blog",
   items: posts.map((post) => ({
     name: post.data.title,
-    url: `https://optimtoldos.com/en/blog/${post.id}`,
+    url: `https://optimtoldos.com/en/blog/${postSlug(post.id)}`,
   })),
 });
 ---
@@ -53,7 +58,7 @@ const collectionSchema = buildCollectionPageSchema({
   <Fragment slot="head">
     <script is:inline type="application/ld+json" set:html={JSON.stringify(collectionSchema)} />
   </Fragment>
-  <Navbar client:load locale="en" />
+  <Navbar client:load locale="en" alternates={alternateUrls} />
 
   <main>
     <!-- Hero -->
@@ -75,7 +80,7 @@ const collectionSchema = buildCollectionPageSchema({
           <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
             {posts.map((post) => (
               <a
-                href={url(`/en/blog/${post.id}`)}
+                href={url(`/en/blog/${postSlug(post.id)}`)}
                 class="group block rounded-2xl overflow-hidden bg-white border border-border shadow-sm hover:shadow-md transition-shadow duration-300"
               >
                 {post.data.image ? (

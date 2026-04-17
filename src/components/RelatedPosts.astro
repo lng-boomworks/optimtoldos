@@ -6,13 +6,21 @@ interface Props {
   currentSlug: string;
   category: string;
   tags: string[];
+  locale?: string;
 }
 
-const { currentSlug, category, tags } = Astro.props;
+const { currentSlug, category, tags, locale = 'es' } = Astro.props;
 
 const allPosts = await getCollection('blog');
 
+function postSlug(id: string): string {
+  return id.replace(/^es\//, '').replace(/^en\//, '');
+}
+
+const blogBase = locale === 'en' ? '/en/blog' : '/blog';
+
 const scored = allPosts
+  .filter((post) => (post.data.locale ?? 'es') === locale)
   .filter((post) => post.id !== currentSlug)
   .map((post) => {
     let score = 0;
@@ -38,11 +46,11 @@ const categoryLabels: Record<string, string> = {
 
 {scored.length > 0 && (
   <section class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 pb-12">
-    <h2 class="font-serif text-2xl text-navy mb-6">Artículos relacionados</h2>
+    <h2 class="font-serif text-2xl text-navy mb-6">{locale === 'en' ? 'Related articles' : 'Artículos relacionados'}</h2>
     <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
       {scored.map(({ post }) => (
         <a
-          href={url(`/blog/${post.id}`)}
+          href={url(`${blogBase}/${postSlug(post.id)}`)}
           class="group block rounded-xl overflow-hidden border border-border hover:shadow-md transition-shadow"
         >
           {post.data.image ? (

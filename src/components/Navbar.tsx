@@ -1,12 +1,19 @@
 import { useState, useEffect } from "react";
 import { Menu, X } from "lucide-react";
 import { Button } from "./Button";
+import { LanguageSwitcher } from "./LanguageSwitcher";
 import { url, localizedUrl } from "../utils/paths";
 import { t, type Locale } from "../i18n/index";
 import { slugMap, type PageId } from "../i18n/slugs";
 
+interface AlternateUrl {
+  locale: string;
+  href: string;
+}
+
 interface NavbarProps {
   locale?: Locale;
+  alternates?: AlternateUrl[];
 }
 
 function navPath(pageId: PageId, locale: Locale): string {
@@ -14,7 +21,7 @@ function navPath(pageId: PageId, locale: Locale): string {
   return localizedUrl(slug ? `/${slug}` : '/', locale);
 }
 
-export function Navbar({ locale = 'es' }: NavbarProps) {
+export function Navbar({ locale = 'es', alternates = [] }: NavbarProps) {
   const [location, setLocation] = useState("");
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -86,6 +93,13 @@ export function Navbar({ locale = 'es' }: NavbarProps) {
           <Button variant="gold" href={navPath('quote', locale)}>
             {t(locale, 'nav.quote')}
           </Button>
+          {alternates.length > 0 && (
+            <LanguageSwitcher
+              currentLocale={locale}
+              alternates={alternates}
+              className={isScrolled ? "text-text-muted hover:text-navy" : "text-white/90 hover:text-white"}
+            />
+          )}
         </nav>
 
         {/* Mobile toggle */}
@@ -128,10 +142,17 @@ export function Navbar({ locale = 'es' }: NavbarProps) {
               );
             })}
           </ul>
-          <div className="pt-4 border-t border-border">
+          <div className="pt-4 border-t border-border flex flex-col gap-4">
             <Button variant="gold" href={navPath('quote', locale)} className="w-full">
               {t(locale, 'nav.quote')}
             </Button>
+            {alternates.length > 0 && (
+              <LanguageSwitcher
+                currentLocale={locale}
+                alternates={alternates}
+                className="text-text-muted hover:text-navy justify-center"
+              />
+            )}
           </div>
         </div>
       </div>

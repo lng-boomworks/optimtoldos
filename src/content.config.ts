@@ -19,7 +19,10 @@ const blog = defineCollection({
     author: z.string().default('Optim Toldos'),
     image: z.string().optional(),
     tags: z.array(z.string()).default([]),
-    category: z.enum(['guias', 'consejos', 'tendencias', 'normativa', 'casos-de-exito']),
+    category: z.enum(['guias', 'consejos', 'tendencias', 'normativa', 'casos-de-exito',
+                       'guides', 'tips', 'trends', 'regulations', 'case-studies']),
+    locale: z.enum(['es', 'en']).default('es'),
+    translationOf: z.string().optional(),
   }),
 });
 

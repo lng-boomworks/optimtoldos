@@ -5,6 +5,7 @@ date: "2026-03-20"
 author: "Optim Toldos"
 tags: ["toldos", "normativa", "comunidad propietarios", "alicante"]
 category: "normativa"
+locale: "es"
 image: "/images/blog/normativa-toldos-comunidad-propietarios.jpg"
 ---
 

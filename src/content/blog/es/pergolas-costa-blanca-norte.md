@@ -6,6 +6,7 @@ author: "Optim Toldos"
 image: "/images/blog/pergolas-costa-blanca-norte.jpg"
 tags: ["benidorm", "altea", "calpe", "denia", "javea", "pergolas-bioclimaticas"]
 category: "guias"
+locale: "es"
 ---
 
 ## Resumen rápido

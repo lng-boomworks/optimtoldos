@@ -5,7 +5,9 @@ date: "2026-04-05"
 author: "Optim Toldos"
 tags: ["pérgolas", "toldos", "comparativa", "terrazas"]
 category: "guias"
+locale: "es"
 image: "/images/blog/pergola-bioclimatica-vs-toldo.jpg"
+translationOf: "en/pergola-vs-awning"
 ---
 
 **Ni la pérgola bioclimática ni el toldo son universalmente mejores: la elección correcta depende de tu presupuesto, el uso que le das a la terraza y el nivel de protección que necesitas.** Un toldo extensible de calidad cuesta entre 1.000 € y 3.000 € instalado y es la solución más rápida y económica para dar sombra (consulta nuestra [guía completa de toldos para Alicante](/optimtoldos/blog/guia-toldos-alicante) para más detalle). Una pérgola bioclimática parte de 4.500 € y puede superar los 15.000 €, pero ofrece protección total contra lluvia, viento y sol, con una vida útil que duplica o triplica la del toldo.

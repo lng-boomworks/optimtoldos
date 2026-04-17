@@ -6,6 +6,7 @@ author: "Optim Toldos"
 image: "/images/blog/toldos-area-metropolitana-alicante.jpg"
 tags: ["san-vicente-del-raspeig", "mutxamel", "campello", "san-juan", "toldos"]
 category: "guias"
+locale: "es"
 ---
 
 ## Resumen rápido
