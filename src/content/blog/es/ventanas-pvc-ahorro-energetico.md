@@ -100,7 +100,7 @@ Con ventanas de PVC de 5 cámaras y doble acristalamiento bajo emisivo con argó
 | Ahorro acumulado en 20 años | 9.240 euros |
 | Incremento del valor de la vivienda | 5%-8% (3.500-8.000 euros en piso medio) |
 
-Si a esto sumamos el incremento en el valor de la vivienda (las ventanas de PVC mejoran la calificación energética, lo que se traduce en un precio de venta más alto), la inversión es claramente rentable. Si también tienes terraza, puedes complementar el aislamiento [cerrándola con cortinas de cristal](/optimtoldos/blog/cerrar-terraza-cortinas-cristal).
+Si a esto sumamos el incremento en el valor de la vivienda (las ventanas de PVC mejoran la calificación energética, lo que se traduce en un precio de venta más alto), la inversión es claramente rentable. Si también tienes terraza, puedes complementar el aislamiento [cerrándola con cortinas de cristal](/blog/cerrar-terraza-cortinas-cristal).
 
 ## ¿Por qué el PVC es especialmente beneficioso en el clima de Alicante?
 
@@ -193,11 +193,11 @@ Para acertar con tu elección en Alicante, ten en cuenta estos factores:
 1. **Perfil de al menos 5 cámaras** con Uf inferior a 1,3 W/m²K
 2. **Doble acristalamiento con bajo emisivo y argón** como mínimo
 3. **Herrajes de calidad** (marca reconocida como Roto, Siegenia o Winkhaus)
-4. **Sistema de apertura** adaptado al espacio: oscilobatiente para dormitorios, corredera elevable para terrazas (si buscas cerrar una terraza, valora también las [cortinas de cristal](/optimtoldos/cortinas-de-cristal))
+4. **Sistema de apertura** adaptado al espacio: oscilobatiente para dormitorios, corredera elevable para terrazas (si buscas cerrar una terraza, valora también las [cortinas de cristal](/cortinas-de-cristal))
 5. **Color del perfil** que armonice con la fachada: el foliado imitación madera es la opción más demandada en Alicante
 6. **Persiana integrada** con cajón aislado si necesitas sustituir también la persiana
 
-En [Optim Toldos](/optimtoldos/ventanas-pvc) trabajamos con los principales fabricantes europeos de perfiles de PVC y te asesoramos sobre la configuración óptima para tu vivienda en función de orientación, zona y presupuesto.
+En [Optim Toldos](/ventanas-pvc) trabajamos con los principales fabricantes europeos de perfiles de PVC y te asesoramos sobre la configuración óptima para tu vivienda en función de orientación, zona y presupuesto.
 
 ## Resumen: las cifras clave
 
@@ -211,4 +211,4 @@ En [Optim Toldos](/optimtoldos/ventanas-pvc) trabajamos con los principales fabr
 | Mantenimiento necesario | Limpieza con agua y jabón neutro |
 | Ayudas disponibles | Hasta 40% del coste |
 
-Si quieres saber exactamente cuánto puedes ahorrar en tu vivienda, [solicita un presupuesto sin compromiso](/optimtoldos/presupuesto). Realizamos una visita gratuita para medir, evaluar la orientación y las necesidades de cada estancia, y proponerte la solución más eficiente para tu caso concreto.
+Si quieres saber exactamente cuánto puedes ahorrar en tu vivienda, [solicita un presupuesto sin compromiso](/presupuesto). Realizamos una visita gratuita para medir, evaluar la orientación y las necesidades de cada estancia, y proponerte la solución más eficiente para tu caso concreto.

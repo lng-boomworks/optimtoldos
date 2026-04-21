@@ -13,7 +13,7 @@ locale: "es"
 
 > **Las comarcas del interior de Alicante experimentan un clima radicalmente distinto al de la costa: inviernos con temperaturas que bajan a 0-5 °C, veranos que superan los 40 °C y una amplitud térmica diaria que puede alcanzar los 20 grados.** Este contexto climático convierte las ventanas de PVC en una inversión especialmente rentable, con ahorros en calefacción y refrigeración que superan los 600 euros anuales en muchas viviendas. En esta guía analizamos las necesidades específicas de Alcoy, Elda, Petrer, Novelda e Ibi, y calculamos cuánto puedes ahorrar realmente con el cambio.
 
-Si ya tienes claro que quieres renovar tus ventanas, [solicita tu presupuesto sin compromiso](/optimtoldos/presupuesto). Si prefieres entender primero los detalles, sigue leyendo.
+Si ya tienes claro que quieres renovar tus ventanas, [solicita tu presupuesto sin compromiso](/presupuesto). Si prefieres entender primero los detalles, sigue leyendo.
 
 ---
 
@@ -64,7 +64,7 @@ La franja costera se clasifica como B4, con inviernos suaves (severidad climáti
 
 Esto significa que una ventana de aluminio sin rotura de puente térmico (transmitancia de 5-6 W/m²K) no solo es ineficiente en el interior de Alicante: **técnicamente incumple la normativa vigente para obra nueva y rehabilitación**. Las ventanas de PVC de 5 cámaras con doble acristalamiento bajo emisivo alcanzan transmitancias de 1,2-1,4 W/m²K, cumpliendo sobradamente incluso la zona D1.
 
-Para una comparativa más detallada entre PVC y aluminio, consulta nuestra [guía de ahorro energético con ventanas de PVC](/optimtoldos/blog/ventanas-pvc-ahorro-energetico).
+Para una comparativa más detallada entre PVC y aluminio, consulta nuestra [guía de ahorro energético con ventanas de PVC](/blog/ventanas-pvc-ahorro-energetico).
 
 ---
 
@@ -212,7 +212,7 @@ Las ventanas de PVC son el primer paso para mejorar el confort térmico de tu vi
 
 ### Cortinas de cristal para terrazas
 
-Si tu vivienda tiene terraza, cerrarla con [cortinas de cristal](/optimtoldos/cortinas-de-cristal) crea un espacio intermedio que actúa como cámara de aire adicional. En invierno, este espacio acumula calor solar durante el día y reduce las pérdidas térmicas por la noche. En verano, las cortinas se abren por completo para permitir la ventilación cruzada. Es una solución especialmente popular en Alcoy, donde las terrazas cerradas permiten disfrutar del exterior incluso en los meses más fríos.
+Si tu vivienda tiene terraza, cerrarla con [cortinas de cristal](/cortinas-de-cristal) crea un espacio intermedio que actúa como cámara de aire adicional. En invierno, este espacio acumula calor solar durante el día y reduce las pérdidas térmicas por la noche. En verano, las cortinas se abren por completo para permitir la ventilación cruzada. Es una solución especialmente popular en Alcoy, donde las terrazas cerradas permiten disfrutar del exterior incluso en los meses más fríos.
 
 ### Ventanas de PVC con persiana integrada
 
@@ -236,14 +236,14 @@ Estos son los criterios esenciales, ordenados por prioridad:
 6. **Cajón de persiana aislado** si se sustituye también la persiana (altamente recomendable).
 7. **Acabado** coherente con la fachada: blanco para edificios modernos, foliado imitación madera para fachadas tradicionales.
 
-Visita nuestra [página de ventanas de PVC](/optimtoldos/ventanas-pvc) para conocer los modelos y configuraciones disponibles.
+Visita nuestra [página de ventanas de PVC](/ventanas-pvc) para conocer los modelos y configuraciones disponibles.
 
 ---
 
 ## Solicita tu presupuesto para el interior de Alicante
 
-En [Optim Toldos](/optimtoldos/ventanas-pvc) atendemos toda la provincia de Alicante, incluidas las comarcas del interior. Realizamos la visita técnica en Alcoy, Elda, Petrer, Novelda, Ibi, Cocentaina, Villena, Sax y todos los municipios del Vinalopó.
+En [Optim Toldos](/ventanas-pvc) atendemos toda la provincia de Alicante, incluidas las comarcas del interior. Realizamos la visita técnica en Alcoy, Elda, Petrer, Novelda, Ibi, Cocentaina, Villena, Sax y todos los municipios del Vinalopó.
 
 Durante la visita, medimos cada hueco, evaluamos la orientación, el estado de la fachada y los cajones de persiana, y te presentamos un presupuesto detallado con varias opciones de configuración adaptadas a las condiciones climáticas específicas de tu localidad.
 
-**[Solicita tu presupuesto gratuito y sin compromiso](/optimtoldos/presupuesto)** — te contactamos en menos de 24 horas.
+**[Solicita tu presupuesto gratuito y sin compromiso](/presupuesto)** — te contactamos en menos de 24 horas.

@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { Navbar } from "../Navbar";
 import { Footer } from "../Footer";
 import { FadeIn } from "../FadeIn";
@@ -5,6 +6,9 @@ import { AnimatedHeading } from "../AnimatedHeading";
 import { t, type Locale } from "../../i18n/index";
 import { slugMap } from "../../i18n/slugs";
 import { url, localizedUrl } from "../../utils/paths";
+import { submitForm } from "../../utils/submitForm";
+
+type FormStatus = "idle" | "sending" | "success" | "error";
 
 const productOptionCount = 6;
 
@@ -12,9 +16,24 @@ const inputClasses =
   "w-full bg-sand border border-border rounded-xl px-4 py-3 text-text-body focus:ring-2 focus:ring-terracotta/30 focus:border-terracotta outline-none transition-colors";
 
 export function PresupuestoPage({ locale = 'es' }: { locale?: Locale }) {
+  const [status, setStatus] = useState<FormStatus>("idle");
+
   const productOptions = Array.from({ length: productOptionCount }, (_, i) =>
     t(locale, `quote.form.product_option.${i + 1}` as any)
   );
+
+  async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+    const form = e.currentTarget;
+    setStatus("sending");
+    const ok = await submitForm(form);
+    if (ok) {
+      setStatus("success");
+      form.reset();
+    } else {
+      setStatus("error");
+    }
+  }
 
   return (
     <>
@@ -54,14 +73,29 @@ export function PresupuestoPage({ locale = 'es' }: { locale?: Locale }) {
               <FadeIn>
                 <form
                   className="space-y-5"
-                  onSubmit={(e) => e.preventDefault()}
+                  onSubmit={handleSubmit}
                 >
+                  <input
+                    type="hidden"
+                    name="subject"
+                    value={locale === 'en' ? 'New quote request from optimtoldos.com' : 'Nueva solicitud de presupuesto desde optimtoldos.com'}
+                  />
+                  <input
+                    type="text"
+                    name="botcheck"
+                    tabIndex={-1}
+                    autoComplete="off"
+                    aria-hidden="true"
+                    style={{ position: 'absolute', left: '-9999px', width: '1px', height: '1px' }}
+                  />
                   <div>
                     <label className="block text-sm font-medium text-text-body mb-2">
                       {t(locale, 'quote.form.name_label')}
                     </label>
                     <input
                       type="text"
+                      name="name"
+                      required
                       placeholder={t(locale, 'quote.form.name_placeholder')}
                       className={inputClasses}
                     />
@@ -72,6 +106,8 @@ export function PresupuestoPage({ locale = 'es' }: { locale?: Locale }) {
                     </label>
                     <input
                       type="email"
+                      name="email"
+                      required
                       placeholder={t(locale, 'quote.form.email_placeholder')}
                       className={inputClasses}
                     />
@@ -82,6 +118,7 @@ export function PresupuestoPage({ locale = 'es' }: { locale?: Locale }) {
                     </label>
                     <input
                       type="tel"
+                      name="phone"
                       placeholder={t(locale, 'quote.form.phone_placeholder')}
                       className={inputClasses}
                     />
@@ -90,7 +127,7 @@ export function PresupuestoPage({ locale = 'es' }: { locale?: Locale }) {
                     <label className="block text-sm font-medium text-text-body mb-2">
                       {t(locale, 'quote.form.product_label')}
                     </label>
-                    <select className={inputClasses}>
+                    <select name="product" className={inputClasses}>
                       <option value="">{t(locale, 'quote.form.product_placeholder')}</option>
                       {productOptions.map((opt) => (
                         <option key={opt} value={opt}>
@@ -105,6 +142,7 @@ export function PresupuestoPage({ locale = 'es' }: { locale?: Locale }) {
                     </label>
                     <input
                       type="text"
+                      name="location"
                       placeholder={t(locale, 'quote.form.location_placeholder')}
                       className={inputClasses}
                     />
@@ -115,6 +153,7 @@ export function PresupuestoPage({ locale = 'es' }: { locale?: Locale }) {
                     </label>
                     <input
                       type="text"
+                      name="measurements"
                       placeholder={t(locale, 'quote.form.measurements_placeholder')}
                       className={inputClasses}
                     />
@@ -125,6 +164,7 @@ export function PresupuestoPage({ locale = 'es' }: { locale?: Locale }) {
                     </label>
                     <textarea
                       rows={5}
+                      name="description"
                       placeholder={t(locale, 'quote.form.description_placeholder')}
                       className={inputClasses}
                     />
@@ -133,27 +173,12 @@ export function PresupuestoPage({ locale = 'es' }: { locale?: Locale }) {
                     <label className="block text-sm font-medium text-text-body mb-2">
                       {t(locale, 'quote.form.photos_label')}
                     </label>
-                    <div className="border-2 border-dashed border-border rounded-xl p-8 text-center hover:border-terracotta/50 transition-colors cursor-pointer">
-                      <svg
-                        className="w-10 h-10 text-text-muted mx-auto mb-3"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        strokeWidth={1.5}
-                        stroke="currentColor"
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5m-13.5-9L12 3m0 0l4.5 4.5M12 3v13.5"
-                        />
-                      </svg>
-                      <p className="text-text-muted text-sm">
-                        {t(locale, 'quote.form.photos_placeholder')}
-                      </p>
-                    </div>
+                    <p className="text-sm text-text-muted bg-sand-light/60 rounded-xl px-4 py-3 border border-border">
+                      {t(locale, 'quote.form.photos_email_note')}
+                    </p>
                   </div>
                   <label className="flex items-start gap-2 text-sm text-text-muted cursor-pointer pt-2">
-                    <input type="checkbox" required className="mt-1 accent-terracotta shrink-0" />
+                    <input type="checkbox" name="privacy_consent" required className="mt-1 accent-terracotta shrink-0" />
                     <span>
                       {t(locale, 'forms.privacy_consent').replace(t(locale, 'forms.privacy_consent_link'), '').trim()}{' '}
                       <a
@@ -170,11 +195,22 @@ export function PresupuestoPage({ locale = 'es' }: { locale?: Locale }) {
                   <div className="pt-4">
                     <button
                       type="submit"
-                      className="w-full bg-terracotta hover:bg-terracotta-dark text-white font-medium rounded-xl px-8 py-4 text-lg transition-colors duration-200"
+                      disabled={status === 'sending'}
+                      className="w-full bg-terracotta hover:bg-terracotta-dark text-white font-medium rounded-xl px-8 py-4 text-lg transition-colors duration-200 disabled:opacity-60 disabled:cursor-not-allowed"
                     >
-                      {t(locale, 'quote.form.submit')}
+                      {status === 'sending' ? t(locale, 'forms.status.sending') : t(locale, 'quote.form.submit')}
                     </button>
                   </div>
+                  {status === 'success' && (
+                    <p className="text-sm text-green-700 bg-green-50 border border-green-200 rounded-xl px-4 py-3">
+                      {t(locale, 'forms.status.success')}
+                    </p>
+                  )}
+                  {status === 'error' && (
+                    <p className="text-sm text-red-700 bg-red-50 border border-red-200 rounded-xl px-4 py-3">
+                      {t(locale, 'forms.status.error')}
+                    </p>
+                  )}
                   <p className="text-center text-text-muted text-sm pt-2">
                     {t(locale, 'quote.form.call_prefix')}{" "}
                     <a

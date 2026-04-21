@@ -2,18 +2,18 @@
   "name": "Optim Toldos — Protección Solar en Alicante",
   "short_name": "OptimToldos",
   "description": "Especialistas en toldos, pérgolas bioclimáticas, cortinas de cristal, velas de sombra y ventanas PVC en Alicante.",
-  "start_url": "/optimtoldos/",
+  "start_url": "/",
   "display": "standalone",
   "theme_color": "#C75B39",
   "background_color": "#FEFCF9",
   "icons": [
     {
-      "src": "/optimtoldos/favicon-32.png",
+      "src": "/favicon-32.png",
       "sizes": "32x32",
       "type": "image/png"
     },
     {
-      "src": "/optimtoldos/apple-touch-icon.png",
+      "src": "/apple-touch-icon.png",
       "sizes": "180x180",
       "type": "image/png"
     }

@@ -10,7 +10,7 @@ image: "/images/blog/pergola-bioclimatica-vs-toldo.jpg"
 translationOf: "en/pergola-vs-awning"
 ---
 
-**Ni la pérgola bioclimática ni el toldo son universalmente mejores: la elección correcta depende de tu presupuesto, el uso que le das a la terraza y el nivel de protección que necesitas.** Un toldo extensible de calidad cuesta entre 1.000 € y 3.000 € instalado y es la solución más rápida y económica para dar sombra (consulta nuestra [guía completa de toldos para Alicante](/optimtoldos/blog/guia-toldos-alicante) para más detalle). Una pérgola bioclimática parte de 4.500 € y puede superar los 15.000 €, pero ofrece protección total contra lluvia, viento y sol, con una vida útil que duplica o triplica la del toldo.
+**Ni la pérgola bioclimática ni el toldo son universalmente mejores: la elección correcta depende de tu presupuesto, el uso que le das a la terraza y el nivel de protección que necesitas.** Un toldo extensible de calidad cuesta entre 1.000 € y 3.000 € instalado y es la solución más rápida y económica para dar sombra (consulta nuestra [guía completa de toldos para Alicante](/blog/guia-toldos-alicante) para más detalle). Una pérgola bioclimática parte de 4.500 € y puede superar los 15.000 €, pero ofrece protección total contra lluvia, viento y sol, con una vida útil que duplica o triplica la del toldo.
 
 En Alicante, con más de 300 días de sol y un clima que invita a vivir en la terraza entre marzo y noviembre, esta decisión marca la diferencia entre una terraza que usas solo en verano y un espacio exterior habitable casi todo el año. A continuación, comparamos ambas soluciones punto por punto para que elijas con datos.
 
@@ -166,7 +166,7 @@ La pérgola requiere menos mantenimiento a largo plazo porque su estructura es m
 
 ## ¿Cuándo elegir una pérgola bioclimática?
 
-Elige una [pérgola bioclimática](/optimtoldos/pergolas) si:
+Elige una [pérgola bioclimática](/pergolas) si:
 
 - **Tu presupuesto supera los 4.500 €** y buscas una solución a largo plazo.
 - **Quieres usar la terraza todo el año**, incluso con lluvia o viento.
@@ -180,7 +180,7 @@ Elige una [pérgola bioclimática](/optimtoldos/pergolas) si:
 
 ## ¿Cuándo elegir un toldo?
 
-Elige un [toldo extensible](/optimtoldos/toldos) si:
+Elige un [toldo extensible](/toldos) si:
 
 - **Tu presupuesto es limitado** (menos de 3.000 €) y necesitas protección solar ya.
 - **Tu terraza es un balcón o espacio pequeño** donde una pérgola no es viable.
@@ -221,6 +221,6 @@ En cualquier caso, la clave es elegir materiales adaptados al clima costero de A
 
 ## ¿Necesitas ayuda para decidir?
 
-En Optim Toldos instalamos tanto [pérgolas bioclimáticas](/optimtoldos/pergolas) como [toldos extensibles](/optimtoldos/toldos) de primeras marcas. Visitamos tu terraza, evaluamos las condiciones (orientación, viento, salitre) y te recomendamos la solución que mejor se adapta a tus necesidades y presupuesto.
+En Optim Toldos instalamos tanto [pérgolas bioclimáticas](/pergolas) como [toldos extensibles](/toldos) de primeras marcas. Visitamos tu terraza, evaluamos las condiciones (orientación, viento, salitre) y te recomendamos la solución que mejor se adapta a tus necesidades y presupuesto.
 
-**[Solicita tu presupuesto gratuito y sin compromiso](/optimtoldos/presupuesto)** — te respondemos en menos de 24 horas.
+**[Solicita tu presupuesto gratuito y sin compromiso](/presupuesto)** — te respondemos en menos de 24 horas.

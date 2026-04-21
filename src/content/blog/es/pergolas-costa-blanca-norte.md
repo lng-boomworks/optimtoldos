@@ -23,7 +23,7 @@ La Costa Blanca Norte, desde Benidorm hasta Dénia, tiene características que h
 
 ### Clima que invita a vivir fuera
 
-Con más de 300 días de sol al año, temperaturas medias de 18 °C en invierno y 28 °C en verano, y una temporada de buen tiempo que se extiende de marzo a noviembre, las terrazas de la Costa Blanca Norte se usan casi todo el año. Un simple toldo que da sombra en verano se queda corto: los residentes y negocios necesitan una solución que proteja del sol, de la lluvia ocasional y del viento, sin renunciar a la luz y la ventilación. Exactamente lo que ofrece una [pérgola bioclimática](/optimtoldos/pergolas) con sus lamas orientables.
+Con más de 300 días de sol al año, temperaturas medias de 18 °C en invierno y 28 °C en verano, y una temporada de buen tiempo que se extiende de marzo a noviembre, las terrazas de la Costa Blanca Norte se usan casi todo el año. Un simple toldo que da sombra en verano se queda corto: los residentes y negocios necesitan una solución que proteja del sol, de la lluvia ocasional y del viento, sin renunciar a la luz y la ventilación. Exactamente lo que ofrece una [pérgola bioclimática](/pergolas) con sus lamas orientables.
 
 ### Sector hostelero exigente
 
@@ -98,14 +98,14 @@ La instalación residencial típica en la Costa Blanca Norte cubre una terraza d
 - **Lamas orientables motorizadas** con mando a distancia e integración domótica (Somfy, Google Home, Alexa)
 - **Iluminación LED integrada** en las vigas para uso nocturno
 - **Color del lacado:** antracita (RAL 7016) y gris cuarzo (RAL 7039) son los más solicitados, seguidos de blanco (RAL 9010) para viviendas de estilo mediterráneo
-- **Cortavientos laterales** en al menos un lateral (generalmente el expuesto a la Tramontana o al Levante), ya sea con toldo vertical screen o con [cortinas de cristal](/optimtoldos/cortinas-de-cristal) para un cerramiento más completo
+- **Cortavientos laterales** en al menos un lateral (generalmente el expuesto a la Tramontana o al Levante), ya sea con toldo vertical screen o con [cortinas de cristal](/cortinas-de-cristal) para un cerramiento más completo
 - **Canalización de agua oculta** por los pilares, conectada al desagüe de la terraza
 
 **Tamaño medio:** 4 × 3,5 m a 6 × 4 m (14-24 m²)
 
 **Precio medio instalado:** 6.000 € – 15.000 € según tamaño y acabados
 
-Para más información sobre las diferencias entre pérgola y toldo en el ámbito residencial, consulta nuestra [comparativa detallada](/optimtoldos/blog/pergola-bioclimatica-vs-toldo).
+Para más información sobre las diferencias entre pérgola y toldo en el ámbito residencial, consulta nuestra [comparativa detallada](/blog/pergola-bioclimatica-vs-toldo).
 
 ### Pérgolas para hostelería (restaurantes, hoteles, chiringuitos)
 
@@ -115,7 +115,7 @@ Las instalaciones para hostelería tienen requisitos adicionales que elevan tant
 - **Resistencia estructural reforzada:** las terrazas de hostelería suelen tener más carga de viento por su ubicación (paseos marítimos, puertos) y deben cumplir normativas más estrictas.
 - **Iluminación profesional:** sistemas LED regulables con control de intensidad y temperatura de color para crear ambientes.
 - **Calefactores infrarrojos integrados:** permiten el uso de la terraza en invierno (noviembre-febrero) con temperaturas de 10-15 °C.
-- **Cortavientos y cerramientos laterales:** combinación de toldos verticales screen y [cortinas de cristal](/optimtoldos/cortinas-de-cristal) para cerrar completamente la terraza en temporales sin perder vistas.
+- **Cortavientos y cerramientos laterales:** combinación de toldos verticales screen y [cortinas de cristal](/cortinas-de-cristal) para cerrar completamente la terraza en temporales sin perder vistas.
 - **Señalización y branding:** posibilidad de integrar logotipos en las vigas o iluminación personalizada.
 
 **Tamaño medio:** 30-80 m² (configuraciones modulares)
@@ -138,7 +138,7 @@ Benidorm tiene una regulación específica para terrazas de hostelería que afec
 - **Altura máxima:** las pérgolas no pueden superar la altura del forjado del primer piso del edificio.
 - **Retranqueo:** las estructuras en terrazas que dan a la vía pública deben respetar un retranqueo mínimo que varía según la zona (consultar con Urbanismo).
 - **Viviendas particulares:** para pérgolas desmontables en terraza privada, generalmente basta con declaración responsable. Si implica obra civil (zapatas, cimentaciones), se necesita licencia de obra menor.
-- **Comunidades de propietarios:** aprobación en junta con mayoría de 3/5 si se altera el aspecto exterior de la fachada o la cubierta. Consulta nuestra [guía sobre normativa en comunidades](/optimtoldos/blog/normativa-toldos-comunidad-propietarios) para más detalles.
+- **Comunidades de propietarios:** aprobación en junta con mayoría de 3/5 si se altera el aspecto exterior de la fachada o la cubierta. Consulta nuestra [guía sobre normativa en comunidades](/blog/normativa-toldos-comunidad-propietarios) para más detalles.
 
 ### Altea
 
@@ -196,7 +196,7 @@ Basándonos en nuestra experiencia de instalación en la zona, estas son las esp
 
 - **Iluminación LED perimetral:** integrada en las vigas. Regulable en intensidad. Coste: 300 € – 800 € según tamaño.
 - **Cortavientos de toldo vertical screen:** cierra un lateral con tejido microperforado que protege del viento sin bloquear las vistas. Coste: 500 € – 1.500 € por lateral.
-- **Cortinas de cristal:** cierre completo de uno o varios laterales con paneles de vidrio templado plegables. Consulta nuestra [guía sobre cortinas de cristal](/optimtoldos/blog/cerrar-terraza-cortinas-cristal) para precios y detalles.
+- **Cortinas de cristal:** cierre completo de uno o varios laterales con paneles de vidrio templado plegables. Consulta nuestra [guía sobre cortinas de cristal](/blog/cerrar-terraza-cortinas-cristal) para precios y detalles.
 - **Calefactores infrarrojos:** integrados en las vigas para uso invernal. Coste: 400 € – 1.200 € por módulo.
 
 ---
@@ -215,7 +215,7 @@ Los precios incluyen estructura de aluminio con tratamiento marino, lamas orient
 
 **Nota:** Las instalaciones en primera línea de costa con tratamiento marino reforzado pueden incrementar el presupuesto entre un 15 % y un 25 %. Las configuraciones modulares para hostelería (múltiples módulos conectados) se benefician de economías de escala a partir de 40 m².
 
-Para una comparación directa entre pérgola y toldo (incluyendo el análisis de coste anualizado), consulta nuestra [guía comparativa](/optimtoldos/blog/pergola-bioclimatica-vs-toldo).
+Para una comparación directa entre pérgola y toldo (incluyendo el análisis de coste anualizado), consulta nuestra [guía comparativa](/blog/pergola-bioclimatica-vs-toldo).
 
 ---
 
@@ -295,4 +295,4 @@ Tanto si buscas una pérgola para la terraza de tu vivienda en Jávea como si ne
 
 En Optim Toldos cubrimos toda la Costa Blanca Norte: Benidorm, Altea, Calpe, Dénia, Jávea, El Albir, Alfaz del Pi, La Nucía, Polop, Finestrat, Villajoyosa, El Campello y todas las localidades de la Marina Alta y la Marina Baixa.
 
-**[Solicita tu presupuesto gratuito y sin compromiso](/optimtoldos/presupuesto)** — te respondemos en menos de 24 horas y te visitamos en 48 horas.
+**[Solicita tu presupuesto gratuito y sin compromiso](/presupuesto)** — te respondemos en menos de 24 horas y te visitamos en 48 horas.

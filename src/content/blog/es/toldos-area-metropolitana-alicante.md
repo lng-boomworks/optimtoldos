@@ -13,7 +13,7 @@ locale: "es"
 
 > **El área metropolitana de Alicante concentra más de 300.000 habitantes en un radio de apenas 15 kilómetros, con tipologías de vivienda muy diferentes: desde pisos universitarios en San Vicente del Raspeig hasta chalets frente al mar en El Campello.** Cada municipio tiene su normativa, su microclima y sus particularidades urbanísticas. Elegir el toldo adecuado exige conocer estas diferencias. En esta guía repasamos las necesidades específicas de cada zona y te ayudamos a tomar la mejor decisión para tu vivienda.
 
-Si ya tienes claro lo que necesitas, puedes [solicitar tu presupuesto sin compromiso](/optimtoldos/presupuesto). Si prefieres explorar opciones, sigue leyendo.
+Si ya tienes claro lo que necesitas, puedes [solicitar tu presupuesto sin compromiso](/presupuesto). Si prefieres explorar opciones, sigue leyendo.
 
 ---
 
@@ -23,7 +23,7 @@ La capital alicantina está rodeada por municipios que, aunque comparten el clim
 
 **San Vicente del Raspeig** es una ciudad universitaria con un parque de viviendas moderno y en constante crecimiento. **Mutxamel** combina un casco histórico tradicional con urbanizaciones de nueva construcción en las laderas de la sierra. **El Campello** es un municipio costero donde el viento y el salitre condicionan cualquier instalación exterior. **San Juan de Alicante** es fundamentalmente residencial, con una de las playas más extensas de la provincia a pocos minutos.
 
-Estas diferencias no son anecdóticas: determinan qué tipo de toldo necesitas, qué materiales son los más adecuados y qué normativa municipal debes respetar. Consulta nuestra [página de toldos](/optimtoldos/toldos) para ver los modelos disponibles y, si tu terraza lo permite, valora también las [velas de sombra](/optimtoldos/velas-de-sombra) como alternativa estética y funcional.
+Estas diferencias no son anecdóticas: determinan qué tipo de toldo necesitas, qué materiales son los más adecuados y qué normativa municipal debes respetar. Consulta nuestra [página de toldos](/toldos) para ver los modelos disponibles y, si tu terraza lo permite, valora también las [velas de sombra](/velas-de-sombra) como alternativa estética y funcional.
 
 ---
 
@@ -36,7 +36,7 @@ Antes de analizar cada municipio, conviene entender la diferencia fundamental en
 Los pisos en edificios de varias plantas presentan desafíos específicos:
 
 - **Espacio limitado.** Los balcones suelen medir entre 1,5 y 3 metros de fondo, lo que condiciona el tipo de toldo. Los toldos de punto recto (proyección de hasta 1,80 m) y los extensibles compactos (proyección de 2 a 2,5 m) son las opciones más habituales.
-- **Normativa de comunidad de propietarios.** La mayoría de comunidades exigen uniformidad en fachada: mismo color de lona, mismo modelo de toldo, misma posición de instalación. Antes de comprar nada, consulta el acta de tu comunidad. Tenemos una [guía completa sobre normativa de toldos en comunidades de propietarios](/optimtoldos/blog/normativa-toldos-comunidad-propietarios) que te será muy útil.
+- **Normativa de comunidad de propietarios.** La mayoría de comunidades exigen uniformidad en fachada: mismo color de lona, mismo modelo de toldo, misma posición de instalación. Antes de comprar nada, consulta el acta de tu comunidad. Tenemos una [guía completa sobre normativa de toldos en comunidades de propietarios](/blog/normativa-toldos-comunidad-propietarios) que te será muy útil.
 - **Exposición al viento en altura.** A partir de una cuarta planta, las rachas de viento se intensifican significativamente. Un sensor de viento es prácticamente obligatorio para toldos extensibles en plantas altas.
 - **Acceso complicado para la instalación.** En algunos edificios, la instalación requiere andamio o plataforma elevadora, lo que puede encarecer el presupuesto entre 200 y 500 euros.
 
@@ -45,7 +45,7 @@ Los pisos en edificios de varias plantas presentan desafíos específicos:
 Los chalets, adosados y pareados ofrecen más libertad pero también más superficie que proteger:
 
 - **Terrazas amplias.** Con proyecciones de 4 metros o más, los toldos extensibles de gran formato o las pérgolas con toldo son las opciones más eficaces.
-- **Zonas de piscina y jardín.** Las [velas de sombra](/optimtoldos/velas-de-sombra) son una solución cada vez más popular para cubrir zonas de estar junto a la piscina, combinando estética contemporánea con protección UV efectiva.
+- **Zonas de piscina y jardín.** Las [velas de sombra](/velas-de-sombra) son una solución cada vez más popular para cubrir zonas de estar junto a la piscina, combinando estética contemporánea con protección UV efectiva.
 - **Mayor libertad estética.** Al no depender de una comunidad de propietarios (salvo en urbanizaciones con estatutos específicos), puedes elegir colores, modelos y configuraciones a tu gusto.
 - **Posibilidad de soluciones combinadas.** Muchos chalets del área metropolitana combinan un toldo extensible en la terraza principal con toldos verticales en los laterales y velas de sombra en el jardín.
 
@@ -153,7 +153,7 @@ Este es el punto más importante para la mayoría de propietarios de pisos. La L
 - Instalar un toldo diferente al aprobado puede suponer la obligación de retirarlo y una sanción.
 - Si tu comunidad no tiene acuerdo previo, necesitas presentar una propuesta en junta y obtener la aprobación por mayoría simple.
 
-Para un análisis más detallado, consulta nuestra [guía sobre normativa de toldos en comunidades de propietarios](/optimtoldos/blog/normativa-toldos-comunidad-propietarios).
+Para un análisis más detallado, consulta nuestra [guía sobre normativa de toldos en comunidades de propietarios](/blog/normativa-toldos-comunidad-propietarios).
 
 ### Ordenanzas de estética urbana
 
@@ -192,6 +192,6 @@ No cometas el error de comprar un toldo sin confirmar antes el modelo y color ap
 
 ## Solicita tu presupuesto personalizado
 
-En [Optim Toldos](/optimtoldos/toldos) conocemos bien las particularidades de cada municipio del área metropolitana de Alicante. Realizamos la visita técnica en toda la zona, tomamos medidas, evaluamos la orientación y el estado de la fachada, y te presentamos una propuesta adaptada a tu vivienda y tu presupuesto.
+En [Optim Toldos](/toldos) conocemos bien las particularidades de cada municipio del área metropolitana de Alicante. Realizamos la visita técnica en toda la zona, tomamos medidas, evaluamos la orientación y el estado de la fachada, y te presentamos una propuesta adaptada a tu vivienda y tu presupuesto.
 
-**[Solicita tu presupuesto gratuito y sin compromiso](/optimtoldos/presupuesto)** — te contactamos en menos de 24 horas para coordinar la visita.
+**[Solicita tu presupuesto gratuito y sin compromiso](/presupuesto)** — te contactamos en menos de 24 horas para coordinar la visita.

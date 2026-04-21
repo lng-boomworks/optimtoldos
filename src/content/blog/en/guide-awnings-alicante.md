@@ -14,13 +14,13 @@ translationOf: "es/guia-toldos-alicante"
 
 > **A retractable arm awning with acrylic fabric and a full cassette housing is the most versatile option for most terraces in Alicante.** Expect to pay between 800 € and 2,500 € installed, depending on the size and motorisation. With over 300 days of sunshine a year and some of the highest UV radiation levels in Europe, protecting your terrace is not a luxury — it is a necessity that can lower your indoor temperature by 8 °C to 12 °C.
 
-In this guide we cover every type of awning available, compare real 2026 prices, analyse materials and give you advice tailored to Alicante's coastal climate. If by the end you know what you need, you can [request a free, no-obligation quote](/optimtoldos/en/free-quote).
+In this guide we cover every type of awning available, compare real 2026 prices, analyse materials and give you advice tailored to Alicante's coastal climate. If by the end you know what you need, you can [request a free, no-obligation quote](/en/free-quote).
 
 ---
 
 ## What types of terrace awnings are there?
 
-Not all awnings are suited to every situation. Choosing the right type depends on the size of your terrace, its sun exposure, whether you need wind protection, and your budget. These are the five main types we install in Alicante (also see our [awnings page](/optimtoldos/en/awnings) for available models):
+Not all awnings are suited to every situation. Choosing the right type depends on the size of your terrace, its sun exposure, whether you need wind protection, and your budget. These are the five main types we install in Alicante (also see our [awnings page](/en/awnings) for available models):
 
 ### Retractable arm awning
 
@@ -78,7 +78,7 @@ Prices vary according to the type, size, fabric material, motorisation and wheth
 | Canopy | 400 € – 1,000 € | 2 × 1.2 m | Shops and stylish balconies |
 | Window awning | 150 € – 400 € | 1.5 × 1 m | Basic window protection |
 
-**Note:** These prices include VAT and standard installation. Extra-large awnings (over 5 metres wide) may exceed these ranges. For an exact price, [request your personalised quote](/optimtoldos/en/free-quote).
+**Note:** These prices include VAT and standard installation. Extra-large awnings (over 5 metres wide) may exceed these ranges. For an exact price, [request your personalised quote](/en/free-quote).
 
 ---
 
@@ -242,13 +242,13 @@ Answer these questions to determine the type of awning you need:
 
 - **Under 2 m projection:** drop-arm or window awning.
 - **2 to 4 m projection:** retractable arm awning.
-- **Over 4 m projection:** consider a [bioclimatic pergola](/optimtoldos/en/pergolas) or combining a retractable awning with vertical windbreaks.
+- **Over 4 m projection:** consider a [bioclimatic pergola](/en/pergolas) or combining a retractable awning with vertical windbreaks.
 
 ### 2. Which direction does your terrace face?
 
 - **South or south-west:** maximum sun exposure. You need an awning with high UV protection and, most likely, lateral windbreaks.
 - **East:** morning sun. A standard retractable awning is usually enough.
-- **West:** afternoon sun — the most uncomfortable. Combine a retractable awning with a [vertical awning](/optimtoldos/en/awnings) on the side.
+- **West:** afternoon sun — the most uncomfortable. Combine a retractable awning with a [vertical awning](/en/awnings) on the side.
 - **North:** little direct sunlight. You may not need an awning at all, or a drop-arm may suffice.
 
 ### 3. Are you within 500 m of the seafront?
@@ -266,12 +266,12 @@ Answer these questions to determine the type of awning you need:
 ### 5. Do you need rain protection?
 
 - **Occasional use in light rain:** acrylic fabric with a minimum 15° tilt drains water effectively.
-- **Full rain protection:** consider a [bioclimatic pergola](/optimtoldos/en/pergolas) or complementary [glass curtains](/optimtoldos/en/glass-curtains). If you are torn between a pergola and an awning, read our [bioclimatic pergola vs awning comparison](/optimtoldos/en/blog/en/pergola-vs-awning).
+- **Full rain protection:** consider a [bioclimatic pergola](/en/pergolas) or complementary [glass curtains](/en/glass-curtains). If you are torn between a pergola and an awning, read our [bioclimatic pergola vs awning comparison](/en/blog/en/pergola-vs-awning).
 
 ---
 
 ## Next step: request your quote
 
-Now that you know the types, materials, prices and the specifics of Alicante's climate, you are in a position to make an informed decision. At [Optim Toldos](/optimtoldos/en/awnings) we work exclusively with top-quality materials adapted to the Mediterranean climate and offer professional installation with a guarantee.
+Now that you know the types, materials, prices and the specifics of Alicante's climate, you are in a position to make an informed decision. At [Optim Toldos](/en/awnings) we work exclusively with top-quality materials adapted to the Mediterranean climate and offer professional installation with a guarantee.
 
-**[Request your free, no-obligation quote](/optimtoldos/en/free-quote)** — we visit your home, take measurements and present a detailed proposal within 48 hours.
+**[Request your free, no-obligation quote](/en/free-quote)** — we visit your home, take measurements and present a detailed proposal within 48 hours.

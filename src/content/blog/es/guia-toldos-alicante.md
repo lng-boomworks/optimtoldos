@@ -14,13 +14,13 @@ translationOf: "en/guide-awnings-alicante"
 
 > **Un toldo extensible de brazo articulado con lona acrílica y cofre de protección es la opción más versátil para la mayoría de terrazas en Alicante.** Espera pagar entre 800 € y 2.500 € instalado, dependiendo del tamaño y la motorización. Con más de 300 días de sol al año y una radiación UV entre las más altas de Europa, proteger tu terraza no es un lujo: es una necesidad que puede reducir la temperatura interior de tu vivienda entre 8 °C y 12 °C.
 
-En esta guía cubrimos todos los tipos de toldos disponibles, comparamos precios reales de 2026, analizamos materiales y te damos consejos específicos para el clima costero de Alicante. Si al final tienes claro lo que necesitas, puedes [solicitar tu presupuesto sin compromiso](/optimtoldos/presupuesto).
+En esta guía cubrimos todos los tipos de toldos disponibles, comparamos precios reales de 2026, analizamos materiales y te damos consejos específicos para el clima costero de Alicante. Si al final tienes claro lo que necesitas, puedes [solicitar tu presupuesto sin compromiso](/presupuesto).
 
 ---
 
 ## ¿Qué tipos de toldos existen para terrazas?
 
-No todos los toldos sirven para lo mismo. Elegir el tipo correcto depende del tamaño de tu terraza, la orientación solar, si necesitas protección contra viento y cuánto estás dispuesto a invertir. Estos son los cinco tipos principales que instalamos en Alicante (consulta también nuestra [página de toldos](/optimtoldos/toldos) para ver modelos disponibles):
+No todos los toldos sirven para lo mismo. Elegir el tipo correcto depende del tamaño de tu terraza, la orientación solar, si necesitas protección contra viento y cuánto estás dispuesto a invertir. Estos son los cinco tipos principales que instalamos en Alicante (consulta también nuestra [página de toldos](/toldos) para ver modelos disponibles):
 
 ### Toldo extensible (brazo articulado)
 
@@ -78,7 +78,7 @@ Los precios varían según el tipo, el tamaño, el material de la lona, la motor
 | Capota | 400 € – 1.000 € | 2 × 1,2 m | Comercios y balcones con estilo |
 | Toldo de ventana | 150 € – 400 € | 1,5 × 1 m | Protección básica de ventanas |
 
-**Nota:** Estos precios incluyen IVA e instalación estándar. Los toldos de grandes dimensiones (más de 5 metros de ancho) pueden superar estos rangos. Para un precio exacto, [solicita tu presupuesto personalizado](/optimtoldos/presupuesto).
+**Nota:** Estos precios incluyen IVA e instalación estándar. Los toldos de grandes dimensiones (más de 5 metros de ancho) pueden superar estos rangos. Para un precio exacto, [solicita tu presupuesto personalizado](/presupuesto).
 
 ---
 
@@ -242,13 +242,13 @@ Responde a estas preguntas para determinar qué tipo de toldo necesitas:
 
 - **Menos de 2 m de proyección:** toldo de punto recto o toldo de ventana.
 - **Entre 2 y 4 m de proyección:** toldo extensible.
-- **Más de 4 m de proyección:** considera una [pérgola bioclimática](/optimtoldos/pergolas) o combinar toldo extensible con cortavientos verticales.
+- **Más de 4 m de proyección:** considera una [pérgola bioclimática](/pergolas) o combinar toldo extensible con cortavientos verticales.
 
 ### 2. ¿Cuál es la orientación de tu terraza?
 
 - **Sur o suroeste:** máxima exposición solar. Necesitas un toldo con alta protección UV y, probablemente, cortavientos laterales.
 - **Este:** sol de mañana. Un toldo extensible estándar suele bastar.
-- **Oeste:** sol de tarde, el más molesto. Combina toldo extensible con un [toldo vertical](/optimtoldos/toldos) en el lateral.
+- **Oeste:** sol de tarde, el más molesto. Combina toldo extensible con un [toldo vertical](/toldos) en el lateral.
 - **Norte:** poca exposición solar directa. Quizás no necesites toldo, o baste con un punto recto.
 
 ### 3. ¿Estás en primera línea de costa (menos de 500 m)?
@@ -266,12 +266,12 @@ Responde a estas preguntas para determinar qué tipo de toldo necesitas:
 ### 5. ¿Necesitas protección contra lluvia?
 
 - **Uso ocasional bajo lluvia ligera:** la lona acrílica con cierta inclinación (mínimo 15°) evacua el agua correctamente.
-- **Protección total contra lluvia:** considera una [pérgola bioclimática](/optimtoldos/pergolas) o [cortinas de cristal](/optimtoldos/cortinas-de-cristal) complementarias. Si dudas entre pérgola y toldo, lee nuestra [comparativa de pérgola bioclimática vs toldo](/optimtoldos/blog/pergola-bioclimatica-vs-toldo).
+- **Protección total contra lluvia:** considera una [pérgola bioclimática](/pergolas) o [cortinas de cristal](/cortinas-de-cristal) complementarias. Si dudas entre pérgola y toldo, lee nuestra [comparativa de pérgola bioclimática vs toldo](/blog/pergola-bioclimatica-vs-toldo).
 
 ---
 
 ## Próximo paso: solicita tu presupuesto
 
-Ahora que conoces los tipos, materiales, precios y particularidades del clima alicantino, estás en condiciones de tomar una decisión informada. En [Optim Toldos](/optimtoldos/toldos) trabajamos exclusivamente con materiales de primera calidad adaptados al clima mediterráneo y ofrecemos instalación profesional con garantía.
+Ahora que conoces los tipos, materiales, precios y particularidades del clima alicantino, estás en condiciones de tomar una decisión informada. En [Optim Toldos](/toldos) trabajamos exclusivamente con materiales de primera calidad adaptados al clima mediterráneo y ofrecemos instalación profesional con garantía.
 
-**[Solicita tu presupuesto gratuito y sin compromiso](/optimtoldos/presupuesto)** — te visitamos, tomamos medidas y te presentamos una propuesta detallada en 48 horas.
+**[Solicita tu presupuesto gratuito y sin compromiso](/presupuesto)** — te visitamos, tomamos medidas y te presentamos una propuesta detallada en 48 horas.

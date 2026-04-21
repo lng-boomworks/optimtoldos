@@ -13,7 +13,7 @@ locale: "es"
 
 > **La Vega Baja del Segura es una de las zonas más calurosas de toda la provincia de Alicante, con temperaturas que superan los 40 °C en los picos de verano y una humedad costera que amplifica la sensación térmica.** Ya vivas en una urbanización de Torrevieja, en el centro histórico de Orihuela o en una villa con vistas al mar en Guardamar, la protección solar no es opcional: es una inversión que mejora tu calidad de vida y reduce tu factura energética entre un 25 % y un 40 %. En esta guía analizamos las mejores soluciones para cada localidad y tipo de vivienda.
 
-Si ya tienes claro lo que necesitas, puedes [solicitar tu presupuesto sin compromiso](/optimtoldos/presupuesto). Si prefieres entender primero las opciones, sigue leyendo.
+Si ya tienes claro lo que necesitas, puedes [solicitar tu presupuesto sin compromiso](/presupuesto). Si prefieres entender primero las opciones, sigue leyendo.
 
 ---
 
@@ -69,7 +69,7 @@ Las viviendas en Orihuela ciudad, sus pedanías (Arneva, Hurchillo, Bigastro, Ja
 - El aluminio lacado estándar (sin tratamiento marino) es suficiente para pérgolas y herrajes.
 - La lona acrílica sigue siendo la mejor opción, pero sin necesidad de tratamiento anti-salitre específico. El tratamiento anti-moho sí es recomendable por la humedad relativa.
 - El **sensor de viento es igualmente necesario**, ya que el Poniente es más intenso en el interior que en la costa.
-- Las temperaturas más altas del interior (2-3 °C por encima de la costa en verano) hacen que las [pérgolas bioclimáticas](/optimtoldos/pergolas) con lamas orientables sean particularmente valiosas: permiten regular la ventilación y la sombra durante las horas centrales del día.
+- Las temperaturas más altas del interior (2-3 °C por encima de la costa en verano) hacen que las [pérgolas bioclimáticas](/pergolas) con lamas orientables sean particularmente valiosas: permiten regular la ventilación y la sombra durante las horas centrales del día.
 
 ---
 
@@ -77,7 +77,7 @@ Las viviendas en Orihuela ciudad, sus pedanías (Arneva, Hurchillo, Bigastro, Ja
 
 ### Toldos extensibles: la opción más popular
 
-El [toldo extensible de brazo articulado](/optimtoldos/toldos) sigue siendo la solución más demandada en la Vega Baja, tanto por su versatilidad como por su relación calidad-precio. Para esta zona, recomendamos siempre la versión motorizada con cofre integral y sensor de viento.
+El [toldo extensible de brazo articulado](/toldos) sigue siendo la solución más demandada en la Vega Baja, tanto por su versatilidad como por su relación calidad-precio. Para esta zona, recomendamos siempre la versión motorizada con cofre integral y sensor de viento.
 
 **Configuración recomendada para la Vega Baja:**
 
@@ -87,21 +87,21 @@ El [toldo extensible de brazo articulado](/optimtoldos/toldos) sigue siendo la s
 - Tornillería AISI 316 en costa, AISI 304 en interior
 - Sensor de sol opcional (recomendable para viviendas desocupadas gran parte del día)
 
-Para una guía detallada sobre tipos, materiales y precios de toldos, consulta nuestra [guía completa de toldos para terrazas en Alicante](/optimtoldos/blog/guia-toldos-alicante).
+Para una guía detallada sobre tipos, materiales y precios de toldos, consulta nuestra [guía completa de toldos para terrazas en Alicante](/blog/guia-toldos-alicante).
 
 ### Pérgolas bioclimáticas: la solución premium
 
-Las [pérgolas bioclimáticas](/optimtoldos/pergolas) son la inversión más inteligente a largo plazo para terrazas de más de 12 m² en la Vega Baja. Sus lamas de aluminio orientables permiten controlar la luz y la ventilación con precisión, y su estructura fija soporta vientos de hasta 120 km/h.
+Las [pérgolas bioclimáticas](/pergolas) son la inversión más inteligente a largo plazo para terrazas de más de 12 m² en la Vega Baja. Sus lamas de aluminio orientables permiten controlar la luz y la ventilación con precisión, y su estructura fija soporta vientos de hasta 120 km/h.
 
 En el clima de la Vega Baja, donde las temperaturas extremas se prolongan de mayo a octubre, la pérgola bioclimática ofrece una ventaja decisiva sobre el toldo: puedes regular la entrada de luz en lugar de elegir entre "todo sol" o "todo sombra". A las 11:00, abres las lamas al 50 % para disfrutar de luz filtrada; a las 14:00, las cierras completamente para bloquear el sol cenital; a las 19:00, las vuelves a abrir para la brisa vespertina.
 
-Si quieres comparar en detalle ambas opciones, lee nuestra [comparativa entre pérgola bioclimática y toldo](/optimtoldos/blog/pergola-bioclimatica-vs-toldo).
+Si quieres comparar en detalle ambas opciones, lee nuestra [comparativa entre pérgola bioclimática y toldo](/blog/pergola-bioclimatica-vs-toldo).
 
 ### Velas de sombra: ideales para zonas de piscina
 
-Las urbanizaciones de la Vega Baja son famosas por sus zonas comunitarias con piscina. Las [velas de sombra](/optimtoldos/velas-de-sombra) son la solución más estética y funcional para dar sombra a zonas de baño y descanso.
+Las urbanizaciones de la Vega Baja son famosas por sus zonas comunitarias con piscina. Las [velas de sombra](/velas-de-sombra) son la solución más estética y funcional para dar sombra a zonas de baño y descanso.
 
-En la Vega Baja, donde la temporada de piscina se extiende de abril a noviembre, una configuración de dos velas triangulares de HDPE con mástiles de acero inoxidable AISI 316 es la opción más demandada. Para más información sobre materiales, diseño y mantenimiento, consulta nuestra [guía de velas de sombra para piscinas](/optimtoldos/blog/velas-sombra-piscina).
+En la Vega Baja, donde la temporada de piscina se extiende de abril a noviembre, una configuración de dos velas triangulares de HDPE con mástiles de acero inoxidable AISI 316 es la opción más demandada. Para más información sobre materiales, diseño y mantenimiento, consulta nuestra [guía de velas de sombra para piscinas](/blog/velas-sombra-piscina).
 
 ---
 
@@ -133,7 +133,7 @@ La mayoría de urbanizaciones de la Vega Baja aplican restricciones estéticas p
 
 - **Color de lona obligatorio:** muchas urbanizaciones exigen un color uniforme (generalmente crudo, beige o verde) para todos los toldos del complejo. Es imprescindible consultar al administrador antes de elegir el color.
 - **Modelo de toldo:** algunas comunidades especifican el tipo exacto de toldo permitido (extensible con cofre, punto recto, etc.).
-- **Pérgolas y estructuras fijas:** en muchas urbanizaciones, la instalación de una pérgola requiere aprobación en junta de propietarios con mayoría cualificada de 3/5. Consulta nuestra [guía sobre normativa de toldos en comunidades](/optimtoldos/blog/normativa-toldos-comunidad-propietarios) para entender el proceso completo.
+- **Pérgolas y estructuras fijas:** en muchas urbanizaciones, la instalación de una pérgola requiere aprobación en junta de propietarios con mayoría cualificada de 3/5. Consulta nuestra [guía sobre normativa de toldos en comunidades](/blog/normativa-toldos-comunidad-propietarios) para entender el proceso completo.
 - **Velas de sombra en zonas comunes:** para instalar velas en la zona de piscina comunitaria, se necesita la aprobación de la junta. La propuesta debe incluir presupuesto detallado y plan de mantenimiento.
 
 ### Urbanizaciones populares y sus particularidades
@@ -196,7 +196,7 @@ La protección solar no es solo confort: es ahorro. En una zona donde el aire ac
 - **Pérgola bioclimática:** reduce la temperatura bajo la estructura entre 10 °C y 15 °C respecto al sol directo. En viviendas con gran superficie acristalada orientada al sur, el ahorro puede alcanzar el 40 %.
 - **Velas de sombra en zona de piscina:** reducen la temperatura del agua entre 3 °C y 5 °C, lo que disminuye la evaporación y el consumo de productos químicos.
 
-En una vivienda media de la Vega Baja (90-120 m²), la instalación de protección solar adecuada puede suponer un ahorro de 400 a 700 euros anuales en electricidad. Combinada con [ventanas de PVC de alta eficiencia](/optimtoldos/blog/ventanas-pvc-ahorro-energetico), el ahorro se multiplica.
+En una vivienda media de la Vega Baja (90-120 m²), la instalación de protección solar adecuada puede suponer un ahorro de 400 a 700 euros anuales en electricidad. Combinada con [ventanas de PVC de alta eficiencia](/blog/ventanas-pvc-ahorro-energetico), el ahorro se multiplica.
 
 ---
 
@@ -212,7 +212,7 @@ No deberías hacerlo sin consultar primero. La fachada es un elemento común y l
 
 ### ¿Qué diferencia hay entre una pérgola bioclimática y una pérgola de lona?
 
-La pérgola bioclimática tiene lamas de aluminio orientables motorizadas que permiten regular la luz y proteger de la lluvia. La pérgola de lona tiene un tejido fijo o retráctil que da sombra pero no protege de la lluvia ni permite regulación precisa. En el clima de la Vega Baja, la bioclimática es significativamente superior. Consulta nuestra [comparativa completa](/optimtoldos/blog/pergola-bioclimatica-vs-toldo) para más detalles.
+La pérgola bioclimática tiene lamas de aluminio orientables motorizadas que permiten regular la luz y proteger de la lluvia. La pérgola de lona tiene un tejido fijo o retráctil que da sombra pero no protege de la lluvia ni permite regulación precisa. En el clima de la Vega Baja, la bioclimática es significativamente superior. Consulta nuestra [comparativa completa](/blog/pergola-bioclimatica-vs-toldo) para más detalles.
 
 ### ¿Merece la pena invertir en materiales con tratamiento marino si vivo a 3 km de la costa?
 
@@ -230,4 +230,4 @@ Cada vivienda en la Vega Baja tiene necesidades diferentes: orientación, exposi
 
 En Optim Toldos realizamos visitas gratuitas en toda la Vega Baja. Tomamos medidas, evaluamos las condiciones específicas de tu vivienda (orientación, viento, exposición salina) y te presentamos un presupuesto detallado en 48 horas.
 
-**[Solicita tu presupuesto gratuito y sin compromiso](/optimtoldos/presupuesto)** — trabajamos con los mejores materiales adaptados al exigente clima de la Vega Baja del Segura.
+**[Solicita tu presupuesto gratuito y sin compromiso](/presupuesto)** — trabajamos con los mejores materiales adaptados al exigente clima de la Vega Baja del Segura.

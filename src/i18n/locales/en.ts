@@ -358,8 +358,8 @@ export default {
   'quote.form.measurements_placeholder': 'e.g. 4m x 3m',
   'quote.form.description_label': 'Project description',
   'quote.form.description_placeholder': 'Tell us the details of your project...',
-  'quote.form.photos_label': 'Upload photos (optional)',
-  'quote.form.photos_placeholder': 'Drag photos here or click to select',
+  'quote.form.photos_label': 'Photos (optional)',
+  'quote.form.photos_email_note': 'Please email photos to info@optimtoldos.com after submitting this form and we’ll attach them to your request.',
   'quote.form.submit': 'Request a Quote',
   'quote.form.call_prefix': 'Prefer to call? Contact us on',
 
@@ -486,6 +486,9 @@ export default {
   // -- Forms: privacy consent --
   'forms.privacy_consent': 'I have read and accept the Privacy Policy and consent to the processing of my data to handle this enquiry.',
   'forms.privacy_consent_link': 'Privacy Policy',
+  'forms.status.sending': 'Sending…',
+  'forms.status.success': 'Thanks — we’ve received your message and will get back to you shortly.',
+  'forms.status.error': 'We couldn’t send your message. Please try again or email info@optimtoldos.com.',
 
   // -- Cookie banner --
   'cookie_banner.message': 'We use essential cookies for the site to function. With your consent, we may also use analytics cookies in the future to improve the experience.',

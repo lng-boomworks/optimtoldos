@@ -3,21 +3,37 @@ import { Navbar } from "../Navbar";
 import { Footer } from "../Footer";
 import { FadeIn } from "../FadeIn";
 import { AnimatedHeading } from "../AnimatedHeading";
-import { Button } from "../Button";
 import { t, type Locale } from "../../i18n/index";
 import { slugMap } from "../../i18n/slugs";
 import { url, localizedUrl } from "../../utils/paths";
 import { hasConsent } from "../../utils/consent";
+import { submitForm } from "../../utils/submitForm";
+
+type FormStatus = "idle" | "sending" | "success" | "error";
 
 const inputClasses =
   "w-full bg-sand border border-border rounded-xl px-4 py-3 text-text-body focus:ring-2 focus:ring-terracotta/30 focus:border-terracotta outline-none transition-colors";
 
 export function ContactoPage({ locale = 'es' }: { locale?: Locale }) {
   const [mapAllowed, setMapAllowed] = useState(false);
+  const [status, setStatus] = useState<FormStatus>("idle");
 
   useEffect(() => {
     if (hasConsent()) setMapAllowed(true);
   }, []);
+
+  async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+    const form = e.currentTarget;
+    setStatus("sending");
+    const ok = await submitForm(form);
+    if (ok) {
+      setStatus("success");
+      form.reset();
+    } else {
+      setStatus("error");
+    }
+  }
 
   const productOptions = [
     t(locale, 'quote.form.product_option.1'),
@@ -108,14 +124,29 @@ export function ContactoPage({ locale = 'es' }: { locale?: Locale }) {
                 <FadeIn>
                   <form
                     className="space-y-5"
-                    onSubmit={(e) => e.preventDefault()}
+                    onSubmit={handleSubmit}
                   >
+                    <input
+                      type="hidden"
+                      name="subject"
+                      value={locale === 'en' ? 'New contact from optimtoldos.com' : 'Nuevo contacto desde optimtoldos.com'}
+                    />
+                    <input
+                      type="text"
+                      name="botcheck"
+                      tabIndex={-1}
+                      autoComplete="off"
+                      aria-hidden="true"
+                      style={{ position: 'absolute', left: '-9999px', width: '1px', height: '1px' }}
+                    />
                     <div>
                       <label className="block text-sm font-medium text-text-body mb-2">
                         {t(locale, 'contact.form.name_label')}
                       </label>
                       <input
                         type="text"
+                        name="name"
+                        required
                         placeholder={t(locale, 'contact.form.name_placeholder')}
                         className={inputClasses}
                       />
@@ -126,6 +157,8 @@ export function ContactoPage({ locale = 'es' }: { locale?: Locale }) {
                       </label>
                       <input
                         type="email"
+                        name="email"
+                        required
                         placeholder={t(locale, 'contact.form.email_placeholder')}
                         className={inputClasses}
                       />
@@ -136,6 +169,7 @@ export function ContactoPage({ locale = 'es' }: { locale?: Locale }) {
                       </label>
                       <input
                         type="tel"
+                        name="phone"
                         placeholder={t(locale, 'contact.form.phone_placeholder')}
                         className={inputClasses}
                       />
@@ -144,7 +178,7 @@ export function ContactoPage({ locale = 'es' }: { locale?: Locale }) {
                       <label className="block text-sm font-medium text-text-body mb-2">
                         {t(locale, 'contact.form.product_label')}
                       </label>
-                      <select className={inputClasses}>
+                      <select name="product" className={inputClasses}>
                         <option value="">{t(locale, 'contact.form.product_placeholder')}</option>
                         {productOptions.map((opt) => (
                           <option key={opt} value={opt}>
@@ -159,12 +193,14 @@ export function ContactoPage({ locale = 'es' }: { locale?: Locale }) {
                       </label>
                       <textarea
                         rows={4}
+                        name="message"
+                        required
                         placeholder={t(locale, 'contact.form.message_placeholder')}
                         className={inputClasses}
                       />
                     </div>
                     <label className="flex items-start gap-2 text-sm text-text-muted cursor-pointer">
-                      <input type="checkbox" required className="mt-1 accent-terracotta shrink-0" />
+                      <input type="checkbox" name="privacy_consent" required className="mt-1 accent-terracotta shrink-0" />
                       <span>
                         {t(locale, 'forms.privacy_consent').replace(t(locale, 'forms.privacy_consent_link'), '').trim()}{' '}
                         <a
@@ -178,9 +214,23 @@ export function ContactoPage({ locale = 'es' }: { locale?: Locale }) {
                         <span className="text-red-500 ml-1">*</span>
                       </span>
                     </label>
-                    <Button variant="primary" href="#">
-                      {t(locale, 'contact.form.submit')}
-                    </Button>
+                    <button
+                      type="submit"
+                      disabled={status === 'sending'}
+                      className="bg-terracotta hover:bg-terracotta-dark text-white font-medium rounded-xl px-6 py-3 transition-colors disabled:opacity-60 disabled:cursor-not-allowed"
+                    >
+                      {status === 'sending' ? t(locale, 'forms.status.sending') : t(locale, 'contact.form.submit')}
+                    </button>
+                    {status === 'success' && (
+                      <p className="text-sm text-green-700 bg-green-50 border border-green-200 rounded-xl px-4 py-3">
+                        {t(locale, 'forms.status.success')}
+                      </p>
+                    )}
+                    {status === 'error' && (
+                      <p className="text-sm text-red-700 bg-red-50 border border-red-200 rounded-xl px-4 py-3">
+                        {t(locale, 'forms.status.error')}
+                      </p>
+                    )}
                   </form>
                 </FadeIn>
 

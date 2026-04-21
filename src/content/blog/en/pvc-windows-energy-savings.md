@@ -100,7 +100,7 @@ With 5-chamber PVC windows and low-emissivity double glazing with argon:
 | Cumulative savings over 20 years | 9,240 euros |
 | Increase in property value | 5 %–8 % (3,500–8,000 euros for an average flat) |
 
-If you add in the increase in property value (PVC windows improve your energy performance certificate, which translates into a higher sale price), the investment is clearly worthwhile. If you also have a terrace, you can further improve insulation by [enclosing it with glass curtains](/optimtoldos/en/blog/en/glass-curtain-terrace-enclosure).
+If you add in the increase in property value (PVC windows improve your energy performance certificate, which translates into a higher sale price), the investment is clearly worthwhile. If you also have a terrace, you can further improve insulation by [enclosing it with glass curtains](/en/blog/en/glass-curtain-terrace-enclosure).
 
 ## Why is PVC especially beneficial in Alicante's climate?
 
@@ -193,11 +193,11 @@ To make the best choice for your Alicante home, consider these factors:
 1. **Profile with at least 5 chambers** and a Uf below 1.3 W/m²K
 2. **Double glazing with low-E glass and argon** as a minimum
 3. **Quality hardware** (from a reputable brand such as Roto, Siegenia or Winkhaus)
-4. **Opening system** suited to the space: tilt-and-turn for bedrooms, lift-and-slide for terraces (if you are looking to enclose a terrace, also consider [glass curtains](/optimtoldos/en/glass-curtains))
+4. **Opening system** suited to the space: tilt-and-turn for bedrooms, lift-and-slide for terraces (if you are looking to enclose a terrace, also consider [glass curtains](/en/glass-curtains))
 5. **Profile colour** that harmonises with the facade: woodgrain foil is the most popular choice in Alicante
 6. **Integrated roller shutter** with an insulated box if you also need to replace the shutter
 
-At [Optim Toldos](/optimtoldos/en/pvc-windows) we work with the leading European PVC profile manufacturers and advise you on the optimal configuration for your home based on orientation, location and budget.
+At [Optim Toldos](/en/pvc-windows) we work with the leading European PVC profile manufacturers and advise you on the optimal configuration for your home based on orientation, location and budget.
 
 ## Summary: the key figures
 
@@ -211,4 +211,4 @@ At [Optim Toldos](/optimtoldos/en/pvc-windows) we work with the leading European
 | Maintenance required | Clean with water and mild soap |
 | Grants available | Up to 40 % of cost |
 
-If you want to know exactly how much you could save in your home, [request a no-obligation quote](/optimtoldos/en/free-quote). We carry out a free site visit to measure up, assess the orientation and the needs of each room, and propose the most efficient solution for your specific case.
+If you want to know exactly how much you could save in your home, [request a no-obligation quote](/en/free-quote). We carry out a free site visit to measure up, assess the orientation and the needs of each room, and propose the most efficient solution for your specific case.

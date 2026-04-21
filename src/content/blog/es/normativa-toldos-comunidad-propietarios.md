@@ -63,7 +63,7 @@ Obtén un presupuesto detallado que incluya:
 - Sistema de anclaje (cómo se fija a la fachada)
 - Fotografía o render del resultado
 
-En [Optim Toldos](/optimtoldos/toldos) te preparamos presupuestos con toda la documentación necesaria para presentar a tu comunidad, incluyendo fichas técnicas y simulaciones visuales.
+En [Optim Toldos](/toldos) te preparamos presupuestos con toda la documentación necesaria para presentar a tu comunidad, incluyendo fichas técnicas y simulaciones visuales.
 
 ### Paso 3: Presenta la solicitud al administrador
 
@@ -145,7 +145,7 @@ En edificios situados en primera línea de playa (Playa de San Juan, Postiguet, 
 
 ### Plantas bajas con terraza o jardín
 
-Los propietarios de plantas bajas tienen una situación particular. Si la terraza o jardín es de uso privativo (no elemento común), las restricciones son menores, pero el anclaje a la fachada sigue necesitando aprobación. Una alternativa son los toldos autoportantes o las [velas de sombra](/optimtoldos/velas-de-sombra), que no requieren anclaje a la fachada.
+Los propietarios de plantas bajas tienen una situación particular. Si la terraza o jardín es de uso privativo (no elemento común), las restricciones son menores, pero el anclaje a la fachada sigue necesitando aprobación. Una alternativa son los toldos autoportantes o las [velas de sombra](/velas-de-sombra), que no requieren anclaje a la fachada.
 
 ### Locales comerciales
 
@@ -167,7 +167,7 @@ En Alicante existen aproximadamente 180 edificios con algún grado de protecció
 
 ### Áticos y últimas plantas
 
-Los propietarios de áticos que quieran instalar toldos en terrazas superiores deben tener en cuenta que la cubierta del edificio es siempre elemento común. La instalación de pérgolas o estructuras fijas en la azotea requiere unanimidad según el artículo 17.6 de la LPH. Una [pérgola bioclimática](/optimtoldos/pergolas) puede ser una alternativa si se instala como elemento desmontable.
+Los propietarios de áticos que quieran instalar toldos en terrazas superiores deben tener en cuenta que la cubierta del edificio es siempre elemento común. La instalación de pérgolas o estructuras fijas en la azotea requiere unanimidad según el artículo 17.6 de la LPH. Una [pérgola bioclimática](/pergolas) puede ser una alternativa si se instala como elemento desmontable.
 
 ## Consejos para conseguir la aprobación de tu comunidad
 
@@ -193,7 +193,7 @@ Técnicamente no debes hacerlo. Si lo haces, la comunidad puede exigir su retira
 
 ### ¿Cuánto cuesta el proceso de aprobación?
 
-El proceso en sí no tiene coste. Solo necesitas presentar la documentación. El presupuesto del toldo y la ficha técnica son los documentos principales, y en Optim Toldos los proporcionamos gratuitamente. [Solicita tu presupuesto aquí](/optimtoldos/presupuesto).
+El proceso en sí no tiene coste. Solo necesitas presentar la documentación. El presupuesto del toldo y la ficha técnica son los documentos principales, y en Optim Toldos los proporcionamos gratuitamente. [Solicita tu presupuesto aquí](/presupuesto).
 
 ### ¿Cuánto tarda el proceso completo?
 
@@ -221,6 +221,6 @@ No, el tipo de accionamiento (manual o motorizado) no afecta a la necesidad de a
 | Local comercial | Licencia municipal | Declaración responsable |
 | Edificio protegido | Sí + informe Cultura | Unanimidad en algunos casos |
 
-En Alicante, con temperaturas que superan los 35 grados en verano y una radiación solar entre las más altas de Europa, la instalación de toldos es prácticamente una necesidad (consulta nuestra [guía completa para elegir toldos en Alicante](/optimtoldos/blog/guia-toldos-alicante)). Las comunidades lo entienden, y el proceso de aprobación, aunque requiere paciencia, es en la inmensa mayoría de los casos favorable.
+En Alicante, con temperaturas que superan los 35 grados en verano y una radiación solar entre las más altas de Europa, la instalación de toldos es prácticamente una necesidad (consulta nuestra [guía completa para elegir toldos en Alicante](/blog/guia-toldos-alicante)). Las comunidades lo entienden, y el proceso de aprobación, aunque requiere paciencia, es en la inmensa mayoría de los casos favorable.
 
-Si necesitas asesoramiento para elegir el toldo adecuado o preparar la documentación para tu comunidad, [consulta nuestro catálogo de toldos](/optimtoldos/toldos) o [contacta con nosotros](/optimtoldos/contacto) para una visita sin compromiso. Llevamos años ayudando a vecinos de Alicante a navegar este proceso con éxito.
+Si necesitas asesoramiento para elegir el toldo adecuado o preparar la documentación para tu comunidad, [consulta nuestro catálogo de toldos](/toldos) o [contacta con nosotros](/contacto) para una visita sin compromiso. Llevamos años ayudando a vecinos de Alicante a navegar este proceso con éxito.

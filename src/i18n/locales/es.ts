@@ -358,8 +358,8 @@ export default {
   'quote.form.measurements_placeholder': 'Ej: 4m x 3m',
   'quote.form.description_label': 'Descripción del proyecto',
   'quote.form.description_placeholder': 'Cuéntanos los detalles de tu proyecto...',
-  'quote.form.photos_label': 'Subir fotos (opcional)',
-  'quote.form.photos_placeholder': 'Arrastra fotos aquí o haz clic para seleccionar',
+  'quote.form.photos_label': 'Fotos (opcional)',
+  'quote.form.photos_email_note': 'Envía las fotos por email a info@optimtoldos.com tras enviar este formulario y las añadiremos a tu solicitud.',
   'quote.form.submit': 'Solicitar Presupuesto',
   'quote.form.call_prefix': '¿Prefieres llamar? Contacta con nosotros al',
 
@@ -486,6 +486,9 @@ export default {
   // -- Forms: privacy consent --
   'forms.privacy_consent': 'He leído y acepto la Política de Privacidad y consiento el tratamiento de mis datos para atender esta solicitud.',
   'forms.privacy_consent_link': 'Política de Privacidad',
+  'forms.status.sending': 'Enviando…',
+  'forms.status.success': '¡Gracias! Hemos recibido tu mensaje y te responderemos en breve.',
+  'forms.status.error': 'No se pudo enviar el mensaje. Inténtalo de nuevo o escríbenos a info@optimtoldos.com.',
 
   // -- Cookie banner --
   'cookie_banner.message': 'Utilizamos cookies esenciales para el funcionamiento del sitio. Con tu consentimiento, también podríamos usar cookies de análisis en el futuro para mejorar la experiencia.',

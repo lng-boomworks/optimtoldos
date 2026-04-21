@@ -4,8 +4,7 @@ import tailwindcss from '@tailwindcss/vite';
 import sitemap from '@astrojs/sitemap';
 
 export default defineConfig({
-  site: 'https://lng-boomworks.github.io',
-  base: '/optimtoldos',
+  site: 'https://optimtoldos.com',
   i18n: {
     defaultLocale: 'es',
     locales: ['es', 'en'],
