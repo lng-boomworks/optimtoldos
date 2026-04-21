@@ -21,7 +21,6 @@ export function Navbar({ locale = 'es' }: NavbarProps) {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   const navLinks = [
-    { name: t(locale, 'nav.home'), path: navPath('home', locale) },
     { name: t(locale, 'nav.awnings'), path: navPath('awnings', locale) },
     { name: t(locale, 'nav.pergolas'), path: navPath('pergolas', locale) },
     { name: t(locale, 'nav.curtains'), path: navPath('glass-curtains', locale) },
