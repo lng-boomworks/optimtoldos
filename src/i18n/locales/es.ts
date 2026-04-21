@@ -386,6 +386,8 @@ export default {
   'contact.info.hours_label': 'Horario',
   'contact.info.hours_value': 'Lunes a Viernes: 9:00 - 19:00\nSábados: 10:00 - 14:00',
   'contact.info.map_placeholder': 'Mapa de ubicación',
+  'contact.info.map_consent_notice': 'Al cargar el mapa, Google puede instalar cookies en tu dispositivo.',
+  'contact.info.map_load_button': 'Cargar mapa',
 
   // -- Gallery Page --
   'gallery.hero.heading': 'Galería de Proyectos',

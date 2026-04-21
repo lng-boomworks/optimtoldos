@@ -54,6 +54,12 @@ const articleSchema = {
   }
 };
 
+const variantBase = image?.replace(/\.(jpe?g|png|webp)$/i, '');
+const heroSrc = variantBase ? url(`${variantBase}-1280.webp`) : undefined;
+const heroSrcset = variantBase
+  ? `${url(`${variantBase}-480.webp`)} 480w, ${url(`${variantBase}-768.webp`)} 768w, ${url(`${variantBase}-1280.webp`)} 1280w`
+  : undefined;
+
 const categoryLabels: Record<string, string> = locale === 'en' ? {
   guias: 'Guides',
   consejos: 'Tips',
@@ -82,20 +88,48 @@ const categoryLabels: Record<string, string> = locale === 'en' ? {
   <Navbar client:load locale={locale} />
   <div class="bg-white">
     <!-- Hero -->
-    <section class="bg-navy pt-32 pb-16">
-      <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-        <span class="inline-block font-mono tracking-[0.15em] text-gold text-xs uppercase mb-4">
-          {categoryLabels[category] || category}
-        </span>
-        <h1 class="font-serif text-3xl md:text-4xl lg:text-5xl text-white mb-4 leading-tight">
-          {title}
-        </h1>
-        <p class="text-white/60 text-sm">
-          {author} &middot; {new Date(date).toLocaleDateString(dateLocales[locale], { year: 'numeric', month: 'long', day: 'numeric' })}
-          {updated && <span> &middot; {locale === 'en' ? 'Updated' : 'Actualizado'} {new Date(updated).toLocaleDateString(dateLocales[locale], { year: 'numeric', month: 'long', day: 'numeric' })}</span>}
-        </p>
-      </div>
-    </section>
+    {heroSrc ? (
+      <section class="relative min-h-[85vh] flex items-center justify-center overflow-hidden">
+        <img
+          src={heroSrc}
+          srcset={heroSrcset}
+          sizes="100vw"
+          width="1920"
+          height="1080"
+          fetchpriority="high"
+          alt={title}
+          class="absolute inset-0 w-full h-full object-cover"
+        />
+        <div class="absolute inset-0 bg-black/55"></div>
+        <div class="relative z-10 max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center py-20">
+          <span class="inline-block font-mono tracking-[0.15em] text-gold text-xs uppercase mb-4">
+            {categoryLabels[category] || category}
+          </span>
+          <h1 class="font-serif text-3xl md:text-4xl lg:text-5xl text-white mb-4 leading-tight">
+            {title}
+          </h1>
+          <p class="text-white/70 text-sm">
+            {author} &middot; {new Date(date).toLocaleDateString(dateLocales[locale], { year: 'numeric', month: 'long', day: 'numeric' })}
+            {updated && <span> &middot; {locale === 'en' ? 'Updated' : 'Actualizado'} {new Date(updated).toLocaleDateString(dateLocales[locale], { year: 'numeric', month: 'long', day: 'numeric' })}</span>}
+          </p>
+        </div>
+      </section>
+    ) : (
+      <section class="bg-navy pt-32 pb-16">
+        <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <span class="inline-block font-mono tracking-[0.15em] text-gold text-xs uppercase mb-4">
+            {categoryLabels[category] || category}
+          </span>
+          <h1 class="font-serif text-3xl md:text-4xl lg:text-5xl text-white mb-4 leading-tight">
+            {title}
+          </h1>
+          <p class="text-white/60 text-sm">
+            {author} &middot; {new Date(date).toLocaleDateString(dateLocales[locale], { year: 'numeric', month: 'long', day: 'numeric' })}
+            {updated && <span> &middot; {locale === 'en' ? 'Updated' : 'Actualizado'} {new Date(updated).toLocaleDateString(dateLocales[locale], { year: 'numeric', month: 'long', day: 'numeric' })}</span>}
+          </p>
+        </div>
+      </section>
+    )}
 
     <!-- Content -->
     <article class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-20">

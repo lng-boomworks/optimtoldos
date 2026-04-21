@@ -73,15 +73,26 @@ export function GaleriaPage({ locale = 'es' }: { locale?: Locale }) {
       <main>
         <div className="flex flex-col bg-white">
           {/* Hero */}
-          <section className="bg-navy pt-32 pb-20">
-            <div className="max-w-4xl mx-auto px-4 text-center">
+          <section className="relative min-h-[85vh] flex items-center justify-center overflow-hidden">
+            <img
+              src={url("/images/pergolas/pergola-restaurante-1280.webp")}
+              srcSet={`${url("/images/pergolas/pergola-restaurante-480.webp")} 480w, ${url("/images/pergolas/pergola-restaurante-768.webp")} 768w, ${url("/images/pergolas/pergola-restaurante-1280.webp")} 1280w, ${url("/images/pergolas/pergola-restaurante.webp")} 1920w`}
+              sizes="100vw"
+              width="1920"
+              height="1440"
+              fetchPriority="high"
+              alt={locale === 'en' ? 'Bioclimatic restaurant pergola at night' : 'Pérgola bioclimática de restaurante de noche'}
+              className="absolute inset-0 w-full h-full object-cover"
+            />
+            <div className="absolute inset-0 bg-black/40" />
+            <div className="relative z-10 max-w-4xl mx-auto px-4 text-center py-20">
               <AnimatedHeading
                 text={t(locale, 'gallery.hero.heading')}
                 tag="h1"
                 className="text-white mb-6"
               />
               <FadeIn delay={0.2}>
-                <p className="text-lg text-white/70 max-w-2xl mx-auto">
+                <p className="text-lg md:text-xl text-white/80 max-w-2xl mx-auto">
                   {t(locale, 'gallery.hero.description')}
                 </p>
               </FadeIn>

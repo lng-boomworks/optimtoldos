@@ -50,10 +50,21 @@ const collectionSchema = buildCollectionPageSchema({
 
   <main>
     <!-- Hero -->
-    <section class="bg-navy pt-32 pb-20">
-      <div class="max-w-4xl mx-auto px-4 text-center">
+    <section class="relative min-h-[85vh] flex items-center justify-center overflow-hidden">
+      <img
+        src={url("/images/pergolas/pergola-bioclimatica-adosada-1280.webp")}
+        srcset={`${url("/images/pergolas/pergola-bioclimatica-adosada-480.webp")} 480w, ${url("/images/pergolas/pergola-bioclimatica-adosada-768.webp")} 768w, ${url("/images/pergolas/pergola-bioclimatica-adosada-1280.webp")} 1280w, ${url("/images/pergolas/pergola-bioclimatica-adosada.webp")} 1920w`}
+        sizes="100vw"
+        width="1920"
+        height="1281"
+        fetchpriority="high"
+        alt="Pérgola bioclimática adosada en vivienda"
+        class="absolute inset-0 w-full h-full object-cover"
+      />
+      <div class="absolute inset-0 bg-black/40"></div>
+      <div class="relative z-10 max-w-4xl mx-auto px-4 text-center py-20">
         <h1 class="font-serif text-4xl md:text-5xl text-white mb-6">Blog</h1>
-        <p class="text-lg text-white/70 max-w-2xl mx-auto">
+        <p class="text-lg md:text-xl text-white/80 max-w-2xl mx-auto">
           Guías, consejos y novedades sobre protección solar y vida exterior en Alicante
         </p>
       </div>

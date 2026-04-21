@@ -40,7 +40,7 @@ export function VentanasPage({ locale = 'es' }: { locale?: Locale }) {
       <main>
         <div className="flex flex-col bg-white">
           {/* Hero */}
-          <section className="relative min-h-[60vh] flex items-center justify-center overflow-hidden">
+          <section className="relative min-h-[85vh] flex items-center justify-center overflow-hidden">
             <img
               src={url("/images/gallery/hero-ventanas-1280.webp")}
               srcSet={`${url("/images/gallery/hero-ventanas-480.webp")} 480w, ${url("/images/gallery/hero-ventanas-768.webp")} 768w, ${url("/images/gallery/hero-ventanas-1280.webp")} 1280w, ${url("/images/gallery/hero-ventanas.webp")} 1920w`}

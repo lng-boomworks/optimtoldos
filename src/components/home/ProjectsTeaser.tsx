@@ -1,7 +1,7 @@
 import { AnimatedHeading } from "../AnimatedHeading";
 import { FadeIn } from "../FadeIn";
 import { Button } from "../Button";
-import { localizedUrl } from "../../utils/paths";
+import { url, localizedUrl } from "../../utils/paths";
 import { t, type Locale } from "../../i18n/index";
 import { slugMap } from "../../i18n/slugs";
 
@@ -13,15 +13,15 @@ export function ProjectsTeaser({ locale = 'es' }: ProjectsTeaserProps) {
   const projects = [
     {
       title: t(locale, 'home.projects.1.title'),
-      gradient: "from-terracotta/15 via-gold/10 to-sand",
+      image: "/images/pergolas/pergola-bioclimatica.webp",
     },
     {
       title: t(locale, 'home.projects.2.title'),
-      gradient: "from-navy/10 via-olive/10 to-sand-light",
+      image: "/images/cortinas/cortina-cristal-panoramica.webp",
     },
     {
       title: t(locale, 'home.projects.3.title'),
-      gradient: "from-olive/15 via-sand to-warm-white",
+      image: "/images/gallery/toldo-brazo-extensible.webp",
     },
   ];
 
@@ -35,11 +35,19 @@ export function ProjectsTeaser({ locale = 'es' }: ProjectsTeaserProps) {
         <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
           {projects.map((project, i) => (
             <FadeIn key={project.title} delay={i * 0.15} direction="up">
-              <div className="group rounded-2xl overflow-hidden">
-                <div
-                  className={`aspect-[4/3] bg-gradient-to-br ${project.gradient} transition-transform duration-500 group-hover:scale-[1.03]`}
-                />
-                <p className="text-sm text-muted mt-3">{project.title}</p>
+              <div className="group">
+                <div className="aspect-[4/3] overflow-hidden rounded-2xl">
+                  <img
+                    src={url(project.image)}
+                    alt={project.title}
+                    width="1200"
+                    height="900"
+                    loading="lazy"
+                    decoding="async"
+                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-[1.03]"
+                  />
+                </div>
+                <p className="text-sm text-muted mt-4 text-center">{project.title}</p>
               </div>
             </FadeIn>
           ))}

@@ -3,6 +3,7 @@ import Base from '../../layouts/Base.astro';
 import { Navbar } from '../../components/Navbar';
 import { Footer } from '../../components/Footer';
 import { getAlternateUrls } from '../../i18n/routes';
+import { url } from '../../utils/paths';
 
 const alternateUrls = getAlternateUrls('cookie-policy');
 
@@ -21,9 +22,25 @@ const breadcrumbs = [
 >
   <Navbar client:load locale="en" />
 
-  <main class="pt-32 pb-20">
-    <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
-      <h1 class="font-serif text-4xl md:text-5xl text-navy mb-4">Cookie Policy</h1>
+  <main>
+    <section class="relative min-h-[85vh] flex items-center justify-center overflow-hidden">
+      <img
+        src={url("/images/pergolas/pergola-lamas-1280.webp")}
+        srcset={`${url("/images/pergolas/pergola-lamas-480.webp")} 480w, ${url("/images/pergolas/pergola-lamas-768.webp")} 768w, ${url("/images/pergolas/pergola-lamas-1280.webp")} 1280w, ${url("/images/pergolas/pergola-lamas.webp")} 1920w`}
+        sizes="100vw"
+        width="1920"
+        height="1442"
+        fetchpriority="high"
+        alt="Bioclimatic pergola louvres"
+        class="absolute inset-0 w-full h-full object-cover"
+      />
+      <div class="absolute inset-0 bg-black/40"></div>
+      <div class="relative z-10 max-w-4xl mx-auto px-4 text-center py-20">
+        <h1 class="font-serif text-4xl md:text-5xl text-white">Cookie Policy</h1>
+      </div>
+    </section>
+
+    <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24">
       <p class="text-text-muted text-sm mb-10">Last updated: 17 April 2026</p>
 
       <div class="prose prose-lg max-w-none prose-headings:font-serif prose-headings:text-navy prose-a:text-terracotta">

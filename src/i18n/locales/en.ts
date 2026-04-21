@@ -386,6 +386,8 @@ export default {
   'contact.info.hours_label': 'Opening hours',
   'contact.info.hours_value': 'Monday to Friday: 9:00 - 19:00\nSaturdays: 10:00 - 14:00',
   'contact.info.map_placeholder': 'Location map',
+  'contact.info.map_consent_notice': 'Loading the map allows Google to set cookies on your device.',
+  'contact.info.map_load_button': 'Load map',
 
   // -- Gallery Page --
   'gallery.hero.heading': 'Project Gallery',

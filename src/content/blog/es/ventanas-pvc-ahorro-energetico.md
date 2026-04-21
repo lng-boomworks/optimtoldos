@@ -6,7 +6,7 @@ author: "Optim Toldos"
 tags: ["ventanas pvc", "ahorro energético", "eficiencia", "alicante"]
 category: "consejos"
 locale: "es"
-image: "/images/blog/ventanas-pvc-ahorro-energetico.jpg"
+image: "/images/ventanas/ventanas-cortizo.webp"
 translationOf: "en/pvc-windows-energy-savings"
 ---
 

@@ -4,7 +4,7 @@ import { FadeIn } from "../FadeIn";
 import { AnimatedHeading } from "../AnimatedHeading";
 import { t, type Locale } from "../../i18n/index";
 import { slugMap } from "../../i18n/slugs";
-import { localizedUrl } from "../../utils/paths";
+import { url, localizedUrl } from "../../utils/paths";
 
 const productOptionCount = 6;
 
@@ -22,15 +22,26 @@ export function PresupuestoPage({ locale = 'es' }: { locale?: Locale }) {
       <main>
         <div className="flex flex-col bg-white">
           {/* Hero */}
-          <section className="bg-terracotta pt-32 pb-20">
-            <div className="max-w-4xl mx-auto px-4 text-center">
+          <section className="relative min-h-[85vh] flex items-center justify-center overflow-hidden">
+            <img
+              src={url("/images/gallery/toldo-brazo-extensible-1280.webp")}
+              srcSet={`${url("/images/gallery/toldo-brazo-extensible-480.webp")} 480w, ${url("/images/gallery/toldo-brazo-extensible-768.webp")} 768w, ${url("/images/gallery/toldo-brazo-extensible-1280.webp")} 1280w, ${url("/images/gallery/toldo-brazo-extensible.webp")} 1920w`}
+              sizes="100vw"
+              width="1920"
+              height="1440"
+              fetchPriority="high"
+              alt={locale === 'en' ? 'Extending arm awning' : 'Toldo de brazo extensible'}
+              className="absolute inset-0 w-full h-full object-cover"
+            />
+            <div className="absolute inset-0 bg-black/40" />
+            <div className="relative z-10 max-w-4xl mx-auto px-4 text-center py-20">
               <AnimatedHeading
                 text={t(locale, 'quote.hero.heading')}
                 tag="h1"
                 className="text-white mb-6"
               />
               <FadeIn delay={0.2}>
-                <p className="text-lg text-white/80 max-w-2xl mx-auto">
+                <p className="text-lg md:text-xl text-white/80 max-w-2xl mx-auto">
                   {t(locale, 'quote.hero.description')}
                 </p>
               </FadeIn>
