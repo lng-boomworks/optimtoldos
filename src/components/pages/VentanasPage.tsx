@@ -9,9 +9,9 @@ import { url, localizedUrl } from "../../utils/paths";
 import { t, type Locale } from "../../i18n/index";
 
 const typeImages = [
-  "/images/ventanas/ventanas-cortizo.jpg",
-  "/images/ventanas/ventanas-aluplast.jpg",
-  "/images/ventanas/ventanas-cortizo2.jpg",
+  "/images/ventanas/ventanas-cortizo.webp",
+  "/images/ventanas/ventanas-aluplast.webp",
+  "/images/ventanas/ventanas-cortizo2.webp",
 ];
 
 const typeCount = 3;
@@ -41,7 +41,7 @@ export function VentanasPage({ locale = 'es' }: { locale?: Locale }) {
         <div className="flex flex-col bg-white">
           {/* Hero */}
           <section className="relative min-h-[60vh] flex items-center justify-center overflow-hidden">
-            <img src={url("/images/gallery/ventanas-pvc-hero.jpg")} alt="Ventanas de PVC de alta eficiencia" className="absolute inset-0 w-full h-full object-cover" />
+            <img src={url("/images/gallery/hero-ventanas.webp")} alt="Ventanas de PVC de alta eficiencia" className="absolute inset-0 w-full h-full object-cover" />
             <div className="absolute inset-0 bg-black/40" />
             <div className="relative z-10 max-w-4xl mx-auto px-4 text-center py-20">
               <FadeIn>

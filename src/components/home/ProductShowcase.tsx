@@ -14,31 +14,31 @@ export function ProductShowcase({ locale = 'es' }: ProductShowcaseProps) {
     {
       title: t(locale, 'home.products.1.title'),
       description: t(locale, 'home.products.1.description'),
-      image: url("/images/gallery/toldo-cofre-extensible.jpg"),
+      image: url("/images/gallery/toldo-cofre-extensible.webp"),
       href: localizedUrl(`/${slugMap.awnings[locale]}`, locale),
     },
     {
       title: t(locale, 'home.products.2.title'),
       description: t(locale, 'home.products.2.description'),
-      image: url("/images/pergolas/pergola-bioclimatica.jpg"),
+      image: url("/images/pergolas/pergola-bioclimatica.webp"),
       href: localizedUrl(`/${slugMap.pergolas[locale]}`, locale),
     },
     {
       title: t(locale, 'home.products.3.title'),
       description: t(locale, 'home.products.3.description'),
-      image: url("/images/cortinas/cortina-cristal-1.jpg"),
+      image: url("/images/cortinas/cortina-cristal-1.webp"),
       href: localizedUrl(`/${slugMap['glass-curtains'][locale]}`, locale),
     },
     {
       title: t(locale, 'home.products.4.title'),
       description: t(locale, 'home.products.4.description'),
-      image: url("/images/velas/vela-tensada.jpg"),
+      image: url("/images/velas/vela-tensada.webp"),
       href: localizedUrl(`/${slugMap['shade-sails'][locale]}`, locale),
     },
     {
       title: t(locale, 'home.products.5.title'),
       description: t(locale, 'home.products.5.description'),
-      image: url("/images/ventanas/ventanas-cortizo.jpg"),
+      image: url("/images/ventanas/ventanas-cortizo.webp"),
       href: localizedUrl(`/${slugMap['pvc-windows'][locale]}`, locale),
     },
   ];

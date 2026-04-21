@@ -3,7 +3,7 @@ title: "Toldos en el Área Metropolitana de Alicante: San Vicente, Mutxamel, El 
 description: "Guía de toldos para el área metropolitana de Alicante. Soluciones a medida para San Vicente del Raspeig, Mutxamel, El Campello, San Juan de Alicante y alrededores."
 date: "2026-03-28"
 author: "Optim Toldos"
-image: "/images/blog/toldos-area-metropolitana-alicante.jpg"
+image: "/images/blog/toldos-area-metropolitana-alicante.webp"
 tags: ["san-vicente-del-raspeig", "mutxamel", "campello", "san-juan", "toldos"]
 category: "guias"
 locale: "es"

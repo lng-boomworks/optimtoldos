@@ -3,7 +3,7 @@ title: "Protección Solar en la Vega Baja: Toldos y Pérgolas en Orihuela, Torre
 description: "Guía completa de soluciones de protección solar para la Vega Baja del Segura. Toldos, pérgolas bioclimáticas y velas de sombra en Orihuela, Torrevieja, Guardamar y alrededores."
 date: "2026-04-10"
 author: "Optim Toldos"
-image: "/images/blog/proteccion-solar-vega-baja.jpg"
+image: "/images/blog/proteccion-solar-vega-baja.webp"
 tags: ["vega-baja", "orihuela", "torrevieja", "guardamar", "toldos", "pergolas"]
 category: "guias"
 locale: "es"

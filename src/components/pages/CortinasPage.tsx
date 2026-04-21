@@ -9,10 +9,10 @@ import { url, localizedUrl } from "../../utils/paths";
 import { t, type Locale } from "../../i18n/index";
 
 const featureImages = [
-  "/images/cortinas/cortina-cristal-1.jpg",
-  "/images/cortinas/cortina-cristal-abatible.jpg",
-  "/images/cortinas/cortina-cristalera.jpg",
-  "/images/cortinas/cortina-cristal-2x.png",
+  "/images/cortinas/cortina-cristal-1.webp",
+  "/images/cortinas/cortina-cristal-abatible.webp",
+  "/images/cortinas/cortina-cristalera.webp",
+  "/images/cortinas/cortina-cristal-panoramica.webp",
 ];
 
 const featureCount = 4;
@@ -44,7 +44,7 @@ export function CortinasPage({ locale = 'es' }: { locale?: Locale }) {
         <div className="flex flex-col bg-white">
           {/* Hero */}
           <section className="relative min-h-[60vh] flex items-center justify-center overflow-hidden">
-            <img src={url("/images/cortinas/cortina-cristal-2024.jpg")} alt="Cortinas de cristal en terraza moderna" className="absolute inset-0 w-full h-full object-cover" />
+            <img src={url("/images/cortinas/hero-cortinas.webp")} alt="Cortinas de cristal en terraza moderna" className="absolute inset-0 w-full h-full object-cover" />
             <div className="absolute inset-0 bg-black/40" />
             <div className="relative z-10 max-w-4xl mx-auto px-4 text-center py-20">
               <FadeIn>

@@ -21,22 +21,22 @@ const categoryKeys: CategoryKey[] = [
 const projectCount = 16;
 
 const projectImages = [
-  "/images/gallery/toldo-cofre-extensible.jpg",
-  "/images/gallery/toldo-brazos-invisibles.jpg",
-  "/images/gallery/toldo-punto-recto.jpg",
-  "/images/gallery/toldo-monobloc.jpg",
-  "/images/gallery/toldo-ventana.jpg",
-  "/images/pergolas/pergola-bioclimatica.jpg",
-  "/images/pergolas/pergola-restaurante.png",
-  "/images/pergolas/pergola-costablanca.jpg",
-  "/images/cortinas/cortina-cristal-1.jpg",
-  "/images/cortinas/cortina-cristal-abatible.jpg",
-  "/images/cortinas/cortina-cristalera.jpg",
-  "/images/velas/vela-1.jpg",
-  "/images/velas/vela-rectangular.jpg",
-  "/images/velas/vela-freeform.jpg",
-  "/images/ventanas/ventanas-cortizo.jpg",
-  "/images/ventanas/ventanas-aluplast.jpg",
+  "/images/gallery/toldo-cofre-extensible.webp",
+  "/images/gallery/toldo-brazos-invisibles.webp",
+  "/images/gallery/toldo-punto-recto.webp",
+  "/images/gallery/toldo-monobloc.webp",
+  "/images/gallery/toldo-ventana.webp",
+  "/images/pergolas/pergola-bioclimatica.webp",
+  "/images/pergolas/pergola-restaurante.webp",
+  "/images/pergolas/pergola-lamas.webp",
+  "/images/cortinas/cortina-cristal-1.webp",
+  "/images/cortinas/cortina-cristal-abatible.webp",
+  "/images/cortinas/cortina-cristalera.webp",
+  "/images/velas/vela-1.webp",
+  "/images/velas/vela-rectangular.webp",
+  "/images/velas/vela-freeform.webp",
+  "/images/ventanas/ventanas-cortizo.webp",
+  "/images/ventanas/ventanas-aluplast.webp",
 ];
 
 const projectCategoryKeys: CategoryKey[] = [

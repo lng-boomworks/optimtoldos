@@ -14,7 +14,7 @@ export function HeroSection({ locale = 'es' }: HeroSectionProps) {
     <section className="relative min-h-[85vh] flex items-center overflow-hidden">
       {/* Background image */}
       <img
-        src={url("/images/gallery/hero-toldos-2025.jpg")}
+        src={url("/images/gallery/hero-home.webp")}
         alt="Toldo extensible en terraza soleada"
         className="absolute inset-0 w-full h-full object-cover"
       />

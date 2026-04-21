@@ -3,7 +3,7 @@ title: "Ventanas PVC en el Interior de Alicante: Alcoy, Elda, Novelda y Petrer"
 description: "Guía de ventanas de PVC para el interior de la provincia de Alicante. Aislamiento térmico y acústico en Alcoy, Elda, Petrer, Novelda e Ibi."
 date: "2026-03-20"
 author: "Optim Toldos"
-image: "/images/blog/ventanas-pvc-interior-alicante.jpg"
+image: "/images/blog/ventanas-pvc-interior-alicante.webp"
 tags: ["alcoy", "elda", "petrer", "novelda", "ventanas-pvc", "aislamiento"]
 category: "guias"
 locale: "es"

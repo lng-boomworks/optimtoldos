@@ -3,7 +3,7 @@ title: "Pérgolas Bioclimáticas en Benidorm, Altea, Calpe y la Costa Blanca Nor
 description: "Todo sobre pérgolas bioclimáticas en la Costa Blanca Norte. Guía para Benidorm, Altea, Calpe, Dénia y Jávea: materiales, precios y regulaciones locales."
 date: "2026-04-05"
 author: "Optim Toldos"
-image: "/images/blog/pergolas-costa-blanca-norte.jpg"
+image: "/images/blog/pergolas-costa-blanca-norte.webp"
 tags: ["benidorm", "altea", "calpe", "denia", "javea", "pergolas-bioclimaticas"]
 category: "guias"
 locale: "es"

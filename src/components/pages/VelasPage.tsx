@@ -9,9 +9,9 @@ import { url, localizedUrl } from "../../utils/paths";
 import { t, type Locale } from "../../i18n/index";
 
 const shapeImages = [
-  "/images/velas/vela-1.jpg",
-  "/images/velas/vela-rectangular.jpg",
-  "/images/velas/vela-freeform.jpg",
+  "/images/velas/vela-1.webp",
+  "/images/velas/vela-rectangular.webp",
+  "/images/velas/vela-freeform.webp",
 ];
 
 const shapeTypes = ["triangle", "square", "custom"] as const;
@@ -44,7 +44,7 @@ export function VelasPage({ locale = 'es' }: { locale?: Locale }) {
         <div className="flex flex-col bg-white">
           {/* Hero */}
           <section className="relative min-h-[60vh] flex items-center justify-center overflow-hidden">
-            <img src={url("/images/velas/vela-tensada.jpg")} alt="Vela de sombra tensada en jardín" className="absolute inset-0 w-full h-full object-cover" />
+            <img src={url("/images/velas/hero-velas.webp")} alt="Vela de sombra tensada en jardín" className="absolute inset-0 w-full h-full object-cover" />
             <div className="absolute inset-0 bg-black/40" />
             <div className="relative z-10 max-w-4xl mx-auto px-4 text-center py-20">
               <FadeIn>
