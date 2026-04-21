@@ -4,6 +4,7 @@ import { url } from '../utils/paths';
 import type { Locale } from '../i18n/index';
 import { ogLocales } from '../i18n/index';
 import { WhatsAppButton } from '../components/WhatsAppButton';
+import { CookieBanner } from '../components/CookieBanner';
 
 interface Breadcrumb {
   name: string;
@@ -174,5 +175,6 @@ const ogImageURL = new URL(ogImage, Astro.site);
   <body class="min-h-screen flex flex-col bg-background text-foreground">
     <slot />
     <WhatsAppButton client:load locale={locale} />
+    <CookieBanner client:load locale={locale} />
   </body>
 </html>

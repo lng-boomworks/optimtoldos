@@ -465,4 +465,29 @@ export default {
   'cities.javea': 'Jávea',
   'cities.altea': 'Altea',
   'cities.calpe': 'Calpe',
+
+  // -- Legal / Footer --
+  'footer.legal_heading': 'Legal',
+  'footer.legal_notice': 'Legal Notice',
+  'footer.privacy': 'Privacy Policy',
+  'footer.cookies': 'Cookie Policy',
+
+  // -- Legal pages (meta) --
+  'legal.notice.title': 'Legal Notice',
+  'legal.notice.description': 'Legal information about Optim Toldos, the website operator, business details and terms of use.',
+  'legal.privacy.title': 'Privacy Policy',
+  'legal.privacy.description': 'How Optim Toldos collects, uses and protects the personal data you provide through this website.',
+  'legal.cookies.title': 'Cookie Policy',
+  'legal.cookies.description': 'Information about the cookies used on this website, their purpose and how to manage them.',
+  'legal.last_updated': 'Last updated',
+
+  // -- Forms: privacy consent --
+  'forms.privacy_consent': 'I have read and accept the Privacy Policy and consent to the processing of my data to handle this enquiry.',
+  'forms.privacy_consent_link': 'Privacy Policy',
+
+  // -- Cookie banner --
+  'cookie_banner.message': 'We use essential cookies for the site to function. With your consent, we may also use analytics cookies in the future to improve the experience.',
+  'cookie_banner.accept': 'Accept all',
+  'cookie_banner.reject': 'Essential only',
+  'cookie_banner.learn_more': 'Learn more',
 } as const;

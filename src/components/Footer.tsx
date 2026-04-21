@@ -28,6 +28,12 @@ export function Footer({ locale = 'es' }: FooterProps) {
     { name: t(locale, 'footer.quote'), path: footerPath('quote', locale) },
   ];
 
+  const legalLinks = [
+    { name: t(locale, 'footer.legal_notice'), path: footerPath('legal-notice', locale) },
+    { name: t(locale, 'footer.privacy'), path: footerPath('privacy-policy', locale) },
+    { name: t(locale, 'footer.cookies'), path: footerPath('cookie-policy', locale) },
+  ];
+
   return (
     <footer className="bg-white border-t border-border">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14">
@@ -103,13 +109,26 @@ export function Footer({ locale = 'es' }: FooterProps) {
         </div>
 
         {/* Bottom bar */}
-        <div className="mt-10 pt-6 border-t border-border flex flex-col sm:flex-row justify-between items-center gap-3">
-          <p className="text-text-muted text-sm">
-            &copy; 2026 OptimToldos. {t(locale, 'footer.copyright')}
-          </p>
-          <p className="text-text-muted/60 text-xs">
-            {t(locale, 'footer.region')}
-          </p>
+        <div className="mt-10 pt-6 border-t border-border flex flex-col gap-4">
+          <nav aria-label={t(locale, 'footer.legal_heading')} className="flex flex-wrap justify-center sm:justify-start gap-x-6 gap-y-2">
+            {legalLinks.map((link) => (
+              <a
+                key={link.path}
+                href={link.path}
+                className="text-text-muted text-sm hover:text-terracotta transition-colors"
+              >
+                {link.name}
+              </a>
+            ))}
+          </nav>
+          <div className="flex flex-col sm:flex-row justify-between items-center gap-3">
+            <p className="text-text-muted text-sm">
+              &copy; 2026 OptimToldos. {t(locale, 'footer.copyright')}
+            </p>
+            <p className="text-text-muted/60 text-xs">
+              {t(locale, 'footer.region')}
+            </p>
+          </div>
         </div>
       </div>
     </footer>

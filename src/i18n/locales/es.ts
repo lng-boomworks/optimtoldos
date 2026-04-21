@@ -465,4 +465,29 @@ export default {
   'cities.javea': 'Jávea',
   'cities.altea': 'Altea',
   'cities.calpe': 'Calpe',
+
+  // -- Legal / Footer --
+  'footer.legal_heading': 'Legal',
+  'footer.legal_notice': 'Aviso Legal',
+  'footer.privacy': 'Política de Privacidad',
+  'footer.cookies': 'Política de Cookies',
+
+  // -- Legal pages (meta) --
+  'legal.notice.title': 'Aviso Legal',
+  'legal.notice.description': 'Información legal sobre Optim Toldos, titular del sitio web, datos identificativos y condiciones de uso.',
+  'legal.privacy.title': 'Política de Privacidad',
+  'legal.privacy.description': 'Cómo Optim Toldos recopila, utiliza y protege los datos personales que nos facilitas a través del sitio web.',
+  'legal.cookies.title': 'Política de Cookies',
+  'legal.cookies.description': 'Información sobre las cookies que utiliza este sitio web, su finalidad y cómo gestionarlas.',
+  'legal.last_updated': 'Última actualización',
+
+  // -- Forms: privacy consent --
+  'forms.privacy_consent': 'He leído y acepto la Política de Privacidad y consiento el tratamiento de mis datos para atender esta solicitud.',
+  'forms.privacy_consent_link': 'Política de Privacidad',
+
+  // -- Cookie banner --
+  'cookie_banner.message': 'Utilizamos cookies esenciales para el funcionamiento del sitio. Con tu consentimiento, también podríamos usar cookies de análisis en el futuro para mejorar la experiencia.',
+  'cookie_banner.accept': 'Aceptar todas',
+  'cookie_banner.reject': 'Solo esenciales',
+  'cookie_banner.learn_more': 'Más información',
 } as const;

@@ -1,0 +1,77 @@
+---
+import Base from '../../layouts/Base.astro';
+import { Navbar } from '../../components/Navbar';
+import { Footer } from '../../components/Footer';
+import { getAlternateUrls } from '../../i18n/routes';
+
+const alternateUrls = getAlternateUrls('legal-notice');
+
+const breadcrumbs = [
+  { name: "Home", url: "https://optimtoldos.com/en/" },
+  { name: "Legal Notice", url: "https://optimtoldos.com/en/legal-notice" },
+];
+---
+
+<Base
+  title="Legal Notice | Optim Toldos"
+  description="Legal information about Optim Toldos, the website operator, business details and terms of use."
+  breadcrumbs={breadcrumbs}
+  locale="en"
+  alternateUrls={alternateUrls}
+>
+  <Navbar client:load locale="en" />
+
+  <main class="pt-32 pb-20">
+    <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h1 class="font-serif text-4xl md:text-5xl text-navy mb-4">Legal Notice</h1>
+      <p class="text-text-muted text-sm mb-10">Last updated: 17 April 2026</p>
+
+      <div class="prose prose-lg max-w-none prose-headings:font-serif prose-headings:text-navy prose-a:text-terracotta">
+        <h2>1. Website operator details</h2>
+        <p>
+          In compliance with article 10 of Spanish Law 34/2002, of 11 July, on Information Society Services and Electronic Commerce (LSSICE), the following information is provided:
+        </p>
+        <ul>
+          <li>Business name: Optim Toldos [EDIT: exact legal name]</li>
+          <li>Tax ID (NIF/CIF): [EDIT: insert NIF/CIF]</li>
+          <li>Registered address: [EDIT: full address], Elche, Alicante 03200, Spain</li>
+          <li>Phone: +34 603 572 348</li>
+          <li>Email: info@optimtoldos.com</li>
+          <li>Commercial registry details: [EDIT: if applicable, Mercantile Registry details]</li>
+        </ul>
+
+        <h2>2. Purpose</h2>
+        <p>
+          This Legal Notice governs the use of the website <a href="https://optimtoldos.com">https://optimtoldos.com</a> (hereinafter, "the Website"), owned by Optim Toldos.
+        </p>
+
+        <h2>3. Terms of use</h2>
+        <p>
+          Access to the Website is free of charge. The User agrees to make appropriate use of the content and services offered, and not to use them for unlawful activities, activities contrary to good faith, to public order, or that may harm the rights of third parties.
+        </p>
+
+        <h2>4. Intellectual and industrial property</h2>
+        <p>
+          All content on the Website (texts, photographs, graphics, images, icons, design, logos, trademarks) is owned by Optim Toldos or by licensed third parties and is protected by Spanish and EU intellectual and industrial property law. Total or partial reproduction without express authorisation is prohibited.
+        </p>
+
+        <h2>5. Disclaimer of liability</h2>
+        <p>
+          Optim Toldos is not responsible for any damages or losses arising from access to, use of, or misuse of the content of the Website, nor for the temporary unavailability of the Website due to technical or maintenance reasons.
+        </p>
+
+        <h2>6. Third-party links</h2>
+        <p>
+          The Website may contain links to third-party sites. Optim Toldos assumes no responsibility for the content or privacy policies of these external sites.
+        </p>
+
+        <h2>7. Applicable law and jurisdiction</h2>
+        <p>
+          This Legal Notice is governed by Spanish law. For the resolution of any dispute, the parties submit to the Courts and Tribunals of Alicante, expressly waiving any other jurisdiction that may correspond to them.
+        </p>
+      </div>
+    </div>
+  </main>
+
+  <Footer client:load locale="en" />
+</Base>

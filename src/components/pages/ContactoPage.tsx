@@ -4,6 +4,8 @@ import { FadeIn } from "../FadeIn";
 import { AnimatedHeading } from "../AnimatedHeading";
 import { Button } from "../Button";
 import { t, type Locale } from "../../i18n/index";
+import { slugMap } from "../../i18n/slugs";
+import { localizedUrl } from "../../utils/paths";
 
 const inputClasses =
   "w-full bg-sand border border-border rounded-xl px-4 py-3 text-text-body focus:ring-2 focus:ring-terracotta/30 focus:border-terracotta outline-none transition-colors";
@@ -142,6 +144,21 @@ export function ContactoPage({ locale = 'es' }: { locale?: Locale }) {
                         className={inputClasses}
                       />
                     </div>
+                    <label className="flex items-start gap-2 text-sm text-text-muted cursor-pointer">
+                      <input type="checkbox" required className="mt-1 accent-terracotta shrink-0" />
+                      <span>
+                        {t(locale, 'forms.privacy_consent').replace(t(locale, 'forms.privacy_consent_link'), '').trim()}{' '}
+                        <a
+                          href={localizedUrl(`/${slugMap['privacy-policy'][locale]}`, locale)}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="text-terracotta underline hover:text-terracotta-dark"
+                        >
+                          {t(locale, 'forms.privacy_consent_link')}
+                        </a>
+                        <span className="text-red-500 ml-1">*</span>
+                      </span>
+                    </label>
                     <Button variant="primary" href="#">
                       {t(locale, 'contact.form.submit')}
                     </Button>

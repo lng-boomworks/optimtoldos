@@ -11,7 +11,10 @@ export type PageId =
   | "blog"
   | "contact"
   | "about-us"
-  | "quote";
+  | "quote"
+  | "legal-notice"
+  | "privacy-policy"
+  | "cookie-policy";
 
 export const slugMap: Record<PageId, Record<Locale, string>> = {
   home: { es: "", en: "" },
@@ -25,6 +28,9 @@ export const slugMap: Record<PageId, Record<Locale, string>> = {
   contact: { es: "contacto", en: "contact" },
   "about-us": { es: "sobre-nosotros", en: "about-us" },
   quote: { es: "presupuesto", en: "free-quote" },
+  "legal-notice": { es: "aviso-legal", en: "legal-notice" },
+  "privacy-policy": { es: "politica-privacidad", en: "privacy-policy" },
+  "cookie-policy": { es: "politica-cookies", en: "cookie-policy" },
 };
 
 /** Get the localized path for a page (without base prefix) */

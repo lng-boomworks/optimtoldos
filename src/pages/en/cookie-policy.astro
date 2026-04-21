@@ -1,0 +1,95 @@
+---
+import Base from '../../layouts/Base.astro';
+import { Navbar } from '../../components/Navbar';
+import { Footer } from '../../components/Footer';
+import { getAlternateUrls } from '../../i18n/routes';
+
+const alternateUrls = getAlternateUrls('cookie-policy');
+
+const breadcrumbs = [
+  { name: "Home", url: "https://optimtoldos.com/en/" },
+  { name: "Cookie Policy", url: "https://optimtoldos.com/en/cookie-policy" },
+];
+---
+
+<Base
+  title="Cookie Policy | Optim Toldos"
+  description="Cookie policy of Optim Toldos: which cookies we use, what they do and how you can manage them."
+  breadcrumbs={breadcrumbs}
+  locale="en"
+  alternateUrls={alternateUrls}
+>
+  <Navbar client:load locale="en" />
+
+  <main class="pt-32 pb-20">
+    <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h1 class="font-serif text-4xl md:text-5xl text-navy mb-4">Cookie Policy</h1>
+      <p class="text-text-muted text-sm mb-10">Last updated: 17 April 2026</p>
+
+      <div class="prose prose-lg max-w-none prose-headings:font-serif prose-headings:text-navy prose-a:text-terracotta">
+        <h2>1. What are cookies?</h2>
+        <p>
+          Cookies are small text files that websites store on your device when you visit them. They allow information about your visit to be remembered, such as your preferred language or other preferences.
+        </p>
+
+        <h2>2. Cookies used on this website</h2>
+
+        <h3>Essential cookies (always active)</h3>
+        <p>Essential for the website to function. No consent required.</p>
+
+        <table>
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Purpose</th>
+              <th>Duration</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><code>optimtoldos-cookie-consent</code></td>
+              <td>Stores your decision about the use of cookies.</td>
+              <td>1 year</td>
+            </tr>
+            <tr>
+              <td><code>localStorage: language preference</code></td>
+              <td>Remembers the selected language.</td>
+              <td>Permanent</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <h3>Analytics cookies (optional)</h3>
+        <p>
+          This website does not currently use analytics or marketing cookies. We reserve the right to introduce them in the future, always subject to prior express consent via the cookie banner.
+        </p>
+
+        <h3>Third-party cookies</h3>
+        <p>This website does not use third-party cookies at this time.</p>
+
+        <h2>3. Managing cookies</h2>
+        <p>
+          You can accept or reject non-essential cookies via the banner that appears when you enter the website. You can also manage cookies from your browser settings:
+        </p>
+        <ul>
+          <li>Google Chrome: Settings → Privacy and security → Cookies</li>
+          <li>Firefox: Preferences → Privacy &amp; Security</li>
+          <li>Safari: Preferences → Privacy</li>
+          <li>Edge: Settings → Privacy, search and services</li>
+        </ul>
+
+        <h2>4. Changes to this policy</h2>
+        <p>
+          We reserve the right to modify this Cookie Policy to adapt it to legislative changes or to technical changes on the website. The last updated date indicates the current version.
+        </p>
+
+        <h2>5. Contact</h2>
+        <p>
+          For any questions about this Cookie Policy, contact us at <a href="mailto:info@optimtoldos.com">info@optimtoldos.com</a>.
+        </p>
+      </div>
+    </div>
+  </main>
+
+  <Footer client:load locale="en" />
+</Base>

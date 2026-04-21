@@ -3,6 +3,8 @@ import { Footer } from "../Footer";
 import { FadeIn } from "../FadeIn";
 import { AnimatedHeading } from "../AnimatedHeading";
 import { t, type Locale } from "../../i18n/index";
+import { slugMap } from "../../i18n/slugs";
+import { localizedUrl } from "../../utils/paths";
 
 const productOptionCount = 6;
 
@@ -139,6 +141,21 @@ export function PresupuestoPage({ locale = 'es' }: { locale?: Locale }) {
                       </p>
                     </div>
                   </div>
+                  <label className="flex items-start gap-2 text-sm text-text-muted cursor-pointer pt-2">
+                    <input type="checkbox" required className="mt-1 accent-terracotta shrink-0" />
+                    <span>
+                      {t(locale, 'forms.privacy_consent').replace(t(locale, 'forms.privacy_consent_link'), '').trim()}{' '}
+                      <a
+                        href={localizedUrl(`/${slugMap['privacy-policy'][locale]}`, locale)}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-terracotta underline hover:text-terracotta-dark"
+                      >
+                        {t(locale, 'forms.privacy_consent_link')}
+                      </a>
+                      <span className="text-red-500 ml-1">*</span>
+                    </span>
+                  </label>
                   <div className="pt-4">
                     <button
                       type="submit"
