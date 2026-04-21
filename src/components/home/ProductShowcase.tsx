@@ -73,6 +73,8 @@ export function ProductShowcase({ locale = 'es' }: ProductShowcaseProps) {
                   <img
                     src={product.image}
                     alt={product.title}
+                    width="900"
+                    height="1200"
                     loading="lazy"
                     decoding="async"
                     className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"

@@ -44,6 +44,8 @@ export function Footer({ locale = 'es' }: FooterProps) {
               <img
                 src={url("/images/logos/logo-footer.png")}
                 alt="OptimToldos"
+                width="1482"
+                height="701"
                 loading="lazy"
                 decoding="async"
                 className="h-10 w-auto"

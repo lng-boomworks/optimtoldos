@@ -44,7 +44,16 @@ export function VelasPage({ locale = 'es' }: { locale?: Locale }) {
         <div className="flex flex-col bg-white">
           {/* Hero */}
           <section className="relative min-h-[60vh] flex items-center justify-center overflow-hidden">
-            <img src={url("/images/velas/hero-velas.webp")} alt="Vela de sombra tensada en jardín" className="absolute inset-0 w-full h-full object-cover" />
+            <img
+              src={url("/images/velas/hero-velas-1280.webp")}
+              srcSet={`${url("/images/velas/hero-velas-480.webp")} 480w, ${url("/images/velas/hero-velas-768.webp")} 768w, ${url("/images/velas/hero-velas-1280.webp")} 1280w, ${url("/images/velas/hero-velas.webp")} 1920w`}
+              sizes="100vw"
+              width="1920"
+              height="1488"
+              fetchPriority="high"
+              alt="Vela de sombra tensada en jardín"
+              className="absolute inset-0 w-full h-full object-cover"
+            />
             <div className="absolute inset-0 bg-black/40" />
             <div className="relative z-10 max-w-4xl mx-auto px-4 text-center py-20">
               <FadeIn>
@@ -84,7 +93,7 @@ export function VelasPage({ locale = 'es' }: { locale?: Locale }) {
                 {shapes.map((s, i) => (
                   <FadeIn key={s.title} delay={i * 0.1}>
                     <div className="bg-white rounded-2xl overflow-hidden h-full border-t-[3px] border-terracotta shadow-sm hover:shadow-md transition-shadow duration-300 text-center">
-                      <img src={url(s.image)} alt={s.title} loading="lazy" decoding="async" className="w-full aspect-[16/10] object-cover" />
+                      <img src={url(s.image)} alt={s.title} width="1600" height="1000" loading="lazy" decoding="async" className="w-full aspect-[16/10] object-cover" />
                       <div className="p-8">
                         <h3 className="font-serif text-xl text-navy mb-3">
                           {s.title}

@@ -53,6 +53,8 @@ export function Navbar({ locale = 'es' }: NavbarProps) {
           <img
             src={isScrolled ? url("/images/logos/logo-sticky.png") : url("/images/logos/logo-2x.png")}
             alt="OptimToldos"
+            width="276"
+            height="124"
             className="h-10 w-auto transition-all duration-300"
           />
         </a>

@@ -116,6 +116,8 @@ export function GaleriaPage({ locale = 'es' }: { locale?: Locale }) {
                       <img
                         src={url(project.image)}
                         alt={project.title}
+                        width="1200"
+                        height="900"
                         loading="lazy"
                         decoding="async"
                         className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
