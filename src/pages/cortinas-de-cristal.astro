@@ -1,7 +1,7 @@
 ---
 import Base from '../layouts/Base.astro';
 import { CortinasPage } from '../components/pages/CortinasPage';
-import { buildServiceSchema, buildFAQSchema } from '../utils/schema';
+import { buildServiceSchema, buildFAQSchema, buildProductSchema } from '../utils/schema';
 import { getAlternateUrls } from '../i18n/routes';
 
 const alternateUrls = getAlternateUrls('glass-curtains');
@@ -44,6 +44,16 @@ const faqSchema = buildFAQSchema([
     answer: "Sí, es una de las combinaciones más demandadas. Las cortinas de cristal complementan perfectamente una pérgola bioclimática, creando un espacio exterior cerrado y protegido que se puede disfrutar los 365 días del año.",
   },
 ]);
+
+const productSchema = buildProductSchema({
+  name: "Cortinas de Cristal en Alicante",
+  description: "Cortinas de cristal templado plegables sin perfiles verticales. Cierra tu terraza sin perder las vistas. Instalación profesional en Alicante.",
+  image: "https://optimtoldos.com/images/cortinas/cortina-cristal-2024.jpg",
+  url: "https://optimtoldos.com/cortinas-de-cristal",
+  lowPrice: "250",
+  highPrice: "450",
+  category: "Cortinas de cristal",
+});
 ---
 
 <Base
@@ -59,6 +69,7 @@ const faqSchema = buildFAQSchema([
   <Fragment slot="head">
     <script is:inline type="application/ld+json" set:html={JSON.stringify(serviceSchema)} />
     <script is:inline type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(productSchema)} />
   </Fragment>
   <CortinasPage client:load locale="es" />
 </Base>

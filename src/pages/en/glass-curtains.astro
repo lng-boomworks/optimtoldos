@@ -1,7 +1,7 @@
 ---
 import Base from '../../layouts/Base.astro';
 import { CortinasPage } from '../../components/pages/CortinasPage';
-import { buildServiceSchema, buildFAQSchema } from '../../utils/schema';
+import { buildServiceSchema, buildFAQSchema, buildProductSchema } from '../../utils/schema';
 import { t } from '../../i18n/index';
 import { getAlternateUrls } from '../../i18n/routes';
 
@@ -27,6 +27,16 @@ const faqSchema = buildFAQSchema([
   { question: t('en', 'curtains.faq.5.q'), answer: t('en', 'curtains.faq.5.a') },
   { question: t('en', 'curtains.faq.6.q'), answer: t('en', 'curtains.faq.6.a') },
 ]);
+
+const productSchema = buildProductSchema({
+  name: "Glass Curtains in Alicante",
+  description: "Frameless folding tempered glass curtains. Enclose your terrace without losing the views. Professional installation in Alicante.",
+  image: "https://optimtoldos.com/images/cortinas/cortina-cristal-2024.jpg",
+  url: "https://optimtoldos.com/en/glass-curtains",
+  lowPrice: "250",
+  highPrice: "450",
+  category: "Glass curtains",
+});
 ---
 
 <Base
@@ -42,6 +52,7 @@ const faqSchema = buildFAQSchema([
   <Fragment slot="head">
     <script is:inline type="application/ld+json" set:html={JSON.stringify(serviceSchema)} />
     <script is:inline type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(productSchema)} />
   </Fragment>
   <CortinasPage client:load locale="en" />
 </Base>

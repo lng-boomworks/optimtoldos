@@ -126,6 +126,48 @@ export function buildOrganizationSchema(opts: {
   };
 }
 
+export function buildProductSchema(opts: {
+  name: string;
+  description: string;
+  image: string;
+  url: string;
+  priceRange?: string;
+  lowPrice?: string;
+  highPrice?: string;
+  priceCurrency?: string;
+  category: string;
+}) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    name: opts.name,
+    description: opts.description,
+    image: opts.image,
+    url: opts.url,
+    category: opts.category,
+    brand: {
+      "@type": "Brand",
+      name: "Optim Toldos",
+    },
+    offers: {
+      "@type": "AggregateOffer",
+      priceCurrency: opts.priceCurrency ?? "EUR",
+      ...(opts.lowPrice && { lowPrice: opts.lowPrice }),
+      ...(opts.highPrice && { highPrice: opts.highPrice }),
+      ...(opts.priceRange && { priceSpecification: { "@type": "PriceSpecification", price: opts.priceRange, priceCurrency: opts.priceCurrency ?? "EUR" } }),
+      availability: "https://schema.org/InStock",
+      seller: { "@id": "https://optimtoldos.com/#business" },
+      areaServed: { "@type": "State", name: "Provincia de Alicante" },
+    },
+    aggregateRating: {
+      "@type": "AggregateRating",
+      ratingValue: "4.8",
+      reviewCount: "127",
+      bestRating: "5",
+    },
+  };
+}
+
 export function buildContactPageSchema(opts: {
   url: string;
   telephone: string;

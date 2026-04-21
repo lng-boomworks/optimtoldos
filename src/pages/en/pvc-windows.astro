@@ -1,7 +1,7 @@
 ---
 import Base from '../../layouts/Base.astro';
 import { VentanasPage } from '../../components/pages/VentanasPage';
-import { buildFAQSchema, buildServiceSchema } from '../../utils/schema';
+import { buildFAQSchema, buildServiceSchema, buildProductSchema } from '../../utils/schema';
 import { t } from '../../i18n/index';
 import { getAlternateUrls } from '../../i18n/routes';
 
@@ -20,6 +20,14 @@ const breadcrumbs = [
   { name: "Home", url: "https://optimtoldos.com/en/" },
   { name: "PVC Windows", url: "https://optimtoldos.com/en/pvc-windows" },
 ];
+
+const productSchema = buildProductSchema({
+  name: "PVC Windows and Doors in Alicante",
+  description: "Sliding, casement and tilt-and-turn PVC windows and doors. Maximum thermal and acoustic insulation. CE certified.",
+  image: "https://optimtoldos.com/images/gallery/ventanas-pvc-hero.jpg",
+  url: "https://optimtoldos.com/en/pvc-windows",
+  category: "PVC windows",
+});
 ---
 
 <Base
@@ -38,6 +46,7 @@ const breadcrumbs = [
       offers: [{ name: "Sliding PVC Window" }, { name: "Casement PVC Window" }, { name: "Tilt-and-Turn PVC Window" }],
     }))} />
     <script is:inline type="application/ld+json" set:html={JSON.stringify(buildFAQSchema(windowsFaqs))} />
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(productSchema)} />
   </Fragment>
   <VentanasPage client:load locale="en" />
 </Base>

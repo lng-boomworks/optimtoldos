@@ -1,7 +1,7 @@
 ---
 import Base from '../layouts/Base.astro';
 import { PergolasPage } from '../components/pages/PergolasPage';
-import { buildServiceSchema, buildFAQSchema } from '../utils/schema';
+import { buildServiceSchema, buildFAQSchema, buildProductSchema } from '../utils/schema';
 import { getAlternateUrls } from '../i18n/routes';
 
 const alternateUrls = getAlternateUrls('pergolas');
@@ -44,6 +44,16 @@ const faqSchema = buildFAQSchema([
     answer: "La fabricación suele tardar entre 3 y 4 semanas desde la confirmación del pedido. La instalación en sí se realiza normalmente en 1 a 2 días laborables, dependiendo de la complejidad del proyecto.",
   },
 ]);
+
+const productSchema = buildProductSchema({
+  name: "Pérgolas Bioclimáticas en Alicante",
+  description: "Pérgolas bioclimáticas de aluminio con lamas orientables, motorización y LED integrado. Fabricación a medida e instalación profesional.",
+  image: "https://optimtoldos.com/images/pergolas/pergola-bioclimatica-2024.jpg",
+  url: "https://optimtoldos.com/pergolas",
+  lowPrice: "3000",
+  highPrice: "12000",
+  category: "Pérgolas bioclimáticas",
+});
 ---
 
 <Base
@@ -59,6 +69,7 @@ const faqSchema = buildFAQSchema([
   <Fragment slot="head">
     <script is:inline type="application/ld+json" set:html={JSON.stringify(serviceSchema)} />
     <script is:inline type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(productSchema)} />
   </Fragment>
   <PergolasPage client:load locale="es" />
 </Base>

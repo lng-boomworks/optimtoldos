@@ -1,7 +1,7 @@
 ---
 import Base from '../../layouts/Base.astro';
 import { VelasPage } from '../../components/pages/VelasPage';
-import { buildFAQSchema, buildServiceSchema } from '../../utils/schema';
+import { buildFAQSchema, buildServiceSchema, buildProductSchema } from '../../utils/schema';
 import { t } from '../../i18n/index';
 import { getAlternateUrls } from '../../i18n/routes';
 
@@ -19,6 +19,16 @@ const breadcrumbs = [
   { name: "Home", url: "https://optimtoldos.com/en/" },
   { name: "Shade Sails", url: "https://optimtoldos.com/en/shade-sails" },
 ];
+
+const productSchema = buildProductSchema({
+  name: "Shade Sails in Alicante",
+  description: "Triangular, rectangular and custom-shape shade sails. 95% certified UV protection. Architectural custom design.",
+  image: "https://optimtoldos.com/images/velas/vela-tensada.jpg",
+  url: "https://optimtoldos.com/en/shade-sails",
+  lowPrice: "200",
+  highPrice: "1500",
+  category: "Shade sails",
+});
 ---
 
 <Base
@@ -37,6 +47,7 @@ const breadcrumbs = [
       offers: [{ name: "Triangular Sail" }, { name: "Rectangular Sail" }, { name: "Custom Sail" }],
     }))} />
     <script is:inline type="application/ld+json" set:html={JSON.stringify(buildFAQSchema(sailsFaqs))} />
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(productSchema)} />
   </Fragment>
   <VelasPage client:load locale="en" />
 </Base>

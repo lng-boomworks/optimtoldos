@@ -1,7 +1,7 @@
 ---
 import Base from '../layouts/Base.astro';
 import { ToldosPage } from '../components/pages/ToldosPage';
-import { buildServiceSchema, buildFAQSchema } from '../utils/schema';
+import { buildServiceSchema, buildFAQSchema, buildProductSchema } from '../utils/schema';
 import { getAlternateUrls } from '../i18n/routes';
 
 const alternateUrls = getAlternateUrls('awnings');
@@ -46,6 +46,16 @@ const faqSchema = buildFAQSchema([
     answer: "Generalmente no se necesita licencia de obras para instalar un toldo en una vivienda privada. Sin embargo, en comunidades de propietarios es necesario contar con la aprobación de la comunidad, especialmente respecto al color y modelo para mantener la uniformidad de la fachada.",
   },
 ]);
+
+const productSchema = buildProductSchema({
+  name: "Toldos a Medida en Alicante",
+  description: "Toldos extensibles, verticales, punto recto y capota fabricados a medida con instalación profesional en la provincia de Alicante.",
+  image: "https://optimtoldos.com/images/gallery/toldo-awning-hero.jpg",
+  url: "https://optimtoldos.com/toldos",
+  lowPrice: "350",
+  highPrice: "1500",
+  category: "Toldos",
+});
 ---
 
 <Base
@@ -61,6 +71,7 @@ const faqSchema = buildFAQSchema([
   <Fragment slot="head">
     <script is:inline type="application/ld+json" set:html={JSON.stringify(serviceSchema)} />
     <script is:inline type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(productSchema)} />
   </Fragment>
   <ToldosPage client:load locale="es" />
 </Base>

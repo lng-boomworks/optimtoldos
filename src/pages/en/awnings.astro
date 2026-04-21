@@ -1,7 +1,7 @@
 ---
 import Base from '../../layouts/Base.astro';
 import { ToldosPage } from '../../components/pages/ToldosPage';
-import { buildServiceSchema, buildFAQSchema } from '../../utils/schema';
+import { buildServiceSchema, buildFAQSchema, buildProductSchema } from '../../utils/schema';
 import { t } from '../../i18n/index';
 import { getAlternateUrls } from '../../i18n/routes';
 
@@ -29,6 +29,16 @@ const faqSchema = buildFAQSchema([
   { question: t('en', 'awnings.faq.5.q'), answer: t('en', 'awnings.faq.5.a') },
   { question: t('en', 'awnings.faq.6.q'), answer: t('en', 'awnings.faq.6.a') },
 ]);
+
+const productSchema = buildProductSchema({
+  name: "Custom Awnings in Alicante",
+  description: "Retractable, vertical, fixed-arm and canopy awnings — custom-made and professionally installed across the province of Alicante.",
+  image: "https://optimtoldos.com/images/gallery/toldo-awning-hero.jpg",
+  url: "https://optimtoldos.com/en/awnings",
+  lowPrice: "350",
+  highPrice: "1500",
+  category: "Awnings",
+});
 ---
 
 <Base
@@ -44,6 +54,7 @@ const faqSchema = buildFAQSchema([
   <Fragment slot="head">
     <script is:inline type="application/ld+json" set:html={JSON.stringify(serviceSchema)} />
     <script is:inline type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(productSchema)} />
   </Fragment>
   <ToldosPage client:load locale="en" />
 </Base>

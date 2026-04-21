@@ -1,7 +1,7 @@
 ---
 import Base from '../layouts/Base.astro';
 import { VentanasPage } from '../components/pages/VentanasPage';
-import { buildFAQSchema, buildServiceSchema } from '../utils/schema';
+import { buildFAQSchema, buildServiceSchema, buildProductSchema } from '../utils/schema';
 import { getAlternateUrls } from '../i18n/routes';
 
 const alternateUrls = getAlternateUrls('pvc-windows');
@@ -19,6 +19,14 @@ const breadcrumbs = [
   { name: "Inicio", url: "https://optimtoldos.com/" },
   { name: "Ventanas PVC", url: "https://optimtoldos.com/ventanas-pvc" },
 ];
+
+const productSchema = buildProductSchema({
+  name: "Ventanas y Puertas PVC en Alicante",
+  description: "Ventanas y puertas de PVC correderas, abatibles y oscilobatientes. Máximo aislamiento térmico y acústico. Certificación CE.",
+  image: "https://optimtoldos.com/images/gallery/ventanas-pvc-hero.jpg",
+  url: "https://optimtoldos.com/ventanas-pvc",
+  category: "Ventanas PVC",
+});
 ---
 
 <Base
@@ -37,6 +45,7 @@ const breadcrumbs = [
       offers: [{ name: "Ventana Corredera PVC" }, { name: "Ventana Abatible PVC" }, { name: "Ventana Oscilobatiente PVC" }],
     }))} />
     <script is:inline type="application/ld+json" set:html={JSON.stringify(buildFAQSchema(ventanasFaqs))} />
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(productSchema)} />
   </Fragment>
   <VentanasPage client:load locale="es" />
 </Base>

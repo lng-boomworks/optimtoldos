@@ -1,7 +1,7 @@
 ---
 import Base from '../../layouts/Base.astro';
 import { PergolasPage } from '../../components/pages/PergolasPage';
-import { buildServiceSchema, buildFAQSchema } from '../../utils/schema';
+import { buildServiceSchema, buildFAQSchema, buildProductSchema } from '../../utils/schema';
 import { t } from '../../i18n/index';
 import { getAlternateUrls } from '../../i18n/routes';
 
@@ -27,6 +27,16 @@ const faqSchema = buildFAQSchema([
   { question: t('en', 'pergolas.faq.5.q'), answer: t('en', 'pergolas.faq.5.a') },
   { question: t('en', 'pergolas.faq.6.q'), answer: t('en', 'pergolas.faq.6.a') },
 ]);
+
+const productSchema = buildProductSchema({
+  name: "Bioclimatic Pergolas in Alicante",
+  description: "Aluminium bioclimatic pergolas with adjustable louvres, motorisation and integrated LED lighting. Custom-made and professionally installed.",
+  image: "https://optimtoldos.com/images/pergolas/pergola-bioclimatica-2024.jpg",
+  url: "https://optimtoldos.com/en/pergolas",
+  lowPrice: "3000",
+  highPrice: "12000",
+  category: "Bioclimatic pergolas",
+});
 ---
 
 <Base
@@ -42,6 +52,7 @@ const faqSchema = buildFAQSchema([
   <Fragment slot="head">
     <script is:inline type="application/ld+json" set:html={JSON.stringify(serviceSchema)} />
     <script is:inline type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(productSchema)} />
   </Fragment>
   <PergolasPage client:load locale="en" />
 </Base>
