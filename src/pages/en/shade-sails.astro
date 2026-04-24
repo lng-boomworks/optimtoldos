@@ -7,13 +7,10 @@ import { getAlternateUrls } from '../../i18n/routes';
 
 const alternateUrls = getAlternateUrls('shade-sails');
 
-const sailsFaqs = [
-  { question: t('en', 'sails.faq.1.q'), answer: t('en', 'sails.faq.1.a') },
-  { question: t('en', 'sails.faq.2.q'), answer: t('en', 'sails.faq.2.a') },
-  { question: t('en', 'sails.faq.3.q'), answer: t('en', 'sails.faq.3.a') },
-  { question: t('en', 'sails.faq.4.q'), answer: t('en', 'sails.faq.4.a') },
-  { question: t('en', 'sails.faq.5.q'), answer: t('en', 'sails.faq.5.a') },
-];
+const sailsFaqs = Array.from({ length: 7 }, (_, i) => ({
+  question: t('en', `sails.faq.${i + 1}.q` as any),
+  answer: t('en', `sails.faq.${i + 1}.a` as any),
+}));
 
 const breadcrumbs = [
   { name: "Home", url: "https://optimtoldos.com/en/" },
