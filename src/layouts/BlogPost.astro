@@ -3,9 +3,12 @@ import Base from './Base.astro';
 import { Navbar } from '../components/Navbar';
 import { Footer } from '../components/Footer';
 import RelatedPosts from '../components/RelatedPosts.astro';
-import { url } from '../utils/paths';
+import { url, localizedUrl } from '../utils/paths';
 import type { Locale } from '../i18n/index';
 import { dateLocales } from '../i18n/index';
+import { slugMap, type PageId } from '../i18n/slugs';
+
+type PillarGuideId = 'licence-guide' | 'bioclimatic-vs-aluminium' | 'awning-guide' | 'glass-curtains-guide';
 
 interface Props {
   title: string;
@@ -19,9 +22,58 @@ interface Props {
   slug?: string;
   locale?: Locale;
   alternateUrls?: { locale: string; href: string }[];
+  pillarGuide?: PillarGuideId;
 }
 
-const { title, description, date, updated, author, image, category, tags = [], slug = '', locale = 'es' as Locale, alternateUrls = [] } = Astro.props;
+const { title, description, date, updated, author, image, category, tags = [], slug = '', locale = 'es' as Locale, alternateUrls = [], pillarGuide } = Astro.props;
+
+// Banner copy keyed by pillar, localised inline (simpler than new i18n keys).
+const pillarBanner: Record<PillarGuideId, { title: Record<Locale, string>; link: Record<Locale, string> }> = {
+  'licence-guide': {
+    title: {
+      es: '¿Buscas la guía completa por municipios?',
+      en: 'Looking for the full municipality-by-municipality guide?',
+    },
+    link: {
+      es: 'Leer la Guía de Licencias para Pérgolas y Toldos en Alicante',
+      en: 'Read the Planning Permission Guide for Alicante',
+    },
+  },
+  'bioclimatic-vs-aluminium': {
+    title: {
+      es: '¿Quieres la comparativa completa bioclimática vs aluminio?',
+      en: 'Want the full bioclimatic vs aluminium comparison?',
+    },
+    link: {
+      es: 'Leer la Guía Bioclimática vs Aluminio',
+      en: 'Read the Bioclimatic vs Aluminium Pergola Guide',
+    },
+  },
+  'awning-guide': {
+    title: {
+      es: '¿Necesitas elegir el toldo adecuado?',
+      en: 'Need to choose the right awning?',
+    },
+    link: {
+      es: 'Leer la Guía para Elegir Toldo en la Costa Blanca',
+      en: 'Read the Costa Blanca Awning Buying Guide',
+    },
+  },
+  'glass-curtains-guide': {
+    title: {
+      es: '¿Quieres la guía completa de cortinas de cristal?',
+      en: 'Want the complete glass curtains guide?',
+    },
+    link: {
+      es: 'Leer la Guía Completa de Cortinas de Cristal',
+      en: 'Read the Complete Glass Curtains Guide',
+    },
+  },
+};
+
+const pillarHref = pillarGuide
+  ? localizedUrl(`/${slugMap[pillarGuide as PageId][locale]}`, locale)
+  : null;
 const breadcrumbs = [
   { name: 'Inicio', url: 'https://optimtoldos.com/' },
   { name: 'Blog', url: 'https://optimtoldos.com/blog' },
@@ -137,6 +189,27 @@ const categoryLabels: Record<string, string> = locale === 'en' ? {
         <slot />
       </div>
     </article>
+
+    <!-- Pillar guide banner (only when pillarGuide frontmatter is set) -->
+    {pillarGuide && pillarHref && (
+      <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 pb-8">
+        <div class="rounded-2xl border-l-4 border-terracotta bg-sand-light p-6 md:p-7 flex flex-col md:flex-row md:items-center gap-4 md:gap-6">
+          <div class="flex-1">
+            <h3 class="font-serif text-lg text-navy mb-1">
+              {pillarBanner[pillarGuide].title[locale]}
+            </h3>
+            <p class="text-text-muted text-sm">
+              {locale === 'en'
+                ? 'The pillar guide goes deeper than this article with municipality-specific detail, price tables and decision matrices.'
+                : 'La guía pilar amplía este artículo con detalle por municipio, tablas de precios y matrices de decisión.'}
+            </p>
+          </div>
+          <a href={pillarHref} class="shrink-0 text-terracotta hover:underline font-medium text-sm">
+            {pillarBanner[pillarGuide].link[locale]} →
+          </a>
+        </div>
+      </div>
+    )}
 
     <!-- Back to blog -->
     <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 pb-16">

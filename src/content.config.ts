@@ -23,6 +23,14 @@ const blog = defineCollection({
                        'guides', 'tips', 'trends', 'regulations', 'case-studies']),
     locale: z.enum(['es', 'en']).default('es'),
     translationOf: z.string().optional(),
+    // When set, the BlogPost layout renders a banner pointing to the matching
+    // Phase 2 pillar guide. Use on posts that overlap with a pillar's topic.
+    pillarGuide: z.enum([
+      'licence-guide',
+      'bioclimatic-vs-aluminium',
+      'awning-guide',
+      'glass-curtains-guide',
+    ]).optional(),
   }),
 });
 

@@ -7,6 +7,7 @@ tags: ["toldos", "normativa", "comunidad propietarios", "alicante"]
 category: "normativa"
 locale: "es"
 image: "/images/blog/normativa-toldos-comunidad-propietarios.jpg"
+pillarGuide: "licence-guide"
 ---
 
 **Sí, en la mayoría de los casos necesitas la aprobación de tu comunidad de propietarios para instalar un toldo.** La Ley de Propiedad Horizontal (LPH) regula las modificaciones en fachadas de edificios, y un toldo se considera una alteración de elementos comunes. Sin embargo, el proceso es más sencillo de lo que parece: con la solicitud adecuada y respetando la estética del edificio, más del 85% de las peticiones se aprueban en la primera junta. En Alicante, donde disfrutamos de más de 300 días de sol al año, los toldos no son un capricho sino una necesidad, y las comunidades lo saben.

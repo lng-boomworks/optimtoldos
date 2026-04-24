@@ -8,6 +8,7 @@ category: "guides"
 locale: "en"
 image: "/images/blog/guia-toldos-alicante.jpg"
 translationOf: "es/guia-toldos-alicante"
+pillarGuide: "awning-guide"
 ---
 
 ## Quick summary
