@@ -37,6 +37,7 @@ export default {
   'serviceArea.heading': '{serviceName} en toda la provincia de Alicante',
   'serviceArea.description': 'Nuestro equipo de instaladores profesionales da servicio desde Dénia hasta Torrevieja, incluyendo el área metropolitana de Alicante y el interior de la provincia. Presupuesto gratuito y sin compromiso en tu zona.',
   'serviceArea.cta': 'Solicitar Presupuesto en Tu Zona',
+  'serviceArea.see_all': 'Ver todas las zonas de servicio',
 
   // -- FAQ Section --
   'faqSection.heading': 'Preguntas Frecuentes',

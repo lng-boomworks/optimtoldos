@@ -37,6 +37,7 @@ export default {
   'serviceArea.heading': '{serviceName} across the province of Alicante',
   'serviceArea.description': 'Our team of professional installers serves the area from Dénia to Torrevieja, including the Alicante metropolitan area and the interior of the province. Free, no-obligation quotes in your area.',
   'serviceArea.cta': 'Request a Quote in Your Area',
+  'serviceArea.see_all': 'See all service areas',
 
   // -- FAQ Section --
   'faqSection.heading': 'Frequently Asked Questions',
