@@ -1,0 +1,33 @@
+---
+import Base from '../layouts/Base.astro';
+import { BioclimaticVsAluminiumPage } from '../components/pages/BioclimaticVsAluminiumPage';
+import { buildFAQSchema } from '../utils/schema';
+import { t } from '../i18n/index';
+import { getAlternateUrls } from '../i18n/routes';
+
+const alternateUrls = getAlternateUrls('bioclimatic-vs-aluminium');
+
+const faqs = Array.from({ length: 6 }, (_, i) => ({
+  question: t('es', `bioVsAlu.faq.${i + 1}.q` as any),
+  answer: t('es', `bioVsAlu.faq.${i + 1}.a` as any),
+}));
+
+const breadcrumbs = [
+  { name: 'Inicio', url: 'https://optimtoldos.com/' },
+  { name: 'Pérgola bioclimática vs aluminio', url: 'https://optimtoldos.com/pergola-bioclimatica-vs-aluminio' },
+];
+---
+
+<Base
+  title={t('es', 'bioVsAlu.title')}
+  description={t('es', 'bioVsAlu.meta_description')}
+  breadcrumbs={breadcrumbs}
+  locale="es"
+  alternateUrls={alternateUrls}
+  type="article"
+>
+  <Fragment slot="head">
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(buildFAQSchema(faqs))} />
+  </Fragment>
+  <BioclimaticVsAluminiumPage client:load locale="es" />
+</Base>
