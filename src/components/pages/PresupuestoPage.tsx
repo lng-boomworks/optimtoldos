@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Navbar } from "../Navbar";
 import { Footer } from "../Footer";
 import { FadeIn } from "../FadeIn";
@@ -12,15 +12,69 @@ type FormStatus = "idle" | "sending" | "success" | "error";
 
 const productOptionCount = 6;
 
+// Map product page slugs (both locales) to the 1-based product-option index.
+const PRODUCT_SLUG_TO_OPTION: Record<string, number> = {
+  toldos: 1, awnings: 1,
+  pergolas: 2,
+  "cortinas-de-cristal": 3, "glass-curtains": 3,
+  "velas-de-sombra": 4, "shade-sails": 4,
+  "ventanas-pvc": 5, "pvc-windows": 5,
+};
+
+// Display name for each Service Areas anchor slug. Keeps the form human-readable
+// when the quote CTA is "/presupuesto?location=orihuela-costa".
+const LOCATION_SLUG_TO_NAME: Record<string, string> = {
+  torrevieja: "Torrevieja",
+  "orihuela-costa": "Orihuela Costa",
+  "la-zenia": "La Zenia",
+  "punta-prima": "Punta Prima",
+  "ciudad-quesada": "Ciudad Quesada",
+  "guardamar-del-segura": "Guardamar del Segura",
+  "la-marina": "La Marina",
+  elche: "Elche",
+  "santa-pola": "Santa Pola",
+  "gran-alacant": "Gran Alacant",
+  "cabo-roig": "Cabo Roig",
+  villamartin: "Villamartín",
+  "playa-flamenca": "Playa Flamenca",
+  campoamor: "Campoamor",
+  "los-balcones": "Los Balcones",
+  rojales: "Rojales",
+  benidorm: "Benidorm",
+  alicante: "Alicante",
+  "san-miguel-de-salinas": "San Miguel de Salinas",
+  dolores: "Dolores",
+};
+
 const inputClasses =
   "w-full bg-sand border border-border rounded-xl px-4 py-3 text-text-body focus:ring-2 focus:ring-terracotta/30 focus:border-terracotta outline-none transition-colors";
 
 export function PresupuestoPage({ locale = 'es' }: { locale?: Locale }) {
   const [status, setStatus] = useState<FormStatus>("idle");
+  const [defaultProduct, setDefaultProduct] = useState<string>("");
+  const [defaultLocation, setDefaultLocation] = useState<string>("");
 
   const productOptions = Array.from({ length: productOptionCount }, (_, i) =>
     t(locale, `quote.form.product_option.${i + 1}` as any)
   );
+
+  useEffect(() => {
+    if (typeof window === 'undefined') return;
+    const params = new URLSearchParams(window.location.search);
+    const productSlug = params.get('product');
+    const locationSlug = params.get('location');
+    if (productSlug) {
+      const idx = PRODUCT_SLUG_TO_OPTION[productSlug];
+      if (idx) setDefaultProduct(productOptions[idx - 1]);
+    }
+    if (locationSlug) {
+      setDefaultLocation(
+        LOCATION_SLUG_TO_NAME[locationSlug] ?? locationSlug.replace(/-/g, ' ')
+      );
+    }
+    // productOptions only needs to be read once on mount
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -127,7 +181,12 @@ export function PresupuestoPage({ locale = 'es' }: { locale?: Locale }) {
                     <label className="block text-sm font-medium text-text-body mb-2">
                       {t(locale, 'quote.form.product_label')}
                     </label>
-                    <select name="product" className={inputClasses}>
+                    <select
+                      name="product"
+                      className={inputClasses}
+                      key={defaultProduct || 'empty'}
+                      defaultValue={defaultProduct}
+                    >
                       <option value="">{t(locale, 'quote.form.product_placeholder')}</option>
                       {productOptions.map((opt) => (
                         <option key={opt} value={opt}>
@@ -143,6 +202,8 @@ export function PresupuestoPage({ locale = 'es' }: { locale?: Locale }) {
                     <input
                       type="text"
                       name="location"
+                      key={defaultLocation || 'empty-loc'}
+                      defaultValue={defaultLocation}
                       placeholder={t(locale, 'quote.form.location_placeholder')}
                       className={inputClasses}
                     />
