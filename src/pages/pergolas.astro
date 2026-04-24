@@ -2,6 +2,7 @@
 import Base from '../layouts/Base.astro';
 import { PergolasPage } from '../components/pages/PergolasPage';
 import { buildServiceSchema, buildFAQSchema, buildProductSchema } from '../utils/schema';
+import { t } from '../i18n/index';
 import { getAlternateUrls } from '../i18n/routes';
 
 const alternateUrls = getAlternateUrls('pergolas');
@@ -18,32 +19,12 @@ const serviceSchema = buildServiceSchema({
   ],
 });
 
-const faqSchema = buildFAQSchema([
-  {
-    question: "¿Cuánto cuesta una pérgola bioclimática en Alicante?",
-    answer: "El precio de una pérgola bioclimática en Alicante varía entre 3.000€ y 12.000€ según las dimensiones, acabados y opciones como motorización, iluminación LED o sensor de lluvia. En Optim Toldos realizamos una visita gratuita para tomar medidas y ofrecerte un presupuesto personalizado.",
-  },
-  {
-    question: "¿Qué diferencia hay entre una pérgola bioclimática y un toldo?",
-    answer: "La pérgola bioclimática es una estructura fija de aluminio con lamas orientables que permite regular la luz y ventilación. A diferencia del toldo, ofrece protección contra la lluvia, se puede usar los 365 días del año y aumenta el valor de la propiedad. El toldo es más económico y flexible, pero no ofrece protección completa.",
-  },
-  {
-    question: "¿Necesito licencia de obra para una pérgola bioclimática?",
-    answer: "En la mayoría de municipios de Alicante se requiere una comunicación previa o licencia de obra menor. Los requisitos varían según el ayuntamiento y las dimensiones de la estructura. En Optim Toldos te asesoramos sobre la normativa local y te ayudamos con la documentación necesaria.",
-  },
-  {
-    question: "¿Las pérgolas bioclimáticas necesitan mantenimiento?",
-    answer: "El mantenimiento es mínimo. Recomendamos limpiar las lamas 2 veces al año con agua y jabón neutro y revisar el motor anualmente. La estructura de aluminio es resistente a la corrosión, ideal para el clima costero de Alicante.",
-  },
-  {
-    question: "¿Se pueden integrar cortinas de cristal en una pérgola?",
-    answer: "Sí, las cortinas de cristal son el complemento perfecto para una pérgola bioclimática. También se pueden añadir toldos verticales, screens y estores zip como cerramientos laterales, creando un espacio cerrado utilizable todo el año.",
-  },
-  {
-    question: "¿Cuánto tarda la instalación de una pérgola bioclimática?",
-    answer: "La fabricación suele tardar entre 3 y 4 semanas desde la confirmación del pedido. La instalación en sí se realiza normalmente en 1 a 2 días laborables, dependiendo de la complejidad del proyecto.",
-  },
-]);
+const faqSchema = buildFAQSchema(
+  Array.from({ length: 8 }, (_, i) => ({
+    question: t('es', `pergolas.faq.${i + 1}.q` as any),
+    answer: t('es', `pergolas.faq.${i + 1}.a` as any),
+  }))
+);
 
 const productSchema = buildProductSchema({
   name: "Pérgolas Bioclimáticas en Alicante",

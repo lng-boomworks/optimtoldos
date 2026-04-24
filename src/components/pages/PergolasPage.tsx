@@ -7,6 +7,7 @@ import { FAQSection } from "../FAQSection";
 import { ServiceAreaSection } from "../ServiceAreaSection";
 import { url, localizedUrl } from "../../utils/paths";
 import { t, type Locale } from "../../i18n/index";
+import { slugMap } from "../../i18n/slugs";
 
 const featureImages = [
   "/images/pergolas/pergola-bioclimatica.webp",
@@ -17,9 +18,16 @@ const featureImages = [
 
 const featureCount = 4;
 const benefitCount = 5;
-const faqCount = 6;
+const faqCount = 8;
+const priceRowCount = 3;
 
 export function PergolasPage({ locale = 'es' }: { locale?: Locale }) {
+  const quoteWithProduct = `${localizedUrl(`/${slugMap.quote[locale]}`, locale)}?product=pergolas`;
+  const licencePath = localizedUrl(`/${slugMap["licence-guide"][locale]}`, locale);
+  const bioVsAluPath = localizedUrl(`/${slugMap["bioclimatic-vs-aluminium"][locale]}`, locale);
+  const curtainsPath = localizedUrl(`/${slugMap["glass-curtains"][locale]}`, locale);
+  const contactPath = localizedUrl(`/${slugMap.contact[locale]}`, locale);
+
   const features = Array.from({ length: featureCount }, (_, i) => ({
     title: t(locale, `pergolas.features.${i + 1}.title` as any),
     desc: t(locale, `pergolas.features.${i + 1}.description` as any),
@@ -33,6 +41,11 @@ export function PergolasPage({ locale = 'es' }: { locale?: Locale }) {
   const faqs = Array.from({ length: faqCount }, (_, i) => ({
     question: t(locale, `pergolas.faq.${i + 1}.q` as any),
     answer: t(locale, `pergolas.faq.${i + 1}.a` as any),
+  }));
+
+  const priceRows = Array.from({ length: priceRowCount }, (_, i) => ({
+    label: t(locale, `pergolas.price.${i + 1}.label` as any),
+    price: t(locale, `pergolas.price.${i + 1}.price` as any),
   }));
 
   return (
@@ -70,7 +83,7 @@ export function PergolasPage({ locale = 'es' }: { locale?: Locale }) {
                 </p>
               </FadeIn>
               <FadeIn delay={0.4}>
-                <Button variant="primary" href={localizedUrl("/presupuesto", locale)}>
+                <Button variant="primary" href={quoteWithProduct}>
                   {t(locale, 'pergolas.hero.cta')}
                 </Button>
               </FadeIn>
@@ -142,11 +155,159 @@ export function PergolasPage({ locale = 'es' }: { locale?: Locale }) {
             </div>
           </section>
 
+          {/* Installation types — freestanding vs wall-mounted */}
+          <section className="bg-sand-light py-16 md:py-20">
+            <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+              <FadeIn className="text-center mb-10">
+                <AnimatedHeading
+                  text={t(locale, 'pergolas.types.heading')}
+                  tag="h2"
+                  className="text-navy"
+                />
+              </FadeIn>
+              <div className="grid md:grid-cols-2 gap-6">
+                <FadeIn delay={0.1}>
+                  <div className="bg-white rounded-2xl p-7 h-full">
+                    <h3 className="font-serif text-xl text-navy mb-3">
+                      {t(locale, 'pergolas.types.freestanding.title')}
+                    </h3>
+                    <p className="text-text-body leading-relaxed">
+                      {t(locale, 'pergolas.types.freestanding.body')}
+                    </p>
+                  </div>
+                </FadeIn>
+                <FadeIn delay={0.2}>
+                  <div className="bg-white rounded-2xl p-7 h-full">
+                    <h3 className="font-serif text-xl text-navy mb-3">
+                      {t(locale, 'pergolas.types.wallmounted.title')}
+                    </h3>
+                    <p className="text-text-body leading-relaxed">
+                      {t(locale, 'pergolas.types.wallmounted.body')}
+                    </p>
+                  </div>
+                </FadeIn>
+              </div>
+            </div>
+          </section>
+
+          {/* Comunidad de propietarios */}
+          <section className="bg-white py-16 md:py-20">
+            <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+              <FadeIn>
+                <AnimatedHeading
+                  text={t(locale, 'pergolas.comunidad.heading')}
+                  tag="h2"
+                  className="text-navy mb-5"
+                />
+                <p className="text-text-body leading-relaxed">
+                  {t(locale, 'pergolas.comunidad.body')}
+                </p>
+              </FadeIn>
+            </div>
+          </section>
+
+          {/* Price guide */}
+          <section className="bg-sand-light py-16 md:py-20">
+            <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+              <FadeIn className="mb-6">
+                <AnimatedHeading
+                  text={t(locale, 'pergolas.price.heading')}
+                  tag="h2"
+                  className="text-navy mb-3"
+                />
+                <p className="text-text-muted">{t(locale, 'pergolas.price.intro')}</p>
+              </FadeIn>
+              <FadeIn delay={0.1}>
+                <div className="rounded-2xl overflow-hidden bg-white shadow-sm">
+                  <table className="w-full text-left">
+                    <tbody>
+                      {priceRows.map((row, i) => (
+                        <tr key={i} className={i % 2 === 0 ? "bg-white" : "bg-sand-light/50"}>
+                          <td className="p-4 text-text-body">{row.label}</td>
+                          <td className="p-4 font-medium text-navy whitespace-nowrap text-right">{row.price}</td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              </FadeIn>
+            </div>
+          </section>
+
+          {/* Licence banner */}
+          <section className="bg-white py-10">
+            <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+              <FadeIn>
+                <div className="rounded-2xl border-l-4 border-terracotta bg-sand-light p-6 md:p-7 flex flex-col md:flex-row md:items-center gap-4 md:gap-6">
+                  <div className="flex-1">
+                    <h3 className="font-serif text-lg text-navy mb-1">
+                      {t(locale, 'pergolas.licence_banner.title')}
+                    </h3>
+                    <p className="text-text-body text-sm leading-relaxed">
+                      {t(locale, 'pergolas.licence_banner.body')}
+                    </p>
+                  </div>
+                  <a
+                    href={licencePath}
+                    className="shrink-0 text-terracotta hover:underline font-medium text-sm"
+                  >
+                    {t(locale, 'pergolas.licence_banner.cta')} →
+                  </a>
+                </div>
+              </FadeIn>
+            </div>
+          </section>
+
           {/* FAQ */}
           <FAQSection faqs={faqs} locale={locale} />
 
+          {/* Related reading */}
+          <section className="bg-white py-14 md:py-16">
+            <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+              <FadeIn className="text-center mb-8">
+                <AnimatedHeading
+                  text={t(locale, 'pergolas.related.heading')}
+                  tag="h2"
+                  className="text-navy"
+                />
+              </FadeIn>
+              <div className="grid md:grid-cols-2 gap-6">
+                <FadeIn delay={0.1}>
+                  <a
+                    href={bioVsAluPath}
+                    className="block bg-sand-light rounded-2xl p-6 h-full hover:bg-sand transition-colors"
+                  >
+                    <h3 className="font-serif text-lg text-navy mb-2">
+                      {t(locale, 'pergolas.related.bioVsAlu.title')} →
+                    </h3>
+                    <p className="text-text-body leading-relaxed text-sm">
+                      {t(locale, 'pergolas.related.bioVsAlu.body')}
+                    </p>
+                  </a>
+                </FadeIn>
+                <FadeIn delay={0.2}>
+                  <a
+                    href={curtainsPath}
+                    className="block bg-sand-light rounded-2xl p-6 h-full hover:bg-sand transition-colors"
+                  >
+                    <h3 className="font-serif text-lg text-navy mb-2">
+                      {t(locale, 'pergolas.related.curtains.title')} →
+                    </h3>
+                    <p className="text-text-body leading-relaxed text-sm">
+                      {t(locale, 'pergolas.related.curtains.body')}
+                    </p>
+                  </a>
+                </FadeIn>
+              </div>
+            </div>
+          </section>
+
           {/* Service Area */}
-          <ServiceAreaSection serviceName={t(locale, 'pergolas.serviceArea')} locale={locale} />
+          <ServiceAreaSection
+            serviceName={t(locale, 'pergolas.serviceArea')}
+            locale={locale}
+            teaserLocations={['orihuela-costa', 'cabo-roig', 'villamartin', 'ciudad-quesada', 'benidorm', 'elche']}
+          />
 
           {/* CTA */}
           <section className="bg-navy py-20 md:py-24">
@@ -158,10 +319,10 @@ export function PergolasPage({ locale = 'es' }: { locale?: Locale }) {
                 {t(locale, 'pergolas.cta.description')}
               </p>
               <div className="flex flex-col sm:flex-row justify-center gap-4">
-                <Button variant="gold" href={localizedUrl("/presupuesto", locale)}>
+                <Button variant="gold" href={quoteWithProduct}>
                   {t(locale, 'pergolas.cta.quote')}
                 </Button>
-                <Button variant="outline-white" href={localizedUrl("/contacto", locale)}>
+                <Button variant="outline-white" href={contactPath}>
                   {t(locale, 'pergolas.cta.contact')}
                 </Button>
               </div>
