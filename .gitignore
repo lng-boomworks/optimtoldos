@@ -4,3 +4,8 @@ dist/
 .env
 .DS_Store
 .superpowers/
+
+# Local working files — client briefs, dev utilities, internal references
+OptimToldos_RemainingTasks.pdf
+blog-image.html
+image-requirements.csv
