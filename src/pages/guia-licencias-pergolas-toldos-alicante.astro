@@ -1,0 +1,33 @@
+---
+import Base from '../layouts/Base.astro';
+import { PlanningPermissionGuidePage } from '../components/pages/PlanningPermissionGuidePage';
+import { buildFAQSchema } from '../utils/schema';
+import { t } from '../i18n/index';
+import { getAlternateUrls } from '../i18n/routes';
+
+const alternateUrls = getAlternateUrls('licence-guide');
+
+const faqs = Array.from({ length: 8 }, (_, i) => ({
+  question: t('es', `licenceGuide.faq.${i + 1}.q` as any),
+  answer: t('es', `licenceGuide.faq.${i + 1}.a` as any),
+}));
+
+const breadcrumbs = [
+  { name: 'Inicio', url: 'https://optimtoldos.com/' },
+  { name: 'Guía de licencias', url: 'https://optimtoldos.com/guia-licencias-pergolas-toldos-alicante' },
+];
+---
+
+<Base
+  title={t('es', 'licenceGuide.title')}
+  description={t('es', 'licenceGuide.meta_description')}
+  breadcrumbs={breadcrumbs}
+  locale="es"
+  alternateUrls={alternateUrls}
+  type="article"
+>
+  <Fragment slot="head">
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(buildFAQSchema(faqs))} />
+  </Fragment>
+  <PlanningPermissionGuidePage client:load locale="es" />
+</Base>

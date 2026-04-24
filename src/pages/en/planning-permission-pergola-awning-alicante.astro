@@ -1,0 +1,33 @@
+---
+import Base from '../../layouts/Base.astro';
+import { PlanningPermissionGuidePage } from '../../components/pages/PlanningPermissionGuidePage';
+import { buildFAQSchema } from '../../utils/schema';
+import { t } from '../../i18n/index';
+import { getAlternateUrls } from '../../i18n/routes';
+
+const alternateUrls = getAlternateUrls('licence-guide');
+
+const faqs = Array.from({ length: 8 }, (_, i) => ({
+  question: t('en', `licenceGuide.faq.${i + 1}.q` as any),
+  answer: t('en', `licenceGuide.faq.${i + 1}.a` as any),
+}));
+
+const breadcrumbs = [
+  { name: 'Home', url: 'https://optimtoldos.com/en/' },
+  { name: 'Planning permission guide', url: 'https://optimtoldos.com/en/planning-permission-pergola-awning-alicante' },
+];
+---
+
+<Base
+  title={t('en', 'licenceGuide.title')}
+  description={t('en', 'licenceGuide.meta_description')}
+  breadcrumbs={breadcrumbs}
+  locale="en"
+  alternateUrls={alternateUrls}
+  type="article"
+>
+  <Fragment slot="head">
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(buildFAQSchema(faqs))} />
+  </Fragment>
+  <PlanningPermissionGuidePage client:load locale="en" />
+</Base>
