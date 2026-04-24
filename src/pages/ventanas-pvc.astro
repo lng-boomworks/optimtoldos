@@ -2,18 +2,15 @@
 import Base from '../layouts/Base.astro';
 import { VentanasPage } from '../components/pages/VentanasPage';
 import { buildFAQSchema, buildServiceSchema, buildProductSchema } from '../utils/schema';
+import { t } from '../i18n/index';
 import { getAlternateUrls } from '../i18n/routes';
 
 const alternateUrls = getAlternateUrls('pvc-windows');
 
-const ventanasFaqs = [
-  { question: "¿Qué es mejor: ventanas de PVC o aluminio?", answer: "Las ventanas de PVC ofrecen un aislamiento térmico hasta un 40% superior al aluminio gracias a sus perfiles multicámara. Son más eficientes energéticamente, reducen más el ruido exterior y no se corroen con la brisa marina. El aluminio es más delgado y puede ser mejor para grandes ventanales. En el clima de Alicante, el PVC es la opción más eficiente." },
-  { question: "¿Cuánto se ahorra en energía con ventanas de PVC?", answer: "El ahorro medio en climatización al instalar ventanas de PVC es del 30% al 40% respecto a ventanas antiguas de aluminio sin rotura de puente térmico. En una vivienda media en Alicante, esto puede suponer entre 300€ y 600€ de ahorro anual en aire acondicionado y calefacción." },
-  { question: "¿Las ventanas de PVC resisten el calor de Alicante?", answer: "Sí, las ventanas de PVC modernas están fabricadas con formulaciones estabilizadas contra rayos UV que resisten temperaturas extremas sin deformarse ni amarillear. De hecho, su capacidad de aislamiento térmico las hace especialmente eficaces para mantener el frescor interior durante los veranos de Alicante." },
-  { question: "¿Qué es una ventana oscilobatiente?", answer: "Una ventana oscilobatiente tiene doble sistema de apertura: se abre como una ventana abatible convencional (hacia el interior con bisagra lateral) o se inclina hacia dentro desde la parte superior para ventilación segura. Es ideal para habitaciones donde se quiere ventilar sin abrir completamente la ventana." },
-  { question: "¿Las ventanas de PVC amarillean con el sol?", answer: "No, las ventanas de PVC de calidad actuales utilizan formulaciones con estabilizadores UV que previenen el amarilleamiento durante más de 20 años. Todos nuestros perfiles cuentan con certificación CE y garantía del fabricante." },
-  { question: "¿Cuánto tarda el cambio de ventanas en una vivienda?", answer: "El cambio completo de ventanas en una vivienda media (6-8 ventanas) se realiza normalmente en 1 a 2 días laborables. La fabricación a medida tarda entre 2 y 3 semanas. Durante la instalación, la molestia es mínima ya que trabajamos ventana por ventana." },
-];
+const ventanasFaqs = Array.from({ length: 8 }, (_, i) => ({
+  question: t('es', `windows.faq.${i + 1}.q` as any),
+  answer: t('es', `windows.faq.${i + 1}.a` as any),
+}));
 
 const breadcrumbs = [
   { name: "Inicio", url: "https://optimtoldos.com/" },
