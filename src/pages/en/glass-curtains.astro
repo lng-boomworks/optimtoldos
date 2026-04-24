@@ -19,14 +19,12 @@ const serviceSchema = buildServiceSchema({
   ],
 });
 
-const faqSchema = buildFAQSchema([
-  { question: t('en', 'curtains.faq.1.q'), answer: t('en', 'curtains.faq.1.a') },
-  { question: t('en', 'curtains.faq.2.q'), answer: t('en', 'curtains.faq.2.a') },
-  { question: t('en', 'curtains.faq.3.q'), answer: t('en', 'curtains.faq.3.a') },
-  { question: t('en', 'curtains.faq.4.q'), answer: t('en', 'curtains.faq.4.a') },
-  { question: t('en', 'curtains.faq.5.q'), answer: t('en', 'curtains.faq.5.a') },
-  { question: t('en', 'curtains.faq.6.q'), answer: t('en', 'curtains.faq.6.a') },
-]);
+const faqSchema = buildFAQSchema(
+  Array.from({ length: 8 }, (_, i) => ({
+    question: t('en', `curtains.faq.${i + 1}.q` as any),
+    answer: t('en', `curtains.faq.${i + 1}.a` as any),
+  }))
+);
 
 const productSchema = buildProductSchema({
   name: "Glass Curtains in Alicante",

@@ -7,6 +7,7 @@ import { FAQSection } from "../FAQSection";
 import { ServiceAreaSection } from "../ServiceAreaSection";
 import { url, localizedUrl } from "../../utils/paths";
 import { t, type Locale } from "../../i18n/index";
+import { slugMap } from "../../i18n/slugs";
 
 const featureImages = [
   "/images/cortinas/cortina-cristal-1.webp",
@@ -17,9 +18,15 @@ const featureImages = [
 
 const featureCount = 4;
 const stepCount = 3;
-const faqCount = 6;
+const faqCount = 8;
 
 export function CortinasPage({ locale = 'es' }: { locale?: Locale }) {
+  const quoteWithProduct = `${localizedUrl(`/${slugMap.quote[locale]}`, locale)}?product=glass-curtains`;
+  const licencePath = localizedUrl(`/${slugMap["licence-guide"][locale]}`, locale);
+  const curtainsGuidePath = localizedUrl(`/${slugMap["glass-curtains-guide"][locale]}`, locale);
+  const pergolasPath = localizedUrl(`/${slugMap.pergolas[locale]}`, locale);
+  const contactPath = localizedUrl(`/${slugMap.contact[locale]}`, locale);
+
   const features = Array.from({ length: featureCount }, (_, i) => ({
     title: t(locale, `curtains.features.${i + 1}.title` as any),
     desc: t(locale, `curtains.features.${i + 1}.description` as any),
@@ -72,7 +79,7 @@ export function CortinasPage({ locale = 'es' }: { locale?: Locale }) {
                 </p>
               </FadeIn>
               <FadeIn delay={0.4}>
-                <Button variant="primary" href={localizedUrl("/presupuesto", locale)}>
+                <Button variant="primary" href={quoteWithProduct}>
                   {t(locale, 'curtains.hero.cta')}
                 </Button>
               </FadeIn>
@@ -137,11 +144,128 @@ export function CortinasPage({ locale = 'es' }: { locale?: Locale }) {
             </div>
           </section>
 
+          {/* Thermal + wind performance */}
+          <section className="bg-sand-light py-14 md:py-16">
+            <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+              <FadeIn>
+                <AnimatedHeading
+                  text={t(locale, 'curtains.thermal.heading')}
+                  tag="h2"
+                  className="text-navy mb-5"
+                />
+                <p className="text-text-body leading-relaxed">
+                  {t(locale, 'curtains.thermal.body')}
+                </p>
+              </FadeIn>
+            </div>
+          </section>
+
+          {/* Comunidad */}
+          <section className="bg-white py-14 md:py-16">
+            <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+              <FadeIn>
+                <AnimatedHeading
+                  text={t(locale, 'curtains.comunidad.heading')}
+                  tag="h2"
+                  className="text-navy mb-5"
+                />
+                <p className="text-text-body leading-relaxed">
+                  {t(locale, 'curtains.comunidad.body')}
+                </p>
+              </FadeIn>
+            </div>
+          </section>
+
+          {/* Maintenance */}
+          <section className="bg-sand-light py-14 md:py-16">
+            <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+              <FadeIn>
+                <AnimatedHeading
+                  text={t(locale, 'curtains.maintenance.heading')}
+                  tag="h2"
+                  className="text-navy mb-5"
+                />
+                <p className="text-text-body leading-relaxed">
+                  {t(locale, 'curtains.maintenance.body')}
+                </p>
+              </FadeIn>
+            </div>
+          </section>
+
+          {/* Licence banner */}
+          <section className="bg-white py-10">
+            <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+              <FadeIn>
+                <div className="rounded-2xl border-l-4 border-terracotta bg-sand-light p-6 md:p-7 flex flex-col md:flex-row md:items-center gap-4 md:gap-6">
+                  <div className="flex-1">
+                    <h3 className="font-serif text-lg text-navy mb-1">
+                      {t(locale, 'curtains.licence_banner.title')}
+                    </h3>
+                    <p className="text-text-body text-sm leading-relaxed">
+                      {t(locale, 'curtains.licence_banner.body')}
+                    </p>
+                  </div>
+                  <a
+                    href={licencePath}
+                    className="shrink-0 text-terracotta hover:underline font-medium text-sm"
+                  >
+                    {t(locale, 'curtains.licence_banner.cta')} →
+                  </a>
+                </div>
+              </FadeIn>
+            </div>
+          </section>
+
           {/* FAQ */}
           <FAQSection faqs={faqs} locale={locale} />
 
+          {/* Related */}
+          <section className="bg-white py-14 md:py-16">
+            <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+              <FadeIn className="text-center mb-8">
+                <AnimatedHeading
+                  text={t(locale, 'curtains.related.heading')}
+                  tag="h2"
+                  className="text-navy"
+                />
+              </FadeIn>
+              <div className="grid md:grid-cols-2 gap-6">
+                <FadeIn delay={0.1}>
+                  <a
+                    href={curtainsGuidePath}
+                    className="block bg-sand-light rounded-2xl p-6 h-full hover:bg-sand transition-colors"
+                  >
+                    <h3 className="font-serif text-lg text-navy mb-2">
+                      {t(locale, 'curtains.related.guide.title')} →
+                    </h3>
+                    <p className="text-text-body leading-relaxed text-sm">
+                      {t(locale, 'curtains.related.guide.body')}
+                    </p>
+                  </a>
+                </FadeIn>
+                <FadeIn delay={0.2}>
+                  <a
+                    href={pergolasPath}
+                    className="block bg-sand-light rounded-2xl p-6 h-full hover:bg-sand transition-colors"
+                  >
+                    <h3 className="font-serif text-lg text-navy mb-2">
+                      {t(locale, 'curtains.related.pergolas.title')} →
+                    </h3>
+                    <p className="text-text-body leading-relaxed text-sm">
+                      {t(locale, 'curtains.related.pergolas.body')}
+                    </p>
+                  </a>
+                </FadeIn>
+              </div>
+            </div>
+          </section>
+
           {/* Service Area */}
-          <ServiceAreaSection serviceName={t(locale, 'curtains.serviceArea')} locale={locale} />
+          <ServiceAreaSection
+            serviceName={t(locale, 'curtains.serviceArea')}
+            locale={locale}
+            teaserLocations={['cabo-roig', 'orihuela-costa', 'benidorm', 'alicante', 'torrevieja', 'elche']}
+          />
 
           {/* CTA */}
           <section className="bg-navy py-20 md:py-24">
@@ -153,10 +277,10 @@ export function CortinasPage({ locale = 'es' }: { locale?: Locale }) {
                 {t(locale, 'curtains.cta.description')}
               </p>
               <div className="flex flex-col sm:flex-row justify-center gap-4">
-                <Button variant="gold" href={localizedUrl("/presupuesto", locale)}>
+                <Button variant="gold" href={quoteWithProduct}>
                   {t(locale, 'curtains.cta.quote')}
                 </Button>
-                <Button variant="outline-white" href={localizedUrl("/contacto", locale)}>
+                <Button variant="outline-white" href={contactPath}>
                   {t(locale, 'curtains.cta.contact')}
                 </Button>
               </div>
