@@ -6,6 +6,7 @@ import { AnimatedHeading } from "../AnimatedHeading";
 import { Button } from "../Button";
 import { url, localizedUrl } from "../../utils/paths";
 import { t, type Locale } from "../../i18n/index";
+import { slugMap } from "../../i18n/slugs";
 
 type CategoryKey = "all" | "awnings" | "pergolas" | "curtains" | "sails" | "windows";
 
@@ -47,6 +48,27 @@ const projectCategoryKeys: CategoryKey[] = [
   "windows", "windows",
 ];
 
+// Location slug per project (1-indexed parallel to gallery.project.N.title).
+// Matches the Service Areas page anchors so captions deep-link correctly.
+const projectLocationSlugs: string[] = [
+  "torrevieja",
+  "elche",
+  "santa-pola",
+  "alicante",
+  "guardamar-del-segura",
+  "orihuela-costa",
+  "benidorm",
+  "cabo-roig",
+  "villamartin",
+  "la-zenia",
+  "playa-flamenca",
+  "ciudad-quesada",
+  "gran-alacant",
+  "la-marina",
+  "elche",
+  "alicante",
+];
+
 export function GaleriaPage({ locale = 'es' }: { locale?: Locale }) {
   const [activeFilter, setActiveFilter] = useState<CategoryKey>("all");
 
@@ -55,12 +77,22 @@ export function GaleriaPage({ locale = 'es' }: { locale?: Locale }) {
     label: t(locale, `gallery.filter.${key}` as any),
   }));
 
-  const projects = Array.from({ length: projectCount }, (_, i) => ({
-    title: t(locale, `gallery.project.${i + 1}.title` as any),
-    categoryKey: projectCategoryKeys[i],
-    categoryLabel: t(locale, `gallery.filter.${projectCategoryKeys[i]}` as any),
-    image: projectImages[i],
-  }));
+  const serviceAreasPath = localizedUrl(`/${slugMap["service-areas"][locale]}`, locale);
+
+  const projects = Array.from({ length: projectCount }, (_, i) => {
+    const fullTitle = t(locale, `gallery.project.${i + 1}.title` as any);
+    // Titles follow the format "<product> — <location>". Split on the em-dash
+    // to render the location portion as a deep-link to Service Areas.
+    const [productPart, locationPart] = fullTitle.split(" — ");
+    return {
+      product: productPart,
+      locationName: locationPart ?? "",
+      locationSlug: projectLocationSlugs[i],
+      categoryKey: projectCategoryKeys[i],
+      categoryLabel: t(locale, `gallery.filter.${projectCategoryKeys[i]}` as any),
+      image: projectImages[i],
+    };
+  });
 
   const filtered =
     activeFilter === "all"
@@ -121,31 +153,47 @@ export function GaleriaPage({ locale = 'es' }: { locale?: Locale }) {
 
               {/* Grid */}
               <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-                {filtered.map((project, i) => (
-                  <FadeIn key={`${activeFilter}-${project.title}`} delay={i * 0.05}>
-                    <div className="group relative aspect-[4/3] rounded-2xl overflow-hidden cursor-pointer">
-                      <img
-                        src={url(project.image)}
-                        alt={project.title}
-                        width="1200"
-                        height="900"
-                        loading="lazy"
-                        decoding="async"
-                        className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-                      />
-                      <div className="absolute inset-0 bg-black/0 group-hover:bg-black/40 transition-colors duration-300 flex items-end">
-                        <div className="p-5 translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-300">
-                          <h3 className="font-serif text-lg text-white mb-1">
-                            {project.title}
-                          </h3>
-                          <span className="text-white/70 text-sm">
-                            {project.categoryLabel}
-                          </span>
+                {filtered.map((project, i) => {
+                  const altText = project.locationName
+                    ? `${project.product} — ${project.locationName}`
+                    : project.product;
+                  return (
+                    <FadeIn key={`${activeFilter}-${project.product}-${project.locationSlug}`} delay={i * 0.05}>
+                      <div className="group relative aspect-[4/3] rounded-2xl overflow-hidden">
+                        <img
+                          src={url(project.image)}
+                          alt={altText}
+                          width="1200"
+                          height="900"
+                          loading="lazy"
+                          decoding="async"
+                          className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                        />
+                        <div className="absolute inset-0 bg-black/0 group-hover:bg-black/40 transition-colors duration-300 flex items-end pointer-events-none">
+                          <div className="p-5 translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-300 pointer-events-auto">
+                            <h3 className="font-serif text-lg text-white mb-1">
+                              {project.product}
+                              {project.locationName && (
+                                <>
+                                  {" — "}
+                                  <a
+                                    href={`${serviceAreasPath}#${project.locationSlug}`}
+                                    className="underline decoration-white/40 hover:decoration-white"
+                                  >
+                                    {project.locationName}
+                                  </a>
+                                </>
+                              )}
+                            </h3>
+                            <span className="text-white/70 text-sm">
+                              {project.categoryLabel}
+                            </span>
+                          </div>
                         </div>
                       </div>
-                    </div>
-                  </FadeIn>
-                ))}
+                    </FadeIn>
+                  );
+                })}
               </div>
             </div>
           </section>
