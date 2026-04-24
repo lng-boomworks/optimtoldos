@@ -28,6 +28,14 @@ export function Footer({ locale = 'es' }: FooterProps) {
     { name: t(locale, 'footer.quote'), path: footerPath('quote', locale) },
   ];
 
+  const resourceLinks = [
+    { name: t(locale, 'footer.service_areas'), path: footerPath('service-areas', locale) },
+    { name: t(locale, 'footer.licence_guide'), path: footerPath('licence-guide', locale) },
+    { name: t(locale, 'footer.bioclimatic_vs_aluminium'), path: footerPath('bioclimatic-vs-aluminium', locale) },
+    { name: t(locale, 'footer.awning_guide'), path: footerPath('awning-guide', locale) },
+    { name: t(locale, 'footer.curtains_guide'), path: footerPath('glass-curtains-guide', locale) },
+  ];
+
   const legalLinks = [
     { name: t(locale, 'footer.legal_notice'), path: footerPath('legal-notice', locale) },
     { name: t(locale, 'footer.privacy'), path: footerPath('privacy-policy', locale) },
@@ -37,7 +45,7 @@ export function Footer({ locale = 'es' }: FooterProps) {
   return (
     <footer className="bg-white border-t border-border">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 lg:gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-10 lg:gap-8">
           {/* Brand */}
           <div className="lg:col-span-2">
             <a href={localizedUrl("/", locale)} className="inline-block mb-5">
@@ -97,6 +105,25 @@ export function Footer({ locale = 'es' }: FooterProps) {
             </h4>
             <ul className="flex flex-col gap-2.5">
               {companyLinks.map((link) => (
+                <li key={link.path}>
+                  <a
+                    href={link.path}
+                    className="text-text-muted text-[15px] hover:text-terracotta transition-colors"
+                  >
+                    {link.name}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Resources */}
+          <div>
+            <h4 className="text-navy font-medium text-sm uppercase tracking-wide mb-4">
+              {t(locale, 'footer.resources_heading')}
+            </h4>
+            <ul className="flex flex-col gap-2.5">
+              {resourceLinks.map((link) => (
                 <li key={link.path}>
                   <a
                     href={link.path}
