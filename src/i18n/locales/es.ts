@@ -96,6 +96,13 @@ export default {
   'home.testimonials.google_cta': 'Ver reseñas en Google',
 
   // -- Home: CTA --
+  // -- Home: Resources (Where we work + featured guides) --
+  'home.resources.areas.heading': 'Dónde trabajamos',
+  'home.resources.areas.description': 'Instalamos en toda la provincia de Alicante. Estas son algunas de nuestras zonas más activas — haz clic para ver los proyectos y productos más habituales en cada una.',
+  'home.resources.areas.see_all': 'Ver todas las zonas de servicio',
+  'home.resources.guides.heading': 'Guías útiles antes de contratar',
+  'home.resources.guides.description': 'Contenido práctico para clientes de la Costa Blanca: licencias, comparativas y elección de modelo.',
+
   'home.cta.heading': '¿Listo Para Transformar Tu Espacio?',
   'home.cta.description': 'Solicita tu presupuesto gratuito y sin compromiso. Te visitamos, medimos y asesoramos sin coste.',
   'home.cta.quote': 'Solicitar Presupuesto',

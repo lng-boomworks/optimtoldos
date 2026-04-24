@@ -6,6 +6,7 @@ import { ProductShowcase } from "./ProductShowcase";
 import { WhyChooseUs } from "./WhyChooseUs";
 import { ProjectsTeaser } from "./ProjectsTeaser";
 import { Testimonials } from "./Testimonials";
+import { HomeResources } from "./HomeResources";
 import { CTASection } from "./CTASection";
 import { FAQSection } from "../FAQSection";
 import { t, type Locale } from "../../i18n/index";
@@ -33,6 +34,7 @@ export function HomePage({ locale = 'es' }: HomePageProps) {
         <WhyChooseUs locale={locale} />
         <ProjectsTeaser locale={locale} />
         <Testimonials locale={locale} />
+        <HomeResources locale={locale} />
         <FAQSection faqs={homeFaqs} heading={t(locale, 'home.faq.heading')} />
         <CTASection locale={locale} />
       </main>

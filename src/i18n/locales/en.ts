@@ -96,6 +96,13 @@ export default {
   'home.testimonials.google_cta': 'See reviews on Google',
 
   // -- Home: CTA --
+  // -- Home: Resources (Where we work + featured guides) --
+  'home.resources.areas.heading': 'Where we work',
+  'home.resources.areas.description': 'We install across the whole province of Alicante. These are some of our most active locations — click to see the projects and products most common in each.',
+  'home.resources.areas.see_all': 'See all service areas',
+  'home.resources.guides.heading': 'Useful guides before you buy',
+  'home.resources.guides.description': 'Practical content for Costa Blanca clients: planning permission, product comparisons, and how to choose the right model.',
+
   'home.cta.heading': 'Ready to Transform Your Space?',
   'home.cta.description': 'Request your free, no-obligation quote. We\'ll visit, measure and advise at no cost.',
   'home.cta.quote': 'Request a Quote',
