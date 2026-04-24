@@ -1,0 +1,33 @@
+---
+import Base from '../../layouts/Base.astro';
+import { GlassCurtainsGuidePage } from '../../components/pages/GlassCurtainsGuidePage';
+import { buildFAQSchema } from '../../utils/schema';
+import { t } from '../../i18n/index';
+import { getAlternateUrls } from '../../i18n/routes';
+
+const alternateUrls = getAlternateUrls('glass-curtains-guide');
+
+const faqs = Array.from({ length: 6 }, (_, i) => ({
+  question: t('en', `curtainsGuide.faq.${i + 1}.q` as any),
+  answer: t('en', `curtainsGuide.faq.${i + 1}.a` as any),
+}));
+
+const breadcrumbs = [
+  { name: 'Home', url: 'https://optimtoldos.com/en/' },
+  { name: 'Glass curtains guide', url: 'https://optimtoldos.com/en/glass-curtains-guide' },
+];
+---
+
+<Base
+  title={t('en', 'curtainsGuide.title')}
+  description={t('en', 'curtainsGuide.meta_description')}
+  breadcrumbs={breadcrumbs}
+  locale="en"
+  alternateUrls={alternateUrls}
+  type="article"
+>
+  <Fragment slot="head">
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(buildFAQSchema(faqs))} />
+  </Fragment>
+  <GlassCurtainsGuidePage client:load locale="en" />
+</Base>
