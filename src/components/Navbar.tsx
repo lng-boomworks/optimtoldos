@@ -27,6 +27,7 @@ export function Navbar({ locale = 'es' }: NavbarProps) {
     { name: t(locale, 'nav.sails'), path: navPath('shade-sails', locale) },
     { name: t(locale, 'nav.windows'), path: navPath('pvc-windows', locale) },
     { name: t(locale, 'nav.gallery'), path: navPath('gallery', locale) },
+    { name: t(locale, 'nav.about'), path: navPath('about-us', locale) },
     { name: t(locale, 'nav.blog'), path: navPath('blog', locale) },
     { name: t(locale, 'nav.contact'), path: navPath('contact', locale) },
   ];
