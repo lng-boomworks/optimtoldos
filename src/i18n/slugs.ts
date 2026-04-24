@@ -14,7 +14,12 @@ export type PageId =
   | "quote"
   | "legal-notice"
   | "privacy-policy"
-  | "cookie-policy";
+  | "cookie-policy"
+  | "service-areas"
+  | "licence-guide"
+  | "bioclimatic-vs-aluminium"
+  | "awning-guide"
+  | "glass-curtains-guide";
 
 export const slugMap: Record<PageId, Record<Locale, string>> = {
   home: { es: "", en: "" },
@@ -31,6 +36,11 @@ export const slugMap: Record<PageId, Record<Locale, string>> = {
   "legal-notice": { es: "aviso-legal", en: "legal-notice" },
   "privacy-policy": { es: "politica-privacidad", en: "privacy-policy" },
   "cookie-policy": { es: "politica-cookies", en: "cookie-policy" },
+  "service-areas": { es: "zonas-de-servicio", en: "service-areas" },
+  "licence-guide": { es: "guia-licencias-pergolas-toldos-alicante", en: "planning-permission-pergola-awning-alicante" },
+  "bioclimatic-vs-aluminium": { es: "pergola-bioclimatica-vs-aluminio", en: "bioclimatic-vs-aluminium-pergola" },
+  "awning-guide": { es: "guia-elegir-toldo-costa-blanca", en: "choosing-the-right-awning-costa-blanca" },
+  "glass-curtains-guide": { es: "guia-cortinas-cristal-terraza", en: "glass-curtains-guide" },
 };
 
 /** Get the localized path for a page (without base prefix) */

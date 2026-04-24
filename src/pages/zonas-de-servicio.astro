@@ -1,0 +1,59 @@
+---
+import Base from '../layouts/Base.astro';
+import { ServiceAreasPage } from '../components/pages/ServiceAreasPage';
+import { buildCollectionPageSchema } from '../utils/schema';
+import { getAlternateUrls } from '../i18n/routes';
+
+const alternateUrls = getAlternateUrls('service-areas');
+
+const LOCATIONS = [
+  { slug: 'torrevieja',            name: 'Torrevieja' },
+  { slug: 'orihuela-costa',        name: 'Orihuela Costa' },
+  { slug: 'la-zenia',              name: 'La Zenia' },
+  { slug: 'punta-prima',           name: 'Punta Prima' },
+  { slug: 'ciudad-quesada',        name: 'Ciudad Quesada' },
+  { slug: 'guardamar-del-segura',  name: 'Guardamar del Segura' },
+  { slug: 'la-marina',             name: 'La Marina' },
+  { slug: 'elche',                 name: 'Elche' },
+  { slug: 'santa-pola',            name: 'Santa Pola' },
+  { slug: 'gran-alacant',          name: 'Gran Alacant' },
+  { slug: 'cabo-roig',             name: 'Cabo Roig' },
+  { slug: 'villamartin',           name: 'Villamartín' },
+  { slug: 'playa-flamenca',        name: 'Playa Flamenca' },
+  { slug: 'campoamor',             name: 'Campoamor' },
+  { slug: 'los-balcones',          name: 'Los Balcones' },
+  { slug: 'rojales',               name: 'Rojales' },
+  { slug: 'benidorm',              name: 'Benidorm' },
+  { slug: 'alicante',              name: 'Alicante' },
+  { slug: 'san-miguel-de-salinas', name: 'San Miguel de Salinas' },
+  { slug: 'dolores',               name: 'Dolores' },
+];
+
+const schema = buildCollectionPageSchema({
+  name: 'Zonas de servicio — Optim Toldos',
+  description: 'Áreas donde Optim Toldos instala toldos, pérgolas, cortinas de cristal, velas de sombra y ventanas PVC en la provincia de Alicante.',
+  url: 'https://optimtoldos.com/zonas-de-servicio',
+  items: LOCATIONS.map(l => ({
+    name: l.name,
+    url: `https://optimtoldos.com/zonas-de-servicio#${l.slug}`,
+  })),
+});
+
+const breadcrumbs = [
+  { name: 'Inicio', url: 'https://optimtoldos.com/' },
+  { name: 'Zonas de Servicio', url: 'https://optimtoldos.com/zonas-de-servicio' },
+];
+---
+
+<Base
+  title="Zonas de Servicio | Optim Toldos — Costa Blanca"
+  description="Instalamos toldos, pérgolas, cortinas de cristal, velas de sombra y ventanas PVC en toda la provincia de Alicante. Descubre nuestras 20 zonas de servicio."
+  breadcrumbs={breadcrumbs}
+  locale="es"
+  alternateUrls={alternateUrls}
+>
+  <Fragment slot="head">
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(schema)} />
+  </Fragment>
+  <ServiceAreasPage client:load locale="es" />
+</Base>

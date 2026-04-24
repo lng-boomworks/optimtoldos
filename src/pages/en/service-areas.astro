@@ -1,0 +1,59 @@
+---
+import Base from '../../layouts/Base.astro';
+import { ServiceAreasPage } from '../../components/pages/ServiceAreasPage';
+import { buildCollectionPageSchema } from '../../utils/schema';
+import { getAlternateUrls } from '../../i18n/routes';
+
+const alternateUrls = getAlternateUrls('service-areas');
+
+const LOCATIONS = [
+  { slug: 'torrevieja',            name: 'Torrevieja' },
+  { slug: 'orihuela-costa',        name: 'Orihuela Costa' },
+  { slug: 'la-zenia',              name: 'La Zenia' },
+  { slug: 'punta-prima',           name: 'Punta Prima' },
+  { slug: 'ciudad-quesada',        name: 'Ciudad Quesada' },
+  { slug: 'guardamar-del-segura',  name: 'Guardamar del Segura' },
+  { slug: 'la-marina',             name: 'La Marina' },
+  { slug: 'elche',                 name: 'Elche' },
+  { slug: 'santa-pola',            name: 'Santa Pola' },
+  { slug: 'gran-alacant',          name: 'Gran Alacant' },
+  { slug: 'cabo-roig',             name: 'Cabo Roig' },
+  { slug: 'villamartin',           name: 'Villamartín' },
+  { slug: 'playa-flamenca',        name: 'Playa Flamenca' },
+  { slug: 'campoamor',             name: 'Campoamor' },
+  { slug: 'los-balcones',          name: 'Los Balcones' },
+  { slug: 'rojales',               name: 'Rojales' },
+  { slug: 'benidorm',              name: 'Benidorm' },
+  { slug: 'alicante',              name: 'Alicante' },
+  { slug: 'san-miguel-de-salinas', name: 'San Miguel de Salinas' },
+  { slug: 'dolores',               name: 'Dolores' },
+];
+
+const schema = buildCollectionPageSchema({
+  name: 'Service Areas — Optim Toldos',
+  description: 'Areas where Optim Toldos installs awnings, pergolas, glass curtains, shade sails and PVC windows across the province of Alicante.',
+  url: 'https://optimtoldos.com/en/service-areas',
+  items: LOCATIONS.map(l => ({
+    name: l.name,
+    url: `https://optimtoldos.com/en/service-areas#${l.slug}`,
+  })),
+});
+
+const breadcrumbs = [
+  { name: 'Home', url: 'https://optimtoldos.com/en/' },
+  { name: 'Service Areas', url: 'https://optimtoldos.com/en/service-areas' },
+];
+---
+
+<Base
+  title="Service Areas | Optim Toldos — Costa Blanca"
+  description="We install awnings, pergolas, glass curtains, shade sails and PVC windows across the province of Alicante. See our 20 service areas."
+  breadcrumbs={breadcrumbs}
+  locale="en"
+  alternateUrls={alternateUrls}
+>
+  <Fragment slot="head">
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(schema)} />
+  </Fragment>
+  <ServiceAreasPage client:load locale="en" />
+</Base>
