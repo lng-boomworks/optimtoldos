@@ -1,99 +1,69 @@
+import { useEffect } from "react";
 import { AnimatedHeading } from "../AnimatedHeading";
 import { FadeIn } from "../FadeIn";
-import { t, type Locale, dateLocales } from "../../i18n/index";
+import { t, type Locale } from "../../i18n/index";
 
 interface TestimonialsProps {
   locale?: Locale;
 }
 
-const testimonials = [
-  { index: 1, rating: 5, date: "2025-11-15" },
-  { index: 2, rating: 5, date: "2025-09-22" },
-  { index: 3, rating: 5, date: "2025-08-10" },
-  { index: 4, rating: 4, date: "2026-01-18" },
-  { index: 5, rating: 5, date: "2025-12-05" },
-  { index: 6, rating: 5, date: "2026-02-08" },
-  { index: 7, rating: 5, date: "2025-10-12" },
-  { index: 8, rating: 5, date: "2026-03-01" },
-  { index: 9, rating: 5, date: "2025-07-20" },
-];
-
-function StarRating({ rating, locale = 'es' }: { rating: number; locale?: Locale }) {
-  const ariaLabel = t(locale, 'home.testimonials.star_rating').replace('{rating}', String(rating));
-  return (
-    <div className="flex gap-0.5 mb-4" aria-label={ariaLabel}>
-      {[1, 2, 3, 4, 5].map((star) => (
-        <svg
-          key={star}
-          className={`w-5 h-5 ${star <= rating ? "text-gold" : "text-sand"}`}
-          fill="currentColor"
-          viewBox="0 0 20 20"
-          aria-hidden="true"
-        >
-          <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-        </svg>
-      ))}
-    </div>
-  );
-}
-
-function formatDate(dateStr: string, locale: Locale): string {
-  const date = new Date(dateStr + "T00:00:00");
-  return new Intl.DateTimeFormat(dateLocales[locale], {
-    day: "numeric",
-    month: "long",
-    year: "numeric",
-  }).format(date);
-}
+// Reviews section scaffold — awaiting real Google Business Profile integration.
+// To activate the Elfsight Google Reviews widget:
+//   1. Subscribe to Elfsight and create a widget connected to the Optim Toldos
+//      Google Business Profile.
+//   2. Paste the widget's class name into ELFSIGHT_WIDGET_CLASS.
+//   3. Set ELFSIGHT_ENABLED to true.
+const ELFSIGHT_WIDGET_CLASS = "";
+const ELFSIGHT_ENABLED = false;
+const GOOGLE_BUSINESS_URL = "https://www.google.com/maps/search/?api=1&query=Optim+Toldos+Elche";
 
 export function Testimonials({ locale = 'es' }: TestimonialsProps) {
+  useEffect(() => {
+    if (!ELFSIGHT_ENABLED || typeof document === 'undefined') return;
+    if (document.querySelector('script[src*="elfsightcdn.com"]')) return;
+    const s = document.createElement('script');
+    s.src = 'https://elfsightcdn.com/platform.js';
+    s.async = true;
+    document.body.appendChild(s);
+  }, []);
+
   return (
     <section className="bg-white py-24">
-      <div className="mx-auto max-w-7xl px-6 lg:px-8">
-        <div className="text-center mb-16">
+      <div className="mx-auto max-w-5xl px-6 lg:px-8">
+        <div className="text-center mb-12">
           <AnimatedHeading
             text={t(locale, 'home.testimonials.heading')}
             tag="h2"
           />
         </div>
 
-        <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
-          {testimonials.map((item, i) => {
-            const quote = t(locale, `home.testimonials.${item.index}.quote` as any);
-            const name = t(locale, `home.testimonials.${item.index}.name` as any);
-            const location = t(locale, `home.testimonials.${item.index}.location` as any);
-            return (
-              <FadeIn key={name} delay={i * 0.15} direction="up">
-                <div className="relative bg-sand rounded-2xl p-8 h-full">
-                  {/* Decorative quote mark */}
-                  <span
-                    className="absolute top-4 left-6 font-serif text-8xl text-terracotta/10 leading-none select-none pointer-events-none"
-                    aria-hidden="true"
-                  >
-                    &ldquo;
-                  </span>
-
-                  <blockquote className="relative z-10">
-                    <StarRating rating={item.rating} locale={locale} />
-                    <p className="italic text-lg text-body leading-relaxed mb-6">
-                      &ldquo;{quote}&rdquo;
-                    </p>
-                    <footer>
-                      <p className="font-medium text-foreground">{name}</p>
-                      <p className="text-sm text-muted">{location}</p>
-                      <time
-                        dateTime={item.date}
-                        className="text-xs text-muted/70 mt-1 block"
-                      >
-                        {formatDate(item.date, locale)}
-                      </time>
-                    </footer>
-                  </blockquote>
-                </div>
-              </FadeIn>
-            );
-          })}
-        </div>
+        {ELFSIGHT_ENABLED && ELFSIGHT_WIDGET_CLASS ? (
+          <FadeIn direction="up">
+            <div className={ELFSIGHT_WIDGET_CLASS} />
+          </FadeIn>
+        ) : (
+          <FadeIn direction="up">
+            <div className="rounded-2xl bg-sand p-10 md:p-14 text-center">
+              <p className="text-lg text-body leading-relaxed mb-8 max-w-2xl mx-auto">
+                {t(locale, 'home.testimonials.placeholder')}
+              </p>
+              <a
+                href={GOOGLE_BUSINESS_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 px-7 py-3 rounded-full bg-terracotta text-white font-medium hover:opacity-90 transition"
+              >
+                <svg className="w-5 h-5" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                  <path d="M12 0C5.383 0 0 5.383 0 12s5.383 12 12 12 12-5.383 12-12c0-.813-.082-1.605-.236-2.371H12v4.488h6.666c-.289 1.479-1.162 2.727-2.473 3.563v2.957h4.002c2.342-2.158 3.691-5.33 3.691-9.036z"/>
+                  <path d="M12 24c3.24 0 5.961-1.074 7.947-2.906l-4.002-2.957c-1.107.746-2.528 1.178-3.945 1.178-3.035 0-5.605-2.049-6.526-4.803H1.356v3.045C3.334 21.436 7.387 24 12 24z"/>
+                  <path d="M5.474 14.512c-.234-.703-.369-1.453-.369-2.223s.135-1.52.369-2.223V7.021H1.356C.49 8.75 0 10.717 0 12.808s.49 4.058 1.356 5.787l4.118-3.084z"/>
+                  <path d="M12 4.75c1.764 0 3.348.607 4.598 1.799l3.448-3.448C17.957 1.189 15.237 0 12 0 7.387 0 3.334 2.564 1.356 6.311l4.118 3.085C6.395 6.8 8.965 4.75 12 4.75z"/>
+                </svg>
+                {t(locale, 'home.testimonials.google_cta')}
+              </a>
+            </div>
+          </FadeIn>
+        )}
       </div>
     </section>
   );
