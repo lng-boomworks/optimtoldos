@@ -159,12 +159,6 @@ export function buildProductSchema(opts: {
       seller: { "@id": "https://optimtoldos.com/#business" },
       areaServed: { "@type": "State", name: "Provincia de Alicante" },
     },
-    aggregateRating: {
-      "@type": "AggregateRating",
-      ratingValue: "4.8",
-      reviewCount: "127",
-      bestRating: "5",
-    },
   };
 }
 
