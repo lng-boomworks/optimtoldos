@@ -1,0 +1,101 @@
+---
+import Base from '../layouts/Base.astro';
+import { ProductZonePage } from '../components/pages/ProductZonePage';
+import {
+  buildServiceSchema,
+  buildBreadcrumbSchema,
+  buildFAQSchema,
+} from '../utils/schema';
+
+const SITE = 'https://optimtoldos.com';
+const slug = 'benidorm';
+const name = 'Benidorm';
+const heading = `Velas de sombra en ${name}`;
+const intro = `Velas de sombra para chalets, áticos y zonas de hostelería en Benidorm: tejido HDPE técnico, anclajes inoxidables y diseño calculado para el viento de la bahía.`;
+
+const pageUrl = `${SITE}/velas-sombra-${slug}/`;
+const alternateUrls = [{ locale: 'es' as const, href: pageUrl }];
+
+const locationParagraph = `Benidorm combina dos realidades para las velas de sombra: por un lado los áticos y terrazas de altura en el centro y la zona de Levante, donde una vela aporta sombra ligera sin la carga visual de una pérgola; por otro las urbanizaciones de chalet en La Cala, Sierra Helada y Foietes, donde la vela cubre piscinas y zonas de juego sin obra. La bahía protege parcialmente del levante, pero la altura de los áticos y la cercanía al mar exigen tejido HDPE técnico y anclajes A4 inoxidables. La vela queda instalada en una jornada y se retira fácilmente en temporales.`;
+
+const whyFitsBullets = [
+  'Tejido HDPE técnico (Coolaroo o equivalente): aguanta UV intenso y aire salino sin decolorar.',
+  'Anclajes A4 inoxidables imprescindibles en áticos y zonas costeras de Benidorm.',
+  'Diseño según orientación: triangulares para esquinas, rectangulares para piscinas, pentagonales sobre formas irregulares.',
+  'Solución ligera para áticos donde una pérgola añadiría peso muerto y carga visual.',
+  'Desmontable en 10 minutos con mosquetones de tensión rápida ante avisos de viento.',
+];
+
+const caseStudy = `Caso reciente: dos velas triangulares de 4×4×4 m sobre terraza de ático en zona Levante, tejido HDPE blanco con tratamiento UV, anclajes A4 a fachada y un poste de acero pintado en blanco RAL 9010. Una jornada de instalación, plazo desde firma 2 semanas.`;
+
+const comunidadNote = `En Benidorm la vela desmontable suele aceptarse en comunidad de propietarios siempre que no se ancle a fachada común sin permiso ni se cimenten postes en zonas comunes. En áticos con elementos privativos (terraza-cubierta delimitada) la libertad es mayor. Le ayudamos con la documentación técnica que la junta pueda solicitar.`;
+
+const faqs = [
+  { q: '¿Es viable una vela en una terraza de ático en Benidorm?', a: 'Sí, es de hecho una solución muy popular. La clave es la calidad de los anclajes a la fachada (que debe ser estructural, no aplacada) y, si hace falta poste, una base que no perfore la lámina impermeabilizante. Hacemos visita técnica antes de presupuestar.' },
+  { q: '¿Aguanta el viento de la bahía?', a: 'La bahía de Benidorm protege parcialmente del levante. Las velas bien tensadas aguantan rachas de hasta 60 - 70 km/h. En avisos amarillos lo recomendable es aflojar la tensión; en naranjas o rojos, recoger la vela.' },
+  { q: '¿Cuánto dura el tejido en una zona como Benidorm?', a: 'El HDPE técnico tiene una vida útil de 8 - 10 años con uso intensivo en zona costera. La radiación es alta y el aire salino abrasivo, pero los tejidos profesionales están homologados para esas condiciones.' },
+  { q: '¿También para hostelería?', a: 'Sí, instalamos velas en restaurantes y bares con terraza, normalmente combinadas con toldos verticales (tipo screen) en los laterales. Para hostelería puede revisar también nuestra página de Toldos hostelería en Benidorm.' },
+];
+
+const related = [
+  { label: 'Toldos en Benidorm', href: '/toldos-benidorm/' },
+  { label: 'Toldos hostelería en Benidorm', href: '/toldos-hosteleria-benidorm/' },
+  { label: 'Velas de sombra (catálogo)', href: '/velas-de-sombra/' },
+  { label: 'Pérgolas hostelería Costa Blanca', href: '/pergolas-hosteleria-costa-blanca/' },
+];
+
+const ctaHref = `/presupuesto/?product=velas-sombra&location=${slug}`;
+const contactHref = '/contacto/';
+const licenceHref = '/guia-licencias-pergolas-toldos-alicante/';
+
+const breadcrumbs = [
+  { name: 'Inicio', url: `${SITE}/` },
+  { name: 'Velas de sombra', url: `${SITE}/velas-de-sombra/` },
+  { name, url: pageUrl },
+];
+
+const serviceSchema = buildServiceSchema({
+  locale: 'es',
+  name: heading,
+  description: intro,
+  serviceType: 'Instalación de velas de sombra',
+  url: pageUrl,
+  offers: [
+    { name: 'Vela triangular' },
+    { name: 'Vela rectangular' },
+    { name: 'Vela pentagonal a medida' },
+  ],
+});
+const breadcrumbSchema = buildBreadcrumbSchema(breadcrumbs, { locale: 'es' });
+const faqSchema = buildFAQSchema(faqs.map(f => ({ question: f.q, answer: f.a })), { locale: 'es' });
+---
+
+<Base
+  title={`${heading} - Optim Toldos`}
+  description={intro}
+  locale="es"
+  alternateUrls={alternateUrls}
+  breadcrumbs={breadcrumbs}
+>
+  <Fragment slot="head">
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(serviceSchema)} />
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+  </Fragment>
+  <ProductZonePage
+    client:load
+    locale="es"
+    heading={heading}
+    intro={intro}
+    heroImage="/images/velas/hero-velas-1280.webp"
+    locationParagraph={locationParagraph}
+    whyFitsBullets={whyFitsBullets}
+    caseStudy={caseStudy}
+    comunidadNote={comunidadNote}
+    licenceHref={licenceHref}
+    faqs={faqs}
+    related={related}
+    ctaHref={ctaHref}
+    contactHref={contactHref}
+  />
+</Base>

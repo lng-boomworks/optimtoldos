@@ -1,0 +1,120 @@
+---
+import Base from '../layouts/Base.astro';
+import { ProductZonePage } from '../components/pages/ProductZonePage';
+import {
+  buildServiceSchema,
+  buildBreadcrumbSchema,
+  buildFAQSchema,
+  buildProductSchema,
+} from '../utils/schema';
+
+const SITE = 'https://optimtoldos.com';
+const slug = 'alicante';
+const name = 'Alicante';
+const heading = `Pérgola bioclimática en ${name}`;
+const intro = `Pérgolas bioclimáticas con lamas orientables para áticos y chalets de Alicante: aluminio marino, motorización Somfy o Nice y cumplimiento de la ordenanza municipal.`;
+
+const pageUrl = `${SITE}/pergola-bioclimatica-${slug}/`;
+const alternateUrls = [
+  { locale: 'es' as const, href: pageUrl },
+];
+
+const locationParagraph = `Alicante combina presión solar fuerte y vientos de levante exigentes en zonas como Cabo Huertas, Albufereta y los áticos del centro histórico, donde la bioclimática rinde mucho mejor que cualquier toldo. La ventaja real es la combinación lamas orientables + sensor de viento: en cualquier ático con vistas a la bahía, abrir 30° por la mañana, cerrar al mediodía contra el sol del sur y cerrar por completo cuando entra el levante de tarde es un ciclo diario que un toldo extensible no resuelve sin estar pendiente. La cercanía al mar (Postiguet, San Juan, Albufereta) impone tratamiento marino y tornillería A4 en el 100 % de los casos.`;
+
+const whyFitsBullets = [
+  'Lamas orientables 0 - 135°: gestiona sol del sur, ventilación matinal y cierre estanco contra levante.',
+  'Aluminio con tratamiento marino y tornillería A4 inoxidable: imprescindible en zona costera de Alicante.',
+  'Sensor de viento Somfy/Nice obligatorio en Cabo Huertas, San Juan y áticos en altura del centro.',
+  'Cumplimiento de la ordenanza municipal (color, altura, retranqueo).',
+  'Integración con cortina de cristal o ZIP screen para uso en invierno.',
+];
+
+const caseStudy = `Caso reciente: pérgola bioclimática Pergotex 5×3,5 m sobre terraza de ático en Cabo Huertas, lacado RAL 9006 (gris plata), motor Nice TT2 con sensores de viento (umbral 60 km/h) y lluvia, una cortina cristal corredera de 5 m al norte para vistas y un paño ZIP screen al oeste. Plazo desde encargo 5 semanas, 2 jornadas de montaje.`;
+
+const priceBand = `Pérgola bioclimática 4×3 m motorizada con sensor de viento: 4.300 € - 5.500 €. Versión 5×3,5 m con sensores de viento y lluvia + LED: 5.800 € - 7.800 €. Versión 5×4 m completa con LED, sensores y cierre cristal corredera: 9.500 € - 13.000 €.`;
+
+const comunidadNote = `En Alicante, una pérgola bioclimática sobre cubierta o terraza requiere declaración responsable o licencia de obra menor según el caso, y la ordenanza municipal regula color, altura y retranqueo. En el Casco Antiguo, Centro Tradicional y entorno del Castillo de Santa Bárbara hay restricciones adicionales. Si la pérgola va sobre cubierta común, además se requiere acuerdo de junta. Tramitamos todo el dossier técnico.`;
+
+const faqs = [
+  { q: '¿En Playa de San Juan se puede poner pérgola bioclimática en cualquier ático?', a: 'Casi siempre, sí, pero con acuerdo de junta porque modifica el aspecto desde el paseo. La ordenanza local pide colores neutros y altura controlada (no superar el último forjado). Le ayudamos a presentar el proyecto con documentación gráfica.' },
+  { q: '¿Y en el casco antiguo de Alicante?', a: 'Más complicado. El Plan Especial protege el centro histórico y muchas zonas son no aptas para nuevas instalaciones visibles desde la calle. En patios interiores y terrazas no visibles suele ser viable; revisamos su caso antes de presupuestar para no generar expectativas.' },
+  { q: '¿Qué motor recomiendan a 100 m del mar?', a: 'Somfy io o Nice TT2 con cajón estanco IP54 mínimo. Mantenimiento anual recomendado para limpiar sales en contactos eléctricos. La diferencia con un motor estándar de interior se nota a los 2 - 3 años en zona costera.' },
+  { q: '¿Aguanta los temporales de levante de marzo?', a: 'Sí, con sensor de viento operativo. La estructura aguanta hasta 130 km/h con lamas cerradas; el sensor cierra automáticamente cuando se supera el umbral configurado (60 km/h por defecto). Sin sensor activo no instalamos en zonas expuestas.' },
+  { q: '¿Cuánto tarda el Ayuntamiento de Alicante?', a: 'Declaración responsable: revisión 6 - 10 semanas, pero permite empezar a los pocos días si está completa. Obra menor con licencia: 8 - 12 semanas. La diferencia depende de la complejidad y la zona; le indicamos qué procede en su caso.' },
+];
+
+const related = [
+  { label: 'Pérgolas en Alicante', href: '/pergolas-alicante/' },
+  { label: 'Cortinas de cristal en Alicante', href: '/cortinas-de-cristal-alicante/' },
+  { label: 'Toldos hostelería en Alicante', href: '/toldos-hosteleria-alicante/' },
+  { label: 'Toldos en Alicante', href: '/toldos-alicante/' },
+  { label: 'Bioclimática vs aluminio', href: '/pergola-bioclimatica-vs-aluminio/' },
+];
+
+const ctaHref = `/presupuesto/?product=pergola-bioclimatica&location=${slug}`;
+const contactHref = '/contacto/';
+const licenceHref = '/guia-licencias-pergolas-toldos-alicante/';
+
+const breadcrumbs = [
+  { name: 'Inicio', url: `${SITE}/` },
+  { name: 'Pérgolas', url: `${SITE}/pergolas/` },
+  { name: 'Bioclimática Alicante', url: pageUrl },
+];
+
+const serviceSchema = buildServiceSchema({
+  locale: 'es',
+  name: heading,
+  description: intro,
+  serviceType: 'Instalación de pérgola bioclimática',
+  url: pageUrl,
+  offers: [
+    { name: 'Pérgola bioclimática motorizada' },
+    { name: 'Sensores de viento y lluvia' },
+    { name: 'Cierres laterales cristal y ZIP' },
+  ],
+});
+const breadcrumbSchema = buildBreadcrumbSchema(breadcrumbs, { locale: 'es' });
+const faqSchema = buildFAQSchema(faqs.map(f => ({ question: f.q, answer: f.a })), { locale: 'es' });
+const productSchema = buildProductSchema({
+  locale: 'es',
+  name: heading,
+  description: intro,
+  image: `${SITE}/images/pergolas/pergola-lamas.webp`,
+  url: pageUrl,
+  category: 'Pérgolas bioclimáticas',
+  lowPrice: '4300',
+  highPrice: '13000',
+});
+---
+
+<Base
+  title={`${heading} - Optim Toldos`}
+  description={intro}
+  locale="es"
+  alternateUrls={alternateUrls}
+  breadcrumbs={breadcrumbs}
+>
+  <Fragment slot="head">
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(serviceSchema)} />
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(productSchema)} />
+  </Fragment>
+  <ProductZonePage
+    client:load
+    locale="es"
+    heading={heading}
+    intro={intro}
+    heroImage="/images/pergolas/pergola-lamas-1280.webp"
+    locationParagraph={locationParagraph}
+    whyFitsBullets={whyFitsBullets}
+    caseStudy={caseStudy}
+    priceBand={priceBand}
+    comunidadNote={comunidadNote}
+    licenceHref={licenceHref}
+    faqs={faqs}
+    related={related}
+    ctaHref={ctaHref}
+    contactHref={contactHref}
+  />
+</Base>

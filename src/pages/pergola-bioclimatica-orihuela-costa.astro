@@ -1,0 +1,121 @@
+---
+import Base from '../layouts/Base.astro';
+import { ProductZonePage } from '../components/pages/ProductZonePage';
+import {
+  buildServiceSchema,
+  buildBreadcrumbSchema,
+  buildFAQSchema,
+  buildProductSchema,
+} from '../utils/schema';
+
+const SITE = 'https://optimtoldos.com';
+const slug = 'orihuela-costa';
+const name = 'Orihuela Costa';
+const heading = `Pérgola bioclimática en ${name}`;
+const intro = `Pérgolas bioclimáticas con lamas orientables para áticos, dúplex y chalets de Cabo Roig, La Zenia, Villamartín y Playa Flamenca: aluminio marino y motorización Somfy o Nice.`;
+
+const pageUrl = `${SITE}/pergola-bioclimatica-${slug}/`;
+const alternateUrls = [
+  { locale: 'es' as const, href: pageUrl },
+  { locale: 'en' as const, href: `${SITE}/en/bioclimatic-pergola-${slug}/` },
+];
+
+const locationParagraph = `Orihuela Costa es el destino donde la pérgola bioclimática mejor justifica su sobreprecio: la temporada de uso real (calor agresivo de mayo a octubre y suaves invernos de costa) y el peso del alquiler vacacional convierten a la terraza en el espacio principal de la vivienda. En La Zenia y Cabo Roig las comunidades exigen colores neutros y, sobre todo, un acabado pulcro porque las viviendas se alquilan; las lamas bioclimáticas de aluminio extruido lacado son justamente más limpias estéticamente que un toldo. Los vientos de levante en zonas elevadas (Lomas de Cabo Roig, Las Filipinas) hacen que el sensor de viento no sea opcional sino imprescindible.`;
+
+const whyFitsBullets = [
+  'Lamas orientables que regulan sol, ventilación y privacidad sin retirar la cubierta.',
+  'Tratamiento marino obligatorio: La Zenia y Cabo Roig están a menos de 1 km del mar.',
+  'Estética limpia y neutra que aprueban las comunidades de Orihuela Costa.',
+  'Sensor de viento Somfy/Nice: en zonas elevadas se cierra automáticamente con rachas > 60 km/h.',
+  'Control desde la app: útil para propietarios que alquilan o solo viven temporadas.',
+];
+
+const caseStudy = `Caso reciente: pérgola bioclimática Pergotex 5×3 m sobre terraza de ático en Cabo Roig, lacado RAL 7039 (gris cuarzo) por exigencia de la comunidad, motor Nice TT2 con sensores de viento y lluvia, app MyNice, iluminación LED RGB dimerizable y un paño ZIP en orientación sur. Coordinada con la administración de fincas y aprobada en junta antes de empezar.`;
+
+const priceBand = `Pérgola bioclimática 4×3 m motorizada con sensor de viento: 4.500 € - 5.500 €. Versión 4×3 m con sensores de viento y lluvia + LED: 5.500 € - 7.000 €. Versión 5×4 m completa con LED RGB, sensores y un cierre ZIP: 9.000 € - 11.500 €.`;
+
+const comunidadNote = `En Orihuela Costa prácticamente todas las comunidades exigen aprobación de la junta para una pérgola bioclimática sobre terraza, y el Ayuntamiento de Orihuela tramita declaración responsable o licencia menor según el caso. Le entregamos plano cotado, ficha del fabricante en español/inglés y certificado del montador, y le acompañamos a la junta si necesita explicar el proyecto.`;
+
+const faqs = [
+  { q: '¿Una pérgola bioclimática en una urbanización de La Zenia tiene que ser blanca?', a: 'No necesariamente. La mayoría aceptan blanco perlado (RAL 9010 o 9016), beige (RAL 1013) o gris cuarzo (RAL 7039). Algunas comunidades publican un código RAL específico; si es así, lacamos exactamente en ese color sin coste adicional.' },
+  { q: '¿Necesito aprobación de junta si vivo de alquiler en una vivienda turística?', a: 'Sí, además del propietario. La pérgola modifica el aspecto del inmueble desde la fachada, así que la junta debe acordarla. Para arrendamiento turístico, además, conviene revisar la cédula urbanística para no perder la licencia de uso turístico.' },
+  { q: '¿Qué motor aguanta mejor el ambiente marino?', a: 'Somfy io con cajón estanco o Nice TT2, ambos con grado IP54 mínimo y cableado por interior del perfil. Mantenimiento anual recomendado en primera línea para limpiar sales en contactos y juntas.' },
+  { q: '¿Puedo programarla desde el Reino Unido o Alemania?', a: 'Sí. Con la pasarela TaHoma (Somfy) o WiFi (Nice) gestiona la pérgola desde cualquier país. Útil para segundas residencias: cierra automáticamente con previsión de lluvia mediante integración con servicios meteorológicos.' },
+  { q: '¿Cuánto se tarda en aprobar y montar?', a: 'Aprobación de junta 4 - 8 semanas (depende de la frecuencia de juntas). Tramitación del Ayuntamiento 4 - 8 semanas más, en paralelo. Plazo total desde encargo a montaje suele ser 8 - 14 semanas.' },
+];
+
+const related = [
+  { label: 'Pérgolas en Orihuela Costa', href: '/pergolas-orihuela-costa/' },
+  { label: 'Cortinas de cristal en Orihuela Costa', href: '/cortinas-de-cristal-orihuela-costa/' },
+  { label: 'Toldos en Orihuela Costa', href: '/toldos-orihuela-costa/' },
+  { label: 'Bioclimática vs aluminio', href: '/pergola-bioclimatica-vs-aluminio/' },
+  { label: 'Guía de licencias en Alicante', href: '/guia-licencias-pergolas-toldos-alicante/' },
+];
+
+const ctaHref = `/presupuesto/?product=pergola-bioclimatica&location=${slug}`;
+const contactHref = '/contacto/';
+const licenceHref = '/guia-licencias-pergolas-toldos-alicante/';
+
+const breadcrumbs = [
+  { name: 'Inicio', url: `${SITE}/` },
+  { name: 'Pérgolas', url: `${SITE}/pergolas/` },
+  { name: 'Bioclimática Orihuela Costa', url: pageUrl },
+];
+
+const serviceSchema = buildServiceSchema({
+  locale: 'es',
+  name: heading,
+  description: intro,
+  serviceType: 'Instalación de pérgola bioclimática',
+  url: pageUrl,
+  offers: [
+    { name: 'Pérgola bioclimática motorizada' },
+    { name: 'Sensores de viento y lluvia' },
+    { name: 'Cierre lateral ZIP screen' },
+  ],
+});
+const breadcrumbSchema = buildBreadcrumbSchema(breadcrumbs, { locale: 'es' });
+const faqSchema = buildFAQSchema(faqs.map(f => ({ question: f.q, answer: f.a })), { locale: 'es' });
+const productSchema = buildProductSchema({
+  locale: 'es',
+  name: heading,
+  description: intro,
+  image: `${SITE}/images/pergolas/pergola-lamas.webp`,
+  url: pageUrl,
+  category: 'Pérgolas bioclimáticas',
+  lowPrice: '4500',
+  highPrice: '11500',
+});
+---
+
+<Base
+  title={`${heading} - Optim Toldos`}
+  description={intro}
+  locale="es"
+  alternateUrls={alternateUrls}
+  breadcrumbs={breadcrumbs}
+>
+  <Fragment slot="head">
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(serviceSchema)} />
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(productSchema)} />
+  </Fragment>
+  <ProductZonePage
+    client:load
+    locale="es"
+    heading={heading}
+    intro={intro}
+    heroImage="/images/pergolas/pergola-lamas-1280.webp"
+    locationParagraph={locationParagraph}
+    whyFitsBullets={whyFitsBullets}
+    caseStudy={caseStudy}
+    priceBand={priceBand}
+    comunidadNote={comunidadNote}
+    licenceHref={licenceHref}
+    faqs={faqs}
+    related={related}
+    ctaHref={ctaHref}
+    contactHref={contactHref}
+  />
+</Base>

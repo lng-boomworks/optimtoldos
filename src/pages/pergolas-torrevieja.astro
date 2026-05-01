@@ -1,0 +1,121 @@
+---
+import Base from '../layouts/Base.astro';
+import { ProductZonePage } from '../components/pages/ProductZonePage';
+import {
+  buildServiceSchema,
+  buildBreadcrumbSchema,
+  buildFAQSchema,
+  buildProductSchema,
+} from '../utils/schema';
+
+const SITE = 'https://optimtoldos.com';
+const slug = 'torrevieja';
+const name = 'Torrevieja';
+const heading = `Pérgolas en ${name}`;
+const intro = `Pérgolas de aluminio y bioclimáticas instaladas en chalets, áticos y locales de Torrevieja por un equipo con base en la provincia de Alicante.`;
+
+const pageUrl = `${SITE}/pergolas-${slug}/`;
+const alternateUrls = [
+  { locale: 'es' as const, href: pageUrl },
+  { locale: 'en' as const, href: `${SITE}/en/pergolas-${slug}/` },
+];
+
+const locationParagraph = `Torrevieja combina el casco urbano denso del paseo y la zona de Habaneras con urbanizaciones más bajas hacia La Mata, El Chaparral y el sur. La sal del Mediterráneo y los vientos de levante exigen perfilería de aluminio con tratamiento marino y tornillería inoxidable; el sol intenso de junio a septiembre justifica una pérgola con cierre superior antes que un toldo simple. Muchas viviendas son de bajo más planta o áticos pequeños donde la pérgola crea un comedor exterior utilizable nueve meses al año, y en bloques de la primera línea es habitual coordinar la instalación con la comunidad de propietarios para respetar la fachada.`;
+
+const whyFitsBullets = [
+  'Aluminio lacado con tratamiento anti-salinidad: imprescindible a menos de 2 km del mar para evitar puntos de óxido en menos de un año.',
+  'Cubierta orientable o lamas bioclimáticas para gestionar el sol del sur y los vientos de levante de tarde.',
+  'Anclajes a forjado o solera comprobados: muchos áticos de Torrevieja tienen losas de poco canto que requieren placas de reparto.',
+  'Iluminación LED integrada y cortinas verticales opcionales para extender el uso a las noches frescas de invierno.',
+  'Estructura desmontable bajo demanda en comunidades estrictas, dejando los anclajes ocultos.',
+];
+
+const caseStudy = `Caso reciente: pérgola bioclimática Pergotex de 4×3 m sobre solera en una vivienda adosada de El Chaparral, color blanco perlado, motor Somfy con sensor de viento y un paño de cortina ZIP en el lateral oeste para cortar el sol de tarde. Plazo total: 15 días desde la firma hasta la entrega.`;
+
+const priceBand = `Pérgola fija de aluminio 3×3 m: desde 2.400 € IVA incluido. Pérgola bioclimática motorizada 4×3 m con sensor de viento: 4.200 € - 5.800 €. Cierres laterales (cortina ZIP o cristal corredero): 900 € - 2.200 € por paño según medida.`;
+
+const comunidadNote = `En Torrevieja la mayoría de pérgolas adosadas a fachada o instaladas en azoteas requieren declaración responsable o licencia de obra menor en el Ayuntamiento, especialmente si la cubierta es fija. En comunidades de propietarios la junta debe aprobar la instalación si afecta a fachada, cubierta común o medianera; entregamos el dossier técnico (planos, ficha del fabricante, certificado del instalador) listo para presentar.`;
+
+const faqs = [
+  { q: '¿Una pérgola en un ático de Torrevieja necesita licencia?', a: 'En la mayoría de casos sí, declaración responsable o licencia de obra menor, sobre todo si está anclada al forjado o tiene cubierta fija. Si está en una comunidad de propietarios, además se necesita aprobación de la junta. Le ayudamos con la documentación técnica.' },
+  { q: '¿Cuánto aguanta el aluminio cerca del mar en Torrevieja?', a: 'Una pérgola con perfil de aluminio extruido y lacado en horno con tratamiento marino mantiene su aspecto más de 15 años, incluso a primera línea. Sin tratamiento marino aparecen pequeñas marcas blancas (oxidación superficial del aluminio) en 12 - 18 meses.' },
+  { q: '¿La bioclimática aguanta los vientos de levante?', a: 'Sí, las pérgolas bioclimáticas certificadas resisten vientos de hasta 130 km/h con las lamas en posición de cierre. Recomendamos motor con sensor de viento que cierra automáticamente a partir de 60 km/h para no forzar los actuadores.' },
+  { q: '¿Puedo poner una pérgola en una urbanización de Torrevieja sur (El Chaparral, Aguas Nuevas)?', a: 'Casi siempre sí. Las urbanizaciones de adosados de la zona suelen aceptar pérgolas de aluminio en color blanco o gris claro. Si la finca tiene normas estéticas, lacamos en RAL específico para que se integre con la fachada.' },
+  { q: '¿Cuánto tarda la instalación?', a: 'Una pérgola estándar de 3×3 m a 4×4 m se monta en 1 - 2 días. El plazo total desde la firma del presupuesto suele ser 3 - 5 semanas, dependiendo del color y de los acabados especiales.' },
+];
+
+const related = [
+  { label: 'Pérgola bioclimática en Torrevieja', href: '/pergola-bioclimatica-torrevieja/' },
+  { label: 'Toldos en Torrevieja', href: '/toldos-torrevieja/' },
+  { label: 'Pérgolas (catálogo)', href: '/pergolas/' },
+  { label: 'Pérgolas vs aluminio', href: '/pergola-bioclimatica-vs-aluminio/' },
+  { label: 'Velas de sombra en Torrevieja', href: '/velas-sombra-torrevieja/' },
+];
+
+const ctaHref = `/presupuesto/?product=pergolas&location=${slug}`;
+const contactHref = '/contacto/';
+const licenceHref = '/guia-licencias-pergolas-toldos-alicante/';
+
+const breadcrumbs = [
+  { name: 'Inicio', url: `${SITE}/` },
+  { name: 'Pérgolas', url: `${SITE}/pergolas/` },
+  { name, url: pageUrl },
+];
+
+const serviceSchema = buildServiceSchema({
+  locale: 'es',
+  name: heading,
+  description: intro,
+  serviceType: 'Instalación de pérgolas',
+  url: pageUrl,
+  offers: [
+    { name: 'Pérgola bioclimática' },
+    { name: 'Pérgola fija de aluminio' },
+    { name: 'Pérgola con toldo deslizante' },
+  ],
+});
+const breadcrumbSchema = buildBreadcrumbSchema(breadcrumbs, { locale: 'es' });
+const faqSchema = buildFAQSchema(faqs.map(f => ({ question: f.q, answer: f.a })), { locale: 'es' });
+const productSchema = buildProductSchema({
+  locale: 'es',
+  name: heading,
+  description: intro,
+  image: `${SITE}/images/pergolas/pergola-bioclimatica.webp`,
+  url: pageUrl,
+  category: 'Pérgolas',
+  lowPrice: '2400',
+  highPrice: '7000',
+});
+---
+
+<Base
+  title={`${heading} - Optim Toldos`}
+  description={intro}
+  locale="es"
+  alternateUrls={alternateUrls}
+  breadcrumbs={breadcrumbs}
+>
+  <Fragment slot="head">
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(serviceSchema)} />
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(productSchema)} />
+  </Fragment>
+  <ProductZonePage
+    client:load
+    locale="es"
+    heading={heading}
+    intro={intro}
+    heroImage="/images/pergolas/hero-pergolas-1280.webp"
+    locationParagraph={locationParagraph}
+    whyFitsBullets={whyFitsBullets}
+    caseStudy={caseStudy}
+    priceBand={priceBand}
+    comunidadNote={comunidadNote}
+    licenceHref={licenceHref}
+    faqs={faqs}
+    related={related}
+    ctaHref={ctaHref}
+    contactHref={contactHref}
+  />
+</Base>

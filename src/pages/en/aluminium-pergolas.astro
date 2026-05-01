@@ -1,0 +1,178 @@
+---
+import Base from '../../layouts/Base.astro';
+import { SubProductPage } from '../../components/pages/SubProductPage';
+import {
+  buildServiceSchema,
+  buildFAQSchema,
+  buildBreadcrumbSchema,
+  buildProductSchema,
+} from '../../utils/schema';
+import { getAlternateUrls } from '../../i18n/routes';
+
+const locale = 'en' as const;
+const pageId = 'pergolas-aluminium';
+const pageUrl = 'https://optimtoldos.com/en/aluminium-pergolas/';
+const productSlug = 'aluminium-pergola';
+const alternateUrls = getAlternateUrls(pageId);
+
+const hero = {
+  heading: 'Fixed Aluminium Pergolas on the Costa Blanca',
+  description: 'Solid structures with a fixed aluminium or polycarbonate roof. The most affordable way to create a permanent covered area with the durability of extruded aluminium.',
+  image: '/images/pergolas/pergola-restaurante.webp',
+  imageAlt: 'Fixed aluminium pergola covering a Costa Blanca terrace',
+};
+
+const intro = 'A fixed aluminium pergola is the standard choice when the goal is a permanent covered area that handles storms and provides dense shade year-round. Unlike bioclimatic systems, there are no moving parts: the roof is a solid panel - aluminium sandwich, cellular polycarbonate or tempered glass. This cuts cost, simplifies maintenance and maximises useful life.';
+
+const sections = [
+  {
+    heading: 'Roof options',
+    body: [
+      'Four roof types depending on use: <strong>aluminium sandwich panel</strong> with insulating core (the standard for villas), <strong>cellular polycarbonate</strong> translucent (lets light through, ideal for porches with plants), <strong>tempered glass</strong> (premium aesthetic, lets sun through but stops rain) and <strong>simple sheet</strong> (the most affordable option).',
+      'The sandwich panel is the best-seller thanks to excellent thermal insulation (up to 60 percent less radiant heat than simple sheet) and acoustic performance. Premium glass is reserved for penthouses and projects where aesthetics matter more than cost.',
+    ],
+  },
+  {
+    heading: 'Frame and specifications',
+    body: [
+      'Heavy-gauge extruded aluminium, oven-baked lacquer in any RAL. Anti-corrosion category C3 or C5 marine depending on location. Standard 12 x 12 cm reinforced columns; beams and crosspieces calculated for span and roof weight.',
+      'Typical sizes: up to 6 m of clear span between columns without intermediate beams. Above that we add reinforced beams or a central column. We work with <strong>Cortizo</strong> profiles and other CE-certified European manufacturers.',
+    ],
+  },
+  {
+    heading: 'Typical use cases',
+    body: [
+      'It is the favourite for covered parking, villa porches needing permanent shade and back patios where sun is intense all day. Ideal in hospitality where a solid structural continuity is needed without adjustable louvres.',
+      'In comunidades de propietarios (the Spanish equivalent of a homeowners association) it is often easier to approve than a bioclimatic - lower cost, closer to a traditional structure. The downside: it cannot regulate natural light, so on hot south-facing orientations some clients still prefer bioclimatic.',
+    ],
+  },
+  {
+    heading: 'Installation and lead times',
+    body: [
+      'After the survey we measure the opening, check the slab and pick the anchoring system (chemical resin plates on concrete, bolted plates to existing structure, etc.). Manufacturing runs 3-5 weeks depending on finishes.',
+      'Installation: 1-3 days for a two-technician team. As with bioclimatic models, most town halls require an obra menor (minor works) permit: we handle the paperwork. Average permit lead time: 4-12 weeks per municipality. Detail in our <a href="/en/planning-permission-pergola-awning-alicante/" class="text-terracotta hover:underline">permit guide</a>.',
+    ],
+  },
+  {
+    heading: 'Minimal maintenance',
+    body: [
+      'It is the lowest-maintenance category in the catalogue. Wash the roof and gutters every 6 months, check bolts after major storms, and apply aluminium protector in salt-air zones every 24 months. With no motors or fabric, faults are essentially non-existent.',
+      'The frame has an expected useful life of 25+ years with basic maintenance. With C5 marine treatment and regular checks we have seen Cortizo pergolas in perfect condition after 30 years on the front line in Torrevieja.',
+    ],
+  },
+  {
+    heading: '2026 pricing',
+    body: [
+      'A fixed pergola starts from 3,500 euros installed for an adjoining 4 x 3 m unit with simple sheet roof. The sandwich panel version reaches 5,500-7,500 euros. A free-standing 5 x 4 m unit with tempered glass: 8,000-12,000 euros.',
+      'Larger projects (commercial terraces or restaurants) with 6+ m spans and sandwich panel land between 12,000 and 22,000 euros. Compare with bioclimatic in our <a href="/en/bioclimatic-vs-aluminium-pergola/" class="text-terracotta hover:underline">comparison guide</a>.',
+    ],
+  },
+];
+
+const comparison = {
+  heading: 'Roof options for fixed aluminium pergolas',
+  intro: 'Four roofs compared on budget and performance.',
+  columns: ['Roof', 'Thermal insulation', 'Natural light', 'Relative price'],
+  rows: [
+    ['Simple aluminium sheet', 'Low', 'No', 'Most affordable'],
+    ['Aluminium sandwich panel', 'Excellent', 'No', 'Mid-high'],
+    ['Cellular polycarbonate', 'Medium', 'Diffused (translucent)', 'Mid'],
+    ['Tempered glass', 'Low (no filter)', 'Full', 'Premium'],
+    ['Wood-effect sheet', 'Low', 'No', 'Mid'],
+  ],
+};
+
+const related = {
+  heading: 'Related pages',
+  links: [
+    { label: 'Bioclimatic pergolas', href: '/en/bioclimatic-pergolas/' },
+    { label: 'Sliding awning pergolas', href: '/en/sliding-awning-pergolas/' },
+    { label: 'Back to Pergolas (hub)', href: '/en/pergolas/' },
+    { label: 'Guide: bioclimatic vs aluminium pergola', href: '/en/bioclimatic-vs-aluminium-pergola/' },
+    { label: 'Glass curtains', href: '/en/glass-curtains/' },
+    { label: 'Vertical ZIP screen awnings', href: '/en/zip-screen-awnings/' },
+    { label: 'Service in Alicante city', href: '/en/awnings-alicante/' },
+    { label: 'Service in Elche', href: '/en/awnings-elche/' },
+    { label: 'Service in Torrevieja', href: '/en/awnings-torrevieja/' },
+  ],
+};
+
+const faqs = [
+  { question: 'How does it differ from a bioclimatic pergola?', answer: 'A fixed aluminium pergola has a solid immovable roof (panel, glass or sheet). A bioclimatic has rotating louvres. The fixed version costs 30-50 percent less but cannot regulate sun or ventilation. There is a full comparison guide.' },
+  { question: 'Will it withstand rain and wind?', answer: 'Yes - with any sandwich, glass or polycarbonate roof the pergola is watertight and handles winds up to 130-150 km/h depending on structural calculation. It is the most robust option in heavy storms.' },
+  { question: 'Do I need a town hall permit?', answer: 'Yes, virtually every municipality treats it as obra menor (minor works) requiring a permit. We handle technical specifications, signed drawings and the full process. Average lead time: 1-3 months. More in the permit guide.' },
+  { question: 'Can I add curtains or enclosures?', answer: 'Yes - a fixed pergola accepts glass curtains, lateral ZIP screen, mosquito nets or polycarbonate panels. We design with provision so you can add these later if needed.' },
+  { question: 'Which roof is the best choice?', answer: 'For frequently used villas, aluminium sandwich panel (best insulation). For porches with plants and natural light, cellular polycarbonate. For penthouses with views, tempered glass. For secondary uses (parking), simple sheet.' },
+  { question: 'How long does it last?', answer: 'The frame has an expected useful life of 25+ years. With C5 marine treatment and basic maintenance we have seen Cortizo pergolas in perfect condition after 30 years on the front line.' },
+  { question: 'What warranty?', answer: '7 years on frame and lacquer in the standard range; 10 years on premium with C5 marine treatment. Roof: 5 years on glass, 10 years on sandwich panel from manufacturer.' },
+  { question: 'How long does installation take?', answer: 'Manufacturing 3-5 weeks, installation 1-3 days depending on size. Total time after order: 5-8 weeks, plus municipal permit time where applicable.' },
+];
+
+const cta = {
+  heading: 'Cover your terrace with a fixed aluminium pergola',
+  body: 'The most rewarding investment when you want a permanent solid roof. Free site survey and quote within a week.',
+  button: 'Get a free quote',
+  buttonHref: `/en/free-quote/?product=${productSlug}`,
+  secondary: { label: 'See all pergolas', href: '/en/pergolas/' },
+};
+
+const breadcrumbs = [
+  { name: 'Home', url: 'https://optimtoldos.com/en/' },
+  { name: 'Pergolas', url: 'https://optimtoldos.com/en/pergolas/' },
+  { name: 'Fixed aluminium pergolas', url: pageUrl },
+];
+
+const serviceSchema = buildServiceSchema({
+  locale,
+  name: 'Fixed Aluminium Pergolas on the Costa Blanca',
+  description: hero.description,
+  serviceType: 'Fixed aluminium pergola installation',
+  url: pageUrl,
+  offers: [
+    { name: 'Pergola with sandwich panel roof' },
+    { name: 'Pergola with tempered glass roof' },
+    { name: 'Pergola with cellular polycarbonate roof' },
+    { name: 'Pergola with simple sheet roof' },
+  ],
+});
+
+const faqSchema = buildFAQSchema(faqs, { locale });
+const breadcrumbSchema = buildBreadcrumbSchema(breadcrumbs, { locale });
+const productSchema = buildProductSchema({
+  locale,
+  name: 'Bespoke Fixed Aluminium Pergola',
+  description: hero.description,
+  image: 'https://optimtoldos.com/images/pergolas/pergola-restaurante.webp',
+  url: pageUrl,
+  lowPrice: '3500',
+  highPrice: '22000',
+  category: 'Aluminium pergolas',
+});
+---
+
+<Base
+  title="Fixed Aluminium Pergolas | Optim Toldos - Costa Blanca"
+  description="Fixed aluminium pergolas with sandwich, glass or polycarbonate roof across Alicante. Cortizo profiles, marine-grade anti-corrosion and 7-year guarantee."
+  locale={locale}
+  alternateUrls={alternateUrls}
+  breadcrumbs={breadcrumbs}
+>
+  <Fragment slot="head">
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(serviceSchema)} />
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(productSchema)} />
+  </Fragment>
+  <SubProductPage
+    client:load
+    locale={locale}
+    hero={hero}
+    intro={intro}
+    sections={sections}
+    comparison={comparison}
+    related={related}
+    faqHeading="Frequently asked questions"
+    faqs={faqs}
+    cta={cta}
+  />
+</Base>

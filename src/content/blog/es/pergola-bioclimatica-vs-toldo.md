@@ -223,4 +223,4 @@ En cualquier caso, la clave es elegir materiales adaptados al clima costero de A
 
 En Optim Toldos instalamos tanto [pérgolas bioclimáticas](/pergolas) como [toldos extensibles](/toldos) de primeras marcas. Visitamos tu terraza, evaluamos las condiciones (orientación, viento, salitre) y te recomendamos la solución que mejor se adapta a tus necesidades y presupuesto.
 
-**[Solicita tu presupuesto gratuito y sin compromiso](/presupuesto)** — te respondemos en menos de 24 horas.
+**[Solicita tu presupuesto gratuito y sin compromiso](/presupuesto)** - te respondemos en menos de 24 horas.

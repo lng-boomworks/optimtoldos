@@ -1,0 +1,101 @@
+---
+import Base from '../layouts/Base.astro';
+import { ProductZonePage } from '../components/pages/ProductZonePage';
+import {
+  buildServiceSchema,
+  buildBreadcrumbSchema,
+  buildFAQSchema,
+} from '../utils/schema';
+
+const SITE = 'https://optimtoldos.com';
+const slug = 'santa-pola';
+const name = 'Santa Pola';
+const heading = `Ventanas de PVC en ${name}`;
+const intro = `Ventanas de PVC con triple junta y vidrio bajo emisivo en Santa Pola: aislamiento térmico y acústico para apartamentos, chalets de Gran Alacant y reformas en el casco. Resistentes al aire salino y al levante.`;
+
+const pageUrl = `${SITE}/ventanas-pvc-${slug}/`;
+const alternateUrls = [{ locale: 'es' as const, href: pageUrl }];
+
+const locationParagraph = `Santa Pola y Gran Alacant tienen un parque de vivienda muy expuesto al mar: apartamentos y dúplex en primera línea de playa, chalets en Gran Alacant con orientaciones diversas, y casas más antiguas en el casco urbano. La carpintería de aluminio sin RPT que predomina en el parque construido entre 1980 y 2005 sufre tanto la abrasión del aire salino como las pérdidas térmicas (Uw 5 - 6 W/m²K). La sustitución por PVC con triple junta y vidrio doble bajo emisivo da inmunidad al salino, mejora el aislamiento térmico (Uw 1,1 - 1,3 W/m²K) y aporta el aislamiento acústico necesario para zonas costeras concurridas en temporada.`;
+
+const whyFitsBullets = [
+  'Inmunidad total al aire salino: PVC inerte al cloruro sódico en primera línea de Santa Pola.',
+  'Triple junta y herrajes anti-corrosión: estanqueidad ante levantes que entran con fuerza por el cabo.',
+  'Aislamiento térmico Uw 1,1 - 1,3 W/m²K con vidrio doble bajo emisivo: ahorro 25 - 35 % en climatización.',
+  'Aislamiento acústico de 30 - 38 dB con vidrio doble: relevante en apartamentos turísticos en temporada alta.',
+  'Mantenimiento mínimo: limpieza con jabón neutro 1 - 2 veces al año, ideal para segunda residencia.',
+];
+
+const caseStudy = `Caso reciente: sustitución de 5 ventanas y una corredera de 3,5 m en chalet adosado de Gran Alacant, perfil Cortizo Cor 70 con vidrio doble bajo emisivo (4/16/4 con argón), color blanco interior y antracita exterior. Trabajos en 2 jornadas con retirada de las antiguas, sellado elastómero y reposición del enlucido. Plazo desde firma 4 semanas.`;
+
+const comunidadNote = `En Santa Pola la sustitución de ventanas en el hueco existente es comunicación previa de obra menor. En urbanizaciones de Gran Alacant y comunidades de apartamentos costeros suele exigirse uniformidad de color exterior: revisamos los estatutos antes de presupuestar. En el casco antiguo de Santa Pola, en zonas con planeamiento especial puede requerirse autorización urbanística específica.`;
+
+const faqs = [
+  { q: '¿Soporta el levante por el cabo de Santa Pola?', a: 'Sí. La triple junta perimetral y la fijación específica garantizan estanqueidad incluso en temporales fuertes. Las pruebas de estanqueidad llegan a 200 km/h. Para primera línea de playa también recomendamos vidrio laminado por seguridad pasiva.' },
+  { q: '¿Vale la pena PVC en una propiedad de uso ocasional?', a: 'Sí, especialmente. La propiedad pasa meses sin uso y el aire salino afecta más cuando no hay limpieza ni ventilación regular. PVC es inerte al salino, sin mantenimiento, lo que evita el deterioro lento de la carpintería de aluminio durante esos periodos.' },
+  { q: '¿Y los apartamentos turísticos en alquiler?', a: 'Buen caso de uso: el aislamiento acústico mejora la experiencia del huésped (mejor reseña), el aislamiento térmico reduce el consumo del aire acondicionado en temporada alta y el mantenimiento mínimo del PVC encaja con la rotación de huéspedes (no requiere intervenciones periódicas).' },
+  { q: '¿Cuánto tarda la fabricación e instalación?', a: 'Fabricación 3 - 5 semanas, instalación 1 - 2 jornadas. Si está fuera de Santa Pola, coordinamos con gestor local o vecino para acceso, dejando todo limpio y entregado.' },
+];
+
+const related = [
+  { label: 'Ventanas PVC (catálogo)', href: '/ventanas-pvc/' },
+  { label: 'Toldos en Santa Pola', href: '/toldos-santa-pola/' },
+  { label: 'Cortinas de cristal en Santa Pola', href: '/toldos-santa-pola/' },
+  { label: 'Toldos en Gran Alacant', href: '/toldos-gran-alacant/' },
+];
+
+const ctaHref = `/presupuesto/?product=ventanas-pvc&location=${slug}`;
+const contactHref = '/contacto/';
+const licenceHref = '/guia-licencias-pergolas-toldos-alicante/';
+
+const breadcrumbs = [
+  { name: 'Inicio', url: `${SITE}/` },
+  { name: 'Ventanas PVC', url: `${SITE}/ventanas-pvc/` },
+  { name, url: pageUrl },
+];
+
+const serviceSchema = buildServiceSchema({
+  locale: 'es',
+  name: heading,
+  description: intro,
+  serviceType: 'Instalación de ventanas de PVC',
+  url: pageUrl,
+  offers: [
+    { name: 'Ventana PVC oscilobatiente' },
+    { name: 'Ventana PVC corredera' },
+    { name: 'Puerta balconera y de entrada PVC' },
+  ],
+});
+const breadcrumbSchema = buildBreadcrumbSchema(breadcrumbs, { locale: 'es' });
+const faqSchema = buildFAQSchema(faqs.map(f => ({ question: f.q, answer: f.a })), { locale: 'es' });
+---
+
+<Base
+  title={`${heading} - Optim Toldos`}
+  description={intro}
+  locale="es"
+  alternateUrls={alternateUrls}
+  breadcrumbs={breadcrumbs}
+>
+  <Fragment slot="head">
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(serviceSchema)} />
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+  </Fragment>
+  <ProductZonePage
+    client:load
+    locale="es"
+    heading={heading}
+    intro={intro}
+    heroImage="/images/ventanas/hero-ventanas-1280.webp"
+    locationParagraph={locationParagraph}
+    whyFitsBullets={whyFitsBullets}
+    caseStudy={caseStudy}
+    comunidadNote={comunidadNote}
+    licenceHref={licenceHref}
+    faqs={faqs}
+    related={related}
+    ctaHref={ctaHref}
+    contactHref={contactHref}
+  />
+</Base>

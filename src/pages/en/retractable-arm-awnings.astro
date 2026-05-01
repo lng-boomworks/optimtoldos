@@ -1,0 +1,178 @@
+---
+import Base from '../../layouts/Base.astro';
+import { SubProductPage } from '../../components/pages/SubProductPage';
+import {
+  buildServiceSchema,
+  buildFAQSchema,
+  buildBreadcrumbSchema,
+  buildProductSchema,
+} from '../../utils/schema';
+import { getAlternateUrls } from '../../i18n/routes';
+
+const locale = 'en' as const;
+const pageId = 'awnings-arm';
+const pageUrl = 'https://optimtoldos.com/en/retractable-arm-awnings/';
+const productSlug = 'retractable-arm-awning';
+const alternateUrls = getAlternateUrls(pageId);
+
+const hero = {
+  heading: 'Retractable Arm Awnings on the Costa Blanca',
+  description: 'The classic Spanish terrace awning: folding arms unroll the fabric to create instant shade with no construction work. Bespoke, manual or motorised.',
+  image: '/images/gallery/toldo-brazo-extensible.webp',
+  imageAlt: 'Retractable arm awning extended over a terrace',
+};
+
+const intro = 'A retractable arm awning is the most popular shade solution on the Costa Blanca - simple, effective and good value. Folding arms push the fabric out horizontally to shade balconies, terraces and shop fronts with no building work. We make them in widths up to 7 metres and projections up to 3.5 metres, with optional motorisation and Sunbrella or Tempotest fabrics.';
+
+const sections = [
+  {
+    heading: 'How it works',
+    body: [
+      'Folding arms tensioned by internal steel cables or chains zigzag flat against the wall when retracted. When the awning is operated (manually with a crank or by motor) the arms extend and the fabric unrolls from the main aluminium tube fixed to the facade.',
+      'It is the only awning type that gives full horizontal shade up to 3.5 metres of projection without floor posts, which is why it suits flats, balconies, communal terraces and shop fronts where ground supports are not an option.',
+    ],
+  },
+  {
+    heading: 'Variants and specifications',
+    body: [
+      'We work three formats: <strong>monoblock</strong> (single extruded aluminium tube, no housing), <strong>semi-cassette</strong> (a cover that protects the rolled fabric) and <strong>full cassette</strong> (a sealed housing protecting both fabric and arms). The monoblock is the most affordable and keeps the traditional open look.',
+      'Standard widths from 2.5 to 7 metres (above 5.5 m we use coupled twin arm sets). Projection (reach): 1.5 to 3.5 metres. Pitch adjustable between 5 and 35 degrees. Frame in extruded aluminium, oven-baked lacquer in any RAL.',
+    ],
+  },
+  {
+    heading: 'Typical use cases',
+    body: [
+      'It is the dominant choice in apartments across Alicante, Elche, Torrevieja and Benidorm because it needs no floor anchors and respects the facade aesthetic required by most comunidades de propietarios (the Spanish equivalent of a homeowners association). It also works well on penthouses and cafe frontages overhanging the pavement.',
+      'For free-standing garden pergolas, large structures (over 7 m) or sites where Levante winds regularly exceed 50 km/h, a bioclimatic pergola or a wind-sensored cassette awning is a better fit.',
+    ],
+  },
+  {
+    heading: 'Installation process',
+    body: [
+      'After the free survey we agree width, projection, pitch, fabric colour (with physical samples) and motor option. Workshop manufacturing typically runs 2-3 weeks for stock colours.',
+      'Installation up to 5 m takes a two-technician team 3-4 hours. We anchor into facades with chemical resin bolts on concrete or solid brick. On steel sections (industrial structures) we use specific through-bolts. If the facade is in a protected zone or needs municipal permission, we handle the paperwork.',
+    ],
+  },
+  {
+    heading: 'Basic maintenance',
+    body: [
+      'Wash the fabric twice a year with a mild soap and soft brush (no chemicals), check the bolts after major storms, and grease the arm joints every 24 months. Those three steps cover the essentials.',
+      'In salt-air zones, inspect the stainless steel hardware annually and apply an aluminium protector to the main tube. Full detail in our <a href="/en/awning-maintenance-costa-blanca/" class="text-terracotta hover:underline">maintenance guide</a>.',
+    ],
+  },
+  {
+    heading: '2026 pricing',
+    body: [
+      'A monoblock retractable arm awning at 4 x 2.5 m starts from 650 euros installed, manual with basic acrylic fabric. The Somfy-motorised version with radio handset rises to 950 euros. Premium models (full cassette, Sunbrella Plus, Somfy io with sun and wind sensor) reach 1,500-1,800 euros.',
+      'For widths from 5.5 to 7 m with twin arm sets, ranges run 1,100 to 2,500 euros depending on spec. See the <a href="/en/awning-prices-alicante-2026/" class="text-terracotta hover:underline">2026 price breakdown</a>.',
+    ],
+  },
+];
+
+const comparison = {
+  heading: 'Retractable arm awnings: range comparison',
+  intro: 'Three tiers for different budgets and exposure levels.',
+  columns: ['Feature', 'Entry range', 'Mid range', 'Premium range'],
+  rows: [
+    ['Format', 'Open monoblock', 'Semi-cassette', 'Full cassette'],
+    ['Fabric', 'Solution-dyed acrylic', 'Sunbrella / Tempotest', 'Sunbrella Plus / Markilux'],
+    ['Motor', 'Manual or basic Somfy', 'Somfy RTS', 'Somfy io with wind+sun sensor'],
+    ['Frame warranty', '5 years', '5 years', '7 years'],
+    ['Price 4x2.5 m installed', '650 - 950 euros', '950 - 1,400 euros', '1,500 - 1,800 euros'],
+  ],
+};
+
+const related = {
+  heading: 'Related pages',
+  links: [
+    { label: 'Cassette awnings', href: '/en/cassette-awnings/' },
+    { label: 'Vertical ZIP screen awnings', href: '/en/zip-screen-awnings/' },
+    { label: 'Awning motorisation', href: '/en/awning-motorisation/' },
+    { label: 'Back to Awnings (hub)', href: '/en/awnings/' },
+    { label: 'Guide: choosing the right awning', href: '/en/choosing-the-right-awning-costa-blanca/' },
+    { label: 'Wind sensors for motorised awnings', href: '/en/wind-sensor-motorised-awnings/' },
+    { label: 'Service in Alicante city', href: '/en/awnings-alicante/' },
+    { label: 'Service in Elche', href: '/en/awnings-elche/' },
+    { label: 'Service in Torrevieja', href: '/en/awnings-torrevieja/' },
+  ],
+};
+
+const faqs = [
+  { question: 'What is the maximum projection of a retractable arm awning?', answer: 'The market standard is 3.5 metres of projection. Above that, fabric sag and arm tension make a pergola with floor supports more efficient.' },
+  { question: 'Will an arm awning hold up in wind?', answer: 'Up to wind class 2 under EN 13561 (around 28 km/h with the awning extended). Above that it has to be retracted. With a Somfy or Nice wind sensor, it does so automatically.' },
+  { question: 'Can it be installed in a residents community?', answer: 'Yes, but most comunidades require advance approval at the meeting and a homologated model and colour. We provide the technical specification and colour samples for the vote. More detail in our communities guide.' },
+  { question: 'Which motor do you recommend?', answer: 'For 90 percent of installs we suggest Somfy RTS (two-way radio handset). For smart-home integration or advanced sensors, Somfy io. Nice and Elero are solid alternatives with similar pricing and good spare parts availability.' },
+  { question: 'How long is the frame warranty?', answer: 'We give 5 years on the frame and arms in entry and mid ranges; 7 years on premium. Sunbrella and Tempotest fabrics carry 5 to 10 years direct from the manufacturer. Somfy and Nice motors, 5 years.' },
+  { question: 'Can I pick any colour?', answer: 'The aluminium can be lacquered in any RAL. Fabric depends on the manufacturer range: Sunbrella and Tempotest offer 80 to 150 colours, Markilux over 200 references.' },
+  { question: 'How long does installation take?', answer: 'For spans up to 5 m, a two-technician team installs it in 3-4 hours. Workshop manufacturing takes 2-3 weeks for stock colours and up to 5 weeks for premium fabrics or special RAL.' },
+  { question: 'Do I need a town hall permit?', answer: 'In most coastal municipalities, yes. Each town hall has its own ordinance. We have a municipality-by-municipality detail in our awning and pergola permit guide.' },
+];
+
+const cta = {
+  heading: 'Bespoke arm awning, quoted in 48 hours',
+  body: 'Free on-site survey, physical fabric samples and professional installation across Alicante province.',
+  button: 'Get a free quote',
+  buttonHref: `/en/free-quote/?product=${productSlug}`,
+  secondary: { label: 'See all awnings', href: '/en/awnings/' },
+};
+
+const breadcrumbs = [
+  { name: 'Home', url: 'https://optimtoldos.com/en/' },
+  { name: 'Awnings', url: 'https://optimtoldos.com/en/awnings/' },
+  { name: 'Retractable arm awnings', url: pageUrl },
+];
+
+const serviceSchema = buildServiceSchema({
+  locale,
+  name: 'Retractable Arm Awnings on the Costa Blanca',
+  description: hero.description,
+  serviceType: 'Retractable arm awning installation',
+  url: pageUrl,
+  offers: [
+    { name: 'Monoblock awning' },
+    { name: 'Semi-cassette awning' },
+    { name: 'Full cassette awning' },
+    { name: 'Somfy / Nice motorisation' },
+  ],
+});
+
+const faqSchema = buildFAQSchema(faqs, { locale });
+const breadcrumbSchema = buildBreadcrumbSchema(breadcrumbs, { locale });
+const productSchema = buildProductSchema({
+  locale,
+  name: 'Bespoke Retractable Arm Awning',
+  description: hero.description,
+  image: 'https://optimtoldos.com/images/gallery/toldo-brazo-extensible.webp',
+  url: pageUrl,
+  lowPrice: '350',
+  highPrice: '1800',
+  category: 'Retractable arm awnings',
+});
+---
+
+<Base
+  title="Retractable Arm Awnings | Optim Toldos - Costa Blanca"
+  description="Bespoke retractable arm awnings across Alicante. Monoblock, semi-cassette and full cassette, Somfy motorisation and Sunbrella or Tempotest fabrics. Free survey."
+  locale={locale}
+  alternateUrls={alternateUrls}
+  breadcrumbs={breadcrumbs}
+>
+  <Fragment slot="head">
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(serviceSchema)} />
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(productSchema)} />
+  </Fragment>
+  <SubProductPage
+    client:load
+    locale={locale}
+    hero={hero}
+    intro={intro}
+    sections={sections}
+    comparison={comparison}
+    related={related}
+    faqHeading="Frequently asked questions"
+    faqs={faqs}
+    cta={cta}
+  />
+</Base>

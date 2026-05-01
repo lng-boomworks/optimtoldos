@@ -1,0 +1,121 @@
+---
+import Base from '../layouts/Base.astro';
+import { ProductZonePage } from '../components/pages/ProductZonePage';
+import {
+  buildServiceSchema,
+  buildBreadcrumbSchema,
+  buildFAQSchema,
+  buildProductSchema,
+} from '../utils/schema';
+
+const SITE = 'https://optimtoldos.com';
+const slug = 'torrevieja';
+const name = 'Torrevieja';
+const heading = `Velas de sombra en ${name}`;
+const intro = `Velas de sombra tensadas para piscinas, terrazas y jardines de Torrevieja: tejido HDPE técnico, anclajes inoxidables y diseño según orientación.`;
+
+const pageUrl = `${SITE}/velas-sombra-${slug}/`;
+const alternateUrls = [
+  { locale: 'es' as const, href: pageUrl },
+  { locale: 'en' as const, href: `${SITE}/en/shade-sails-torrevieja/` },
+];
+
+const locationParagraph = `Las velas de sombra son la opción más versátil y económica para sombrear áreas grandes en Torrevieja sin obra ni licencia mayor: piscinas comunitarias, jardines de chalets en El Chaparral o La Mata, y terrazas amplias donde una pérgola sería excesiva. La salinidad y el viento de levante exigen tejido HDPE técnico (Coolaroo o equivalente, no nylon económico) y anclajes A4 inoxidables; los puntos de fijación deben calcularse para tensar correctamente y evacuar agua. La gran ventaja en Torrevieja es la rapidez: una vela queda instalada en una jornada y suele aceptarse sin trámite urbanístico al ser desmontable.`;
+
+const whyFitsBullets = [
+  'Tejido HDPE técnico (Coolaroo o equivalente): aguanta UV, viento y salinidad sin decolorar.',
+  'Anclajes A4 inoxidables a fachada o postes: imprescindible en zona costera de Torrevieja.',
+  'Diseño según orientación: triangulares, romboidales o pentagonales para gestionar sol del sur.',
+  'Desmontable en otoño-invierno para evitar daños por temporales.',
+  'Solución rápida y económica donde una pérgola sería sobredimensionada.',
+];
+
+const caseStudy = `Caso reciente: vela triangular de 4×4×4 m sobre piscina comunitaria en Aguas Nuevas, tejido HDPE arena con tratamiento UV, anclajes A4 a fachada existente y dos postes de 2,5 m. Total media jornada de instalación, plazo desde firma 2 semanas.`;
+
+const priceBand = `Vela triangular hasta 4×4×4 m con anclajes incluidos: 750 € - 1.100 €. Vela rectangular 4×3 m: 850 € - 1.300 €. Vela pentagonal o forma libre: bajo medida, 1.200 € - 2.500 €. Postes de aluminio anclaje (cada uno): 220 € - 350 €.`;
+
+const comunidadNote = `En Torrevieja la vela de sombra desmontable normalmente no requiere licencia urbanística (no es estructura permanente) salvo si los postes se cimientan. En comunidad de propietarios conviene comunicar a la junta si los anclajes van a fachada común. Le entregamos plano de instalación y especificación técnica del tejido.`;
+
+const faqs = [
+  { q: '¿Aguanta el viento de levante?', a: 'Si está bien tensada y montada, sí, hasta unos 60 km/h. En tormentas fuertes lo recomendable es aflojar y plegar la vela: por eso siempre montamos con sistema de tensión rápido (mosquetón o trinquete). En Torrevieja recomendamos retirar las velas de noviembre a febrero.' },
+  { q: '¿El tejido HDPE deja pasar el aire?', a: 'Sí, lo que la diferencia de un toldo de lona PVC. La vela HDPE es transpirable: deja pasar el aire (no se acumula calor debajo) y bloquea 90 - 95 % de la radiación UV. Por eso da sombra fresca y aguanta el viento mejor que una lona maciza.' },
+  { q: '¿Necesito postes o puedo anclar todo a fachada?', a: 'Depende del tamaño y orientación. Velas pequeñas (<3×3 m) suelen anclarse a fachada y árboles. Velas más grandes requieren al menos 1 - 2 postes para tensar correctamente. La distribución la calculamos en la visita técnica.' },
+  { q: '¿Decoloran con el sol de Torrevieja?', a: 'El HDPE técnico mantiene su color durante 8 - 10 años con uso intensivo. El nylon económico de las grandes superficies decolora en 2 - 3 temporadas. La diferencia de coste entre uno y otro es de 30 - 40 % pero la durabilidad triple.' },
+  { q: '¿Pueden retirarla en invierno?', a: 'Sí, y lo recomendamos. Si tiene mosquetones de tensión rápida puede plegarla usted en 10 minutos por vela. Como servicio anual, retiramos y guardamos las velas (y reinstalamos en primavera) por 70 - 120 € por vela.' },
+];
+
+const related = [
+  { label: 'Toldos en Torrevieja', href: '/toldos-torrevieja/' },
+  { label: 'Pérgolas en Torrevieja', href: '/pergolas-torrevieja/' },
+  { label: 'Velas de sombra (catálogo)', href: '/velas-de-sombra/' },
+  { label: 'Toldos hostelería en Torrevieja', href: '/toldos-hosteleria-torrevieja/' },
+  { label: 'Guía de licencias en Alicante', href: '/guia-licencias-pergolas-toldos-alicante/' },
+];
+
+const ctaHref = `/presupuesto/?product=velas-sombra&location=${slug}`;
+const contactHref = '/contacto/';
+const licenceHref = '/guia-licencias-pergolas-toldos-alicante/';
+
+const breadcrumbs = [
+  { name: 'Inicio', url: `${SITE}/` },
+  { name: 'Velas de sombra', url: `${SITE}/velas-de-sombra/` },
+  { name, url: pageUrl },
+];
+
+const serviceSchema = buildServiceSchema({
+  locale: 'es',
+  name: heading,
+  description: intro,
+  serviceType: 'Instalación de velas de sombra',
+  url: pageUrl,
+  offers: [
+    { name: 'Vela triangular' },
+    { name: 'Vela rectangular' },
+    { name: 'Vela pentagonal a medida' },
+  ],
+});
+const breadcrumbSchema = buildBreadcrumbSchema(breadcrumbs, { locale: 'es' });
+const faqSchema = buildFAQSchema(faqs.map(f => ({ question: f.q, answer: f.a })), { locale: 'es' });
+const productSchema = buildProductSchema({
+  locale: 'es',
+  name: heading,
+  description: intro,
+  image: `${SITE}/images/velas/vela-1.webp`,
+  url: pageUrl,
+  category: 'Velas de sombra',
+  lowPrice: '750',
+  highPrice: '2500',
+});
+---
+
+<Base
+  title={`${heading} - Optim Toldos`}
+  description={intro}
+  locale="es"
+  alternateUrls={alternateUrls}
+  breadcrumbs={breadcrumbs}
+>
+  <Fragment slot="head">
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(serviceSchema)} />
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(productSchema)} />
+  </Fragment>
+  <ProductZonePage
+    client:load
+    locale="es"
+    heading={heading}
+    intro={intro}
+    heroImage="/images/velas/hero-velas-1280.webp"
+    locationParagraph={locationParagraph}
+    whyFitsBullets={whyFitsBullets}
+    caseStudy={caseStudy}
+    priceBand={priceBand}
+    comunidadNote={comunidadNote}
+    licenceHref={licenceHref}
+    faqs={faqs}
+    related={related}
+    ctaHref={ctaHref}
+    contactHref={contactHref}
+  />
+</Base>

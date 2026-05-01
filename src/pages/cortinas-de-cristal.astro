@@ -8,6 +8,7 @@ import { getAlternateUrls } from '../i18n/routes';
 const alternateUrls = getAlternateUrls('glass-curtains');
 
 const serviceSchema = buildServiceSchema({
+  locale: 'es',
   name: "Cortinas de Cristal en Alicante",
   description: "Instalación de cortinas de cristal templado plegables sin perfiles verticales para cerramientos de terrazas.",
   serviceType: "Instalación de cortinas de cristal",
@@ -23,10 +24,12 @@ const faqSchema = buildFAQSchema(
   Array.from({ length: 8 }, (_, i) => ({
     question: t('es', `curtains.faq.${i + 1}.q` as any),
     answer: t('es', `curtains.faq.${i + 1}.a` as any),
-  }))
+  })),
+  { locale: 'es' }
 );
 
 const productSchema = buildProductSchema({
+  locale: 'es',
   name: "Cortinas de Cristal en Alicante",
   description: "Cortinas de cristal templado plegables sin perfiles verticales. Cierra tu terraza sin perder las vistas. Instalación profesional en Alicante.",
   image: "https://optimtoldos.com/images/cortinas/hero-cortinas.webp",
@@ -38,7 +41,7 @@ const productSchema = buildProductSchema({
 ---
 
 <Base
-  title="Cortinas de Cristal | Optim Toldos — Alicante"
+  title="Cortinas de Cristal | Optim Toldos - Alicante"
   description="Cortinas de cristal templado plegables sin perfiles verticales. Cierra tu terraza sin perder las vistas. Instalación profesional en Alicante y Costa Blanca."
   locale="es"
   alternateUrls={alternateUrls}

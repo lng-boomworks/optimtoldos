@@ -27,7 +27,7 @@ const breadcrumbs = [
   type="article"
 >
   <Fragment slot="head">
-    <script is:inline type="application/ld+json" set:html={JSON.stringify(buildFAQSchema(faqs))} />
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(buildFAQSchema(faqs, { locale: 'en' }))} />
   </Fragment>
   <PlanningPermissionGuidePage client:load locale="en" />
 </Base>

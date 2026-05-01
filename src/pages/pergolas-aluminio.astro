@@ -1,0 +1,178 @@
+---
+import Base from '../layouts/Base.astro';
+import { SubProductPage } from '../components/pages/SubProductPage';
+import {
+  buildServiceSchema,
+  buildFAQSchema,
+  buildBreadcrumbSchema,
+  buildProductSchema,
+} from '../utils/schema';
+import { getAlternateUrls } from '../i18n/routes';
+
+const locale = 'es' as const;
+const pageId = 'pergolas-aluminium';
+const pageUrl = 'https://optimtoldos.com/pergolas-aluminio/';
+const productSlug = 'pergola-aluminio';
+const alternateUrls = getAlternateUrls(pageId);
+
+const hero = {
+  heading: 'Pérgolas de Aluminio Fijo en Alicante',
+  description: 'Estructuras sólidas con cubierta fija de aluminio o policarbonato. La opción más asequible para crear una zona cubierta permanente con la durabilidad del aluminio extrusionado.',
+  image: '/images/pergolas/pergola-restaurante.webp',
+  imageAlt: 'Pérgola de aluminio fijo cubriendo una terraza de jardín',
+};
+
+const intro = 'La pérgola de aluminio fijo es la opción más utilizada cuando lo que se busca es una zona cubierta permanente que aguante temporales y aporte sombra densa todo el año. A diferencia de las bioclimáticas, no lleva piezas móviles: la cubierta es un panel sólido que puede ser de aluminio sandwich, policarbonato celular o vidrio templado. Eso reduce el coste, simplifica el mantenimiento y maximiza la vida útil.';
+
+const sections = [
+  {
+    heading: 'Tipos de cubierta',
+    body: [
+      'Trabajamos cuatro cubiertas según la finalidad: <strong>panel sandwich de aluminio</strong> con núcleo aislante (el estándar para chalés), <strong>policarbonato celular</strong> traslúcido (deja pasar luz, ideal para porches con plantas), <strong>vidrio templado</strong> (estética premium, deja pasar el sol pero protege de lluvia) y <strong>chapa simple</strong> (la opción más económica).',
+      'El panel sandwich es el más vendido por su excelente aislamiento térmico (hasta 60 % menos calor por radiación que una chapa simple) y acústico. El vidrio premium se reserva para áticos y proyectos donde la estética manda sobre el coste.',
+    ],
+  },
+  {
+    heading: 'Estructura y especificaciones',
+    body: [
+      'Aluminio extrusionado de pared gruesa lacado al horno en cualquier RAL. Categoría de protección anticorrosión C3 o C5 marina según ubicación. Pilares estándar de 12 x 12 cm reforzados; vigas y travesaños calculados según la luz a salvar y el peso de la cubierta.',
+      'Tamaños habituales: hasta 6 m de luz libre entre pilares sin viga intermedia. Por encima incorporamos viga reforzada o pilar central. Trabajamos con perfilería <strong>Cortizo</strong> y otros fabricantes europeos certificados CE.',
+    ],
+  },
+  {
+    heading: 'Casos de uso típicos',
+    body: [
+      'Es la opción favorita para zonas de aparcamiento cubierto, porches de chalets que quieren sombra permanente y patios traseros donde el sol pega fuerte todo el día. Resulta ideal en hostelería que necesita continuidad estructural sólida pero no requiere lamas regulables.',
+      'En comunidades de propietarios suele ser más fácil de aprobar que la bioclimática por su menor coste y por considerarse más cercano a una estructura tradicional. La parte negativa: no permite regular el aporte de luz natural, así que en orientaciones sur muy cálidas algunos clientes optan por bioclimática.',
+    ],
+  },
+  {
+    heading: 'Instalación y plazos',
+    body: [
+      'Tras la visita técnica medimos vano, comprobamos solera y elegimos sistema de anclaje (placas químicas en hormigón, placas atornilladas a estructura existente, etc). La fabricación lleva 3-5 semanas según acabados.',
+      'La instalación se realiza en 1-3 días por dos técnicos. Como en las bioclimáticas, la mayoría de ayuntamientos exige licencia de obra menor: gestionamos la documentación. Plazo medio de licencia: 4-12 semanas según municipio. Detalle en la <a href="/guia-licencias-pergolas-toldos-alicante/" class="text-terracotta hover:underline">guía de licencias</a>.',
+    ],
+  },
+  {
+    heading: 'Mantenimiento mínimo',
+    body: [
+      'Es la categoría con menos mantenimiento del catálogo. Limpieza de la cubierta y los canalones cada 6 meses, revisión de tornillería tras temporales fuertes y aplicación de protector de aluminio en zonas con salitre cada 24 meses. Sin motores ni lonas, las averías son prácticamente inexistentes.',
+      'La estructura tiene una vida útil esperada de 25 años o más con mantenimiento básico. Con tratamiento C5 marina y revisiones regulares hemos visto pérgolas Cortizo en perfecto estado tras 30 años en primera línea de Torrevieja.',
+    ],
+  },
+  {
+    heading: 'Precios 2026',
+    body: [
+      'La pérgola fija parte de 3.500 euros instalada para una adosada de 4 x 3 m con cubierta de chapa simple. La versión con panel sandwich alcanza 5.500-7.500 euros. Una autoportante de 5 x 4 m con vidrio templado, 8.000-12.000 euros.',
+      'En proyectos grandes (terrazas comerciales o restaurantes) con luces de 6+ m y panel sandwich, presupuesta entre 12.000 y 22.000 euros. Compárala con la pérgola bioclimática en nuestra <a href="/pergola-bioclimatica-vs-aluminio/" class="text-terracotta hover:underline">guía comparativa</a>.',
+    ],
+  },
+];
+
+const comparison = {
+  heading: 'Cubiertas para pérgola de aluminio fijo',
+  intro: 'Cuatro cubiertas comparadas según presupuesto y prestaciones.',
+  columns: ['Cubierta', 'Aislamiento térmico', 'Luz natural', 'Precio relativo'],
+  rows: [
+    ['Chapa simple aluminio', 'Bajo', 'No', 'Más económico'],
+    ['Panel sandwich aluminio', 'Excelente', 'No', 'Medio-alto'],
+    ['Policarbonato celular', 'Medio', 'Difusa (translúcido)', 'Medio'],
+    ['Vidrio templado', 'Bajo (sin filtro)', 'Total', 'Premium'],
+    ['Chapa imitación madera', 'Bajo', 'No', 'Medio'],
+  ],
+};
+
+const related = {
+  heading: 'Páginas relacionadas',
+  links: [
+    { label: 'Pérgolas bioclimáticas', href: '/pergolas-bioclimaticas/' },
+    { label: 'Pérgola con toldo deslizante', href: '/pergola-toldo-deslizante/' },
+    { label: 'Volver a Pérgolas (hub)', href: '/pergolas/' },
+    { label: 'Guía: pérgola bioclimática vs aluminio', href: '/pergola-bioclimatica-vs-aluminio/' },
+    { label: 'Cortinas de cristal', href: '/cortinas-de-cristal/' },
+    { label: 'Toldos verticales ZIP', href: '/toldos-verticales-zip/' },
+    { label: 'Servicio en Alicante ciudad', href: '/toldos-alicante/' },
+    { label: 'Servicio en Elche', href: '/toldos-elche/' },
+    { label: 'Servicio en Santa Pola', href: '/toldos-santa-pola/' },
+  ],
+};
+
+const faqs = [
+  { question: '¿Cuál es la diferencia con una pérgola bioclimática?', answer: 'La pérgola de aluminio fijo lleva una cubierta sólida inamovible (panel, vidrio o chapa). La bioclimática lleva lamas que giran. La fija cuesta entre un 30 y un 50 % menos pero no permite regular sol ni ventilación. Hay una guía completa de comparación.' },
+  { question: '¿Aguanta la lluvia y el viento?', answer: 'Sí, con cualquier cubierta sandwich, vidrio o policarbonato la pérgola es estanca y soporta vientos de hasta 130-150 km/h según cálculo estructural. Es la opción más sólida frente a temporales fuertes.' },
+  { question: '¿Necesito licencia del ayuntamiento?', answer: 'Sí, prácticamente todos los municipios la consideran obra menor con licencia. Hacemos memoria, planos firmados y gestión completa con el ayuntamiento. Plazo medio: 1-3 meses. Más detalle en la guía de licencias.' },
+  { question: '¿Puedo añadir cortinas o cerramientos?', answer: 'Sí, la pérgola fija acepta perfectamente cortinas de cristal, ZIP screen lateral, mosquiteras o paneles de policarbonato. Se diseña con previsión para añadir estos elementos en una fase posterior si lo necesitas.' },
+  { question: '¿Qué cubierta es la mejor opción?', answer: 'Para chalés con uso frecuente, panel sandwich de aluminio (mejor aislamiento). Para porches con plantas y luz natural, policarbonato celular. Para áticos con vistas, vidrio templado. Para usos secundarios (aparcamiento), chapa simple.' },
+  { question: '¿Cuánto dura?', answer: 'La estructura tiene vida útil esperada de 25 años o más. Con tratamiento C5 marina y mantenimiento básico, hemos visto pérgolas Cortizo perfectas tras 30 años en primera línea costera.' },
+  { question: '¿Qué garantía?', answer: 'Damos 7 años sobre estructura y lacado en gama estándar; 10 años en premium con tratamiento marino C5. Sobre la cubierta: vidrio 5 años, panel sandwich 10 años del fabricante.' },
+  { question: '¿Cuánto tarda la instalación?', answer: 'Fabricación 3-5 semanas, instalación 1-3 días según tamaño. Plazo total tras firma: 5-8 semanas, más el tiempo de licencia municipal si aplica.' },
+];
+
+const cta = {
+  heading: 'Cubre tu terraza con una pérgola de aluminio fijo',
+  body: 'La inversión más rentable cuando buscas una cubierta sólida permanente. Visita técnica gratuita y presupuesto en 1 semana.',
+  button: 'Solicitar presupuesto',
+  buttonHref: `/presupuesto/?product=${productSlug}`,
+  secondary: { label: 'Ver pérgolas (hub)', href: '/pergolas/' },
+};
+
+const breadcrumbs = [
+  { name: 'Inicio', url: 'https://optimtoldos.com/' },
+  { name: 'Pérgolas', url: 'https://optimtoldos.com/pergolas/' },
+  { name: 'Pérgolas de aluminio fijo', url: pageUrl },
+];
+
+const serviceSchema = buildServiceSchema({
+  locale,
+  name: 'Pérgolas de Aluminio Fijo en Alicante',
+  description: hero.description,
+  serviceType: 'Instalación de pérgolas de aluminio fijo',
+  url: pageUrl,
+  offers: [
+    { name: 'Pérgola con cubierta panel sandwich' },
+    { name: 'Pérgola con vidrio templado' },
+    { name: 'Pérgola con policarbonato celular' },
+    { name: 'Pérgola con cubierta de chapa' },
+  ],
+});
+
+const faqSchema = buildFAQSchema(faqs, { locale });
+const breadcrumbSchema = buildBreadcrumbSchema(breadcrumbs, { locale });
+const productSchema = buildProductSchema({
+  locale,
+  name: 'Pérgola de Aluminio Fijo a Medida',
+  description: hero.description,
+  image: 'https://optimtoldos.com/images/pergolas/pergola-restaurante.webp',
+  url: pageUrl,
+  lowPrice: '3500',
+  highPrice: '22000',
+  category: 'Pérgolas de aluminio',
+});
+---
+
+<Base
+  title="Pérgolas de Aluminio Fijo a Medida | Optim Toldos - Alicante"
+  description="Pérgolas de aluminio fijo con cubierta panel sandwich, vidrio o policarbonato en Alicante. Estructura Cortizo, anticorrosión marina y garantía de 7 años."
+  locale={locale}
+  alternateUrls={alternateUrls}
+  breadcrumbs={breadcrumbs}
+>
+  <Fragment slot="head">
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(serviceSchema)} />
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(productSchema)} />
+  </Fragment>
+  <SubProductPage
+    client:load
+    locale={locale}
+    hero={hero}
+    intro={intro}
+    sections={sections}
+    comparison={comparison}
+    related={related}
+    faqHeading="Preguntas frecuentes"
+    faqs={faqs}
+    cta={cta}
+  />
+</Base>

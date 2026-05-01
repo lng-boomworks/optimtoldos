@@ -1,0 +1,121 @@
+---
+import Base from '../layouts/Base.astro';
+import { ProductZonePage } from '../components/pages/ProductZonePage';
+import {
+  buildServiceSchema,
+  buildBreadcrumbSchema,
+  buildFAQSchema,
+  buildProductSchema,
+} from '../utils/schema';
+
+const SITE = 'https://optimtoldos.com';
+const slug = 'elche';
+const name = 'Elche';
+const heading = `Pérgolas en ${name}`;
+const intro = `Pérgolas para chalets, áticos y locales de Elche: estructuras de aluminio diseñadas para el calor seco del interior y la presión solar de la huerta ilicitana.`;
+
+const pageUrl = `${SITE}/pergolas-${slug}/`;
+const alternateUrls = [
+  { locale: 'es' as const, href: pageUrl },
+  { locale: 'en' as const, href: `${SITE}/en/pergolas-elche/` },
+];
+
+const locationParagraph = `Elche es la mayor ciudad del entorno y nuestra base operativa, con tipologías muy diversas: el centro histórico con áticos sobre fincas antiguas, los barrios residenciales de Altabix, Travalón o Carrús con bloques modernos, y los chalets dispersos por la huerta del Vinalopó y la pedanía de El Altet. El clima es mediterráneo seco con menos viento que el litoral pero veranos muy intensos: una pérgola convierte una terraza inutilizable en julio y agosto en el espacio principal de la vivienda. En el centro las comunidades suelen tener Plan Especial de Protección por la huerta y la zona del Palmeral, lo que limita colores y volumen de la pérgola.`;
+
+const whyFitsBullets = [
+  'Lamas bioclimáticas para gestionar 11 - 12 horas de sol diario en julio y agosto.',
+  'Aluminio lacado en horno: aguanta el calor extremo (38 - 42°C habituales) sin deformarse.',
+  'Cumplimiento de la ordenanza estética del centro y zona Palmeral (colores neutros, alturas controladas).',
+  'Iluminación LED dimerizable para el uso nocturno en verano: la mayoría del uso es de 21 a 01 h.',
+  'Cerramientos opcionales para extender el uso al invierno suave de Elche (15 - 18°C de día en enero).',
+];
+
+const caseStudy = `Caso reciente: pérgola bioclimática Saxun 6×3,5 m sobre terraza de chalet en Altabix, color gris cuarzo RAL 7039, motor Somfy io con app móvil, sensor de viento y de lluvia, calefactores radiantes y dos paños de cortina ZIP en orientación oeste y sur. Conectada a la iluminación general de la vivienda.`;
+
+const priceBand = `Pérgola fija de aluminio 4×3 m: 2.800 € - 3.600 €. Pérgola bioclimática 5×3 m motorizada con sensores: 4.800 € - 6.500 €. Versión 6×4 m con LED, calefactores y dos cerramientos ZIP: 9.000 € - 12.500 €.`;
+
+const comunidadNote = `En Elche, el Ayuntamiento exige declaración responsable o licencia de obra menor según la zona. En el centro histórico, Vila Murada y entorno del Palmeral hay restricciones específicas (Plan Especial). En polígonos y huerta el trámite es más sencillo. Le entregamos el dossier técnico completo y, si la pérgola va sobre cubierta de comunidad, también la documentación para la junta.`;
+
+const faqs = [
+  { q: '¿En Altabix o Carrús puedo poner una pérgola en la azotea de la finca?', a: 'Si la cubierta es comunitaria, necesita acuerdo de la junta de propietarios además del trámite urbanístico. Si es una azotea privativa (ático), basta con la junta para autorizar el uso de la cubierta y la licencia urbanística. Tramitamos ambos documentos.' },
+  { q: '¿Hay limitaciones en el centro histórico de Elche?', a: 'Sí. El Plan Especial de Protección y la zona del Palmeral limitan colores (preferentemente blanco roto, beige o tonos tierra), alturas y volúmenes. Para zonas catalogadas a veces se exige licencia de obra menor con proyecto técnico. Le indicamos qué aplica antes de presupuestar.' },
+  { q: '¿Aguanta el calor extremo de julio?', a: 'Sí. El aluminio lacado mantiene su geometría hasta 80°C; los motores Somfy y Nice están homologados para temperatura de superficie 70°C. Recomendamos color claro para no acumular calor radiante en las lamas.' },
+  { q: '¿La pérgola bioclimática me sirve también en invierno?', a: 'Sí, especialmente en Elche, donde los días de invierno son suaves. Cerrando lamas se gana 4 - 6°C respecto al exterior; sumando un cerramiento ZIP o cortina de cristal y un calefactor radiante, la terraza es utilizable casi todo el año.' },
+  { q: '¿Cuánto tiempo se tarda en obtener la declaración responsable?', a: 'En Elche, una declaración responsable bien presentada permite empezar la obra a los pocos días. La revisión administrativa lleva 3 - 6 semanas. Si la documentación está completa rara vez hay incidencias.' },
+];
+
+const related = [
+  { label: 'Pérgola bioclimática en Elche', href: '/pergola-bioclimatica-elche/' },
+  { label: 'Cortinas de cristal en Elche', href: '/cortinas-de-cristal-elche/' },
+  { label: 'Toldos en Elche', href: '/toldos-elche/' },
+  { label: 'Bioclimática vs aluminio', href: '/pergola-bioclimatica-vs-aluminio/' },
+  { label: 'Guía de licencias en Alicante', href: '/guia-licencias-pergolas-toldos-alicante/' },
+];
+
+const ctaHref = `/presupuesto/?product=pergolas&location=${slug}`;
+const contactHref = '/contacto/';
+const licenceHref = '/guia-licencias-pergolas-toldos-alicante/';
+
+const breadcrumbs = [
+  { name: 'Inicio', url: `${SITE}/` },
+  { name: 'Pérgolas', url: `${SITE}/pergolas/` },
+  { name, url: pageUrl },
+];
+
+const serviceSchema = buildServiceSchema({
+  locale: 'es',
+  name: heading,
+  description: intro,
+  serviceType: 'Instalación de pérgolas',
+  url: pageUrl,
+  offers: [
+    { name: 'Pérgola bioclimática' },
+    { name: 'Pérgola fija de aluminio' },
+    { name: 'Pérgola con toldo deslizante' },
+  ],
+});
+const breadcrumbSchema = buildBreadcrumbSchema(breadcrumbs, { locale: 'es' });
+const faqSchema = buildFAQSchema(faqs.map(f => ({ question: f.q, answer: f.a })), { locale: 'es' });
+const productSchema = buildProductSchema({
+  locale: 'es',
+  name: heading,
+  description: intro,
+  image: `${SITE}/images/pergolas/pergola-bioclimatica.webp`,
+  url: pageUrl,
+  category: 'Pérgolas',
+  lowPrice: '2800',
+  highPrice: '12500',
+});
+---
+
+<Base
+  title={`${heading} - Optim Toldos`}
+  description={intro}
+  locale="es"
+  alternateUrls={alternateUrls}
+  breadcrumbs={breadcrumbs}
+>
+  <Fragment slot="head">
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(serviceSchema)} />
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(productSchema)} />
+  </Fragment>
+  <ProductZonePage
+    client:load
+    locale="es"
+    heading={heading}
+    intro={intro}
+    heroImage="/images/pergolas/hero-pergolas-1280.webp"
+    locationParagraph={locationParagraph}
+    whyFitsBullets={whyFitsBullets}
+    caseStudy={caseStudy}
+    priceBand={priceBand}
+    comunidadNote={comunidadNote}
+    licenceHref={licenceHref}
+    faqs={faqs}
+    related={related}
+    ctaHref={ctaHref}
+    contactHref={contactHref}
+  />
+</Base>

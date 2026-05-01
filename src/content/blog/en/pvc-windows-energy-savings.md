@@ -10,7 +10,7 @@ image: "/images/ventanas/ventanas-cortizo.webp"
 translationOf: "es/ventanas-pvc-ahorro-energetico"
 ---
 
-**Switching to PVC windows with double glazing can cut your heating and cooling bills by 30 % to 40 % in Alicante.** In real numbers, an average 90 m² home with old aluminium windows lacking a thermal break spends between 1,200 and 1,800 euros a year on air conditioning and heating. With quality PVC windows, that figure drops to 750–1,100 euros — a saving of 450 to 700 euros every year. Given that Alicante's climate is extreme in summer (temperatures above 35 degrees for 4–5 months) yet mild in winter, the investment pays for itself in 6 to 9 years.
+**Switching to PVC windows with double glazing can cut your heating and cooling bills by 30 % to 40 % in Alicante.** In real numbers, an average 90 m² home with old aluminium windows lacking a thermal break spends between 1,200 and 1,800 euros a year on air conditioning and heating. With quality PVC windows, that figure drops to 750–1,100 euros - a saving of 450 to 700 euros every year. Given that Alicante's climate is extreme in summer (temperatures above 35 degrees for 4–5 months) yet mild in winter, the investment pays for itself in 6 to 9 years.
 
 In this guide we look at exactly how PVC windows work, compare them with the alternatives, calculate the real return on investment and review the grants available so you can make the best decision.
 
@@ -20,7 +20,7 @@ The secret behind PVC as a window material lies in its extremely low thermal con
 
 ### Multi-chamber profiles
 
-Modern PVC profiles are not solid — they contain between 3 and 7 internal air chambers that act as additional insulating barriers. Each chamber traps a layer of still air that slows heat transfer.
+Modern PVC profiles are not solid - they contain between 3 and 7 internal air chambers that act as additional insulating barriers. Each chamber traps a layer of still air that slows heat transfer.
 
 - **3 chambers**: Basic level. Frame thermal transmittance (Uf) of approximately 1.3 W/m²K. Suitable for mild climates.
 - **5 chambers**: Standard level. Uf of 1.1 W/m²K. Recommended for Alicante.
@@ -158,7 +158,7 @@ Beyond energy savings, PVC windows deliver far superior sound insulation:
 - **PVC with standard double glazing**: 35–38 dB reduction
 - **PVC with acoustic double glazing (PVB interlayer)**: 42–47 dB reduction
 
-To put these numbers in context, a street with moderate traffic generates 65 to 75 dB. With acoustic PVC windows, that noise drops to 25–30 dB indoors — equivalent to a library.
+To put these numbers in context, a street with moderate traffic generates 65 to 75 dB. With acoustic PVC windows, that noise drops to 25–30 dB indoors - equivalent to a library.
 
 This is especially relevant in areas of Alicante such as the city centre, the Benalua district, the San Blas neighbourhood or near Avenida de Denia, where traffic and nightlife produce high noise levels.
 
@@ -171,7 +171,7 @@ There are currently several funding programmes for window replacement in the Val
 - **Amount**: Up to 40 % of the cost (60 % for economically vulnerable households)
 - **Maximum**: 3,000 euros per dwelling for glazing improvements
 - **Requirement**: Improve the energy rating by at least one grade
-- **Deadline**: Annual calls — check the IVACE website for current rounds
+- **Deadline**: Annual calls - check the IVACE website for current rounds
 
 ### Income tax deductions
 

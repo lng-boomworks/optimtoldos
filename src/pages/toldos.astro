@@ -8,6 +8,7 @@ import { getAlternateUrls } from '../i18n/routes';
 const alternateUrls = getAlternateUrls('awnings');
 
 const serviceSchema = buildServiceSchema({
+  locale: 'es',
   name: "Toldos a Medida en Alicante",
   description: "Fabricación e instalación de toldos extensibles, verticales, punto recto y capota a medida.",
   serviceType: "Instalación de toldos",
@@ -25,10 +26,12 @@ const faqSchema = buildFAQSchema(
   Array.from({ length: 8 }, (_, i) => ({
     question: t('es', `awnings.faq.${i + 1}.q` as any),
     answer: t('es', `awnings.faq.${i + 1}.a` as any),
-  }))
+  })),
+  { locale: 'es' }
 );
 
 const productSchema = buildProductSchema({
+  locale: 'es',
   name: "Toldos a Medida en Alicante",
   description: "Toldos extensibles, verticales, punto recto y capota fabricados a medida con instalación profesional en la provincia de Alicante.",
   image: "https://optimtoldos.com/images/gallery/hero-toldos.webp",
@@ -40,7 +43,7 @@ const productSchema = buildProductSchema({
 ---
 
 <Base
-  title="Toldos a Medida | Optim Toldos — Alicante"
+  title="Toldos a Medida | Optim Toldos - Alicante"
   description="Toldos extensibles, verticales, punto recto y capota. Fabricación a medida con motorización opcional e instalación profesional en Alicante y Costa Blanca."
   locale="es"
   alternateUrls={alternateUrls}

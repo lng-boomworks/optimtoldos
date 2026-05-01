@@ -13,7 +13,7 @@ pillarGuide: "awning-guide"
 
 ## Quick summary
 
-> **A retractable arm awning with acrylic fabric and a full cassette housing is the most versatile option for most terraces in Alicante.** Expect to pay between 800 € and 2,500 € installed, depending on the size and motorisation. With over 300 days of sunshine a year and some of the highest UV radiation levels in Europe, protecting your terrace is not a luxury — it is a necessity that can lower your indoor temperature by 8 °C to 12 °C.
+> **A retractable arm awning with acrylic fabric and a full cassette housing is the most versatile option for most terraces in Alicante.** Expect to pay between 800 € and 2,500 € installed, depending on the size and motorisation. With over 300 days of sunshine a year and some of the highest UV radiation levels in Europe, protecting your terrace is not a luxury - it is a necessity that can lower your indoor temperature by 8 °C to 12 °C.
 
 In this guide we cover every type of awning available, compare real 2026 prices, analyse materials and give you advice tailored to Alicante's coastal climate. If by the end you know what you need, you can [request a free, no-obligation quote](/en/free-quote).
 
@@ -85,7 +85,7 @@ Prices vary according to the type, size, fabric material, motorisation and wheth
 
 ## What is the best awning fabric for Alicante?
 
-Fabric choice is just as important as the type of awning. In Alicante's climate — with extreme UV radiation (index 9–11 in summer) and coastal salt air — not just any material will do.
+Fabric choice is just as important as the type of awning. In Alicante's climate - with extreme UV radiation (index 9–11 in summer) and coastal salt air - not just any material will do.
 
 ### Acrylic fabric (the most recommended option)
 
@@ -100,7 +100,7 @@ Fabric choice is just as important as the type of awning. In Alicante's climate 
 ### PVC-coated polyester (waterproof)
 
 - **UV protection:** blocks 100 % of radiation.
-- **Waterproofing:** fully waterproof — withstands heavy rain.
+- **Waterproofing:** fully waterproof - withstands heavy rain.
 - **Breathability:** none. Can cause condensation and a feeling of heat under the awning.
 - **Colour fastness:** lower than acrylic; degrades faster under continuous sun exposure.
 - **Estimated lifespan:** 6–10 years.
@@ -174,7 +174,7 @@ The awning's retraction system is a key factor in its durability, especially in 
 - **Durability:** the best. Protects against rain, dust, salt, bird droppings and insects.
 - **Recommended for:** any installation directly exposed to the elements, especially near the seafront.
 
-**Our recommendation for Alicante:** full cassette, whenever budget allows. Coastal salt air and Saharan dust clouds (calima — common in spring and summer) are the biggest threats to awning fabrics and mechanisms. A cassette can double the lifespan of the fabric.
+**Our recommendation for Alicante:** full cassette, whenever budget allows. Coastal salt air and Saharan dust clouds (calima - common in spring and summer) are the biggest threats to awning fabrics and mechanisms. A cassette can double the lifespan of the fabric.
 
 ---
 
@@ -200,7 +200,7 @@ Within 2 km of the coast, salt corrodes fixings, oxidises mechanisms and damages
 
 ### Saharan dust (calima)
 
-Alicante experiences calima episodes — fine Saharan dust suspended in the air — several times a year. This dust sticks to the fabric and can leave permanent stains if not cleaned promptly. **A full cassette protects the fabric from calima when the awning is retracted.**
+Alicante experiences calima episodes - fine Saharan dust suspended in the air - several times a year. This dust sticks to the fabric and can leave permanent stains if not cleaned promptly. **A full cassette protects the fabric from calima when the awning is retracted.**
 
 ---
 
@@ -249,7 +249,7 @@ Answer these questions to determine the type of awning you need:
 
 - **South or south-west:** maximum sun exposure. You need an awning with high UV protection and, most likely, lateral windbreaks.
 - **East:** morning sun. A standard retractable awning is usually enough.
-- **West:** afternoon sun — the most uncomfortable. Combine a retractable awning with a [vertical awning](/en/awnings) on the side.
+- **West:** afternoon sun - the most uncomfortable. Combine a retractable awning with a [vertical awning](/en/awnings) on the side.
 - **North:** little direct sunlight. You may not need an awning at all, or a drop-arm may suffice.
 
 ### 3. Are you within 500 m of the seafront?
@@ -275,4 +275,4 @@ Answer these questions to determine the type of awning you need:
 
 Now that you know the types, materials, prices and the specifics of Alicante's climate, you are in a position to make an informed decision. At [Optim Toldos](/en/awnings) we work exclusively with top-quality materials adapted to the Mediterranean climate and offer professional installation with a guarantee.
 
-**[Request your free, no-obligation quote](/en/free-quote)** — we visit your home, take measurements and present a detailed proposal within 48 hours.
+**[Request your free, no-obligation quote](/en/free-quote)** - we visit your home, take measurements and present a detailed proposal within 48 hours.

@@ -1,0 +1,180 @@
+---
+import Base from '../../layouts/Base.astro';
+import { SubProductPage } from '../../components/pages/SubProductPage';
+import {
+  buildServiceSchema,
+  buildFAQSchema,
+  buildBreadcrumbSchema,
+  buildProductSchema,
+} from '../../utils/schema';
+import { getAlternateUrls } from '../../i18n/routes';
+
+const locale = 'en' as const;
+const pageId = 'awnings-motorisation';
+const pageUrl = 'https://optimtoldos.com/en/awning-motorisation/';
+const productSlug = 'awning-motorisation';
+const alternateUrls = getAlternateUrls(pageId);
+
+const hero = {
+  heading: 'Awning Motorisation: Somfy, Nice and Elero',
+  description: 'Complete guide to choosing motors, handsets and sensors. Compare Somfy, Nice and Elero by awning type, budget and the level of automation you want.',
+  image: '/images/gallery/toldo-cofre-extensible.webp',
+  imageAlt: 'Motorised awning operated by radio handset',
+};
+
+const intro = 'Motorising an awning stops being a luxury once you live on the Costa Blanca: Levante wind shifts within minutes, large awnings are awkward to crank by hand, and integrated sensors can add years to the fabric life. This guide covers which motor to choose for each awning type, how Somfy, Nice and Elero differ, and which automations are worth paying for in 2026.';
+
+const sections = [
+  {
+    heading: 'Why motorise an awning?',
+    body: [
+      'Three reasons. First, <strong>automatic protection</strong>: with a Somfy Eolis or Nice Era wind sensor, the awning retracts automatically when wind exceeds the configured threshold, preventing arm damage and fabric tears during sudden storms.',
+      'Second, <strong>real comfort</strong>: from 4 m wide or 3 m projection, manual cranks need real force. Third, <strong>smart-home integration</strong>: with io or Z-Wave motors you can pair awnings, blinds and lights into a central routine (for example, retract everything when you arm the alarm or detect wind).',
+    ],
+  },
+  {
+    heading: 'Brands: Somfy, Nice and Elero',
+    body: [
+      '<strong>Somfy</strong> is the European leader. Its RTS motors (two-way radio) are the sector standard and the io range adds smart-home integration and feedback. Excellent spare parts availability and a 5-year warranty.',
+      '<strong>Nice</strong> is the Italian alternative with equivalent quality and slightly lower pricing. Compatible with TT2 (basic radio) and Era (advanced range). <strong>Elero</strong>, German, stands out for absolute-encoder motors and long life under heavy use (hospitality). At Optim Toldos we work with all three depending on need.',
+    ],
+  },
+  {
+    heading: 'Motor types by application',
+    body: [
+      'For <strong>retractable arm awnings</strong>, a 30-45 Nm tubular motor. For <strong>full cassette awnings</strong>, 45-50 Nm. For <strong>vertical ZIP awnings</strong>, motors with electronic limit switches (the tensioned fabric demands precision). For <strong>large enclosures</strong>, reinforced 100 Nm motors.',
+      'In all cases we recommend motors with built-in radio receivers (RTS or io) over wired models, because they avoid wall electrical work and let you add handsets and sensors later without running more cable.',
+    ],
+  },
+  {
+    heading: 'Sensors: wind, sun and rain',
+    body: [
+      'The wind sensor is the most important: it detects gusts and retracts the awning automatically. Recommended models: <strong>Somfy Eolis 3D Wirefree</strong>, <strong>Nice Era Wind</strong> and <strong>Elero VarioTec Flush</strong>. Full detail in our <a href="/en/wind-sensor-motorised-awnings/" class="text-terracotta hover:underline">wind sensor guide</a>.',
+      'The sun sensor extends the awning when radiation passes a threshold - useful if you spend a lot of time away from home. The rain sensor is secondary: with a good wind sensor and a properly built awning, it is not essential outside outdoor hospitality settings.',
+    ],
+  },
+  {
+    heading: 'Handsets and smart home',
+    body: [
+      'Basic handsets like Somfy Situo or Nice Mini Way control one channel at an affordable price. Advanced ones (Somfy Telis 4, Nice Era P) manage up to 16 awnings with groups. For Alexa, Google Home or HomeKit integration, the bridges are <strong>Somfy TaHoma</strong> (or Connexoon for a simpler version) and <strong>Nice Mynice</strong>.',
+      'If you already have KNX or Loxone, both speak to Somfy io and Nice motors via gateway. Newer Matter-compatible models work with virtually any home ecosystem.',
+    ],
+  },
+  {
+    heading: 'Costs and lead times',
+    body: [
+      'Motorising a new awning adds 200-350 euros over the manual version. The wind sensor adds 80-150 euros. The io receiver for smart-home, 90-130 euros extra. Retrofitting motorisation to an existing awning, add 100-150 euros of labour.',
+      'Lead time: ordering a new motorised awning runs the standard 2-4 weeks. Retrofitting takes a half-day visit. More cost detail in the <a href="/en/awning-prices-alicante-2026/" class="text-terracotta hover:underline">2026 price breakdown</a>.',
+    ],
+  },
+];
+
+const comparison = {
+  heading: 'Somfy vs Nice vs Elero: quick comparison',
+  intro: 'Three premium brands for different priorities.',
+  columns: ['Feature', 'Somfy', 'Nice', 'Elero'],
+  rows: [
+    ['Origin', 'France', 'Italy', 'Germany'],
+    ['Radio tech', 'RTS / io / TaHoma', 'TT2 / Era / Mynice', 'ProLine / VarioTec'],
+    ['Advanced smart home', 'Excellent (io, Matter)', 'Good (Mynice + Matter)', 'Good (KNX, Loxone)'],
+    ['Spare parts availability', 'Excellent across Europe', 'Good', 'Good for hospitality'],
+    ['Standard warranty', '5 years', '5 years', '5 years'],
+    ['35 Nm motor price', '180 - 230 euros', '160 - 210 euros', '200 - 260 euros'],
+  ],
+};
+
+const related = {
+  heading: 'Related pages',
+  links: [
+    { label: 'Cassette awnings', href: '/en/cassette-awnings/' },
+    { label: 'Retractable arm awnings', href: '/en/retractable-arm-awnings/' },
+    { label: 'ZIP screen awnings', href: '/en/zip-screen-awnings/' },
+    { label: 'Back to Awnings (hub)', href: '/en/awnings/' },
+    { label: 'Wind sensors for motorised awnings', href: '/en/wind-sensor-motorised-awnings/' },
+    { label: 'Guide: choosing the right awning', href: '/en/choosing-the-right-awning-costa-blanca/' },
+    { label: 'Service in Alicante city', href: '/en/awnings-alicante/' },
+    { label: 'Service in Torrevieja', href: '/en/awnings-torrevieja/' },
+    { label: 'Service in Elche', href: '/en/awnings-elche/' },
+  ],
+};
+
+const faqs = [
+  { question: 'Is it worth motorising a small awning?', answer: 'If the width is under 3 m and reachable, the manual crank is perfectly comfortable and saves 200-300 euros. From 3.5 m wide or 2.5 m projection, motorisation makes a clear difference in comfort.' },
+  { question: 'Somfy or Nice?', answer: 'For advanced smart-home and 10-year spare parts security, Somfy. For equivalent technical quality at a slightly lower price, Nice. For hospitality with intensive use (dozens of cycles a day), Elero. For everyday domestic use the difference between all three is minimal.' },
+  { question: 'How do I know the wind sensor is working?', answer: 'Test it regularly. Good models include a built-in test: pressing a button forces a simulated retraction. We recommend checking every 6 months, especially in coastal areas where dust can affect the sensor.' },
+  { question: 'Can I control the awning with Alexa or Google Home?', answer: 'Yes - with a Somfy io motor + TaHoma bridge (or Connexoon Window) or with Nice + Mynice. After pairing, you can say "Alexa, retract the awning" and it executes. Matter is extending compatibility on 2025-2026 models without needing a bridge.' },
+  { question: 'What happens during a power cut?', answer: 'The awning stays where it is. Tubular motors do not have a battery backup. For automatic retraction during outages, you need a UPS or specific solar-powered motors (more expensive and uncommon).' },
+  { question: 'How much power does it use?', answer: 'Very little. A 35 Nm motor draws 1.1 A during a cycle (about 20-30 seconds up or down). Monthly consumption is essentially negligible, under 0.5 kWh.' },
+  { question: 'Can an existing awning be motorised?', answer: 'Yes, if the awning is sound and the mechanism is healthy. We replace the manual shaft with a motorised one in a half-day visit. If the awning is very old or structurally damaged, replacing it entirely is a better choice.' },
+  { question: 'What warranty do motors carry?', answer: '5 years direct from manufacturer on Somfy, Nice and Elero. Most failures come from external electrical issues (lightning, surges), preventable with an appropriate surge protector.' },
+];
+
+const cta = {
+  heading: 'Motorise your awning with a wind sensor',
+  body: 'Free site survey. We recommend the motor + sensor combination that best suits your awning, facade and exposure.',
+  button: 'Get a free quote',
+  buttonHref: `/en/free-quote/?product=${productSlug}`,
+  secondary: { label: 'See all awnings', href: '/en/awnings/' },
+};
+
+const breadcrumbs = [
+  { name: 'Home', url: 'https://optimtoldos.com/en/' },
+  { name: 'Awnings', url: 'https://optimtoldos.com/en/awnings/' },
+  { name: 'Awning motorisation', url: pageUrl },
+];
+
+const serviceSchema = buildServiceSchema({
+  locale,
+  name: 'Awning Motorisation on the Costa Blanca',
+  description: hero.description,
+  serviceType: 'Awning motor installation',
+  url: pageUrl,
+  offers: [
+    { name: 'Somfy RTS / io motor' },
+    { name: 'Nice TT2 / Era motor' },
+    { name: 'Elero ProLine / VarioTec motor' },
+    { name: 'Wind and sun sensor' },
+    { name: 'TaHoma / Mynice smart-home integration' },
+  ],
+});
+
+const faqSchema = buildFAQSchema(faqs, { locale });
+const breadcrumbSchema = buildBreadcrumbSchema(breadcrumbs, { locale });
+const productSchema = buildProductSchema({
+  locale,
+  name: 'Bespoke Awning Motorisation',
+  description: hero.description,
+  image: 'https://optimtoldos.com/images/gallery/toldo-cofre-extensible.webp',
+  url: pageUrl,
+  lowPrice: '200',
+  highPrice: '900',
+  category: 'Awning motorisation',
+});
+---
+
+<Base
+  title="Awning Motorisation: Somfy, Nice and Elero | Optim Toldos"
+  description="2026 professional guide to motorising awnings on the Costa Blanca. Somfy vs Nice vs Elero, wind sensors, smart-home integration and pricing."
+  locale={locale}
+  alternateUrls={alternateUrls}
+  breadcrumbs={breadcrumbs}
+>
+  <Fragment slot="head">
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(serviceSchema)} />
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(productSchema)} />
+  </Fragment>
+  <SubProductPage
+    client:load
+    locale={locale}
+    hero={hero}
+    intro={intro}
+    sections={sections}
+    comparison={comparison}
+    related={related}
+    faqHeading="Frequently asked questions"
+    faqs={faqs}
+    cta={cta}
+  />
+</Base>

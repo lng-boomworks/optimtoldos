@@ -1,0 +1,121 @@
+---
+import Base from '../layouts/Base.astro';
+import { ProductZonePage } from '../components/pages/ProductZonePage';
+import {
+  buildServiceSchema,
+  buildBreadcrumbSchema,
+  buildFAQSchema,
+  buildProductSchema,
+} from '../utils/schema';
+
+const SITE = 'https://optimtoldos.com';
+const slug = 'torrevieja';
+const name = 'Torrevieja';
+const heading = `Pérgola bioclimática en ${name}`;
+const intro = `Pérgolas bioclimáticas con lamas orientables y motorización Somfy o Nice, montadas en chalets, áticos y locales de Torrevieja por un equipo con base en la provincia.`;
+
+const pageUrl = `${SITE}/pergola-bioclimatica-${slug}/`;
+const alternateUrls = [
+  { locale: 'es' as const, href: pageUrl },
+  { locale: 'en' as const, href: `${SITE}/en/bioclimatic-pergola-${slug}/` },
+];
+
+const locationParagraph = `La pérgola bioclimática es la opción más versátil para Torrevieja por una razón concreta: las lamas orientables resuelven dos problemas locales distintos según la hora del día. Por la mañana se mantienen abiertas para ventilar la terraza con la brisa marina; al mediodía se cierran al ángulo que evita el sol del sur sin perder vistas; y en las tormentas cortas pero intensas de septiembre se cierran por completo y la junta aluminio-aluminio derrama el agua sin colarse. En urbanizaciones como El Chaparral, Aguas Nuevas y La Mata el modelo bioclimático aguanta vientos de levante muy superiores a los que tolera un toldo extensible.`;
+
+const whyFitsBullets = [
+  'Lamas orientables de aluminio: gestionan sol y ventilación sin retraer la cubierta como un toldo.',
+  'Cierre estanco bajo lluvia: las tormentas de septiembre se evacúan por canalón perimetral integrado.',
+  'Motor Somfy io o Nice TT2 con sensor de viento (cierra a 60 km/h por defecto) y de lluvia.',
+  'Tratamiento marino obligatorio en zona costera (toda Torrevieja está a < 3 km del mar).',
+  'Compatible con apps de hogar (Somfy TaHoma, Nice MyNice, Apple Home con accesorio).',
+];
+
+const caseStudy = `Caso reciente: pérgola bioclimática Saxun 4×3,5 m sobre terraza de ático en Habaneras, color blanco RAL 9016, motor Somfy io con sensores de viento y lluvia, integración con TaHoma y Apple Home, iluminación LED dimerizable y un paño ZIP screen al sur. Plazo desde firma 4 semanas, 2 jornadas de montaje.`;
+
+const priceBand = `Pérgola bioclimática 3×3 m motorizada con sensor de viento: 3.800 € - 4.800 €. Versión 4×3 m con sensores de viento y lluvia + LED: 5.000 € - 6.500 €. Versión 5×4 m completa con LED, sensores y un cierre ZIP: 8.000 € - 10.500 €.`;
+
+const comunidadNote = `Una pérgola bioclimática en Torrevieja se considera obra menor (cubierta orientable, no fija) en la mayoría de casos, pero sigue requiriendo declaración responsable o licencia. En comunidad de propietarios la junta debe aprobarla si se ancla al forjado o se ve desde fachada. Entregamos planos cotados, ficha del fabricante y certificado del instalador para presentar.`;
+
+const faqs = [
+  { q: '¿Qué diferencia hay entre bioclimática y pérgola fija de aluminio?', a: 'La fija tiene cubierta cerrada permanente (chapa, sándwich o lona); la bioclimática tiene lamas de aluminio orientables 0 - 135° accionadas por motor. La bioclimática gestiona sol, lluvia y ventilación; la fija solo da sombra. La bioclimática cuesta 30 - 60 % más pero ofrece muchísimo más uso.' },
+  { q: '¿Aguanta las tormentas de septiembre en Torrevieja?', a: 'Sí. Las lamas cerradas con junta de neopreno son estancas y el canalón perimetral evacúa el agua a desagüe. La estructura aguanta vientos de hasta 130 km/h con lamas cerradas. Es importante que el sensor de viento esté operativo.' },
+  { q: '¿Qué motor recomiendan para zona costera?', a: 'Somfy io con grado IP54 mínimo o Nice TT2. Ambos llevan electrónica protegida y son compatibles con sensores meteorológicos. Llevan más de una década probados en costa de Levante.' },
+  { q: '¿Puedo controlarla desde el móvil estando fuera de Torrevieja?', a: 'Sí. Con la pasarela TaHoma de Somfy o el receptor Nice WiFi, controla la pérgola desde cualquier sitio: cerrar lamas si va a llover, programar apertura matinal, etc. Útil para segundas residencias.' },
+  { q: '¿Cuánto tarda la instalación?', a: 'Dos jornadas (montaje + cableado y prueba). El plazo total desde la firma del presupuesto suele ser 3 - 5 semanas según el color RAL elegido.' },
+];
+
+const related = [
+  { label: 'Pérgolas en Torrevieja', href: '/pergolas-torrevieja/' },
+  { label: 'Toldos en Torrevieja', href: '/toldos-torrevieja/' },
+  { label: 'Cortinas de cristal en Torrevieja', href: '/cortinas-de-cristal-torrevieja/' },
+  { label: 'Bioclimática vs aluminio', href: '/pergola-bioclimatica-vs-aluminio/' },
+  { label: 'Pérgolas bioclimáticas (catálogo)', href: '/pergolas-bioclimaticas/' },
+];
+
+const ctaHref = `/presupuesto/?product=pergola-bioclimatica&location=${slug}`;
+const contactHref = '/contacto/';
+const licenceHref = '/guia-licencias-pergolas-toldos-alicante/';
+
+const breadcrumbs = [
+  { name: 'Inicio', url: `${SITE}/` },
+  { name: 'Pérgolas', url: `${SITE}/pergolas/` },
+  { name: 'Bioclimática Torrevieja', url: pageUrl },
+];
+
+const serviceSchema = buildServiceSchema({
+  locale: 'es',
+  name: heading,
+  description: intro,
+  serviceType: 'Instalación de pérgola bioclimática',
+  url: pageUrl,
+  offers: [
+    { name: 'Pérgola bioclimática motorizada' },
+    { name: 'Sensores de viento y lluvia' },
+    { name: 'Cierre lateral ZIP screen' },
+  ],
+});
+const breadcrumbSchema = buildBreadcrumbSchema(breadcrumbs, { locale: 'es' });
+const faqSchema = buildFAQSchema(faqs.map(f => ({ question: f.q, answer: f.a })), { locale: 'es' });
+const productSchema = buildProductSchema({
+  locale: 'es',
+  name: heading,
+  description: intro,
+  image: `${SITE}/images/pergolas/pergola-lamas.webp`,
+  url: pageUrl,
+  category: 'Pérgolas bioclimáticas',
+  lowPrice: '3800',
+  highPrice: '10500',
+});
+---
+
+<Base
+  title={`${heading} - Optim Toldos`}
+  description={intro}
+  locale="es"
+  alternateUrls={alternateUrls}
+  breadcrumbs={breadcrumbs}
+>
+  <Fragment slot="head">
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(serviceSchema)} />
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(productSchema)} />
+  </Fragment>
+  <ProductZonePage
+    client:load
+    locale="es"
+    heading={heading}
+    intro={intro}
+    heroImage="/images/pergolas/pergola-lamas-1280.webp"
+    locationParagraph={locationParagraph}
+    whyFitsBullets={whyFitsBullets}
+    caseStudy={caseStudy}
+    priceBand={priceBand}
+    comunidadNote={comunidadNote}
+    licenceHref={licenceHref}
+    faqs={faqs}
+    related={related}
+    ctaHref={ctaHref}
+    contactHref={contactHref}
+  />
+</Base>

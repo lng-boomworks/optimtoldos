@@ -1,0 +1,53 @@
+---
+import Base from '../layouts/Base.astro';
+import { WindSensorPage } from '../components/pages/WindSensorPage';
+import { buildFAQSchema, buildBreadcrumbSchema, buildServiceSchema } from '../utils/schema';
+import { t } from '../i18n/index';
+import { getAlternateUrls } from '../i18n/routes';
+
+const alternateUrls = getAlternateUrls('wind-sensor-guide');
+const pageUrl = 'https://optimtoldos.com/sensor-viento-toldos-motorizados';
+
+const faqs = Array.from({ length: 8 }, (_, i) => ({
+  question: t('es', `windSensorGuide.faq.${i + 1}.q` as any),
+  answer: t('es', `windSensorGuide.faq.${i + 1}.a` as any),
+}));
+
+const breadcrumbs = [
+  { name: 'Inicio', url: 'https://optimtoldos.com/' },
+  { name: 'Sensor de viento para toldos', url: pageUrl },
+];
+
+const faqSchema = buildFAQSchema(faqs, { locale: 'es' });
+const breadcrumbSchema = buildBreadcrumbSchema(breadcrumbs, { locale: 'es' });
+const serviceSchema = buildServiceSchema({
+  locale: 'es',
+  name: 'Sensor de viento para toldos motorizados en Alicante',
+  description: 'Instalación, configuración y retrofit de sensores de viento para toldos Somfy, Nice y Elero en la Costa Blanca.',
+  serviceType: 'Sensores de viento para toldos motorizados',
+  url: pageUrl,
+  offers: [
+    { name: 'Sensor Somfy Eolis 3D inalámbrico' },
+    { name: 'Sensor Somfy Soliris sol+viento' },
+    { name: 'Sensor Nice WSC' },
+    { name: 'Retrofit en motor existente' },
+    { name: 'Integración con TaHoma y MyNice' },
+  ],
+});
+---
+
+<Base
+  title={t('es', 'windSensorGuide.title')}
+  description={t('es', 'windSensorGuide.meta_description')}
+  breadcrumbs={breadcrumbs}
+  locale="es"
+  alternateUrls={alternateUrls}
+  type="article"
+>
+  <Fragment slot="head">
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(serviceSchema)} />
+  </Fragment>
+  <WindSensorPage client:load locale="es" />
+</Base>

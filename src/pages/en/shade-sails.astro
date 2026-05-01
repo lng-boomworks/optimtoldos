@@ -18,6 +18,7 @@ const breadcrumbs = [
 ];
 
 const productSchema = buildProductSchema({
+  locale: 'en',
   name: "Shade Sails in Alicante",
   description: "Triangular, rectangular and custom-shape shade sails. 95% certified UV protection. Architectural custom design.",
   image: "https://optimtoldos.com/images/velas/hero-velas.webp",
@@ -29,7 +30,7 @@ const productSchema = buildProductSchema({
 ---
 
 <Base
-  title="Shade Sails | Optim Toldos — Alicante"
+  title="Shade Sails | Optim Toldos - Alicante"
   description="Tensioned shade sails with certified UV protection. Triangular, rectangular and custom designs for terraces and gardens in Alicante."
   locale="en"
   alternateUrls={alternateUrls}
@@ -37,13 +38,14 @@ const productSchema = buildProductSchema({
 >
   <Fragment slot="head">
     <script is:inline type="application/ld+json" set:html={JSON.stringify(buildServiceSchema({
+  locale: 'en',
       name: t('en', 'sails.hero.heading'),
       description: t('en', 'sails.hero.description'),
       serviceType: "Shade Sail Installation",
       url: "https://optimtoldos.com/en/shade-sails",
       offers: [{ name: "Triangular Sail" }, { name: "Rectangular Sail" }, { name: "Custom Sail" }],
     }))} />
-    <script is:inline type="application/ld+json" set:html={JSON.stringify(buildFAQSchema(sailsFaqs))} />
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(buildFAQSchema(sailsFaqs, { locale: 'en' }))} />
     <script is:inline type="application/ld+json" set:html={JSON.stringify(productSchema)} />
   </Fragment>
   <VelasPage client:load locale="en" />

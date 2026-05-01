@@ -8,6 +8,7 @@ import { getAlternateUrls } from '../../i18n/routes';
 const alternateUrls = getAlternateUrls('awnings');
 
 const serviceSchema = buildServiceSchema({
+  locale: 'en',
   name: t('en', 'awnings.hero.heading'),
   description: t('en', 'awnings.hero.description'),
   serviceType: "Awning Installation",
@@ -25,12 +26,14 @@ const faqSchema = buildFAQSchema(
   Array.from({ length: 8 }, (_, i) => ({
     question: t('en', `awnings.faq.${i + 1}.q` as any),
     answer: t('en', `awnings.faq.${i + 1}.a` as any),
-  }))
+  })),
+  { locale: 'en' }
 );
 
 const productSchema = buildProductSchema({
+  locale: 'en',
   name: "Custom Awnings in Alicante",
-  description: "Retractable, vertical, fixed-arm and canopy awnings — custom-made and professionally installed across the province of Alicante.",
+  description: "Retractable, vertical, fixed-arm and canopy awnings - custom-made and professionally installed across the province of Alicante.",
   image: "https://optimtoldos.com/images/gallery/hero-toldos.webp",
   url: "https://optimtoldos.com/en/awnings",
   lowPrice: "350",
@@ -40,7 +43,7 @@ const productSchema = buildProductSchema({
 ---
 
 <Base
-  title="Custom Awnings | Optim Toldos — Alicante"
+  title="Custom Awnings | Optim Toldos - Alicante"
   description="Retractable, vertical, fixed-arm and canopy awnings, made to measure with optional motorisation and professional installation across Alicante and Costa Blanca."
   locale="en"
   alternateUrls={alternateUrls}

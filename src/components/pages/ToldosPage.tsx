@@ -5,6 +5,7 @@ import { AnimatedHeading } from "../AnimatedHeading";
 import { Button } from "../Button";
 import { FAQSection } from "../FAQSection";
 import { ServiceAreaSection } from "../ServiceAreaSection";
+import { RelatedProducts } from "../RelatedProducts";
 import { url, localizedUrl } from "../../utils/paths";
 import { t, type Locale } from "../../i18n/index";
 import { slugMap } from "../../i18n/slugs";
@@ -345,8 +346,11 @@ export function ToldosPage({ locale = 'es' }: { locale?: Locale }) {
           <ServiceAreaSection
             serviceName={t(locale, 'awnings.serviceArea')}
             locale={locale}
-            teaserLocations={['torrevieja', 'santa-pola', 'punta-prima', 'guardamar-del-segura', 'elche', 'benidorm']}
+            product="awnings"
+            teaserLocations={['torrevieja', 'santa-pola', 'punta-prima', 'guardamar', 'elche', 'benidorm']}
           />
+          {/* Related products (SEO internal linking) */}
+          <RelatedProducts current="awnings" locale={locale} />
 
           {/* CTA */}
           <section className="bg-navy py-20 md:py-24">

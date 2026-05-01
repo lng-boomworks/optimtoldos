@@ -1,0 +1,101 @@
+---
+import Base from '../layouts/Base.astro';
+import { ProductZonePage } from '../components/pages/ProductZonePage';
+import {
+  buildServiceSchema,
+  buildBreadcrumbSchema,
+  buildFAQSchema,
+} from '../utils/schema';
+
+const SITE = 'https://optimtoldos.com';
+const slug = 'campoamor';
+const name = 'Campoamor / Dehesa de Campoamor';
+const heading = `Velas de sombra en ${name}`;
+const intro = `Velas de sombra para chalets, parcelas y zonas de piscina en Campoamor y Dehesa de Campoamor: tejido HDPE técnico, anclajes A4 inoxidables y diseño adaptado al pinar y al levante.`;
+
+const pageUrl = `${SITE}/velas-sombra-${slug}/`;
+const alternateUrls = [{ locale: 'es' as const, href: pageUrl }];
+
+const locationParagraph = `Campoamor y Dehesa de Campoamor son urbanizaciones de chalet de baja densidad rodeadas de pinar mediterráneo, con parcelas amplias y piscinas privadas habituales. El pinar aporta sombra parcial pero deja zonas de jardín, piscina y barbacoa expuestas al sol del sur entre las 12:00 y las 17:00. La vela de sombra es la solución ideal para esos espacios: cubre superficies grandes sin obra, respeta la estética natural de la zona y se desmonta fácilmente para temporales del Mediterráneo. Tejido HDPE técnico y anclajes A4 son obligatorios por la cercanía al mar (1,5 - 2 km).`;
+
+const whyFitsBullets = [
+  'Cubre zonas grandes (piscina, jardín, barbacoa) sin la carga visual de una pérgola en parcela natural.',
+  'Tejido HDPE técnico transpirable: bloquea 90 - 95 % UV y deja pasar el aire (no acumula calor).',
+  'Anclajes A4 inoxidables y herrajes resistentes al ambiente salino del pinar costero.',
+  'Postes de aluminio anodizado donde no llega la fachada o no se quiere anclar a árboles.',
+  'Desmontable en otoño-invierno: protección frente a temporales y prolongación de vida útil del tejido.',
+];
+
+const caseStudy = `Caso reciente: vela rectangular de 6×4 m sobre piscina de chalet en Campoamor, tejido HDPE arena con tratamiento UV, dos puntos a fachada y dos postes de aluminio anodizado de 3 m con base hormigonada disimulada bajo gravilla. Total una jornada de instalación, plazo desde firma 2 - 3 semanas.`;
+
+const comunidadNote = `En las urbanizaciones de Campoamor y Dehesa la vela desmontable normalmente no requiere licencia ni autorización de comunidad si los anclajes son a fachada propia y los postes no se cimentan en zona común. Si la parcela tiene reglas estéticas (color del tejido, altura) le ayudamos a elegir una opción que cumpla. Documentación técnica disponible si la junta lo solicita.`;
+
+const faqs = [
+  { q: '¿Puedo anclar la vela a un pino del jardín?', a: 'Técnicamente sí, pero no lo recomendamos: el pino se mueve con el viento y transmite la oscilación a la vela, soltando tensión. Preferimos siempre anclajes a fachada o postes dedicados. Si necesita una solución sin postes en una zona arbolada, hacemos visita técnica para valorar.' },
+  { q: '¿Cuánta sombra da una vela bajo el pinar?', a: 'El HDPE técnico bloquea 90 - 95 % de la radiación UV; combinado con la sombra parcial del pinar el resultado es muy fresco, sensación térmica 6 - 8 °C inferior a sol directo. Por eso funciona tan bien sobre piscinas en parcelas con pinos: complementa la sombra natural sin oscurecer.' },
+  { q: '¿Aguanta el viento de levante en la zona?', a: 'Si está bien tensada y los anclajes son correctos, sí, hasta unos 60 - 70 km/h. En temporales fuertes lo recomendable es aflojar la tensión y plegar la vela en pocos minutos con sistema de mosquetón rápido.' },
+  { q: '¿Pueden retirarla cada invierno?', a: 'Sí. Como servicio anual retiramos las velas en otoño y las reinstalamos en primavera con revisión de anclajes y limpieza del tejido. También puede hacerlo el propietario si el sistema de tensión lo permite.' },
+];
+
+const related = [
+  { label: 'Toldos en Campoamor', href: '/toldos-campoamor/' },
+  { label: 'Pérgolas en Orihuela Costa', href: '/pergolas-orihuela-costa/' },
+  { label: 'Velas de sombra (catálogo)', href: '/velas-de-sombra/' },
+  { label: 'Toldos en Cabo Roig', href: '/toldos-cabo-roig/' },
+];
+
+const ctaHref = `/presupuesto/?product=velas-sombra&location=${slug}`;
+const contactHref = '/contacto/';
+const licenceHref = '/guia-licencias-pergolas-toldos-alicante/';
+
+const breadcrumbs = [
+  { name: 'Inicio', url: `${SITE}/` },
+  { name: 'Velas de sombra', url: `${SITE}/velas-de-sombra/` },
+  { name, url: pageUrl },
+];
+
+const serviceSchema = buildServiceSchema({
+  locale: 'es',
+  name: heading,
+  description: intro,
+  serviceType: 'Instalación de velas de sombra',
+  url: pageUrl,
+  offers: [
+    { name: 'Vela triangular' },
+    { name: 'Vela rectangular' },
+    { name: 'Vela pentagonal a medida' },
+  ],
+});
+const breadcrumbSchema = buildBreadcrumbSchema(breadcrumbs, { locale: 'es' });
+const faqSchema = buildFAQSchema(faqs.map(f => ({ question: f.q, answer: f.a })), { locale: 'es' });
+---
+
+<Base
+  title={`${heading} - Optim Toldos`}
+  description={intro}
+  locale="es"
+  alternateUrls={alternateUrls}
+  breadcrumbs={breadcrumbs}
+>
+  <Fragment slot="head">
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(serviceSchema)} />
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+  </Fragment>
+  <ProductZonePage
+    client:load
+    locale="es"
+    heading={heading}
+    intro={intro}
+    heroImage="/images/velas/hero-velas-1280.webp"
+    locationParagraph={locationParagraph}
+    whyFitsBullets={whyFitsBullets}
+    caseStudy={caseStudy}
+    comunidadNote={comunidadNote}
+    licenceHref={licenceHref}
+    faqs={faqs}
+    related={related}
+    ctaHref={ctaHref}
+    contactHref={contactHref}
+  />
+</Base>

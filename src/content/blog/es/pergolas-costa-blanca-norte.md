@@ -295,4 +295,4 @@ Tanto si buscas una pérgola para la terraza de tu vivienda en Jávea como si ne
 
 En Optim Toldos cubrimos toda la Costa Blanca Norte: Benidorm, Altea, Calpe, Dénia, Jávea, El Albir, Alfaz del Pi, La Nucía, Polop, Finestrat, Villajoyosa, El Campello y todas las localidades de la Marina Alta y la Marina Baixa.
 
-**[Solicita tu presupuesto gratuito y sin compromiso](/presupuesto)** — te respondemos en menos de 24 horas y te visitamos en 48 horas.
+**[Solicita tu presupuesto gratuito y sin compromiso](/presupuesto)** - te respondemos en menos de 24 horas y te visitamos en 48 horas.

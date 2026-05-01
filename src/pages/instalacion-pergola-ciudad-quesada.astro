@@ -1,0 +1,109 @@
+---
+import Base from '../layouts/Base.astro';
+import { ProductZonePage } from '../components/pages/ProductZonePage';
+import {
+  buildServiceSchema,
+  buildBreadcrumbSchema,
+  buildFAQSchema,
+} from '../utils/schema';
+
+const SITE = 'https://optimtoldos.com';
+const slug = 'ciudad-quesada';
+const name = 'Ciudad Quesada';
+const heading = `Instalación de pérgola en ${name}`;
+const intro = `Servicio de montaje y obra para pérgolas en Ciudad Quesada: cimentación, anclajes, electricidad y trámite con Ayuntamiento de Rojales y comunidad de propietarios.`;
+
+const pageUrl = `${SITE}/instalacion-pergola-${slug}/`;
+const alternateUrls = [
+  { locale: 'es' as const, href: pageUrl },
+];
+
+const locationParagraph = `Esta página resume el proceso completo de instalación de una pérgola en Ciudad Quesada de extremo a extremo: visita técnica, cimentación, anclajes, montaje, electricidad y tramitación. Quesada es una urbanización amplia con chalets y dúplex sobre parcelas grandes, así que muchas pérgolas son exentas (sobre solera o pool deck), no adosadas a fachada, lo que cambia el sistema de cimentación: en lugar de placas químicas a forjado, hacemos dado de hormigón 40×40×40 cm en cada apoyo. La distancia al mar (5 km) reduce la salinidad pero el sol seco de tarde y las tormentas concentradas de septiembre exigen lacado de calidad y motorización con sensores.`;
+
+const whyFitsBullets = [
+  'Visita técnica con medición y nivelación: la solera del pool deck rara vez está perfectamente plana.',
+  'Cimentación con dado de hormigón en pérgolas exentas (no atornillado superficial).',
+  'Electricidad: cableado por interior del perfil hasta cuadro de salida más cercano.',
+  'Tramitación de declaración responsable en el Ayuntamiento de Rojales.',
+  'Coordinación con la urbanización si exige aprobación estética previa.',
+];
+
+const caseStudy = `Caso reciente: instalación completa de pérgola bioclimática 5×4 m en chalet de Ciudad Quesada. Cimentación con 4 dados 40×40×40 cm sobre pool deck (retirada y reposición de baldosa porcelánica), anclaje con tornillería A4, montaje de estructura en 1 día, instalación eléctrica y motorización al día siguiente, prueba de sensores y entrega. Total 2 jornadas. Tramitación con el Ayuntamiento de Rojales gestionada en paralelo.`;
+
+const priceBand = `Coste de instalación incluido en la pérgola: cimentación + montaje + eléctrica + tramitación. Servicio sólo de montaje (sin pérgola, si el cliente la trae): 600 € - 1.200 € según complejidad. Cimentación con dado en pool deck: incluida en obra estándar. Sustitución/elevación de pérgola existente: bajo presupuesto específico.`;
+
+const comunidadNote = `En Ciudad Quesada (término de Rojales) las pérgolas exentas en parcela privada normalmente sólo requieren declaración responsable en el Ayuntamiento. Si la urbanización tiene normas estéticas (color, altura), conviene presentar el dossier técnico antes de empezar; lo gestionamos sin coste adicional cuando contratamos el conjunto pérgola + instalación.`;
+
+const faqs = [
+  { q: '¿Por qué dado de hormigón y no taco químico?', a: 'En pérgolas exentas sobre solera de pool deck o jardín la solera puede no tener canto suficiente para taco químico M12 (mínimo 12 cm de hormigón armado). El dado 40×40×40 garantiza anclaje seguro durante décadas y sirve para cualquier solera, incluso baldosa o terreno blando.' },
+  { q: '¿Hace falta retirar el porcelánico del pool deck?', a: 'En 4 puntos sí (uno por apoyo). Retiramos la baldosa, vaciamos el dado, hormigonamos con placa de anclaje embebida y reponemos la baldosa cortada al perímetro del perfil. Si la baldosa es difícil de conseguir, recomendamos pedir reservas al cliente antes del montaje.' },
+  { q: '¿La pérgola lleva electricidad incluida?', a: 'Sí, llegamos hasta el cuadro más cercano con cableado por interior del perfil de la pérgola y conexión protegida. Si requiere obra eléctrica adicional (cuadro nuevo, magnetotérmico) lo presupuestamos aparte.' },
+  { q: '¿Tramitan ustedes la declaración responsable?', a: 'Sí, en Rojales y en el resto de municipios donde trabajamos. Preparamos el plano cotado, ficha del fabricante y certificado del montador, y presentamos el expediente. El cliente sólo firma. Coste incluido si nos contrata el conjunto.' },
+  { q: '¿Cuánto se tarda desde el "sí" hasta tener la pérgola montada?', a: 'Plazo típico 4 semanas. La fabricación de la pérgola lleva 3 - 4 semanas, los trámites se gestionan en paralelo, y el montaje suele ocupar 1 - 2 jornadas según complejidad.' },
+];
+
+const related = [
+  { label: 'Pérgolas en Ciudad Quesada', href: '/pergolas-ciudad-quesada/' },
+  { label: 'Pérgola bioclimática en Ciudad Quesada', href: '/pergola-bioclimatica-ciudad-quesada/' },
+  { label: 'Velas de sombra en Ciudad Quesada', href: '/velas-sombra-ciudad-quesada/' },
+  { label: 'Toldos en Ciudad Quesada', href: '/toldos-ciudad-quesada/' },
+  { label: 'Guía de licencias en Alicante', href: '/guia-licencias-pergolas-toldos-alicante/' },
+];
+
+const ctaHref = `/presupuesto/?product=instalacion-pergola&location=${slug}`;
+const contactHref = '/contacto/';
+const licenceHref = '/guia-licencias-pergolas-toldos-alicante/';
+
+const breadcrumbs = [
+  { name: 'Inicio', url: `${SITE}/` },
+  { name: 'Pérgolas', url: `${SITE}/pergolas/` },
+  { name: 'Instalación Ciudad Quesada', url: pageUrl },
+];
+
+const serviceSchema = buildServiceSchema({
+  locale: 'es',
+  name: heading,
+  description: intro,
+  serviceType: 'Instalación y montaje de pérgolas',
+  url: pageUrl,
+  offers: [
+    { name: 'Cimentación con dado de hormigón' },
+    { name: 'Montaje de estructura' },
+    { name: 'Instalación eléctrica y motorización' },
+    { name: 'Tramitación con Ayuntamiento' },
+  ],
+});
+const breadcrumbSchema = buildBreadcrumbSchema(breadcrumbs, { locale: 'es' });
+const faqSchema = buildFAQSchema(faqs.map(f => ({ question: f.q, answer: f.a })), { locale: 'es' });
+---
+
+<Base
+  title={`${heading} - Optim Toldos`}
+  description={intro}
+  locale="es"
+  alternateUrls={alternateUrls}
+  breadcrumbs={breadcrumbs}
+>
+  <Fragment slot="head">
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(serviceSchema)} />
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+  </Fragment>
+  <ProductZonePage
+    client:load
+    locale="es"
+    heading={heading}
+    intro={intro}
+    heroImage="/images/pergolas/hero-pergolas-1280.webp"
+    locationParagraph={locationParagraph}
+    whyFitsBullets={whyFitsBullets}
+    caseStudy={caseStudy}
+    priceBand={priceBand}
+    comunidadNote={comunidadNote}
+    licenceHref={licenceHref}
+    faqs={faqs}
+    related={related}
+    ctaHref={ctaHref}
+    contactHref={contactHref}
+  />
+</Base>

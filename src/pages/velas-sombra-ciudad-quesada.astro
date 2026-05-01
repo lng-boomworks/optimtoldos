@@ -1,0 +1,121 @@
+---
+import Base from '../layouts/Base.astro';
+import { ProductZonePage } from '../components/pages/ProductZonePage';
+import {
+  buildServiceSchema,
+  buildBreadcrumbSchema,
+  buildFAQSchema,
+  buildProductSchema,
+} from '../utils/schema';
+
+const SITE = 'https://optimtoldos.com';
+const slug = 'ciudad-quesada';
+const name = 'Ciudad Quesada';
+const heading = `Velas de sombra en ${name}`;
+const intro = `Velas de sombra tensadas para piscinas, jardines y patios de Ciudad Quesada y Rojales: tejido HDPE, anclajes inoxidables y diseño a medida.`;
+
+const pageUrl = `${SITE}/velas-sombra-${slug}/`;
+const alternateUrls = [
+  { locale: 'es' as const, href: pageUrl },
+  { locale: 'en' as const, href: `${SITE}/en/shade-sails-ciudad-quesada/` },
+];
+
+const locationParagraph = `En Ciudad Quesada las velas de sombra son la solución más rentable para sombrear áreas amplias del jardín o la piscina sin la inversión de una pérgola. Funcionan especialmente bien en chalets con parcela donde la piscina está alejada de la vivienda y un toldo no llega: una o dos velas tensadas entre postes y árboles existentes cubren 25 - 50 m² por la fracción del coste de una pérgola exenta. Al estar 5 km tierra adentro la salinidad es moderada y el principal enemigo del tejido es el sol seco prolongado, que castiga al HDPE económico; siempre montamos con tejido técnico de gama media-alta y anclajes A4 inoxidables.`;
+
+const whyFitsBullets = [
+  'Cubre áreas grandes (zona piscina, jardín) sin obra ni licencia mayor.',
+  'Tejido HDPE técnico de gama media-alta: aguanta el sol seco prolongado de Quesada.',
+  'Anclajes a árboles existentes, postes nuevos o fachada de la vivienda.',
+  'Diseño a medida según orientación: triangulares, rombos o formas libres.',
+  'Coste muy inferior a una pérgola exenta para áreas grandes.',
+];
+
+const caseStudy = `Caso reciente: combinación de dos velas (triangular 4×4×4 m + rectangular 5×3 m) sobre zona de piscina en chalet de Ciudad Quesada, tejido HDPE color terracota, anclajes A4 a fachada y dos postes de aluminio 3 m ancorados con dado de hormigón. Total una jornada de montaje, plazo desde firma 2 semanas.`;
+
+const priceBand = `Vela triangular hasta 4×4×4 m con anclajes: 700 € - 1.000 €. Vela rectangular 4×3 m: 800 € - 1.200 €. Combinación de dos velas para área piscina: 1.500 € - 2.300 €. Postes de aluminio (cada uno): 200 € - 320 €.`;
+
+const comunidadNote = `En Ciudad Quesada las velas desmontables normalmente no requieren licencia urbanística. Si los postes se cimientan con dado de hormigón, conviene presentar declaración responsable al Ayuntamiento de Rojales. Le entregamos plano de instalación y especificación técnica del tejido.`;
+
+const faqs = [
+  { q: '¿Vela o pérgola para mi piscina en Quesada?', a: 'Para áreas grandes (>20 m²) las velas son más rentables: cubrir 30 m² con dos velas cuesta 1.500 - 2.300 €, mientras que una pérgola exenta del mismo tamaño parte de 4.500 €. La pérgola es mejor si quiere un espacio cerrado de comedor exterior; la vela es la solución óptima para piscina abierta.' },
+  { q: '¿Aguanta el sol seco de Quesada todo el año?', a: 'Sí, con tejido HDPE técnico (Coolaroo o equivalente) durante 8 - 10 años. El nylon económico de bricolaje decolora y se rompe en 2 - 3 temporadas; la diferencia de coste compensa con creces.' },
+  { q: '¿Tengo que retirarla en invierno?', a: 'Recomendamos retirar velas grandes (>15 m²) durante los meses de tormentas (octubre - febrero) si no las necesita usar. Velas pequeñas y bien tensadas se pueden dejar todo el año si están protegidas del viento de levante.' },
+  { q: '¿Necesito permiso si pongo postes con dado de hormigón?', a: 'En Rojales, declaración responsable suele ser suficiente. Si la urbanización tiene normas estéticas, conviene presentar el plano antes de empezar. Lo gestionamos sin coste adicional.' },
+  { q: '¿Puedo combinar varias velas para cubrir más área?', a: 'Sí, y es lo más eficaz para piscinas o terrazas grandes. La combinación de una triangular y una rectangular tensadas a alturas distintas crea una sombra atractiva visualmente y cubre 30 - 50 m² fácilmente.' },
+];
+
+const related = [
+  { label: 'Pérgolas en Ciudad Quesada', href: '/pergolas-ciudad-quesada/' },
+  { label: 'Pérgola bioclimática en Ciudad Quesada', href: '/pergola-bioclimatica-ciudad-quesada/' },
+  { label: 'Toldos en Ciudad Quesada', href: '/toldos-ciudad-quesada/' },
+  { label: 'Velas de sombra (catálogo)', href: '/velas-de-sombra/' },
+  { label: 'Instalación de pérgola en Ciudad Quesada', href: '/instalacion-pergola-ciudad-quesada/' },
+];
+
+const ctaHref = `/presupuesto/?product=velas-sombra&location=${slug}`;
+const contactHref = '/contacto/';
+const licenceHref = '/guia-licencias-pergolas-toldos-alicante/';
+
+const breadcrumbs = [
+  { name: 'Inicio', url: `${SITE}/` },
+  { name: 'Velas de sombra', url: `${SITE}/velas-de-sombra/` },
+  { name, url: pageUrl },
+];
+
+const serviceSchema = buildServiceSchema({
+  locale: 'es',
+  name: heading,
+  description: intro,
+  serviceType: 'Instalación de velas de sombra',
+  url: pageUrl,
+  offers: [
+    { name: 'Vela triangular' },
+    { name: 'Vela rectangular' },
+    { name: 'Combinación multi-vela' },
+  ],
+});
+const breadcrumbSchema = buildBreadcrumbSchema(breadcrumbs, { locale: 'es' });
+const faqSchema = buildFAQSchema(faqs.map(f => ({ question: f.q, answer: f.a })), { locale: 'es' });
+const productSchema = buildProductSchema({
+  locale: 'es',
+  name: heading,
+  description: intro,
+  image: `${SITE}/images/velas/vela-1.webp`,
+  url: pageUrl,
+  category: 'Velas de sombra',
+  lowPrice: '700',
+  highPrice: '2300',
+});
+---
+
+<Base
+  title={`${heading} - Optim Toldos`}
+  description={intro}
+  locale="es"
+  alternateUrls={alternateUrls}
+  breadcrumbs={breadcrumbs}
+>
+  <Fragment slot="head">
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(serviceSchema)} />
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(productSchema)} />
+  </Fragment>
+  <ProductZonePage
+    client:load
+    locale="es"
+    heading={heading}
+    intro={intro}
+    heroImage="/images/velas/hero-velas-1280.webp"
+    locationParagraph={locationParagraph}
+    whyFitsBullets={whyFitsBullets}
+    caseStudy={caseStudy}
+    priceBand={priceBand}
+    comunidadNote={comunidadNote}
+    licenceHref={licenceHref}
+    faqs={faqs}
+    related={related}
+    ctaHref={ctaHref}
+    contactHref={contactHref}
+  />
+</Base>

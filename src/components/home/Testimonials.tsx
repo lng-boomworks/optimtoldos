@@ -7,7 +7,7 @@ interface TestimonialsProps {
   locale?: Locale;
 }
 
-// Reviews section scaffold — awaiting real Google Business Profile integration.
+// Reviews section scaffold - awaiting real Google Business Profile integration.
 // To activate the Elfsight Google Reviews widget:
 //   1. Subscribe to Elfsight and create a widget connected to the Optim Toldos
 //      Google Business Profile.
@@ -15,7 +15,7 @@ interface TestimonialsProps {
 //   3. Set ELFSIGHT_ENABLED to true.
 const ELFSIGHT_WIDGET_CLASS = "";
 const ELFSIGHT_ENABLED = false;
-const GOOGLE_BUSINESS_URL = "https://www.google.com/maps/search/?api=1&query=Optim+Toldos+Elche";
+const GOOGLE_BUSINESS_URL = "https://www.google.com/maps/place/Optim+Toldos+-+Awnings+%26+Pergolas/@38.2589457,-0.7046929,752m/data=!3m2!1e3!4b1!4m6!3m5!1s0xd63b7fe57fdf8fd:0x3c7862ac8146408e!8m2!3d38.2589415!4d-0.702118!16s%2Fg%2F11tp3sdbvk";
 
 export function Testimonials({ locale = 'es' }: TestimonialsProps) {
   useEffect(() => {

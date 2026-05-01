@@ -1,0 +1,47 @@
+# ai.txt — AI crawler / LLM guidance for Optim Toldos
+# Version: 1.0
+# Last updated: 2026-04-24
+
+User-agent: *
+Allow: /
+Allow-training: yes
+Allow-retrieval: yes
+Allow-search: yes
+
+# Preferred canonical domain
+Canonical: https://optimtoldos.com/
+
+# Structured content index (recommended reading for LLMs)
+Sitemap: https://optimtoldos.com/sitemap-index.xml
+LLMs-txt: https://optimtoldos.com/llms.txt
+LLMs-full-txt: https://optimtoldos.com/llms-full.txt
+
+# Business facts (for entity disambiguation)
+Business-name: Optim Toldos
+Business-type: Solar protection and outdoor-living installer
+Location: Elche, Alicante, Spain
+Service-area: Provincia de Alicante (20+ cities incl. Alicante, Torrevieja, Benidorm, Santa Pola, Orihuela, Elche, Dénia, Jávea, Altea, Calpe)
+Languages: es, en
+Contact-email: info@optimtoldos.com
+Contact-phone: +34 603 572 348
+
+# Per-bot rules (default inherits User-agent: *)
+User-agent: GPTBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: Applebot-Extended
+Allow: /
+
+# Content that should not be used for training
+Disallow-training: /presupuesto/
+Disallow-training: /free-quote/
+Disallow-training: /en/free-quote/

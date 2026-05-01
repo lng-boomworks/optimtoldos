@@ -1,0 +1,178 @@
+---
+import Base from '../../layouts/Base.astro';
+import { SubProductPage } from '../../components/pages/SubProductPage';
+import {
+  buildServiceSchema,
+  buildFAQSchema,
+  buildBreadcrumbSchema,
+  buildProductSchema,
+} from '../../utils/schema';
+import { getAlternateUrls } from '../../i18n/routes';
+
+const locale = 'en' as const;
+const pageId = 'awnings-straight-drop';
+const pageUrl = 'https://optimtoldos.com/en/straight-drop-awnings/';
+const productSlug = 'straight-drop-awning';
+const alternateUrls = getAlternateUrls(pageId);
+
+const hero = {
+  heading: 'Straight Drop and Window Awnings on the Costa Blanca',
+  description: 'Vertical awnings that drop along two cables or rails to block direct sun on windows, balconies and shopfronts. The most affordable solution for south or west-facing facades.',
+  image: '/images/gallery/toldo-punto-recto.webp',
+  imageAlt: 'Straight drop awning over a balcony window',
+};
+
+const intro = 'A straight drop awning - also known as a window awning - is the classic vertical solution for shading windows, bay windows and balconies. Its simple mechanics, competitive price and minimal visual footprint make it the favourite in urban flats across Alicante, Elche and Torrevieja, especially when the comunidad de propietarios (the Spanish equivalent of a homeowners association) requires uniform facade aesthetics.';
+
+const sections = [
+  {
+    heading: 'How a straight drop awning works',
+    body: [
+      'The system is straightforward: a top tube with the rolled fabric drops by gravity, guided by two cables or tensioning rods that keep the cloth taut and stop wind whip. Some versions add S-shaped pivot arms that push the fabric slightly away from the wall to create ventilation.',
+      'It is the best-selling awning for windows and balconies because it occupies very little folded volume, manual operation is viable up to 4-5 m wide, and maintenance is minimal. Motorisation is usually reserved for larger spans or hard-to-reach installations.',
+    ],
+  },
+  {
+    heading: 'Main variants',
+    body: [
+      'We work four variants: <strong>cable-guided straight drop</strong> (the most affordable), <strong>aluminium-rail straight drop</strong> (better wind stability), <strong>capota</strong> (decorative rounded shape, typical of shops) and <strong>pivot arm</strong> (S-shaped arms that push the fabric outward, improving ventilation).',
+      'Standard widths up to 5 m. Drop up to 3 m. Frame in extruded aluminium with RAL lacquer. Solution-dyed acrylic fabrics with UV treatment from Sunbrella or Tempotest.',
+    ],
+  },
+  {
+    heading: 'Typical use cases',
+    body: [
+      'It dominates flats with large windows or bay windows facing south or west. It cuts indoor temperature by up to 8 degrees in peak summer and stops glare on screens and furniture.',
+      'In urban shops, the capota version is the most recognisable aesthetic (bakeries, bookshops, pharmacies). In hospitality it creates shade on narrow terraces that cannot accommodate folding-arm awnings.',
+    ],
+  },
+  {
+    heading: 'Installation',
+    body: [
+      'Top fixings anchor to the window lintel or facade with chemical resin bolts. Bottom fixings go to the balcony floor, parapet or jamb. A two-technician team installs a standard awning in 1-2 hours.',
+      'In residents communities, the model and colour usually need advance approval to keep facade uniformity. We handle the technical specification and bring physical samples. If the municipality requires a permit, we manage the paperwork.',
+    ],
+  },
+  {
+    heading: 'Maintenance',
+    body: [
+      'Maintenance on a straight drop is the simplest in the family: wash the fabric twice a year with mild soap and check cable or rail tension annually. Manual versions only need an occasional crank check.',
+      'In salt-air zones, an annual application of aluminium protector to the hardware significantly extends life. More detail in our <a href="/en/awning-maintenance-costa-blanca/" class="text-terracotta hover:underline">maintenance guide</a>.',
+    ],
+  },
+  {
+    heading: '2026 pricing',
+    body: [
+      'It is the most affordable awning type. A 1.5 x 2 m cable-guided straight drop starts from 280 euros installed, manual with basic acrylic fabric. The motorised version with a standard Somfy motor rises to 480 euros.',
+      'Premium models with aluminium rails, Sunbrella fabric and Somfy io motor reach 750-950 euros. The decorative capota for retail use sits between 450 and 850 euros depending on width. Compare in the <a href="/en/awning-prices-alicante-2026/" class="text-terracotta hover:underline">2026 price breakdown</a>.',
+    ],
+  },
+];
+
+const comparison = {
+  heading: 'Straight drop vs capota vs pivot arm',
+  intro: 'Three variants for three different uses.',
+  columns: ['Feature', 'Straight drop', 'Capota', 'Pivot arm'],
+  rows: [
+    ['Shape', 'Flat, vertical', 'Rounded decorative', 'Angled with separation'],
+    ['Typical use', 'Window, residential balcony', 'Urban retail', 'Bay window, ventilation'],
+    ['Projection', 'Minimal (drop only)', '40-60 cm', '50-80 cm'],
+    ['Reference price', '280 - 950 euros', '450 - 850 euros', '380 - 1,100 euros'],
+    ['Aesthetic', 'Discreet, almost invisible', 'Traditional shopfront', 'Modern, ventilated'],
+  ],
+};
+
+const related = {
+  heading: 'Related pages',
+  links: [
+    { label: 'Retractable arm awnings', href: '/en/retractable-arm-awnings/' },
+    { label: 'Cassette awnings', href: '/en/cassette-awnings/' },
+    { label: 'ZIP screen awnings', href: '/en/zip-screen-awnings/' },
+    { label: 'Back to Awnings (hub)', href: '/en/awnings/' },
+    { label: 'Guide: choosing the right awning', href: '/en/choosing-the-right-awning-costa-blanca/' },
+    { label: 'Awnings in residents communities', href: '/en/awnings-residents-communities-alicante/' },
+    { label: 'Service in Alicante city', href: '/en/awnings-alicante/' },
+    { label: 'Service in Elche', href: '/en/awnings-elche/' },
+    { label: 'Service in Santa Pola', href: '/en/awnings-santa-pola/' },
+  ],
+};
+
+const faqs = [
+  { question: 'What is the difference between a straight drop and a pivot arm awning?', answer: 'A straight drop falls fully vertical, flush with the facade. A pivot arm awning has two S-shaped arms that push the fabric slightly off the wall, creating ventilation between window and awning. Pivot arms cost 20-30 percent more.' },
+  { question: 'Will it hold up in wind?', answer: 'Up to wind class 2 under EN 13561 (about 28 km/h with the fabric extended) in the aluminium-rail version. Cable versions are slightly less resistant. Above that you need to retract it.' },
+  { question: 'Can it be motorised?', answer: 'Yes, with a standard Somfy or Nice motor. Motorisation makes sense from 3 m wide or where the window is hard to reach. On smaller spans the manual crank is perfectly comfortable.' },
+  { question: 'How does it differ from a capota awning?', answer: 'The capota has a rounded outward shape (a half-cylinder), creating a 40-60 cm decorative projection. It is more common in urban retail. The straight drop falls flat and is more discreet.' },
+  { question: 'Is it suitable for a residents community?', answer: 'It is the awning most easily approved at community meetings because of its minimal aesthetic impact. The model and colour still need to be voted on and standardised across the facade.' },
+  { question: 'How long does installation take?', answer: 'A two-technician team installs it in 1-2 hours. Workshop manufacturing takes 2-3 weeks for stock colours.' },
+  { question: 'What warranty does it carry?', answer: '5 years on frame and mechanism. Fabric per manufacturer (5-10 years on Sunbrella or Tempotest). Motor: 5 years on Somfy and Nice.' },
+  { question: 'Do I need a permit?', answer: 'In most coastal municipalities, yes - especially in zones with aesthetic regulations. See our municipality-by-municipality detail in the permit guide.' },
+];
+
+const cta = {
+  heading: 'Bespoke window or straight drop awning',
+  body: 'The most affordable and discreet way to shade windows and balconies. Free survey across Alicante province.',
+  button: 'Get a free quote',
+  buttonHref: `/en/free-quote/?product=${productSlug}`,
+  secondary: { label: 'See all awnings', href: '/en/awnings/' },
+};
+
+const breadcrumbs = [
+  { name: 'Home', url: 'https://optimtoldos.com/en/' },
+  { name: 'Awnings', url: 'https://optimtoldos.com/en/awnings/' },
+  { name: 'Straight drop awnings', url: pageUrl },
+];
+
+const serviceSchema = buildServiceSchema({
+  locale,
+  name: 'Straight Drop and Window Awnings on the Costa Blanca',
+  description: hero.description,
+  serviceType: 'Straight drop awning installation',
+  url: pageUrl,
+  offers: [
+    { name: 'Cable-guided straight drop' },
+    { name: 'Aluminium-rail straight drop' },
+    { name: 'Capota awning' },
+    { name: 'Pivot arm awning' },
+  ],
+});
+
+const faqSchema = buildFAQSchema(faqs, { locale });
+const breadcrumbSchema = buildBreadcrumbSchema(breadcrumbs, { locale });
+const productSchema = buildProductSchema({
+  locale,
+  name: 'Bespoke Straight Drop Awning',
+  description: hero.description,
+  image: 'https://optimtoldos.com/images/gallery/toldo-punto-recto.webp',
+  url: pageUrl,
+  lowPrice: '280',
+  highPrice: '1100',
+  category: 'Straight drop awnings',
+});
+---
+
+<Base
+  title="Straight Drop and Window Awnings | Optim Toldos - Costa Blanca"
+  description="Straight drop, capota and window awnings across Alicante. The most affordable vertical solution for shading windows, balconies and shopfronts. Free survey."
+  locale={locale}
+  alternateUrls={alternateUrls}
+  breadcrumbs={breadcrumbs}
+>
+  <Fragment slot="head">
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(serviceSchema)} />
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(productSchema)} />
+  </Fragment>
+  <SubProductPage
+    client:load
+    locale={locale}
+    hero={hero}
+    intro={intro}
+    sections={sections}
+    comparison={comparison}
+    related={related}
+    faqHeading="Frequently asked questions"
+    faqs={faqs}
+    cta={cta}
+  />
+</Base>

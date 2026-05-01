@@ -1,0 +1,121 @@
+---
+import Base from '../layouts/Base.astro';
+import { ProductZonePage } from '../components/pages/ProductZonePage';
+import {
+  buildServiceSchema,
+  buildBreadcrumbSchema,
+  buildFAQSchema,
+  buildProductSchema,
+} from '../utils/schema';
+
+const SITE = 'https://optimtoldos.com';
+const slug = 'torrevieja';
+const name = 'Torrevieja';
+const heading = `Toldos para hostelería en ${name}`;
+const intro = `Toldos comerciales para bares, restaurantes y heladerías del paseo, plazas y zona Habaneras de Torrevieja: lonas profesionales y rotulación incluida.`;
+
+const pageUrl = `${SITE}/toldos-hosteleria-${slug}/`;
+const alternateUrls = [
+  { locale: 'es' as const, href: pageUrl },
+];
+
+const locationParagraph = `Torrevieja tiene una de las mayores concentraciones de hostelería de la provincia: el paseo de Vista Alegre y Juan Aparicio, las plazas Capdepont y de la Constitución, el área Habaneras y las plazas interiores del centro. La regulación de terrazas del Ayuntamiento limita colores y dimensiones, normalmente exigiendo paleta sobria que se integre con el casco urbano. La salinidad y el viento marino castigan a los toldos económicos en una temporada; siempre montamos con lona Tempotest o Soltis y motorización Somfy comercial con sensor de viento. La rotulación serigrafiada o impresa identifica el local sin saturar la fachada.`;
+
+const whyFitsBullets = [
+  'Cumplimiento de la ordenanza local de terrazas (paleta sobria de colores).',
+  'Lona Tempotest o Soltis: aguantan 8 - 10 años de uso diario con salinidad.',
+  'Motor Somfy comercial con sensor de viento: cierre automático a 60 - 70 km/h.',
+  'Rotulación impresa o serigrafiada con logo y nombre del local.',
+  'Servicio postventa rápido: piezas y reparaciones en 24 - 48 h.',
+];
+
+const caseStudy = `Caso reciente: 4 toldos cofre Markilux 4×3 m sobre terraza de restaurante en plaza Capdepont, lona Tempotest beige con serigrafía marrón del logo del local, motor Somfy comercial con sensor de viento centralizado, anclajes A4 sobre fachada de carga restaurada por nuestro equipo previamente. Plazo desde firma 4 semanas, montaje 1 jornada nocturna.`;
+
+const priceBand = `Toldo extensible 4×3 m con lona Tempotest: 1.700 € - 2.400 €. Toldo cofre 4×3 m profesional: 2.500 € - 3.500 €. Rotulación serigrafiada: 130 - 300 € por toldo. Sustitución de lona en toldo existente: 700 € - 1.300 € según tamaño.`;
+
+const comunidadNote = `El Ayuntamiento de Torrevieja regula las terrazas mediante ordenanza específica: colores, dimensiones, separaciones del paso peatonal. La instalación o sustitución de toldo de hostelería requiere autorización municipal. Le ayudamos con la documentación gráfica y técnica.`;
+
+const faqs = [
+  { q: '¿Qué colores acepta la ordenanza de terrazas de Torrevieja?', a: 'Habitualmente paleta sobria: beiges, verdes botella, granates, marrones tabaco. Algunas zonas (paseo, plazas históricas) son más restrictivas. La rotulación se admite si está integrada con el color del fondo y no satura. Le indicamos qué aplica a su zona.' },
+  { q: '¿La sal del paseo daña los motores?', a: 'A los motores estándar sí, después de 2 - 3 años. Por eso siempre montamos motores Somfy comerciales (no domésticos) con grado IP54 mínimo y mantenimiento anual. Bien mantenidos duran más de 10 años.' },
+  { q: '¿Cuánto se tarda en obtener la autorización del Ayuntamiento?', a: '4 - 8 semanas para una alta nueva. Sustitución de toldo existente con misma configuración: 2 - 4 semanas. Tramitamos el expediente con documentación gráfica para acelerar el proceso.' },
+  { q: '¿Pueden montar fuera de horas para no afectar el servicio?', a: 'Sí. En hostelería siempre planificamos el montaje en horario nocturno o de cierre. La instalación de 4 toldos suele requerir 1 jornada de trabajo en franja de 22 a 06 h.' },
+  { q: '¿Cuánto vale una lona profesional comparada con una económica?', a: 'Una lona Tempotest o Soltis cuesta 25 - 40 % más que una lona estándar (acrílico básico). Pero dura 3 - 4 veces más con uso diario en costa. En hostelería, donde el toldo trabaja todo el día y la imagen del local depende de su aspecto, la diferencia se amortiza en 18 - 24 meses.' },
+];
+
+const related = [
+  { label: 'Toldos en Torrevieja', href: '/toldos-torrevieja/' },
+  { label: 'Pérgolas en Torrevieja', href: '/pergolas-torrevieja/' },
+  { label: 'Velas de sombra en Torrevieja', href: '/velas-sombra-torrevieja/' },
+  { label: 'Pérgolas hostelería Costa Blanca', href: '/pergolas-hosteleria-costa-blanca/' },
+  { label: 'Toldos (catálogo)', href: '/toldos/' },
+];
+
+const ctaHref = `/presupuesto/?product=toldos-hosteleria&location=${slug}`;
+const contactHref = '/contacto/';
+const licenceHref = '/guia-licencias-pergolas-toldos-alicante/';
+
+const breadcrumbs = [
+  { name: 'Inicio', url: `${SITE}/` },
+  { name: 'Toldos', url: `${SITE}/toldos/` },
+  { name: 'Hostelería Torrevieja', url: pageUrl },
+];
+
+const serviceSchema = buildServiceSchema({
+  locale: 'es',
+  name: heading,
+  description: intro,
+  serviceType: 'Toldos para hostelería',
+  url: pageUrl,
+  offers: [
+    { name: 'Toldo extensible profesional' },
+    { name: 'Toldo cofre comercial' },
+    { name: 'Rotulación impresa o serigrafiada' },
+    { name: 'Mantenimiento postventa' },
+  ],
+});
+const breadcrumbSchema = buildBreadcrumbSchema(breadcrumbs, { locale: 'es' });
+const faqSchema = buildFAQSchema(faqs.map(f => ({ question: f.q, answer: f.a })), { locale: 'es' });
+const productSchema = buildProductSchema({
+  locale: 'es',
+  name: heading,
+  description: intro,
+  image: `${SITE}/images/pergolas/pergola-restaurante.webp`,
+  url: pageUrl,
+  category: 'Toldos hostelería',
+  lowPrice: '1700',
+  highPrice: '4500',
+});
+---
+
+<Base
+  title={`${heading} - Optim Toldos`}
+  description={intro}
+  locale="es"
+  alternateUrls={alternateUrls}
+  breadcrumbs={breadcrumbs}
+>
+  <Fragment slot="head">
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(serviceSchema)} />
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(productSchema)} />
+  </Fragment>
+  <ProductZonePage
+    client:load
+    locale="es"
+    heading={heading}
+    intro={intro}
+    heroImage="/images/pergolas/pergola-restaurante-1280.webp"
+    locationParagraph={locationParagraph}
+    whyFitsBullets={whyFitsBullets}
+    caseStudy={caseStudy}
+    priceBand={priceBand}
+    comunidadNote={comunidadNote}
+    licenceHref={licenceHref}
+    faqs={faqs}
+    related={related}
+    ctaHref={ctaHref}
+    contactHref={contactHref}
+  />
+</Base>

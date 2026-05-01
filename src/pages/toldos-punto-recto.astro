@@ -1,0 +1,178 @@
+---
+import Base from '../layouts/Base.astro';
+import { SubProductPage } from '../components/pages/SubProductPage';
+import {
+  buildServiceSchema,
+  buildFAQSchema,
+  buildBreadcrumbSchema,
+  buildProductSchema,
+} from '../utils/schema';
+import { getAlternateUrls } from '../i18n/routes';
+
+const locale = 'es' as const;
+const pageId = 'awnings-straight-drop';
+const pageUrl = 'https://optimtoldos.com/toldos-punto-recto/';
+const productSlug = 'toldo-punto-recto';
+const alternateUrls = getAlternateUrls(pageId);
+
+const hero = {
+  heading: 'Toldos de Punto Recto y Toldos de Ventana',
+  description: 'Toldos verticales que descienden por dos guías o tensores y bloquean el sol directo en ventanas, balcones y miradores. La solución más económica para fachadas orientadas al sur o al oeste.',
+  image: '/images/gallery/toldo-punto-recto.webp',
+  imageAlt: 'Toldo de punto recto sobre ventana de balcón',
+};
+
+const intro = 'El toldo de punto recto, también llamado toldo de ventana, es la solución vertical clásica para sombrear ventanas, miradores y balcones. Su mecánica simple, su precio competitivo y su impacto estético reducido lo convierten en el favorito en pisos urbanos de Alicante, Elche y Torrevieja, especialmente cuando la comunidad de propietarios exige uniformidad de fachada.';
+
+const sections = [
+  {
+    heading: 'Cómo funciona el toldo de punto recto',
+    body: [
+      'El sistema es muy simple: un tubo superior con la lona enrollada que desciende por gravedad, guiada por dos cables o varillas tensoras que mantienen el tejido tenso y evitan que el viento lo agite. Algunos modelos llevan brazos puntera en S que separan ligeramente la lona de la fachada para crear ventilación.',
+      'Es el toldo más vendido para ventanas y balcones porque ocupa muy poco volumen plegado, su accionamiento manual es viable hasta 4-5 m de ancho, y su mantenimiento es mínimo. La motorización se reserva habitualmente para vanos grandes o instalaciones difíciles de alcanzar.',
+    ],
+  },
+  {
+    heading: 'Variantes principales',
+    body: [
+      'Trabajamos cuatro variantes: <strong>punto recto con guías de cable</strong> (el más económico), <strong>punto recto con guías de aluminio</strong> (mayor estabilidad ante el viento), <strong>capota</strong> (con forma redondeada decorativa, típico de comercios) y <strong>brazos puntera</strong> (la lona desciende y los brazos en S la separan ligeramente, mejorando la ventilación).',
+      'Anchuras estándar: hasta 5 m. Caída: hasta 3 m. Estructura de aluminio extrusionado lacado RAL. Lonas acrílicas teñidas en masa con tratamientos UV de marcas como Sunbrella o Tempotest.',
+    ],
+  },
+  {
+    heading: 'Casos de uso típicos',
+    body: [
+      'Es la elección dominante en pisos con ventanas grandes o miradores orientados al sur o al oeste. Reduce hasta 8 grados la temperatura interior en pleno verano y bloquea el deslumbramiento sobre pantallas y mobiliario.',
+      'En comercios urbanos, la versión capota es la solución estética más reconocida (panaderías, librerías, farmacias). Y en hostelería sirve para crear sombra en terrazas estrechas que no admiten brazos extensibles.',
+    ],
+  },
+  {
+    heading: 'Instalación',
+    body: [
+      'Los anclajes superiores se fijan al dintel de la ventana o a la fachada con tirafondos químicos. Los inferiores van al suelo de balcón, antepecho o jamba. La instalación de un toldo estándar la hace una pareja de técnicos en 1-2 horas.',
+      'En comunidades suele exigirse aprobación previa por modelo y color para mantener la uniformidad de fachada. Hacemos la memoria técnica y aportamos muestrarios físicos. Si el municipio exige licencia, gestionamos la documentación.',
+    ],
+  },
+  {
+    heading: 'Mantenimiento',
+    body: [
+      'El mantenimiento del toldo de punto recto es el más sencillo de toda la familia: limpiar la lona dos veces al año con jabón neutro y revisar la tensión de cables o guías cada año. Los modelos manuales no requieren más que verificar la manivela ocasionalmente.',
+      'En zonas de salitre, una pasada anual con protector de aluminio en los herrajes prolonga la vida útil notablemente. Más detalle en la <a href="/mantenimiento-toldos-costa-blanca/" class="text-terracotta hover:underline">guía de mantenimiento</a>.',
+    ],
+  },
+  {
+    heading: 'Precios 2026',
+    body: [
+      'Es la tipología más económica. Un toldo de punto recto con guías de cable de 1,5 x 2 m parte de 280 euros instalado, manual y con lona acrílica básica. La versión motorizada con motor Somfy estándar sube a 480 euros.',
+      'Modelos premium con guías de aluminio, lona Sunbrella y motor Somfy io alcanzan los 750-950 euros. La versión capota decorativa para comercio se sitúa entre 450 y 850 euros según anchura. Compara en el <a href="/precio-toldos-alicante-2026/" class="text-terracotta hover:underline">desglose 2026</a>.',
+    ],
+  },
+];
+
+const comparison = {
+  heading: 'Punto recto vs capota vs brazos puntera',
+  intro: 'Tres variantes, tres usos diferentes.',
+  columns: ['Característica', 'Punto recto', 'Capota', 'Brazos puntera'],
+  rows: [
+    ['Forma', 'Plana, vertical', 'Redondeada decorativa', 'Inclinada con separación'],
+    ['Uso típico', 'Ventana, balcón residencial', 'Comercio urbano', 'Mirador, ventilación'],
+    ['Voladizo', 'Mínimo (sólo caída)', '40-60 cm', '50-80 cm'],
+    ['Precio referencia', '280 - 950 euros', '450 - 850 euros', '380 - 1.100 euros'],
+    ['Estética', 'Discreta, casi invisible', 'Tradicional comercial', 'Moderna, ventilada'],
+  ],
+};
+
+const related = {
+  heading: 'Páginas relacionadas',
+  links: [
+    { label: 'Toldos brazo extensible', href: '/toldos-brazo-extensible/' },
+    { label: 'Toldos cofre', href: '/toldos-cofre/' },
+    { label: 'Toldos verticales ZIP', href: '/toldos-verticales-zip/' },
+    { label: 'Volver a Toldos (hub)', href: '/toldos/' },
+    { label: 'Guía: elegir toldo en Costa Blanca', href: '/guia-elegir-toldo-costa-blanca/' },
+    { label: 'Toldos en comunidades de propietarios', href: '/toldos-comunidades-propietarios-alicante/' },
+    { label: 'Servicio en Alicante ciudad', href: '/toldos-alicante/' },
+    { label: 'Servicio en Elche', href: '/toldos-elche/' },
+    { label: 'Servicio en Santa Pola', href: '/toldos-santa-pola/' },
+  ],
+};
+
+const faqs = [
+  { question: '¿Cuál es la diferencia entre punto recto y brazos puntera?', answer: 'El punto recto cae completamente vertical pegado a la fachada. El brazos puntera lleva dos brazos en S que separan ligeramente la lona de la pared, creando ventilación entre ventana y toldo. El precio sube un 20-30 %.' },
+  { question: '¿Aguanta el viento?', answer: 'Hasta clase 2 según EN 13561 (unos 28 km/h con la lona desplegada) en versión con guías de aluminio. Los modelos con cable son ligeramente menos resistentes. Por encima de eso conviene recogerlo.' },
+  { question: '¿Se puede motorizar?', answer: 'Sí, con motor Somfy o Nice estándar. La motorización tiene sentido a partir de 3 m de ancho o cuando la ventana está difícil de alcanzar. En vanos pequeños el manual es perfectamente cómodo.' },
+  { question: '¿Qué diferencia hay con el toldo capota?', answer: 'El capota tiene forma redondeada hacia fuera (medio cilindro), creando un saliente decorativo de 40-60 cm. Se usa más en comercio urbano. El punto recto cae plano y es más discreto.' },
+  { question: '¿Vale para una comunidad de propietarios?', answer: 'Es el toldo que más se aprueba en juntas de comunidad por su impacto estético mínimo. Igualmente debe votarse y homologarse modelo y color para mantener uniformidad de fachada.' },
+  { question: '¿Cuánto tarda la instalación?', answer: 'Una pareja de técnicos lo monta en 1-2 horas. La fabricación previa lleva 2-3 semanas en colores estándar.' },
+  { question: '¿Qué garantía tiene?', answer: '5 años sobre estructura y mecanismo. La lona, según fabricante (5-10 años Sunbrella o Tempotest). El motor, 5 años en Somfy y Nice.' },
+  { question: '¿Necesito licencia?', answer: 'En la mayoría de municipios costeros sí, especialmente en zonas con normativa estética. Tienes el detalle por municipio en nuestra guía de licencias.' },
+];
+
+const cta = {
+  heading: 'Tu toldo de ventana o punto recto a medida',
+  body: 'La solución más económica y discreta para sombrear ventanas y balcones. Visita gratuita en toda la provincia.',
+  button: 'Solicitar presupuesto',
+  buttonHref: `/presupuesto/?product=${productSlug}`,
+  secondary: { label: 'Ver toldos (hub)', href: '/toldos/' },
+};
+
+const breadcrumbs = [
+  { name: 'Inicio', url: 'https://optimtoldos.com/' },
+  { name: 'Toldos', url: 'https://optimtoldos.com/toldos/' },
+  { name: 'Toldos punto recto', url: pageUrl },
+];
+
+const serviceSchema = buildServiceSchema({
+  locale,
+  name: 'Toldos de Punto Recto y Ventana en Alicante',
+  description: hero.description,
+  serviceType: 'Instalación de toldos punto recto',
+  url: pageUrl,
+  offers: [
+    { name: 'Toldo punto recto con cable' },
+    { name: 'Toldo punto recto con guía aluminio' },
+    { name: 'Toldo capota' },
+    { name: 'Toldo con brazos puntera' },
+  ],
+});
+
+const faqSchema = buildFAQSchema(faqs, { locale });
+const breadcrumbSchema = buildBreadcrumbSchema(breadcrumbs, { locale });
+const productSchema = buildProductSchema({
+  locale,
+  name: 'Toldo de Punto Recto a Medida',
+  description: hero.description,
+  image: 'https://optimtoldos.com/images/gallery/toldo-punto-recto.webp',
+  url: pageUrl,
+  lowPrice: '280',
+  highPrice: '1100',
+  category: 'Toldos punto recto',
+});
+---
+
+<Base
+  title="Toldos Punto Recto y Toldos de Ventana | Optim Toldos - Alicante"
+  description="Toldos punto recto, capota y de ventana en Alicante. La solución vertical más económica para sombrear ventanas, balcones y comercios. Visita gratuita."
+  locale={locale}
+  alternateUrls={alternateUrls}
+  breadcrumbs={breadcrumbs}
+>
+  <Fragment slot="head">
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(serviceSchema)} />
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(productSchema)} />
+  </Fragment>
+  <SubProductPage
+    client:load
+    locale={locale}
+    hero={hero}
+    intro={intro}
+    sections={sections}
+    comparison={comparison}
+    related={related}
+    faqHeading="Preguntas frecuentes"
+    faqs={faqs}
+    cta={cta}
+  />
+</Base>

@@ -1,0 +1,177 @@
+---
+import Base from '../../layouts/Base.astro';
+import { SubProductPage } from '../../components/pages/SubProductPage';
+import {
+  buildServiceSchema,
+  buildFAQSchema,
+  buildBreadcrumbSchema,
+  buildProductSchema,
+} from '../../utils/schema';
+import { getAlternateUrls } from '../../i18n/routes';
+
+const locale = 'en' as const;
+const pageId = 'awnings-cassette';
+const pageUrl = 'https://optimtoldos.com/en/cassette-awnings/';
+const productSlug = 'cassette-awning';
+const alternateUrls = getAlternateUrls(pageId);
+
+const hero = {
+  heading: 'Cassette Awnings on the Costa Blanca',
+  description: 'Full-cassette and semi-cassette aluminium awnings: the fabric is fully enclosed against dust, salt air and rain whenever the awning is retracted.',
+  image: '/images/gallery/toldo-cofre.webp',
+  imageAlt: 'Cassette awning installed on a Costa Blanca terrace',
+};
+
+const intro = 'A cassette awning is the most durable choice for the Costa Blanca climate. By enclosing the fabric inside an extruded aluminium housing, it shields the cloth from sun, Levante dust and salt-laden air whenever the awning is rolled away. We recommend it as standard on beachfront properties, in windy spots and for any home where the awning will sit retracted for weeks at a time.';
+
+const sections = [
+  {
+    heading: 'Full cassette vs semi-cassette',
+    body: [
+      'There are two main variants: the <strong>full cassette</strong> and the <strong>semi-cassette</strong>. A full cassette encloses both the fabric and the arms inside an airtight housing - ideal for second homes and beachfront villas. A semi-cassette protects the rolled-up fabric but leaves the arms exposed, cutting cost without compromising the cloth itself.',
+      'We work with both formats in extruded aluminium with oven-baked lacquer (any RAL colour, including textured and wood-effect finishes). The price difference sits around 15-20 percent in favour of the semi-cassette, but on the front line of the beach we always recommend the full cassette for longevity.',
+    ],
+  },
+  {
+    heading: 'Materials and specifications',
+    body: [
+      'The frame is heavy-gauge extruded aluminium, lacquered in any RAL colour with a corrosion-resistance guarantee for salt-air environments. Arms can be twin stainless-steel cable or internal chain, both with adjustable tension.',
+      'Fabrics come from <strong>Sunbrella</strong>, <strong>Tempotest Para</strong> or <strong>Markilux</strong> - solution-dyed acrylic with UV resistance, anti-mould treatment and 5 to 10 year colour warranties. For exposed sites we also fit Soltis 86 or Serge Ferrari technical micro-perforated fabrics that handle higher wind loads.',
+    ],
+  },
+  {
+    heading: 'Typical use cases',
+    body: [
+      'A cassette awning is ideal for penthouse terraces where the westerly wind picks up several days a month, beachfront villas between Guardamar and La Marina, and apartment blocks where the comunidad de propietarios (the Spanish equivalent of a homeowners association) requires unified closed housings to keep facade aesthetics consistent.',
+      'It is also the standard choice for restaurants and holiday lets that retract the awning for the winter: the fabric can sit closed for 5 or 6 months without dust marks or partial-radiation fading.',
+    ],
+  },
+  {
+    heading: 'Installation process',
+    body: [
+      'After the on-site survey we measure the opening, check the fixing substrate (concrete, solid brick, steel section) and pick the right brackets. Workshop manufacturing usually runs 2 to 4 weeks depending on colour and fabric.',
+      'Installation of a standard cassette up to 5 metres is a one-day job for two technicians. Spans over 6 metres get a reinforced central support. If the property sits within a comunidad or a protected zone, we handle the planning paperwork with the town hall first - see our municipality-by-municipality permit guide.',
+    ],
+  },
+  {
+    heading: 'Maintenance',
+    body: [
+      'A closed cassette dramatically reduces upkeep: a soapy-water wipe of the housing twice a year and a hardware check after major storms is enough. The protected fabric can last 12 to 15 years in good condition in coastal areas.',
+      'We recommend a professional service every 24 months to re-grease the arm joints, test the motor and verify cable tension. More detail in our <a href="/en/awning-maintenance-costa-blanca/" class="text-terracotta hover:underline">Costa Blanca awning maintenance guide</a>.',
+    ],
+  },
+  {
+    heading: '2026 pricing',
+    body: [
+      'In 2026, a standard 4 x 3 m cassette awning starts from 1,150 euros installed with basic acrylic fabric and a manual crank. The motorised version with a Somfy motor and radio handset rises to 1,450-1,700 euros. Premium full-cassette Markilux models with Sunbrella Plus fabric reach 2,800-3,500 euros.',
+      'A semi-cassette of the same size starts from 950 euros installed. See our <a href="/en/awning-prices-alicante-2026/" class="text-terracotta hover:underline">2026 price breakdown</a> to compare configurations side by side.',
+    ],
+  },
+];
+
+const comparison = {
+  heading: 'Full cassette vs semi-cassette vs open arm',
+  intro: 'Quick comparison of the three most-requested formats.',
+  columns: ['Feature', 'Full cassette', 'Semi-cassette', 'Open arm'],
+  rows: [
+    ['Fabric protection', 'Total (sealed housing)', 'Partial (cloth covered, arms exposed)', 'None'],
+    ['Estimated lifespan', '12-15 years', '10-12 years', '7-10 years'],
+    ['Best for', 'Beachfront, exposed penthouses', 'Urban and residential terraces', 'Covered patios'],
+    ['Reference price 4x3 m', '1,150 - 3,500 euros', '950 - 2,200 euros', '650 - 1,500 euros'],
+    ['Retracted look', 'Smooth aluminium housing', 'Cloth hidden, arms visible', 'Cloth and arms visible'],
+  ],
+};
+
+const related = {
+  heading: 'Related pages',
+  links: [
+    { label: 'Retractable arm awnings', href: '/en/retractable-arm-awnings/' },
+    { label: 'Vertical ZIP screen awnings', href: '/en/zip-screen-awnings/' },
+    { label: 'Awning motorisation', href: '/en/awning-motorisation/' },
+    { label: 'Back to Awnings (hub)', href: '/en/awnings/' },
+    { label: 'Guide: choosing the right awning', href: '/en/choosing-the-right-awning-costa-blanca/' },
+    { label: '2026 awning prices, Alicante', href: '/en/awning-prices-alicante-2026/' },
+    { label: 'Service in Torrevieja', href: '/en/awnings-torrevieja/' },
+    { label: 'Service in Orihuela Costa', href: '/en/awnings-orihuela-costa/' },
+    { label: 'Service in Alicante city', href: '/en/awnings-alicante/' },
+  ],
+};
+
+const faqs = [
+  { question: 'What is the difference between a full cassette and a semi-cassette?', answer: 'A full cassette seals fabric and arms inside an airtight housing. A semi-cassette only encloses the rolled fabric, leaving the arms exposed. The full version lasts longer in coastal conditions; the semi-cassette costs 15 to 20 percent less.' },
+  { question: 'Will a cassette awning hold up to Levante wind?', answer: 'It withstands winds up to wind class 3 under EN 13561 (about 38 km/h with the awning extended). On the front line of the beach we recommend motorising it with a Somfy or Nice wind sensor so it retracts automatically above the threshold.' },
+  { question: 'Can I choose the housing colour?', answer: 'Yes - we lacquer the aluminium in any RAL colour, including textured and wood-effect finishes. Lead time adds about a week if you choose a non-standard RAL.' },
+  { question: 'How long does manufacturing and installation take?', answer: '2 to 4 weeks from a confirmed order. Installation is a one-day job for spans up to 5 m. Premium fabrics and special colours can stretch the lead time to 6 weeks.' },
+  { question: 'Do I need planning permission from the town hall?', answer: 'In most coastal municipalities yes, especially if the facade changes or if you live in a comunidad de propietarios. We handle the paperwork - see our municipality-by-municipality permit guide.' },
+  { question: 'What is the warranty on a cassette awning?', answer: 'We give 5 years on the frame and arms. Fabric and motor carry the manufacturer warranty (5 to 10 years on Sunbrella, Tempotest or Markilux fabrics; 5 years on Somfy and Nice motors).' },
+  { question: 'Can I motorise it later?', answer: 'Yes, all our cassette awnings are upgrade-ready, although it works out 15 to 20 percent cheaper to fit the motor at manufacture. More detail on our motorisation page.' },
+  { question: 'Do you work with residents communities?', answer: 'Yes - we offer technical visits and written specifications for community meetings, with physical samples of housings and fabrics for voting. We have a dedicated guide for comunidades in the Alicante area.' },
+];
+
+const cta = {
+  heading: 'Ready for your bespoke cassette awning?',
+  body: 'Free on-site survey across Alicante province. Fixed quote within 48 hours.',
+  button: 'Get a free quote',
+  buttonHref: `/en/free-quote/?product=${productSlug}`,
+  secondary: { label: 'See all awnings', href: '/en/awnings/' },
+};
+
+const breadcrumbs = [
+  { name: 'Home', url: 'https://optimtoldos.com/en/' },
+  { name: 'Awnings', url: 'https://optimtoldos.com/en/awnings/' },
+  { name: 'Cassette awnings', url: pageUrl },
+];
+
+const serviceSchema = buildServiceSchema({
+  locale,
+  name: 'Cassette Awnings on the Costa Blanca',
+  description: hero.description,
+  serviceType: 'Cassette awning installation',
+  url: pageUrl,
+  offers: [
+    { name: 'Full cassette awning' },
+    { name: 'Semi-cassette awning' },
+    { name: 'Somfy / Nice motorisation' },
+  ],
+});
+
+const faqSchema = buildFAQSchema(faqs, { locale });
+const breadcrumbSchema = buildBreadcrumbSchema(breadcrumbs, { locale });
+const productSchema = buildProductSchema({
+  locale,
+  name: 'Bespoke Cassette Awning',
+  description: hero.description,
+  image: 'https://optimtoldos.com/images/gallery/toldo-cofre.webp',
+  url: pageUrl,
+  lowPrice: '950',
+  highPrice: '3500',
+  category: 'Cassette awnings',
+});
+---
+
+<Base
+  title="Cassette Awnings on the Costa Blanca | Optim Toldos"
+  description="Full-cassette and semi-cassette aluminium awnings for terraces and penthouses across Alicante. Sealed fabric, Somfy motorisation and 5-year guarantee."
+  locale={locale}
+  alternateUrls={alternateUrls}
+  breadcrumbs={breadcrumbs}
+>
+  <Fragment slot="head">
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(serviceSchema)} />
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(productSchema)} />
+  </Fragment>
+  <SubProductPage
+    client:load
+    locale={locale}
+    hero={hero}
+    intro={intro}
+    sections={sections}
+    comparison={comparison}
+    related={related}
+    faqHeading="Frequently asked questions"
+    faqs={faqs}
+    cta={cta}
+  />
+</Base>

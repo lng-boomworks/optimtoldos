@@ -1,0 +1,188 @@
+---
+import Base from '../../layouts/Base.astro';
+import { SubProductPage } from '../../components/pages/SubProductPage';
+import {
+  buildServiceSchema,
+  buildFAQSchema,
+  buildBreadcrumbSchema,
+  buildProductSchema,
+} from '../../utils/schema';
+import { getAlternateUrls } from '../../i18n/routes';
+
+const locale = 'en' as const;
+const pageId = 'pergolas-bioclimatic';
+const pageUrl = 'https://optimtoldos.com/en/bioclimatic-pergolas/';
+const productSlug = 'bioclimatic-pergola';
+const alternateUrls = getAlternateUrls(pageId);
+
+const hero = {
+  heading: 'Bespoke Bioclimatic Pergolas on the Costa Blanca',
+  description: 'Adjustable aluminium louvres that control sun, shade and ventilation from a single handset. The single best investment for using your terrace 12 months a year.',
+  image: '/images/pergolas/pergolas-bioclimaticas.webp',
+  imageAlt: 'Bioclimatic pergola with adjustable louvres over a Costa Blanca terrace',
+};
+
+const intro = 'The bioclimatic pergola is the product that has changed outdoor living on the Costa Blanca. With one handset you tilt the louvres to create dense midday shade, ventilation in the heat, and when it rains a watertight cover that protects the terrace below. We build adjoining, free-standing and large-format bioclimatic pergolas in extruded aluminium with Somfy or Nice motorisation.';
+
+const sections = [
+  {
+    heading: 'How bioclimatic louvres work',
+    body: [
+      'The roof is made of hollow extruded aluminium louvres that pivot on their long axis. Closed, they interlock like roof tiles to form a watertight cover that drains rain through gutters integrated into the columns. Open at 90 degrees, they let air and light through almost completely.',
+      'Intermediate positions grade the shade: at 30 degrees, partial shade with ventilation; at 60 degrees, dense shade; at 90 degrees, maximum airflow. Everything runs from a Somfy or Nice radio handset and integrates with smart-home systems.',
+    ],
+  },
+  {
+    heading: 'Materials and specifications',
+    body: [
+      'Heavy-gauge extruded aluminium frame, oven-baked lacquer in any RAL with corrosion protection (C5 marine category available on request). Louvres are extruded aluminium with a central motor, certified to wind class 6 (over 110 km/h) on many models.',
+      'Standard sizes up to 30 m² in a single module; larger areas use coupled modules. We work with European-made profiles, primarily <strong>Cortizo</strong> and <strong>Pergotex</strong>, both CE and SKZ certified.',
+    ],
+  },
+  {
+    heading: 'Bioclimatic pergola types',
+    body: [
+      'Three formats: <strong>adjoining</strong> (against an existing wall, perfect for terraces and existing porches), <strong>free-standing</strong> (4 columns, ideal for gardens or pool decks) and <strong>large-format island</strong> (oversized with internal columns). For penthouses with views we combine glazed versions with retractable glass curtains.',
+      'The most-requested 2026 add-ons are <strong>integrated LED strips</strong> in louvres, <strong>lateral ZIP screen blinds</strong> for closing the space in winter, <strong>recessed radiant heaters</strong> and <strong>ceiling fans</strong> mounted in hollow louvres.',
+    ],
+  },
+  {
+    heading: 'Typical use cases',
+    body: [
+      'It is the most rewarding investment for residential terraces on villas and penthouses: it extends outdoor use by 5-7 months a year over a simple awning, handles rain and wind, and typically adds 5-8 percent to property value in the coastal market.',
+      'In hospitality it is genuinely transformative: a bioclimatic pergola over a restaurant terrace allows year-round operation (with vertical enclosures) and lifts revenue significantly. For apartment blocks see our <a href="/en/bioclimatic-vs-aluminium-pergola/" class="text-terracotta hover:underline">bioclimatic vs fixed aluminium pergola comparison</a>.',
+    ],
+  },
+  {
+    heading: 'Installation and permits',
+    body: [
+      'After the survey we measure the opening, check the floor (concrete slab, ceramic, timber) and choose the anchoring system. Manufacturing takes 4-6 weeks depending on finishes.',
+      'Installation runs 2-4 days for a two-technician team. Municipal permission is mandatory in most town halls: we handle technical specifications, drawings and the full town hall application. See our municipality-by-municipality detail in the <a href="/en/planning-permission-pergola-awning-alicante/" class="text-terracotta hover:underline">permit guide</a>.',
+    ],
+  },
+  {
+    heading: 'Maintenance',
+    body: [
+      'Very low. Wash louvres and gutters with mild soap twice a year, service motors every 12 months, check bolts after major storms, and apply aluminium protector in salt-air zones every 24 months.',
+      'The frame has a useful life of 20+ years with basic maintenance. Louvre motors are warranted 5 years by Somfy or Nice. LEDs, 3-5 years per manufacturer. Full detail in our <a href="/en/awning-maintenance-costa-blanca/" class="text-terracotta hover:underline">maintenance guide</a>.',
+    ],
+  },
+  {
+    heading: '2026 pricing',
+    body: [
+      'Pricing depends heavily on size, finishes and add-ons. As a reference: an adjoining bioclimatic pergola at 4 x 3 m starts from 4,800 euros installed with a basic Somfy motor. A free-standing 5 x 4 m unit with LED and lateral ZIP, 8,500-11,000 euros.',
+      'Large pergolas (over 25 m²) with full ZIP enclosure, heating and advanced smart-home land between 14,000 and 25,000 euros. Investment pays back in use value within 4-6 years on a year-round residential property.',
+    ],
+  },
+];
+
+const comparison = {
+  heading: 'Bioclimatic vs fixed aluminium vs cassette awning',
+  intro: 'Comparison of the three most common systems for medium-sized terraces.',
+  columns: ['Feature', 'Bioclimatic', 'Fixed aluminium', 'Cassette awning'],
+  rows: [
+    ['Adjustable cover', 'Yes (louvres)', 'No (fixed panel)', 'Yes (rolling fabric)'],
+    ['Water resistance', 'Watertight when closed', 'Permanently watertight', 'Not watertight (clear)'],
+    ['Wind resistance', 'Up to class 6 (110+ km/h)', 'Very high (rigid panel)', 'Up to class 3 (38 km/h)'],
+    ['Provides shade', 'On demand, full', 'Permanent, full', 'On demand, full'],
+    ['Provides natural light', 'On demand, full', 'No', 'Full when retracted'],
+    ['Price 4x3 m installed', '4,800 - 9,000 euros', '3,500 - 6,500 euros', '1,150 - 3,500 euros'],
+    ['Frame lifespan', '20+ years', '25+ years', '12-15 years'],
+  ],
+};
+
+const related = {
+  heading: 'Related pages',
+  links: [
+    { label: 'Fixed aluminium pergolas', href: '/en/aluminium-pergolas/' },
+    { label: 'Sliding awning pergolas', href: '/en/sliding-awning-pergolas/' },
+    { label: 'Back to Pergolas (hub)', href: '/en/pergolas/' },
+    { label: 'Guide: bioclimatic vs aluminium pergola', href: '/en/bioclimatic-vs-aluminium-pergola/' },
+    { label: 'Glass curtains for terraces', href: '/en/glass-curtains/' },
+    { label: 'Vertical ZIP screen awnings', href: '/en/zip-screen-awnings/' },
+    { label: 'Service in Orihuela Costa', href: '/en/awnings-orihuela-costa/' },
+    { label: 'Service in Alicante city', href: '/en/awnings-alicante/' },
+    { label: 'Service in Benidorm', href: '/en/awnings-benidorm/' },
+  ],
+};
+
+const faqs = [
+  { question: 'Is a bioclimatic pergola really watertight?', answer: 'Yes - when louvres are closed they form a tile-like system draining water through gutters integrated into the columns. Tested in heavy Costa Blanca rain at over 30 mm/h flow rate. Certified to EN 1027 watertightness.' },
+  { question: 'How much wind does it withstand?', answer: 'Premium models are certified to wind class 6 (over 110 km/h). Standard models handle class 4-5 (up to 100 km/h). For reference, the historical Levante record in Alicante was 130 km/h on a single occasion: premium pergolas would handle it; standard ones would need louvres opened.' },
+  { question: 'Do I need a town hall permit?', answer: 'Yes, in virtually every municipality. It is the most strictly regulated category as it counts as a fixed structure. We handle technical specifications, drawings and the full process. Average permit lead time: 1-3 months. Detail in our permit guide.' },
+  { question: 'Can it be glazed?', answer: 'Yes, with side glass curtains. We combine the two on many projects to create watertight enclosed spaces in winter and open spaces in summer. See our complete glass curtains guide.' },
+  { question: 'How long is manufacturing and installation?', answer: 'Manufacturing: 4-6 weeks. Installation: 2-4 days depending on size and add-ons. Total time from order to use, 6-9 weeks, plus municipal permit time where applicable.' },
+  { question: 'What warranty does it carry?', answer: '7 years on frame and lacquer in standard range; 10 years on premium with C5 marine treatment. Somfy/Nice motors, 5 years. LEDs, 3-5 years per manufacturer.' },
+  { question: 'How does it differ from a fixed aluminium pergola?', answer: 'A bioclimatic has rotating louvres that can be oriented. A fixed pergola is a solid immovable panel. Bioclimatic costs 30-50 percent more but offers far more versatility and typically adds more property value. More detail in our comparison.' },
+  { question: 'Do you work with Cortizo and Pergotex?', answer: 'Yes, they are our two main suppliers thanks to profile quality, CE/SKZ certification and long-term spare parts availability. Other European manufacturers available on project basis.' },
+];
+
+const cta = {
+  heading: 'Design your bespoke bioclimatic pergola',
+  body: 'Free site survey, 3D project render and fixed quote within a week. We work across Alicante province.',
+  button: 'Get a free quote',
+  buttonHref: `/en/free-quote/?product=${productSlug}`,
+  secondary: { label: 'See all pergolas', href: '/en/pergolas/' },
+};
+
+const breadcrumbs = [
+  { name: 'Home', url: 'https://optimtoldos.com/en/' },
+  { name: 'Pergolas', url: 'https://optimtoldos.com/en/pergolas/' },
+  { name: 'Bioclimatic pergolas', url: pageUrl },
+];
+
+const serviceSchema = buildServiceSchema({
+  locale,
+  name: 'Bespoke Bioclimatic Pergolas on the Costa Blanca',
+  description: hero.description,
+  serviceType: 'Bioclimatic pergola installation',
+  url: pageUrl,
+  offers: [
+    { name: 'Adjoining bioclimatic pergola' },
+    { name: 'Free-standing bioclimatic pergola' },
+    { name: 'Large-format bioclimatic pergola' },
+    { name: 'Lateral ZIP screen enclosure' },
+    { name: 'Integrated LED lighting and radiant heating' },
+  ],
+});
+
+const faqSchema = buildFAQSchema(faqs, { locale });
+const breadcrumbSchema = buildBreadcrumbSchema(breadcrumbs, { locale });
+const productSchema = buildProductSchema({
+  locale,
+  name: 'Bespoke Bioclimatic Pergola',
+  description: hero.description,
+  image: 'https://optimtoldos.com/images/pergolas/pergolas-bioclimaticas.webp',
+  url: pageUrl,
+  lowPrice: '4800',
+  highPrice: '25000',
+  category: 'Bioclimatic pergolas',
+});
+---
+
+<Base
+  title="Bespoke Bioclimatic Pergolas | Optim Toldos - Costa Blanca"
+  description="Bioclimatic pergolas with adjustable louvres for terraces and gardens across Alicante. Cortizo, Pergotex, Somfy motorisation, ZIP enclosure. Free survey."
+  locale={locale}
+  alternateUrls={alternateUrls}
+  breadcrumbs={breadcrumbs}
+>
+  <Fragment slot="head">
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(serviceSchema)} />
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(productSchema)} />
+  </Fragment>
+  <SubProductPage
+    client:load
+    locale={locale}
+    hero={hero}
+    intro={intro}
+    sections={sections}
+    comparison={comparison}
+    related={related}
+    faqHeading="Frequently asked questions"
+    faqs={faqs}
+    cta={cta}
+  />
+</Base>

@@ -1,0 +1,77 @@
+---
+import Base from '../layouts/Base.astro';
+import { AreaPage } from '../components/pages/AreaPage';
+import {
+  buildServiceSchema,
+  buildBreadcrumbSchema,
+} from '../utils/schema';
+import { SEO_LOCATIONS } from '../data/seoLocations';
+import { t } from '../i18n/index';
+
+const SITE = 'https://optimtoldos.com';
+
+export async function getStaticPaths() {
+  return SEO_LOCATIONS.map((loc) => ({
+    params: { slug: loc.slug },
+    props: { i: loc.i, slug: loc.slug, area: loc.area },
+  }));
+}
+
+const { slug, i } = Astro.props;
+const name = t('es', `serviceAreas.location.${i}.name` as any);
+const body = t('es', `serviceAreas.location.${i}.body` as any);
+const heading = t('es', 'areaPage.focus.awnings.heading').replace('{location}', name);
+const intro = t('es', 'areaPage.focus.awnings.intro').replace('{location}', name);
+
+// EN partner exists for the first 14 locations only
+const EN_AREA_LOCATIONS = new Set([
+  'torrevieja','orihuela-costa','ciudad-quesada','guardamar','la-marina','elche',
+  'alicante','santa-pola','gran-alacant','benidorm','cabo-roig','la-zenia',
+  'punta-prima','villamartin',
+]);
+const alternateUrls = EN_AREA_LOCATIONS.has(slug)
+  ? [
+      { locale: 'es' as const, href: `${SITE}/toldos-${slug}/` },
+      { locale: 'en' as const, href: `${SITE}/en/awnings-${slug}/` },
+    ]
+  : [{ locale: 'es' as const, href: `${SITE}/toldos-${slug}/` }];
+
+const pageUrl = `${SITE}/toldos-${slug}/`;
+
+const serviceSchema = buildServiceSchema({
+  locale: 'es',
+  name: heading,
+  description: body,
+  serviceType: 'Toldos, pérgolas y protección solar',
+  url: pageUrl,
+  offers: [
+    { name: 'Toldo cofre' },
+    { name: 'Toldo brazo extensible' },
+    { name: 'Toldo vertical ZIP' },
+    { name: 'Pérgola bioclimática' },
+    { name: 'Cortina de cristal' },
+  ],
+});
+
+const breadcrumbs = [
+  { name: 'Inicio', url: `${SITE}/` },
+  { name: 'Zonas de servicio', url: `${SITE}/zonas-de-servicio/` },
+  { name, url: pageUrl },
+];
+
+const breadcrumbSchema = buildBreadcrumbSchema(breadcrumbs, { locale: 'es' });
+---
+
+<Base
+  title={`${heading} - Optim Toldos`}
+  description={intro}
+  locale="es"
+  alternateUrls={alternateUrls}
+  breadcrumbs={breadcrumbs}
+>
+  <Fragment slot="head">
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(serviceSchema)} />
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
+  </Fragment>
+  <AreaPage client:load locale="es" locationSlug={slug} focus="awnings" />
+</Base>

@@ -6,36 +6,19 @@ import { getAlternateUrls } from '../i18n/routes';
 
 const alternateUrls = getAlternateUrls('service-areas');
 
-const LOCATIONS = [
-  { slug: 'torrevieja',            name: 'Torrevieja' },
-  { slug: 'orihuela-costa',        name: 'Orihuela Costa' },
-  { slug: 'la-zenia',              name: 'La Zenia' },
-  { slug: 'punta-prima',           name: 'Punta Prima' },
-  { slug: 'ciudad-quesada',        name: 'Ciudad Quesada' },
-  { slug: 'guardamar-del-segura',  name: 'Guardamar del Segura' },
-  { slug: 'la-marina',             name: 'La Marina' },
-  { slug: 'elche',                 name: 'Elche' },
-  { slug: 'santa-pola',            name: 'Santa Pola' },
-  { slug: 'gran-alacant',          name: 'Gran Alacant' },
-  { slug: 'cabo-roig',             name: 'Cabo Roig' },
-  { slug: 'villamartin',           name: 'Villamartín' },
-  { slug: 'playa-flamenca',        name: 'Playa Flamenca' },
-  { slug: 'campoamor',             name: 'Campoamor' },
-  { slug: 'los-balcones',          name: 'Los Balcones' },
-  { slug: 'rojales',               name: 'Rojales' },
-  { slug: 'benidorm',              name: 'Benidorm' },
-  { slug: 'alicante',              name: 'Alicante' },
-  { slug: 'san-miguel-de-salinas', name: 'San Miguel de Salinas' },
-  { slug: 'dolores',               name: 'Dolores' },
-];
+// CollectionPage now points at the dedicated per-area URLs (PDF §3 fix —
+// Google can rank /toldos-{slug}/ as separate URLs, but never could rank
+// #anchors). Source-of-truth list is SEO_LOCATIONS.
+import { SEO_LOCATIONS } from '../data/seoLocations';
 
 const schema = buildCollectionPageSchema({
-  name: 'Zonas de servicio — Optim Toldos',
+  locale: 'es',
+  name: 'Zonas de servicio - Optim Toldos',
   description: 'Áreas donde Optim Toldos instala toldos, pérgolas, cortinas de cristal, velas de sombra y ventanas PVC en la provincia de Alicante.',
   url: 'https://optimtoldos.com/zonas-de-servicio',
-  items: LOCATIONS.map(l => ({
+  items: SEO_LOCATIONS.map(l => ({
     name: l.name,
-    url: `https://optimtoldos.com/zonas-de-servicio#${l.slug}`,
+    url: `https://optimtoldos.com/toldos-${l.slug}/`,
   })),
 });
 
@@ -46,7 +29,7 @@ const breadcrumbs = [
 ---
 
 <Base
-  title="Zonas de Servicio | Optim Toldos — Costa Blanca"
+  title="Zonas de Servicio | Optim Toldos - Costa Blanca"
   description="Instalamos toldos, pérgolas, cortinas de cristal, velas de sombra y ventanas PVC en toda la provincia de Alicante. Descubre nuestras 20 zonas de servicio."
   breadcrumbs={breadcrumbs}
   locale="es"

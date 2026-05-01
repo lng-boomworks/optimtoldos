@@ -1,0 +1,53 @@
+---
+import Base from '../../layouts/Base.astro';
+import { AwningMaintenancePage } from '../../components/pages/AwningMaintenancePage';
+import { buildFAQSchema, buildBreadcrumbSchema, buildServiceSchema } from '../../utils/schema';
+import { t } from '../../i18n/index';
+import { getAlternateUrls } from '../../i18n/routes';
+
+const alternateUrls = getAlternateUrls('awning-maintenance');
+const pageUrl = 'https://optimtoldos.com/en/awning-maintenance-costa-blanca';
+
+const faqs = Array.from({ length: 7 }, (_, i) => ({
+  question: t('en', `maintenanceGuide.faq.${i + 1}.q` as any),
+  answer: t('en', `maintenanceGuide.faq.${i + 1}.a` as any),
+}));
+
+const breadcrumbs = [
+  { name: 'Home', url: 'https://optimtoldos.com/en/' },
+  { name: 'Awning maintenance', url: pageUrl },
+];
+
+const faqSchema = buildFAQSchema(faqs, { locale: 'en' });
+const breadcrumbSchema = buildBreadcrumbSchema(breadcrumbs, { locale: 'en' });
+const serviceSchema = buildServiceSchema({
+  locale: 'en',
+  name: 'Awning maintenance on the Costa Blanca',
+  description: 'Awning maintenance, cleaning and inspection in coastal salt-air zones. Sensor calibration and post-storm checks.',
+  serviceType: 'Awning maintenance and after-sales service',
+  url: pageUrl,
+  offers: [
+    { name: 'Annual fabric cleaning' },
+    { name: 'Arm and motor lubrication' },
+    { name: 'Wind sensor calibration' },
+    { name: 'Post-storm inspection' },
+    { name: 'Fabric replacement' },
+  ],
+});
+---
+
+<Base
+  title={t('en', 'maintenanceGuide.title')}
+  description={t('en', 'maintenanceGuide.meta_description')}
+  breadcrumbs={breadcrumbs}
+  locale="en"
+  alternateUrls={alternateUrls}
+  type="article"
+>
+  <Fragment slot="head">
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(serviceSchema)} />
+  </Fragment>
+  <AwningMaintenancePage client:load locale="en" />
+</Base>

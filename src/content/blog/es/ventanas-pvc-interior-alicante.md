@@ -246,4 +246,4 @@ En [Optim Toldos](/ventanas-pvc) atendemos toda la provincia de Alicante, inclui
 
 Durante la visita, medimos cada hueco, evaluamos la orientación, el estado de la fachada y los cajones de persiana, y te presentamos un presupuesto detallado con varias opciones de configuración adaptadas a las condiciones climáticas específicas de tu localidad.
 
-**[Solicita tu presupuesto gratuito y sin compromiso](/presupuesto)** — te contactamos en menos de 24 horas.
+**[Solicita tu presupuesto gratuito y sin compromiso](/presupuesto)** - te contactamos en menos de 24 horas.

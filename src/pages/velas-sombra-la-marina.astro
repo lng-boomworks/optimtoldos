@@ -1,0 +1,101 @@
+---
+import Base from '../layouts/Base.astro';
+import { ProductZonePage } from '../components/pages/ProductZonePage';
+import {
+  buildServiceSchema,
+  buildBreadcrumbSchema,
+  buildFAQSchema,
+} from '../utils/schema';
+
+const SITE = 'https://optimtoldos.com';
+const slug = 'la-marina';
+const name = 'La Marina (San Fulgencio)';
+const heading = `Velas de sombra en ${name}`;
+const intro = `Velas de sombra tensadas para chalets, urbanizaciones y zonas de piscina en La Marina, San Fulgencio y Oasis: tejido HDPE técnico, anclajes A4 inoxidables y diseño según orientación.`;
+
+const pageUrl = `${SITE}/velas-sombra-${slug}/`;
+const alternateUrls = [{ locale: 'es' as const, href: pageUrl }];
+
+const locationParagraph = `La Marina es un núcleo eminentemente residencial: chalets de planta baja, urbanizaciones cerradas y parcelas amplias con piscina propia. La cercanía al mar (3 km de la costa) y la entrada del levante por el cabo de Santa Pola exigen velas con tejido HDPE técnico (no nylon económico) y herrajes de acero inoxidable A4. La gran ventaja de la vela aquí es la rapidez: instalada en una jornada, sin obra, fácilmente desmontable de noviembre a febrero para evitar daños por temporales del Mediterráneo.`;
+
+const whyFitsBullets = [
+  'Tejido HDPE técnico transpirable: bloquea 90 - 95 % de la radiación UV y deja pasar el aire (no acumula calor debajo).',
+  'Anclajes A4 inoxidables imprescindibles a 3 km del mar: el A2 estándar pica en 2 - 3 temporadas.',
+  'Postes de aluminio anodizado o acero galvanizado donde no llega la fachada: chalets aislados, jardines amplios.',
+  'Sistema de tensión rápido (mosquetón o trinquete) para plegar la vela ante avisos de levante fuerte.',
+  'Solución económica donde una pérgola sería sobredimensionada o no encaja con la estética de la urbanización.',
+];
+
+const caseStudy = `Caso reciente: vela rectangular de 5×3 m sobre piscina particular en urbanización de La Marina, tejido HDPE arena anti-UV, dos puntos a fachada y dos postes de aluminio anodizado de 2,8 m con base hormigonada. Total una jornada de instalación, plazo desde firma 2 semanas.`;
+
+const comunidadNote = `En urbanizaciones cerradas de La Marina la vela desmontable normalmente no requiere licencia urbanística (no es estructura permanente) ni autorización de comunidad si no se ancla a fachadas comunes. Si los postes se cimientan, conviene comunicar a la junta. Le entregamos plano de instalación y especificación técnica del tejido.`;
+
+const faqs = [
+  { q: '¿Aguanta el viento de levante en La Marina?', a: 'Si está bien tensada, sí, hasta unos 60 km/h. Con avisos amarillos o naranjas lo recomendable es aflojar y plegar la vela: por eso siempre montamos con sistema de tensión rápido. Recomendamos retirarla por completo de noviembre a febrero.' },
+  { q: '¿Necesito cimentar los postes?', a: 'Para velas medianas y grandes, sí: un dado de hormigón de 50×50×60 cm garantiza la tensión. En jardines pequeños con velas triangulares puede valer un anclaje a placa atornillada al suelo existente, pero pierde algo de tensión.' },
+  { q: '¿Decoloran con el sol intenso de la zona?', a: 'El HDPE técnico mantiene su color durante 8 - 10 años con uso intensivo. El nylon económico decolora en 2 - 3 temporadas. La diferencia de coste vale la pena por durabilidad.' },
+  { q: '¿Pueden retirarla y guardarla cada invierno?', a: 'Sí. Como servicio anual retiramos las velas en otoño y las reinstalamos en primavera, incluyendo revisión de anclajes y limpieza del tejido. También puede hacerlo usted en 10 minutos por vela si tiene mosquetones de tensión rápida.' },
+];
+
+const related = [
+  { label: 'Toldos en La Marina', href: '/toldos-la-marina/' },
+  { label: 'Velas de sombra (catálogo)', href: '/velas-de-sombra/' },
+  { label: 'Toldos en Guardamar', href: '/toldos-guardamar/' },
+  { label: 'Guía de licencias en Alicante', href: '/guia-licencias-pergolas-toldos-alicante/' },
+];
+
+const ctaHref = `/presupuesto/?product=velas-sombra&location=${slug}`;
+const contactHref = '/contacto/';
+const licenceHref = '/guia-licencias-pergolas-toldos-alicante/';
+
+const breadcrumbs = [
+  { name: 'Inicio', url: `${SITE}/` },
+  { name: 'Velas de sombra', url: `${SITE}/velas-de-sombra/` },
+  { name, url: pageUrl },
+];
+
+const serviceSchema = buildServiceSchema({
+  locale: 'es',
+  name: heading,
+  description: intro,
+  serviceType: 'Instalación de velas de sombra',
+  url: pageUrl,
+  offers: [
+    { name: 'Vela triangular' },
+    { name: 'Vela rectangular' },
+    { name: 'Vela pentagonal a medida' },
+  ],
+});
+const breadcrumbSchema = buildBreadcrumbSchema(breadcrumbs, { locale: 'es' });
+const faqSchema = buildFAQSchema(faqs.map(f => ({ question: f.q, answer: f.a })), { locale: 'es' });
+---
+
+<Base
+  title={`${heading} - Optim Toldos`}
+  description={intro}
+  locale="es"
+  alternateUrls={alternateUrls}
+  breadcrumbs={breadcrumbs}
+>
+  <Fragment slot="head">
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(serviceSchema)} />
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+  </Fragment>
+  <ProductZonePage
+    client:load
+    locale="es"
+    heading={heading}
+    intro={intro}
+    heroImage="/images/velas/hero-velas-1280.webp"
+    locationParagraph={locationParagraph}
+    whyFitsBullets={whyFitsBullets}
+    caseStudy={caseStudy}
+    comunidadNote={comunidadNote}
+    licenceHref={licenceHref}
+    faqs={faqs}
+    related={related}
+    ctaHref={ctaHref}
+    contactHref={contactHref}
+  />
+</Base>

@@ -5,69 +5,25 @@ import { FadeIn } from "../FadeIn";
 import { AnimatedHeading } from "../AnimatedHeading";
 import { Button } from "../Button";
 import { url, localizedUrl } from "../../utils/paths";
+import { productAreaUrl } from "../../utils/areaUrls";
 import { hasConsent } from "../../utils/consent";
 import { t, type Locale } from "../../i18n/index";
 import { slugMap, type PageId } from "../../i18n/slugs";
+import { SEO_LOCATIONS } from "../../data/seoLocations";
 
-// Static per-location metadata. Slugs match the anchor ids so other pages can
-// deep-link as /service-areas/#<slug>. Product keys drive the "popular products
-// here" chip row and point to the right product page per locale.
-interface LocationMeta {
-  i: number;
-  slug: string;
-  products: PageId[];
-}
-
-const LOCATIONS: LocationMeta[] = [
-  { i: 1,  slug: "torrevieja",           products: ["awnings", "pergolas"] },
-  { i: 2,  slug: "orihuela-costa",       products: ["pergolas", "awnings"] },
-  { i: 3,  slug: "la-zenia",             products: ["pergolas", "glass-curtains"] },
-  { i: 4,  slug: "punta-prima",          products: ["awnings", "pergolas"] },
-  { i: 5,  slug: "ciudad-quesada",       products: ["pergolas", "shade-sails"] },
-  { i: 6,  slug: "guardamar-del-segura", products: ["awnings", "pergolas"] },
-  { i: 7,  slug: "la-marina",            products: ["awnings", "shade-sails"] },
-  { i: 8,  slug: "elche",                products: ["awnings", "pergolas", "glass-curtains", "pvc-windows"] },
-  { i: 9,  slug: "santa-pola",           products: ["awnings", "glass-curtains"] },
-  { i: 10, slug: "gran-alacant",         products: ["pergolas", "glass-curtains"] },
-  { i: 11, slug: "cabo-roig",            products: ["pergolas", "glass-curtains"] },
-  { i: 12, slug: "villamartin",          products: ["pergolas", "awnings"] },
-  { i: 13, slug: "playa-flamenca",       products: ["awnings", "glass-curtains"] },
-  { i: 14, slug: "campoamor",            products: ["pergolas", "shade-sails"] },
-  { i: 15, slug: "los-balcones",         products: ["awnings", "pergolas"] },
-  { i: 16, slug: "rojales",              products: ["awnings", "glass-curtains"] },
-  { i: 17, slug: "benidorm",             products: ["awnings", "shade-sails"] },
-  { i: 18, slug: "alicante",             products: ["awnings", "pergolas", "glass-curtains", "pvc-windows"] },
-  { i: 19, slug: "san-miguel-de-salinas", products: ["awnings", "pergolas"] },
-  { i: 20, slug: "dolores",              products: ["awnings", "shade-sails"] },
-];
+// Hub page LOCATIONS list now derives from the canonical SEO_LOCATIONS data —
+// keeps slug names consistent with the per-area URLs (/toldos-{slug}/).
+const LOCATIONS = SEO_LOCATIONS;
 
 function productLabel(key: PageId, locale: Locale): string {
-  const map: Record<PageId, string> = {
-    awnings: t(locale, 'nav.awnings'),
-    pergolas: t(locale, 'nav.pergolas'),
-    "glass-curtains": t(locale, 'nav.curtains'),
-    "shade-sails": t(locale, 'nav.sails'),
-    "pvc-windows": t(locale, 'nav.windows'),
-    home: "",
-    gallery: "",
-    blog: "",
-    contact: "",
-    "about-us": "",
-    quote: "",
-    "legal-notice": "",
-    "privacy-policy": "",
-    "cookie-policy": "",
-    "service-areas": "",
-    "licence-guide": "",
-    "bioclimatic-vs-aluminium": "",
-    "awning-guide": "",
-    "glass-curtains-guide": "",
-  };
-  return map[key];
-}
-
-function productPath(key: PageId, locale: Locale): string {
-  return localizedUrl(`/${slugMap[key][locale]}`, locale);
+  switch (key) {
+    case "awnings": return t(locale, 'nav.awnings');
+    case "pergolas": return t(locale, 'nav.pergolas');
+    case "glass-curtains": return t(locale, 'nav.curtains');
+    case "shade-sails": return t(locale, 'nav.sails');
+    case "pvc-windows": return t(locale, 'nav.windows');
+    default: return "";
+  }
 }
 
 export function ServiceAreasPage({ locale = 'es' }: { locale?: Locale }) {
@@ -183,10 +139,10 @@ export function ServiceAreasPage({ locale = 'es' }: { locale?: Locale }) {
                           {loc.products.map((p) => (
                             <a
                               key={p}
-                              href={productPath(p, locale)}
+                              href={productAreaUrl(p, loc.slug, locale)}
                               className="inline-block bg-sand border border-border rounded-full px-4 py-1.5 text-sm text-navy hover:bg-terracotta hover:text-white hover:border-terracotta transition-colors"
                             >
-                              {productLabel(p, locale)} — {name}
+                              {productLabel(p, locale)} - {name}
                             </a>
                           ))}
                         </div>

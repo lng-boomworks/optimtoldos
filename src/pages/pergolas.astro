@@ -8,6 +8,7 @@ import { getAlternateUrls } from '../i18n/routes';
 const alternateUrls = getAlternateUrls('pergolas');
 
 const serviceSchema = buildServiceSchema({
+  locale: 'es',
   name: "Pérgolas Bioclimáticas en Alicante",
   description: "Diseño e instalación de pérgolas bioclimáticas de aluminio con lamas orientables, motorización inteligente e iluminación LED.",
   serviceType: "Instalación de pérgolas",
@@ -23,10 +24,12 @@ const faqSchema = buildFAQSchema(
   Array.from({ length: 8 }, (_, i) => ({
     question: t('es', `pergolas.faq.${i + 1}.q` as any),
     answer: t('es', `pergolas.faq.${i + 1}.a` as any),
-  }))
+  })),
+  { locale: 'es' }
 );
 
 const productSchema = buildProductSchema({
+  locale: 'es',
   name: "Pérgolas Bioclimáticas en Alicante",
   description: "Pérgolas bioclimáticas de aluminio con lamas orientables, motorización y LED integrado. Fabricación a medida e instalación profesional.",
   image: "https://optimtoldos.com/images/pergolas/hero-pergolas.webp",
@@ -38,7 +41,7 @@ const productSchema = buildProductSchema({
 ---
 
 <Base
-  title="Pérgolas Bioclimáticas | Optim Toldos — Alicante"
+  title="Pérgolas Bioclimáticas | Optim Toldos - Alicante"
   description="Pérgolas de aluminio con lamas orientables. Regulación de luz, ventilación y protección contra lluvia. Instalación profesional en Alicante y Costa Blanca."
   locale="es"
   alternateUrls={alternateUrls}

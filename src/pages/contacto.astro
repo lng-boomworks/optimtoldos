@@ -7,6 +7,7 @@ import { getAlternateUrls } from '../i18n/routes';
 const alternateUrls = getAlternateUrls('contact');
 
 const schema = buildContactPageSchema({
+  locale: 'es',
   url: "https://optimtoldos.com/contacto",
   telephone: "+34 603 572 348",
   email: "info@optimtoldos.com",
@@ -18,7 +19,7 @@ const breadcrumbs = [
 ];
 ---
 
-<Base title="Contacto | Optim Toldos — Alicante" description="Contacta con Optim Toldos en Elche, Alicante. Toldos, pérgolas, cortinas de cristal, velas de sombra y ventanas PVC. Presupuesto sin compromiso." breadcrumbs={breadcrumbs} locale="es" alternateUrls={alternateUrls}>
+<Base title="Contacto | Optim Toldos - Alicante" description="Contacta con Optim Toldos en Elche, Alicante. Toldos, pérgolas, cortinas de cristal, velas de sombra y ventanas PVC. Presupuesto sin compromiso." breadcrumbs={breadcrumbs} locale="es" alternateUrls={alternateUrls}>
   <Fragment slot="head">
     <script is:inline type="application/ld+json" set:html={JSON.stringify(schema)} />
   </Fragment>

@@ -1,0 +1,177 @@
+---
+import Base from '../layouts/Base.astro';
+import { SubProductPage } from '../components/pages/SubProductPage';
+import {
+  buildServiceSchema,
+  buildFAQSchema,
+  buildBreadcrumbSchema,
+  buildProductSchema,
+} from '../utils/schema';
+import { getAlternateUrls } from '../i18n/routes';
+
+const locale = 'es' as const;
+const pageId = 'awnings-zip-screen';
+const pageUrl = 'https://optimtoldos.com/toldos-verticales-zip/';
+const productSlug = 'toldo-vertical-zip';
+const alternateUrls = getAlternateUrls(pageId);
+
+const hero = {
+  heading: 'Toldos Verticales ZIP Screen en Alicante',
+  description: 'Pantallas técnicas verticales con guía ZIP que cierran lateralmente terrazas y pérgolas. Protección solar, antiviento y privacidad sin perder visibilidad.',
+  image: '/images/gallery/toldo-monobloc.webp',
+  imageAlt: 'Toldo vertical ZIP screen cerrando una terraza',
+};
+
+const intro = 'El toldo vertical ZIP es la solución que más ha crecido en la Costa Blanca para cerrar pérgolas, porches y terrazas sin perder la sensación de exterior. La tela técnica corre por dos guías laterales con cremallera oculta, lo que evita el azote del viento, mejora la estanqueidad y da privacidad. Trabajamos con tejidos Soltis, Sergé Ferrari y Tempotest Star Screen.';
+
+const sections = [
+  {
+    heading: 'Cómo funciona el sistema ZIP',
+    body: [
+      'La tela técnica está reforzada en sus laterales con un cordón continuo (zip) que se desliza por dos guías de aluminio extrusionado. Al subir o bajar la lona, el zip queda enganchado en las guías, eliminando los huecos laterales típicos de los toldos verticales tradicionales.',
+      'Esto permite tensar la lona a pleno, soportar más viento (hasta 100 km/h en algunos modelos), evitar entrada de mosquitos y dar continuidad estética al cerramiento. El motor (siempre eléctrico en este sistema) se aloja en el cofre superior, normalmente Somfy, Nice o Elero.',
+    ],
+  },
+  {
+    heading: 'Tejidos técnicos: Soltis, Sergé Ferrari, Tempotest',
+    body: [
+      'Trabajamos tres familias de tejido según el uso: <strong>screen microperforado</strong> (1-5 % de apertura) que filtra la radiación pero deja ver al exterior - ideal para porches con vistas al mar; <strong>blackout</strong> opaco para dormitorios o salas de cine en exterior; y <strong>traslúcido tintado</strong> para pérgolas donde se busca difuminar la luz sin oscurecer.',
+      'Las marcas de referencia son <strong>Sergé Ferrari Soltis</strong> (gama 86, 92 y 99), <strong>Tempotest Star Screen</strong> y <strong>Mermet Screen</strong>. Todas vienen con tratamiento UV, anti-moho y garantía de 5-7 años en colores.',
+    ],
+  },
+  {
+    heading: 'Casos de uso típicos',
+    body: [
+      'Es la elección habitual para cerrar lateralmente una pérgola bioclimática o de aluminio fijo, transformándola en un espacio utilizable 9 meses al año. También funciona muy bien como protección solar oeste en pisos altos donde el sol entra por ventanas grandes a partir de las 17 h.',
+      'En hostelería se usa para cerrar terrazas de bares y restaurantes en invierno, manteniendo la transparencia. Y como cerramiento de garaje exterior o pérgola de jardín, evitando que el viento de Levante levante muebles y cojines.',
+    ],
+  },
+  {
+    heading: 'Instalación y compatibilidad',
+    body: [
+      'Las guías ZIP se anclan a paredes, postes de pérgola, columnas o vigas de carpintería metálica. Anchuras estándar: hasta 5 m por paño (para cerrar pérgolas de mayor tamaño combinamos varios módulos). Altura máxima: 4 m.',
+      'Plazo de fabricación: 3-5 semanas. Instalación: una jornada por dos técnicos para una pérgola estándar. Si el ZIP se instala sobre una pérgola ya existente, hacemos visita previa para verificar que la estructura aguanta los esfuerzos del cabezal y las guías.',
+    ],
+  },
+  {
+    heading: 'Mantenimiento',
+    body: [
+      'Es el toldo de menor mantenimiento gracias al motor cerrado y la tela siempre tensada. Limpieza de la tela cada 6 meses con agua jabonosa, revisión de guías ZIP cada año (para retirar polvo y arena de Levante) y comprobación del motor cada 24 meses.',
+      'Si el toldo se instala junto al mar, recomendamos una capa de protector de aluminio en las guías cada año para prevenir la oxidación blanca por salitre. Detalles completos en la <a href="/mantenimiento-toldos-costa-blanca/" class="text-terracotta hover:underline">guía de mantenimiento</a>.',
+    ],
+  },
+  {
+    heading: 'Precios 2026',
+    body: [
+      'Un toldo ZIP de 3 x 2,5 m con tela screen microperforado y motor Somfy parte de 1.150 euros instalado. Para 5 x 3 m con tela Soltis 86 y motor Somfy io con domótica, presupuesta entre 2.200 y 2.700 euros.',
+      'Si necesitas cerrar una pérgola completa con 4 ZIP (tres laterales y uno frontal), la inversión típica está entre 6.000 y 9.000 euros según superficie y acabados. Compara con el resto de tipologías en el <a href="/precio-toldos-alicante-2026/" class="text-terracotta hover:underline">desglose 2026</a>.',
+    ],
+  },
+];
+
+const comparison = {
+  heading: 'Tejidos ZIP: comparativa de gamas',
+  intro: 'Cuatro tejidos técnicos comparados por apertura y resistencia.',
+  columns: ['Tejido', 'Apertura', 'Visibilidad exterior', 'Uso recomendado'],
+  rows: [
+    ['Soltis 86', '4 %', 'Alta - permite ver el paisaje', 'Porches con vistas, terrazas'],
+    ['Soltis 92', '2 %', 'Media - filtra más luz', 'Cerramientos en oeste'],
+    ['Soltis 99', 'Menor 1 %', 'Baja - casi opaco diurno', 'Privacidad, sombra densa'],
+    ['Tempotest Star Screen', '3-5 %', 'Media-alta', 'Hostelería y pérgolas'],
+    ['Blackout opaco', '0 %', 'Nula', 'Dormitorios exteriores, cine'],
+  ],
+};
+
+const related = {
+  heading: 'Páginas relacionadas',
+  links: [
+    { label: 'Toldos cofre', href: '/toldos-cofre/' },
+    { label: 'Toldos brazo extensible', href: '/toldos-brazo-extensible/' },
+    { label: 'Pérgolas bioclimáticas', href: '/pergolas-bioclimaticas/' },
+    { label: 'Cortinas de cristal', href: '/cortinas-de-cristal/' },
+    { label: 'Volver a Toldos (hub)', href: '/toldos/' },
+    { label: 'Guía: cortinas de cristal en terraza', href: '/guia-cortinas-cristal-terraza/' },
+    { label: 'Servicio en Orihuela Costa', href: '/toldos-orihuela-costa/' },
+    { label: 'Servicio en Benidorm', href: '/toldos-benidorm/' },
+    { label: 'Servicio en Alicante ciudad', href: '/toldos-alicante/' },
+  ],
+};
+
+const faqs = [
+  { question: '¿Qué viento aguanta un toldo ZIP screen?', answer: 'Los modelos premium con tela Soltis 86 y guías ZIP completas aguantan vientos de hasta 100 km/h con la lona bajada. Los modelos estándar trabajan hasta 75-80 km/h. Por eso se usan tanto en zonas con Levante.' },
+  { question: '¿Sirve como cerramiento contra mosquitos?', answer: 'Sí, la cremallera ZIP cierra completamente los laterales. Con tejido screen es un excelente filtro contra mosquitos sin perder visibilidad ni ventilación.' },
+  { question: '¿Se puede instalar sobre una pérgola existente?', answer: 'Sí, siempre que la estructura soporte el peso del cabezal motorizado y la tensión de las guías. Hacemos visita técnica previa para verificarlo y reforzar si es necesario.' },
+  { question: '¿Qué motor lleva?', answer: 'Por norma motor Somfy RTS o io para integración con domótica. También trabajamos Nice TT2 y Elero VariEco. Todos con sensor de viento opcional Somfy Eolis o Nice Era Wind.' },
+  { question: '¿Cuál es la diferencia entre Soltis 86, 92 y 99?', answer: 'El número indica la opacidad: 86 deja pasar el 4 % de luz, 92 el 2 % y 99 menos del 1 %. Cuanto más alto, más privacidad pero menor visibilidad hacia el exterior.' },
+  { question: '¿Cuánto tiempo de fabricación?', answer: 'Entre 3 y 5 semanas. Las telas Soltis y Tempotest tienen stock europeo, así que rara vez se alargan los plazos salvo color especial.' },
+  { question: '¿Aporta aislamiento térmico?', answer: 'Sí, una pérgola cerrada con ZIP screen reduce hasta 10 grados la temperatura interior en las horas de máximo sol y mejora notablemente el confort en invierno gracias a la barrera frente al viento.' },
+  { question: '¿Necesito licencia del ayuntamiento?', answer: 'Si es un cerramiento sobre pérgola existente, depende del municipio - en general no requiere licencia mayor pero sí declaración responsable. Tienes el detalle en nuestra guía de licencias.' },
+];
+
+const cta = {
+  heading: 'Cierra tu pérgola con ZIP screen este verano',
+  body: 'Visita técnica gratuita y muestrarios físicos de Soltis, Tempotest y Mermet. Presupuesto cerrado en 48 horas.',
+  button: 'Solicitar presupuesto',
+  buttonHref: `/presupuesto/?product=${productSlug}`,
+  secondary: { label: 'Ver toldos (hub)', href: '/toldos/' },
+};
+
+const breadcrumbs = [
+  { name: 'Inicio', url: 'https://optimtoldos.com/' },
+  { name: 'Toldos', url: 'https://optimtoldos.com/toldos/' },
+  { name: 'Toldos verticales ZIP', url: pageUrl },
+];
+
+const serviceSchema = buildServiceSchema({
+  locale,
+  name: 'Toldos Verticales ZIP Screen en Alicante',
+  description: hero.description,
+  serviceType: 'Instalación de toldos verticales ZIP',
+  url: pageUrl,
+  offers: [
+    { name: 'Toldo vertical ZIP screen' },
+    { name: 'Cerramiento de pérgola con ZIP' },
+    { name: 'Motorización Somfy / Nice / Elero' },
+  ],
+});
+
+const faqSchema = buildFAQSchema(faqs, { locale });
+const breadcrumbSchema = buildBreadcrumbSchema(breadcrumbs, { locale });
+const productSchema = buildProductSchema({
+  locale,
+  name: 'Toldo Vertical ZIP Screen',
+  description: hero.description,
+  image: 'https://optimtoldos.com/images/gallery/toldo-monobloc.webp',
+  url: pageUrl,
+  lowPrice: '850',
+  highPrice: '2700',
+  category: 'Toldos verticales ZIP',
+});
+---
+
+<Base
+  title="Toldos Verticales ZIP Screen | Optim Toldos - Alicante"
+  description="Toldos verticales ZIP con tela técnica Soltis o Tempotest. Cierre lateral motorizado para pérgolas y terrazas en Alicante. Antiviento y antimosquitos."
+  locale={locale}
+  alternateUrls={alternateUrls}
+  breadcrumbs={breadcrumbs}
+>
+  <Fragment slot="head">
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(serviceSchema)} />
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(productSchema)} />
+  </Fragment>
+  <SubProductPage
+    client:load
+    locale={locale}
+    hero={hero}
+    intro={intro}
+    sections={sections}
+    comparison={comparison}
+    related={related}
+    faqHeading="Preguntas frecuentes"
+    faqs={faqs}
+    cta={cta}
+  />
+</Base>

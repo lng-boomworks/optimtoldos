@@ -1,0 +1,53 @@
+---
+import Base from '../../layouts/Base.astro';
+import { AwningPricesPage } from '../../components/pages/AwningPricesPage';
+import { buildFAQSchema, buildBreadcrumbSchema, buildServiceSchema } from '../../utils/schema';
+import { t } from '../../i18n/index';
+import { getAlternateUrls } from '../../i18n/routes';
+
+const alternateUrls = getAlternateUrls('awning-prices-2026');
+const pageUrl = 'https://optimtoldos.com/en/awning-prices-alicante-2026';
+
+const faqs = Array.from({ length: 8 }, (_, i) => ({
+  question: t('en', `pricesGuide.faq.${i + 1}.q` as any),
+  answer: t('en', `pricesGuide.faq.${i + 1}.a` as any),
+}));
+
+const breadcrumbs = [
+  { name: 'Home', url: 'https://optimtoldos.com/en/' },
+  { name: 'Awning prices 2026', url: pageUrl },
+];
+
+const faqSchema = buildFAQSchema(faqs, { locale: 'en' });
+const breadcrumbSchema = buildBreadcrumbSchema(breadcrumbs, { locale: 'en' });
+const serviceSchema = buildServiceSchema({
+  locale: 'en',
+  name: 'Awning prices in Alicante 2026',
+  description: 'Real price tables for cassette awnings, retractable arms, vertical ZIP screens, motorisation and sensors in the Alicante province.',
+  serviceType: 'Awning supply and installation',
+  url: pageUrl,
+  offers: [
+    { name: 'Full cassette awning' },
+    { name: 'Retractable arm awning' },
+    { name: 'Vertical ZIP awning' },
+    { name: 'Somfy and Nice motorisation' },
+    { name: 'Eolis 3D wind sensor' },
+  ],
+});
+---
+
+<Base
+  title={t('en', 'pricesGuide.title')}
+  description={t('en', 'pricesGuide.meta_description')}
+  breadcrumbs={breadcrumbs}
+  locale="en"
+  alternateUrls={alternateUrls}
+  type="article"
+>
+  <Fragment slot="head">
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(serviceSchema)} />
+  </Fragment>
+  <AwningPricesPage client:load locale="en" />
+</Base>

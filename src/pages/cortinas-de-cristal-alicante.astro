@@ -1,0 +1,121 @@
+---
+import Base from '../layouts/Base.astro';
+import { ProductZonePage } from '../components/pages/ProductZonePage';
+import {
+  buildServiceSchema,
+  buildBreadcrumbSchema,
+  buildFAQSchema,
+  buildProductSchema,
+} from '../utils/schema';
+
+const SITE = 'https://optimtoldos.com';
+const slug = 'alicante';
+const name = 'Alicante';
+const heading = `Cortinas de cristal en ${name}`;
+const intro = `Cortinas de cristal sin perfiles verticales en áticos y terrazas de Alicante: Playa de San Juan, Albufereta, Cabo Huertas y centro. Vidrio templado 10 mm con tratamiento marino.`;
+
+const pageUrl = `${SITE}/cortinas-de-cristal-${slug}/`;
+const alternateUrls = [
+  { locale: 'es' as const, href: pageUrl },
+  { locale: 'en' as const, href: `${SITE}/en/glass-curtains-alicante/` },
+];
+
+const locationParagraph = `En Alicante la cortina de cristal cumple un papel estratégico en áticos costeros: cierra la terraza contra el levante de tarde sin perder vistas a la bahía. En Playa de San Juan, Albufereta y Cabo Huertas las terrazas son el activo principal del piso pero también el punto más expuesto a la salinidad y al viento; un cerramiento sin perfiles verticales mantiene la sensación de exterior y multiplica las horas de uso. En el centro y la Avenida Maisonnave hay áticos pequeños donde una cortina añade 6 - 10 m² útiles, con cumplimiento de la ordenanza por su carácter de cerramiento ligero y desmontable.`;
+
+const whyFitsBullets = [
+  'Sistema sin perfiles verticales: vista despejada a la bahía o al castillo.',
+  'Vidrio templado 10 mm: aguanta el levante de Cabo Huertas y San Juan.',
+  'Perfil aluminio anodizado o lacado marino: imprescindible a < 1 km del mar.',
+  'Cumplimiento de la ordenanza municipal por ser cerramiento ligero desmontable.',
+  'Combinable con pérgola bioclimática previa para tener cubierta y laterales.',
+];
+
+const caseStudy = `Caso reciente: cortina corredera de 6 paños en ático de Playa de San Juan, vidrio templado 10 mm low-iron, perfil aluminio anodizado plata, herrajes A4 inoxidables, guía superior reforzada por viento y cerradura con llave en paño central. Total 1 jornada, plazo desde firma 4 semanas.`;
+
+const priceBand = `Cortina de cristal corredera 4 paños (3 m): 1.900 € - 2.600 €. Cortina 6 paños (4,5 m): 2.800 € - 3.700 €. Cortina 8 paños (6 m): 3.700 € - 4.900 €. Vidrio low-iron extra-claro: +15 - 20 %. Tratamiento marino reforzado: +5 - 8 %.`;
+
+const comunidadNote = `En Alicante la cortina de cristal en terraza privativa normalmente requiere comunicación previa al Ayuntamiento (o licencia menor en el casco antiguo y zonas catalogadas) y acuerdo de la junta de propietarios si modifica la fachada visible. En el Casco Antiguo, Centro Tradicional y entorno del Castillo de Santa Bárbara hay restricciones estéticas que revisamos antes de presupuestar.`;
+
+const faqs = [
+  { q: '¿Aguanta el levante en un ático de Cabo Huertas?', a: 'Sí. Con vidrio templado 10 mm y guía superior reforzada aguanta rachas de hasta 100 km/h. Para alturas superiores a planta 5 añadimos un cierre de seguridad superior. Es muy raro tener problemas con cortinas bien dimensionadas.' },
+  { q: '¿Necesito licencia para una cortina en Playa de San Juan?', a: 'Habitualmente comunicación previa al Ayuntamiento es suficiente, ya que la cortina es desmontable y no aumenta superficie construida. Pero requiere acuerdo de junta de propietarios. En el casco antiguo y centro histórico puede pedirse licencia menor con proyecto.' },
+  { q: '¿Qué herrajes y perfiles aguantan mejor la salinidad?', a: 'Herrajes A4 inoxidables (no A2) y perfilería de aluminio anodizado en color natural o lacado marino con sello QUALICOAT. Mantenimiento básico anual (limpiar guías y lubricar rodamientos) prolonga la vida útil más de 15 años en zona costera.' },
+  { q: '¿Pierdo aislamiento térmico cerrando con cristal?', a: 'No, al contrario: la cortina reduce la temperatura de la terraza unos 5 - 8°C en verano (efecto invernadero controlado por sombra superior) y ayuda a conservar el calor en invierno. La diferencia respecto a no tener cerramiento es notable.' },
+  { q: '¿Cuánto se tarda en montar?', a: 'Una cortina estándar 4 - 6 m se monta en una jornada. El plazo desde la firma del presupuesto es 3 - 5 semanas, dependiendo del color del perfil y de si se acopla a una estructura existente.' },
+];
+
+const related = [
+  { label: 'Pérgolas en Alicante', href: '/pergolas-alicante/' },
+  { label: 'Pérgola bioclimática en Alicante', href: '/pergola-bioclimatica-alicante/' },
+  { label: 'Toldos en Alicante', href: '/toldos-alicante/' },
+  { label: 'Cortinas de cristal (catálogo)', href: '/cortinas-de-cristal/' },
+  { label: 'Guía de cortinas de cristal', href: '/guia-cortinas-cristal-terraza/' },
+];
+
+const ctaHref = `/presupuesto/?product=cortinas-cristal&location=${slug}`;
+const contactHref = '/contacto/';
+const licenceHref = '/guia-licencias-pergolas-toldos-alicante/';
+
+const breadcrumbs = [
+  { name: 'Inicio', url: `${SITE}/` },
+  { name: 'Cortinas de cristal', url: `${SITE}/cortinas-de-cristal/` },
+  { name, url: pageUrl },
+];
+
+const serviceSchema = buildServiceSchema({
+  locale: 'es',
+  name: heading,
+  description: intro,
+  serviceType: 'Instalación de cortinas de cristal',
+  url: pageUrl,
+  offers: [
+    { name: 'Cortina de cristal corredera' },
+    { name: 'Cortina de cristal plegable' },
+    { name: 'Cerramiento sin perfiles verticales' },
+  ],
+});
+const breadcrumbSchema = buildBreadcrumbSchema(breadcrumbs, { locale: 'es' });
+const faqSchema = buildFAQSchema(faqs.map(f => ({ question: f.q, answer: f.a })), { locale: 'es' });
+const productSchema = buildProductSchema({
+  locale: 'es',
+  name: heading,
+  description: intro,
+  image: `${SITE}/images/cortinas/cortina-cristal-1.webp`,
+  url: pageUrl,
+  category: 'Cortinas de cristal',
+  lowPrice: '1900',
+  highPrice: '4900',
+});
+---
+
+<Base
+  title={`${heading} - Optim Toldos`}
+  description={intro}
+  locale="es"
+  alternateUrls={alternateUrls}
+  breadcrumbs={breadcrumbs}
+>
+  <Fragment slot="head">
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(serviceSchema)} />
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(productSchema)} />
+  </Fragment>
+  <ProductZonePage
+    client:load
+    locale="es"
+    heading={heading}
+    intro={intro}
+    heroImage="/images/cortinas/hero-cortinas-1280.webp"
+    locationParagraph={locationParagraph}
+    whyFitsBullets={whyFitsBullets}
+    caseStudy={caseStudy}
+    priceBand={priceBand}
+    comunidadNote={comunidadNote}
+    licenceHref={licenceHref}
+    faqs={faqs}
+    related={related}
+    ctaHref={ctaHref}
+    contactHref={contactHref}
+  />
+</Base>

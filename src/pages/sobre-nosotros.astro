@@ -7,6 +7,7 @@ import { getAlternateUrls } from '../i18n/routes';
 const alternateUrls = getAlternateUrls('about-us');
 
 const schema = buildOrganizationSchema({
+  locale: 'es',
   name: "Optim Toldos",
   description: "Especialistas en protección solar y vida exterior con más de 15 años de experiencia en Alicante.",
   url: "https://optimtoldos.com",
@@ -19,7 +20,7 @@ const breadcrumbs = [
 ];
 ---
 
-<Base title="Sobre Nosotros | Optim Toldos — Alicante" description="Más de 15 años de experiencia en toldos, pérgolas y protección solar en Elche y toda la provincia de Alicante." breadcrumbs={breadcrumbs} locale="es" alternateUrls={alternateUrls}>
+<Base title="Sobre Nosotros | Optim Toldos - Alicante" description="Más de 15 años de experiencia en toldos, pérgolas y protección solar en Elche y toda la provincia de Alicante." breadcrumbs={breadcrumbs} locale="es" alternateUrls={alternateUrls}>
   <Fragment slot="head">
     <script is:inline type="application/ld+json" set:html={JSON.stringify(schema)} />
   </Fragment>

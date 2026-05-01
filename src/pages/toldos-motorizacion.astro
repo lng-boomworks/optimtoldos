@@ -1,0 +1,180 @@
+---
+import Base from '../layouts/Base.astro';
+import { SubProductPage } from '../components/pages/SubProductPage';
+import {
+  buildServiceSchema,
+  buildFAQSchema,
+  buildBreadcrumbSchema,
+  buildProductSchema,
+} from '../utils/schema';
+import { getAlternateUrls } from '../i18n/routes';
+
+const locale = 'es' as const;
+const pageId = 'awnings-motorisation';
+const pageUrl = 'https://optimtoldos.com/toldos-motorizacion/';
+const productSlug = 'motorizacion-toldo';
+const alternateUrls = getAlternateUrls(pageId);
+
+const hero = {
+  heading: 'Motorización de Toldos: Somfy, Nice y Elero',
+  description: 'Guía completa para elegir motor, mando y sensores. Compara las gamas de Somfy, Nice y Elero según tipo de toldo, presupuesto y nivel de automatización deseado.',
+  image: '/images/gallery/toldo-cofre-extensible.webp',
+  imageAlt: 'Toldo motorizado controlado con mando radio',
+};
+
+const intro = 'Motorizar el toldo deja de ser un capricho cuando vives en la Costa Blanca: el viento de Levante cambia en minutos, los toldos grandes resultan incómodos de manejar a manivela y los sensores integrados pueden alargar la vida útil del tejido en años. En esta guía explicamos qué motor elegir según tu toldo, cómo se diferencian Somfy, Nice y Elero, y qué automatismos merecen la pena en 2026.';
+
+const sections = [
+  {
+    heading: '¿Por qué motorizar el toldo?',
+    body: [
+      'Tres razones lo justifican. Primera, <strong>protección automática</strong>: con sensor de viento Somfy Eolis o Nice Era, el toldo se recoge automáticamente cuando el aire supera el umbral configurado, lo que evita roturas de brazos y desgarros de lona durante temporales repentinos.',
+      'Segunda, <strong>comodidad real</strong>: a partir de 4 m de anchura o 3 m de voladizo, la manivela exige fuerza notable. Tercera, <strong>integración domótica</strong>: con motores io o Z-Wave puedes vincular toldos, persianas y luces a una rutina central (por ejemplo, recoger todo cuando saltas la alarma o detectas viento).',
+    ],
+  },
+  {
+    heading: 'Marcas: Somfy, Nice y Elero',
+    body: [
+      '<strong>Somfy</strong> es el líder europeo. Sus motores RTS (radio bidireccional) son el estándar en el sector y la gama io añade integración smart-home y feedback. Disponibilidad de recambios excelente, garantía de 5 años.',
+      '<strong>Nice</strong> es la alternativa italiana de calidad equivalente y precio ligeramente más bajo. Compatible con TT2 (radio sencilla) y Era (gama avanzada). <strong>Elero</strong>, alemán, destaca en motores con encoder absoluto y duración prolongada en uso intensivo (hostelería). En Optim Toldos trabajamos las tres marcas según necesidad.',
+    ],
+  },
+  {
+    heading: 'Tipos de motor por aplicación',
+    body: [
+      'Para <strong>toldos de brazo extensible</strong>, motor tubular de 30-45 Nm. Para <strong>toldos cofre completos</strong>, 45-50 Nm. Para <strong>toldos verticales ZIP</strong>, motor con final de carrera electrónico (la tela tensada exige mucha precisión). Para <strong>cerramientos grandes</strong>, motores reforzados de 100 Nm.',
+      'En todos los casos recomendamos motor con receptor radio integrado (RTS o io) sobre los modelos cableados, porque elimina obras eléctricas en la pared y permite añadir mandos y sensores adicionales sin tirar más cable.',
+    ],
+  },
+  {
+    heading: 'Sensores: viento, sol y lluvia',
+    body: [
+      'El sensor de viento es el más importante: detecta ráfagas y recoge el toldo automáticamente. Modelos recomendados: <strong>Somfy Eolis 3D Wirefree</strong>, <strong>Nice Era Wind</strong> y <strong>Elero VarioTec Flush</strong>. Tienes el detalle completo en nuestra <a href="/sensor-viento-toldos-motorizados/" class="text-terracotta hover:underline">guía de sensores de viento</a>.',
+      'El sensor de sol despliega el toldo cuando la radiación supera un umbral - útil si pasas mucho tiempo fuera de casa. El sensor de lluvia es secundario: con buen sensor de viento y un toldo bien fabricado, no es imprescindible salvo en hostelería de exterior.',
+    ],
+  },
+  {
+    heading: 'Mandos y domótica',
+    body: [
+      'Los mandos básicos Somfy Situo o Nice Mini Way controlan un canal a un precio asequible. Los avanzados (Somfy Telis 4, Nice Era P) gestionan hasta 16 toldos diferentes con grupos. Para integración con Alexa, Google Home o HomeKit, el puente es <strong>Somfy TaHoma</strong> (o Connexoon en versión más simple) y <strong>Nice Mynice</strong>.',
+      'Si ya tienes un sistema KNX o Loxone, ambos hablan con motores Somfy io y Nice mediante pasarela. Los nuevos modelos Matter son compatibles con prácticamente cualquier ecosistema doméstico.',
+    ],
+  },
+  {
+    heading: 'Costes y plazos',
+    body: [
+      'Motorizar un toldo nuevo añade 200-350 euros respecto a la versión manual. El sensor de viento aporta 80-150 euros. El receptor io para domótica, 90-130 euros adicionales. Si motorizas un toldo existente, suma 100-150 euros de mano de obra.',
+      'Plazo: si pides el toldo nuevo motorizado de fábrica, la entrega es la habitual (2-4 semanas). Si motorizas posteriormente, en una visita de medio día queda operativo. Más detalle de costes en el <a href="/precio-toldos-alicante-2026/" class="text-terracotta hover:underline">desglose 2026</a>.',
+    ],
+  },
+];
+
+const comparison = {
+  heading: 'Somfy vs Nice vs Elero: comparativa rápida',
+  intro: 'Tres marcas premium para diferentes prioridades.',
+  columns: ['Característica', 'Somfy', 'Nice', 'Elero'],
+  rows: [
+    ['Origen', 'Francia', 'Italia', 'Alemania'],
+    ['Tecnología radio', 'RTS / io / TaHoma', 'TT2 / Era / Mynice', 'ProLine / VarioTec'],
+    ['Domótica avanzada', 'Excelente (io, Matter)', 'Buena (Mynice + Matter)', 'Buena (KNX, Loxone)'],
+    ['Recambios disponibles', 'Excelentes en toda Europa', 'Buenos', 'Buenos en hostelería'],
+    ['Garantía estándar', '5 años', '5 años', '5 años'],
+    ['Precio motor 35 Nm', '180 - 230 euros', '160 - 210 euros', '200 - 260 euros'],
+  ],
+};
+
+const related = {
+  heading: 'Páginas relacionadas',
+  links: [
+    { label: 'Toldos cofre', href: '/toldos-cofre/' },
+    { label: 'Toldos brazo extensible', href: '/toldos-brazo-extensible/' },
+    { label: 'Toldos verticales ZIP', href: '/toldos-verticales-zip/' },
+    { label: 'Volver a Toldos (hub)', href: '/toldos/' },
+    { label: 'Sensor de viento para toldos motorizados', href: '/sensor-viento-toldos-motorizados/' },
+    { label: 'Guía: elegir toldo en Costa Blanca', href: '/guia-elegir-toldo-costa-blanca/' },
+    { label: 'Servicio en Alicante ciudad', href: '/toldos-alicante/' },
+    { label: 'Servicio en Torrevieja', href: '/toldos-torrevieja/' },
+    { label: 'Servicio en Elche', href: '/toldos-elche/' },
+  ],
+};
+
+const faqs = [
+  { question: '¿Vale la pena motorizar un toldo pequeño?', answer: 'Si la anchura es inferior a 3 m y la altura es accesible, el manual con manivela es perfectamente cómodo y ahorras 200-300 euros. A partir de 3,5 m de anchura o 2,5 m de voladizo, motorizar marca una diferencia clara en confort.' },
+  { question: '¿Somfy o Nice?', answer: 'Para domótica avanzada y recambios a 10 años vista, Somfy. Para igual calidad técnica con precio ligeramente menor, Nice. Para hostelería con uso intensivo (decenas de ciclos diarios), Elero. En el día a día doméstico la diferencia entre las tres es mínima.' },
+  { question: '¿Cómo sé que el sensor de viento funciona?', answer: 'Hay que probarlo regularmente. Los modelos buenos llevan un test integrado: pulsando un botón fuerzan una recogida simulada. Recomendamos una verificación cada 6 meses, especialmente en zonas costeras donde el polvo puede afectar al sensor.' },
+  { question: '¿Puedo controlar el toldo con Alexa o Google Home?', answer: 'Sí, con motor Somfy io + puente TaHoma (o Connexoon Window) o con Nice + Mynice. Tras emparejar, dices "Alexa, recoge el toldo" y se ejecuta. Matter está extendiendo la compatibilidad sin necesidad de puentes en los modelos 2025-2026.' },
+  { question: '¿Qué pasa si se va la luz?', answer: 'El toldo se queda en la posición en la que estaba. Los motores tubulares no llevan batería de respaldo. Si quieres recogida automática ante apagón, hay que añadir un SAI o usar motores específicos solares (más caros y poco habituales).' },
+  { question: '¿Cuánto consume el motor?', answer: 'Muy poco. Un motor de 35 Nm consume 1,1 A durante el ciclo (unos 20-30 segundos por subida o bajada). En un mes el consumo es prácticamente despreciable, menos de 0,5 kWh.' },
+  { question: '¿Se puede motorizar un toldo existente?', answer: 'Sí, si el toldo es de calidad y la mecánica está sana. Sustituimos el eje manual por uno motorizado en una visita de medio día. Si el toldo es muy antiguo o tiene daños estructurales, conviene cambiarlo entero.' },
+  { question: '¿Qué garantía tienen los motores?', answer: '5 años directos del fabricante en Somfy, Nice y Elero. La mayoría de averías ocurren por problemas eléctricos externos (rayos, sobretensiones), evitables con un protector de sobretensión adecuado.' },
+];
+
+const cta = {
+  heading: 'Motoriza tu toldo con sensor de viento',
+  body: 'Visita técnica gratuita: te recomendamos la combinación motor + sensores que mejor encaja con tu toldo, fachada y exposición.',
+  button: 'Solicitar presupuesto',
+  buttonHref: `/presupuesto/?product=${productSlug}`,
+  secondary: { label: 'Ver toldos (hub)', href: '/toldos/' },
+};
+
+const breadcrumbs = [
+  { name: 'Inicio', url: 'https://optimtoldos.com/' },
+  { name: 'Toldos', url: 'https://optimtoldos.com/toldos/' },
+  { name: 'Motorización de toldos', url: pageUrl },
+];
+
+const serviceSchema = buildServiceSchema({
+  locale,
+  name: 'Motorización de Toldos en Alicante',
+  description: hero.description,
+  serviceType: 'Motorización e instalación de motor de toldo',
+  url: pageUrl,
+  offers: [
+    { name: 'Motor Somfy RTS / io' },
+    { name: 'Motor Nice TT2 / Era' },
+    { name: 'Motor Elero ProLine / VarioTec' },
+    { name: 'Sensor de viento y sol' },
+    { name: 'Integración domótica TaHoma / Mynice' },
+  ],
+});
+
+const faqSchema = buildFAQSchema(faqs, { locale });
+const breadcrumbSchema = buildBreadcrumbSchema(breadcrumbs, { locale });
+const productSchema = buildProductSchema({
+  locale,
+  name: 'Motorización de Toldos a Medida',
+  description: hero.description,
+  image: 'https://optimtoldos.com/images/gallery/toldo-cofre-extensible.webp',
+  url: pageUrl,
+  lowPrice: '200',
+  highPrice: '900',
+  category: 'Motorización de toldos',
+});
+---
+
+<Base
+  title="Motorización de Toldos: Somfy, Nice y Elero | Optim Toldos"
+  description="Guía profesional 2026 para motorizar toldos en Alicante. Comparativa Somfy, Nice y Elero, sensores de viento, integración domótica y precios."
+  locale={locale}
+  alternateUrls={alternateUrls}
+  breadcrumbs={breadcrumbs}
+>
+  <Fragment slot="head">
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(serviceSchema)} />
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(productSchema)} />
+  </Fragment>
+  <SubProductPage
+    client:load
+    locale={locale}
+    hero={hero}
+    intro={intro}
+    sections={sections}
+    comparison={comparison}
+    related={related}
+    faqHeading="Preguntas frecuentes"
+    faqs={faqs}
+    cta={cta}
+  />
+</Base>

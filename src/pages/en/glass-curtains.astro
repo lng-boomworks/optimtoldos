@@ -8,6 +8,7 @@ import { getAlternateUrls } from '../../i18n/routes';
 const alternateUrls = getAlternateUrls('glass-curtains');
 
 const serviceSchema = buildServiceSchema({
+  locale: 'en',
   name: t('en', 'curtains.hero.heading'),
   description: t('en', 'curtains.hero.description'),
   serviceType: "Glass Curtain Installation",
@@ -23,10 +24,12 @@ const faqSchema = buildFAQSchema(
   Array.from({ length: 8 }, (_, i) => ({
     question: t('en', `curtains.faq.${i + 1}.q` as any),
     answer: t('en', `curtains.faq.${i + 1}.a` as any),
-  }))
+  })),
+  { locale: 'en' }
 );
 
 const productSchema = buildProductSchema({
+  locale: 'en',
   name: "Glass Curtains in Alicante",
   description: "Frameless folding tempered glass curtains. Enclose your terrace without losing the views. Professional installation in Alicante.",
   image: "https://optimtoldos.com/images/cortinas/hero-cortinas.webp",
@@ -38,7 +41,7 @@ const productSchema = buildProductSchema({
 ---
 
 <Base
-  title="Glass Curtains | Optim Toldos — Alicante"
+  title="Glass Curtains | Optim Toldos - Alicante"
   description="Frameless folding tempered glass panels. Enclose your terrace without losing the views. Professional installation in Alicante and Costa Blanca."
   locale="en"
   alternateUrls={alternateUrls}

@@ -35,6 +35,14 @@ const {
 
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 const ogImageURL = new URL(ogImage, Astro.site);
+
+// Non-production builds (dev preview, staging) must not be indexed by search
+// engines — they would compete with the real production site for the same
+// content. Triggered when SITE_URL env var ≠ optimtoldos.com at build time.
+const PROD_HOST = 'optimtoldos.com';
+const isPreviewBuild = Astro.site ? Astro.site.host !== PROD_HOST : false;
+const effectiveNoindex = noindex || isPreviewBuild;
+const isProductionBuild = !isPreviewBuild;
 ---
 
 <!doctype html>
@@ -42,9 +50,38 @@ const ogImageURL = new URL(ogImage, Astro.site);
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    {isProductionBuild && (
+      <>
+        <!-- Consent Mode v2: default-deny until user accepts via cookie banner -->
+        <script is:inline>
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          window.gtag = gtag;
+          gtag('consent', 'default', {
+            'ad_storage': 'denied',
+            'ad_user_data': 'denied',
+            'ad_personalization': 'denied',
+            'analytics_storage': 'denied',
+            'functionality_storage': 'granted',
+            'security_storage': 'granted',
+            'wait_for_update': 500
+          });
+        </script>
+
+        <!-- Google Tag Manager -->
+        <script is:inline>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+        new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+        j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+        'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+        })(window,document,'script','dataLayer','GTM-WQ2VG5R7');</script>
+        <!-- End Google Tag Manager -->
+      </>
+    )}
+
     <title>{title}</title>
     <meta name="description" content={description} />
-    {noindex && <meta name="robots" content="noindex, nofollow" />}
+    {effectiveNoindex && <meta name="robots" content="noindex, nofollow" />}
     <link rel="canonical" href={canonicalURL} />
 
     <!-- Open Graph -->
@@ -100,9 +137,10 @@ const ogImageURL = new URL(ogImage, Astro.site);
       ],
       "address": {
         "@type": "PostalAddress",
+        "streetAddress": "Calle Sor Josefa Alcorta 18, 2º IZ",
         "addressLocality": "Elche",
         "addressRegion": "Alicante",
-        "postalCode": "03200",
+        "postalCode": "03204",
         "addressCountry": "ES"
       },
       "geo": {
@@ -147,6 +185,12 @@ const ogImageURL = new URL(ogImage, Astro.site);
         }
       ],
       "knowsLanguage": ["es", "en"],
+      "inLanguage": locale,
+      "sameAs": [
+        "https://www.facebook.com/optimtoldos",
+        "https://www.instagram.com/optimtoldos/",
+        "https://www.google.com/maps/place/Optim+Toldos+-+Awnings+%26+Pergolas/@38.2589457,-0.7046929,752m/data=!3m2!1e3!4b1!4m6!3m5!1s0xd63b7fe57fdf8fd:0x3c7862ac8146408e!8m2!3d38.2589415!4d-0.702118!16s%2Fg%2F11tp3sdbvk"
+      ],
       "priceRange": "€€"
     })} />
 
@@ -155,6 +199,7 @@ const ogImageURL = new URL(ogImage, Astro.site);
       <script is:inline type="application/ld+json" set:html={JSON.stringify({
         "@context": "https://schema.org",
         "@type": "BreadcrumbList",
+        "inLanguage": locale,
         "itemListElement": breadcrumbs.map((item: Breadcrumb, i: number) => ({
           "@type": "ListItem",
           "position": i + 1,
@@ -167,6 +212,15 @@ const ogImageURL = new URL(ogImage, Astro.site);
     <slot name="head" />
   </head>
   <body class="min-h-screen flex flex-col bg-background text-foreground">
+    {isProductionBuild && (
+      <>
+        <!-- Google Tag Manager (noscript) -->
+        <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WQ2VG5R7"
+        height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+        <!-- End Google Tag Manager (noscript) -->
+      </>
+    )}
+
     <slot />
     <WhatsAppButton client:load locale={locale} />
     <CookieBanner client:load locale={locale} />

@@ -49,13 +49,13 @@ const projectCategoryKeys: CategoryKey[] = [
 ];
 
 // Location slug per project (1-indexed parallel to gallery.project.N.title).
-// Matches the Service Areas page anchors so captions deep-link correctly.
+// Slugs match SEO_LOCATIONS — captions deep-link to the dedicated per-area page.
 const projectLocationSlugs: string[] = [
   "torrevieja",
   "elche",
   "santa-pola",
   "alicante",
-  "guardamar-del-segura",
+  "guardamar",
   "orihuela-costa",
   "benidorm",
   "cabo-roig",
@@ -69,6 +69,19 @@ const projectLocationSlugs: string[] = [
   "alicante",
 ];
 
+const EN_AREA_SLUGS_GALLERY = new Set([
+  "torrevieja","orihuela-costa","ciudad-quesada","guardamar","la-marina","elche",
+  "alicante","santa-pola","gran-alacant","benidorm","cabo-roig","la-zenia",
+  "punta-prima","villamartin",
+]);
+
+function galleryAreaHref(slug: string, locale: Locale): string {
+  if (locale === "en" && EN_AREA_SLUGS_GALLERY.has(slug)) {
+    return `/en/awnings-${slug}/`;
+  }
+  return `/toldos-${slug}/`;
+}
+
 export function GaleriaPage({ locale = 'es' }: { locale?: Locale }) {
   const [activeFilter, setActiveFilter] = useState<CategoryKey>("all");
 
@@ -81,9 +94,9 @@ export function GaleriaPage({ locale = 'es' }: { locale?: Locale }) {
 
   const projects = Array.from({ length: projectCount }, (_, i) => {
     const fullTitle = t(locale, `gallery.project.${i + 1}.title` as any);
-    // Titles follow the format "<product> — <location>". Split on the em-dash
+    // Titles follow the format "<product> - <location>". Split on the em-dash
     // to render the location portion as a deep-link to Service Areas.
-    const [productPart, locationPart] = fullTitle.split(" — ");
+    const [productPart, locationPart] = fullTitle.split(" - ");
     return {
       product: productPart,
       locationName: locationPart ?? "",
@@ -155,7 +168,7 @@ export function GaleriaPage({ locale = 'es' }: { locale?: Locale }) {
               <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
                 {filtered.map((project, i) => {
                   const altText = project.locationName
-                    ? `${project.product} — ${project.locationName}`
+                    ? `${project.product} - ${project.locationName}`
                     : project.product;
                   return (
                     <FadeIn key={`${activeFilter}-${project.product}-${project.locationSlug}`} delay={i * 0.05}>
@@ -175,9 +188,9 @@ export function GaleriaPage({ locale = 'es' }: { locale?: Locale }) {
                               {project.product}
                               {project.locationName && (
                                 <>
-                                  {" — "}
+                                  {" - "}
                                   <a
-                                    href={`${serviceAreasPath}#${project.locationSlug}`}
+                                    href={galleryAreaHref(project.locationSlug, locale)}
                                     className="underline decoration-white/40 hover:decoration-white"
                                   >
                                     {project.locationName}

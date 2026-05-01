@@ -1,0 +1,121 @@
+---
+import Base from '../layouts/Base.astro';
+import { ProductZonePage } from '../components/pages/ProductZonePage';
+import {
+  buildServiceSchema,
+  buildBreadcrumbSchema,
+  buildFAQSchema,
+  buildProductSchema,
+} from '../utils/schema';
+
+const SITE = 'https://optimtoldos.com';
+const slug = 'elche';
+const name = 'Elche';
+const heading = `Cortinas de cristal en ${name}`;
+const intro = `Cortinas de cristal correderas y plegables para áticos, terrazas y locales de Elche: vidrio templado, perfiles aluminio y montaje en una jornada.`;
+
+const pageUrl = `${SITE}/cortinas-de-cristal-${slug}/`;
+const alternateUrls = [
+  { locale: 'es' as const, href: pageUrl },
+  { locale: 'en' as const, href: `${SITE}/en/glass-curtains-${slug}/` },
+];
+
+const locationParagraph = `En Elche la cortina de cristal sirve para algo distinto que en costa: cerrar la terraza contra el calor extremo de verano y los vientos secos del Vinalopó, manteniendo la luz natural de un cerramiento totalmente transparente. Funciona muy bien en chalets de Altabix, Travalón y la huerta del Vinalopó, donde las terrazas grandes pueden convertirse en salones cerrados durante 4 - 5 meses al año si no se cierran. El centro histórico (Vila Murada, entorno del Palmeral) impone restricciones estéticas que la cortina cumple por su propia naturaleza, ya que es prácticamente invisible al estar cerrada.`;
+
+const whyFitsBullets = [
+  'Cierre transparente: la terraza sigue siendo terraza visualmente.',
+  'Eficacia térmica: cerrada reduce la temperatura de la terraza unos 5 - 8°C en verano.',
+  'Compatible con la ordenanza estética de Elche centro y entorno Palmeral (cerramiento ligero, no opaco).',
+  'Aluminio lacado en horno con sello QUALICOAT: 15+ años sin pérdida de color.',
+  'Compatible con cualquier toldo o pérgola previa: la cortina cierra el lateral.',
+];
+
+const caseStudy = `Caso reciente: cortina corredera de 8 paños en chalet de Altabix, vidrio templado 10 mm low-iron (extra-claro), perfil aluminio lacado RAL 9010, herrajes A4 inoxidables, cerradura central con llave. Apertura total acordeón sobre eje izquierdo cuando se quiere usar la terraza abierta. Total 1 jornada de instalación, 4 semanas desde firma.`;
+
+const priceBand = `Cortina de cristal corredera 4 paños (3 m): 1.700 € - 2.400 €. Cortina 6 paños (4,5 m): 2.600 € - 3.500 €. Cortina 8 paños (6 m): 3.500 € - 4.700 €. Vidrio low-iron extra-claro: +15 - 20 %. Vidrio con cámara o térmico: bajo presupuesto específico.`;
+
+const comunidadNote = `En Elche, una cortina de cristal en terraza privativa normalmente requiere comunicación previa al Ayuntamiento; en zonas catalogadas (Vila Murada, Palmeral, Misteri) puede exigir licencia menor con proyecto. En comunidad de propietarios la junta debe aprobar la instalación si afecta a la fachada visible. Tramitamos toda la documentación.`;
+
+const faqs = [
+  { q: '¿Necesito licencia para una cortina de cristal en Elche centro?', a: 'En zonas catalogadas (Vila Murada, Palmeral, entornos del Misteri) puede exigir licencia menor con proyecto. En el resto de Elche, comunicación previa al Ayuntamiento. Le indicamos qué aplica en su caso antes de empezar.' },
+  { q: '¿Qué reduce la temperatura, cerrarla o ventilarla?', a: 'Depende. En verano de Elche con 40°C exteriores, mantener la cortina cerrada con un toldo o pérgola arriba reduce la temperatura interior unos 5 - 8°C; abrirla con sombra encima ventila pero no reduce la radiación. La estrategia más eficaz es cortina cerrada al mediodía y abierta al amanecer y al atardecer.' },
+  { q: '¿Es estanca contra la lluvia?', a: 'Casi: las juntas EPDM y la guía superior reducen la entrada de agua a un 95 % en lluvia normal. En tormentas con viento fuerte puede pasar algún hilo de agua por la guía inferior; un perfil de cierre opcional la elimina por completo.' },
+  { q: '¿Puedo combinarla con un toldo extensible existente?', a: 'Sí. La cortina cierra los laterales o el frontal, y el toldo da sombra en cubierta. La combinación es la más versátil para terrazas en Elche, ya que cubre sol, lluvia y viento sin perder luz.' },
+  { q: '¿Cuánto tiempo dura el lacado del aluminio?', a: 'Si es lacado en horno con sello QUALICOAT (estándar en nuestras instalaciones), más de 15 años sin pérdida apreciable de color o brillo. La diferencia con un lacado económico se nota a partir del año 5 con manchas y decoloración irregular.' },
+];
+
+const related = [
+  { label: 'Pérgolas en Elche', href: '/pergolas-elche/' },
+  { label: 'Pérgola bioclimática en Elche', href: '/pergola-bioclimatica-elche/' },
+  { label: 'Toldos en Elche', href: '/toldos-elche/' },
+  { label: 'Cortinas de cristal (catálogo)', href: '/cortinas-de-cristal/' },
+  { label: 'Guía de cortinas de cristal', href: '/guia-cortinas-cristal-terraza/' },
+];
+
+const ctaHref = `/presupuesto/?product=cortinas-cristal&location=${slug}`;
+const contactHref = '/contacto/';
+const licenceHref = '/guia-licencias-pergolas-toldos-alicante/';
+
+const breadcrumbs = [
+  { name: 'Inicio', url: `${SITE}/` },
+  { name: 'Cortinas de cristal', url: `${SITE}/cortinas-de-cristal/` },
+  { name, url: pageUrl },
+];
+
+const serviceSchema = buildServiceSchema({
+  locale: 'es',
+  name: heading,
+  description: intro,
+  serviceType: 'Instalación de cortinas de cristal',
+  url: pageUrl,
+  offers: [
+    { name: 'Cortina de cristal corredera' },
+    { name: 'Cortina de cristal plegable' },
+    { name: 'Cerramiento sin perfiles verticales' },
+  ],
+});
+const breadcrumbSchema = buildBreadcrumbSchema(breadcrumbs, { locale: 'es' });
+const faqSchema = buildFAQSchema(faqs.map(f => ({ question: f.q, answer: f.a })), { locale: 'es' });
+const productSchema = buildProductSchema({
+  locale: 'es',
+  name: heading,
+  description: intro,
+  image: `${SITE}/images/cortinas/cortina-cristal-1.webp`,
+  url: pageUrl,
+  category: 'Cortinas de cristal',
+  lowPrice: '1700',
+  highPrice: '4700',
+});
+---
+
+<Base
+  title={`${heading} - Optim Toldos`}
+  description={intro}
+  locale="es"
+  alternateUrls={alternateUrls}
+  breadcrumbs={breadcrumbs}
+>
+  <Fragment slot="head">
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(serviceSchema)} />
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(productSchema)} />
+  </Fragment>
+  <ProductZonePage
+    client:load
+    locale="es"
+    heading={heading}
+    intro={intro}
+    heroImage="/images/cortinas/hero-cortinas-1280.webp"
+    locationParagraph={locationParagraph}
+    whyFitsBullets={whyFitsBullets}
+    caseStudy={caseStudy}
+    priceBand={priceBand}
+    comunidadNote={comunidadNote}
+    licenceHref={licenceHref}
+    faqs={faqs}
+    related={related}
+    ctaHref={ctaHref}
+    contactHref={contactHref}
+  />
+</Base>

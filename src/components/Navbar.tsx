@@ -1,5 +1,5 @@
-import { useState, useEffect } from "react";
-import { Menu, X } from "lucide-react";
+import { useEffect, useRef, useState, type ComponentType, type SVGProps } from "react";
+import { ChevronDown, Images, MapPin, Menu, Newspaper, Users, X } from "lucide-react";
 import { Button } from "./Button";
 import { LanguageSwitcher } from "./LanguageSwitcher";
 import { url, localizedUrl } from "../utils/paths";
@@ -8,6 +8,15 @@ import { slugMap, type PageId } from "../i18n/slugs";
 
 interface NavbarProps {
   locale?: Locale;
+}
+
+type IconType = ComponentType<SVGProps<SVGSVGElement>>;
+type NavLink = { name: string; path: string; icon?: IconType; description?: string };
+type NavGroup = { name: string; children: NavLink[] };
+type NavItem = NavLink | NavGroup;
+
+function isGroup(item: NavItem): item is NavGroup {
+  return (item as NavGroup).children !== undefined;
 }
 
 function navPath(pageId: PageId, locale: Locale): string {
@@ -19,17 +28,25 @@ export function Navbar({ locale = 'es' }: NavbarProps) {
   const [location, setLocation] = useState("");
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [openGroup, setOpenGroup] = useState<string | null>(null);
+  const [openMobileGroup, setOpenMobileGroup] = useState<string | null>(null);
+  const desktopNavRef = useRef<HTMLElement | null>(null);
 
-  const navLinks = [
+  const navItems: NavItem[] = [
     { name: t(locale, 'nav.awnings'), path: navPath('awnings', locale) },
     { name: t(locale, 'nav.pergolas'), path: navPath('pergolas', locale) },
-    { name: t(locale, 'nav.curtains'), path: navPath('glass-curtains', locale) },
+    { name: t(locale, 'nav.curtains_short'), path: navPath('glass-curtains', locale) },
     { name: t(locale, 'nav.sails'), path: navPath('shade-sails', locale) },
-    { name: t(locale, 'nav.windows'), path: navPath('pvc-windows', locale) },
-    { name: t(locale, 'nav.gallery'), path: navPath('gallery', locale) },
-    { name: t(locale, 'nav.service_areas'), path: navPath('service-areas', locale) },
-    { name: t(locale, 'nav.about'), path: navPath('about-us', locale) },
-    { name: t(locale, 'nav.blog'), path: navPath('blog', locale) },
+    { name: t(locale, 'nav.windows_short'), path: navPath('pvc-windows', locale) },
+    {
+      name: t(locale, 'nav.more'),
+      children: [
+        { name: t(locale, 'nav.gallery'), path: navPath('gallery', locale), icon: Images, description: t(locale, 'nav.gallery_desc') },
+        { name: t(locale, 'nav.service_areas'), path: navPath('service-areas', locale), icon: MapPin, description: t(locale, 'nav.service_areas_desc') },
+        { name: t(locale, 'nav.about'), path: navPath('about-us', locale), icon: Users, description: t(locale, 'nav.about_desc') },
+        { name: t(locale, 'nav.blog'), path: navPath('blog', locale), icon: Newspaper, description: t(locale, 'nav.blog_desc') },
+      ],
+    },
     { name: t(locale, 'nav.contact'), path: navPath('contact', locale) },
   ];
 
@@ -40,6 +57,25 @@ export function Navbar({ locale = 'es' }: NavbarProps) {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
+  useEffect(() => {
+    if (!openGroup) return;
+    const handleClick = (e: MouseEvent) => {
+      if (!desktopNavRef.current?.contains(e.target as Node)) setOpenGroup(null);
+    };
+    const handleKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setOpenGroup(null);
+    };
+    document.addEventListener("mousedown", handleClick);
+    document.addEventListener("keydown", handleKey);
+    return () => {
+      document.removeEventListener("mousedown", handleClick);
+      document.removeEventListener("keydown", handleKey);
+    };
+  }, [openGroup]);
+
+  const isLinkActive = (path: string) => location === path;
+  const isGroupActive = (group: NavGroup) => group.children.some((c) => isLinkActive(c.path));
 
   return (
     <header
@@ -62,24 +98,99 @@ export function Navbar({ locale = 'es' }: NavbarProps) {
         </a>
 
         {/* Desktop nav */}
-        <nav className="hidden lg:flex items-center gap-6">
+        <nav ref={desktopNavRef} className="hidden lg:flex items-center gap-6 ml-8">
           <ul className="flex items-center gap-5">
-            {navLinks.map((link) => {
-              const isActive = location === link.path;
+            {navItems.map((item) => {
+              if (isGroup(item)) {
+                const active = isGroupActive(item);
+                const open = openGroup === item.name;
+                return (
+                  <li key={item.name} className="relative">
+                    <button
+                      type="button"
+                      onClick={() => setOpenGroup(open ? null : item.name)}
+                      aria-haspopup="menu"
+                      aria-expanded={open ? "true" : "false"}
+                      className={`relative inline-flex items-center gap-1 text-[15px] font-medium transition-colors pb-0.5 ${
+                        active
+                          ? "text-terracotta"
+                          : isScrolled
+                            ? "text-text-muted hover:text-navy"
+                            : "text-white/90 hover:text-white"
+                      }`}
+                    >
+                      {item.name}
+                      <ChevronDown className={`w-4 h-4 transition-transform ${open ? "rotate-180" : ""}`} />
+                      {active && (
+                        <span className="absolute left-0 right-5 -bottom-0.5 h-[2px] bg-terracotta rounded-full" />
+                      )}
+                    </button>
+                    {open && (
+                      <ul
+                        role="menu"
+                        className="absolute right-0 top-full mt-3 w-[320px] bg-warm-white border border-border/60 rounded-xl shadow-xl ring-1 ring-black/5 p-2"
+                      >
+                        {item.children.map((child) => {
+                          const childActive = isLinkActive(child.path);
+                          const Icon = child.icon;
+                          return (
+                            <li key={child.path} role="none">
+                              <a
+                                role="menuitem"
+                                href={child.path}
+                                onClick={() => setOpenGroup(null)}
+                                className={`group/item flex items-start gap-3 px-3 py-2.5 rounded-lg transition-colors ${
+                                  childActive
+                                    ? "bg-terracotta/10"
+                                    : "hover:bg-navy/5"
+                                }`}
+                              >
+                                {Icon && (
+                                  <span
+                                    className={`flex h-9 w-9 shrink-0 items-center justify-center rounded-lg transition-colors ${
+                                      childActive
+                                        ? "bg-terracotta text-white"
+                                        : "bg-navy/5 text-navy group-hover/item:bg-terracotta group-hover/item:text-white"
+                                    }`}
+                                  >
+                                    <Icon className="w-4 h-4" />
+                                  </span>
+                                )}
+                                <span className="flex flex-col min-w-0">
+                                  <span className={`text-[15px] font-semibold leading-tight ${childActive ? "text-terracotta" : "text-navy"}`}>
+                                    {child.name}
+                                  </span>
+                                  {child.description && (
+                                    <span className="text-xs text-text-muted leading-snug mt-0.5">
+                                      {child.description}
+                                    </span>
+                                  )}
+                                </span>
+                              </a>
+                            </li>
+                          );
+                        })}
+                      </ul>
+                    )}
+                  </li>
+                );
+              }
+
+              const active = isLinkActive(item.path);
               return (
-                <li key={link.path}>
+                <li key={item.path}>
                   <a
-                    href={link.path}
+                    href={item.path}
                     className={`relative text-[15px] font-medium transition-colors pb-0.5 ${
-                      isActive
+                      active
                         ? "text-terracotta"
                         : isScrolled
                           ? "text-text-muted hover:text-navy"
                           : "text-white/90 hover:text-white"
                     }`}
                   >
-                    {link.name}
-                    {isActive && (
+                    {item.name}
+                    {active && (
                       <span className="absolute left-0 right-0 -bottom-0.5 h-[2px] bg-terracotta rounded-full" />
                     )}
                   </a>
@@ -98,6 +209,7 @@ export function Navbar({ locale = 'es' }: NavbarProps) {
 
         {/* Mobile toggle */}
         <button
+          type="button"
           className={`lg:hidden p-2 transition-colors ${isScrolled ? "text-navy" : "text-white"}`}
           onClick={() => setIsMobileMenuOpen((prev) => !prev)}
           aria-label={t(locale, 'nav.menu_open')}
@@ -118,19 +230,65 @@ export function Navbar({ locale = 'es' }: NavbarProps) {
       >
         <div className="px-4 py-6 flex flex-col gap-6">
           <ul className="flex flex-col gap-4">
-            {navLinks.map((link) => {
-              const isActive = location === link.path;
+            {navItems.map((item) => {
+              if (isGroup(item)) {
+                const open = openMobileGroup === item.name;
+                const active = isGroupActive(item);
+                return (
+                  <li key={item.name}>
+                    <button
+                      type="button"
+                      onClick={() => setOpenMobileGroup(open ? null : item.name)}
+                      aria-expanded={open ? "true" : "false"}
+                      className={`w-full flex items-center justify-between text-lg font-medium transition-colors ${
+                        active ? "text-terracotta" : "text-text-muted hover:text-navy"
+                      }`}
+                    >
+                      <span>{item.name}</span>
+                      <ChevronDown className={`w-5 h-5 transition-transform ${open ? "rotate-180" : ""}`} />
+                    </button>
+                    {open && (
+                      <ul className="mt-3 ml-4 flex flex-col gap-1 border-l border-border pl-4">
+                        {item.children.map((child) => {
+                          const childActive = isLinkActive(child.path);
+                          const Icon = child.icon;
+                          return (
+                            <li key={child.path}>
+                              <a
+                                href={child.path}
+                                className={`flex items-center gap-3 py-2 text-base font-medium transition-colors ${
+                                  childActive ? "text-terracotta" : "text-text-muted hover:text-navy"
+                                }`}
+                              >
+                                {Icon && (
+                                  <span
+                                    className={`flex h-8 w-8 shrink-0 items-center justify-center rounded-lg ${
+                                      childActive ? "bg-terracotta text-white" : "bg-navy/5 text-navy"
+                                    }`}
+                                  >
+                                    <Icon className="w-4 h-4" />
+                                  </span>
+                                )}
+                                <span>{child.name}</span>
+                              </a>
+                            </li>
+                          );
+                        })}
+                      </ul>
+                    )}
+                  </li>
+                );
+              }
+              const active = isLinkActive(item.path);
               return (
-                <li key={link.path}>
+                <li key={item.path}>
                   <a
-                    href={link.path}
+                    href={item.path}
                     className={`block text-lg font-medium transition-colors ${
-                      isActive
-                        ? "text-terracotta"
-                        : "text-text-muted hover:text-navy"
+                      active ? "text-terracotta" : "text-text-muted hover:text-navy"
                     }`}
                   >
-                    {link.name}
+                    {item.name}
                   </a>
                 </li>
               );

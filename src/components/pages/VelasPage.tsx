@@ -5,6 +5,7 @@ import { AnimatedHeading } from "../AnimatedHeading";
 import { Button } from "../Button";
 import { FAQSection } from "../FAQSection";
 import { ServiceAreaSection } from "../ServiceAreaSection";
+import { RelatedProducts } from "../RelatedProducts";
 import { url, localizedUrl } from "../../utils/paths";
 import { t, type Locale } from "../../i18n/index";
 import { slugMap } from "../../i18n/slugs";
@@ -292,8 +293,11 @@ export function VelasPage({ locale = 'es' }: { locale?: Locale }) {
           <ServiceAreaSection
             serviceName={t(locale, 'sails.serviceArea')}
             locale={locale}
-            teaserLocations={['ciudad-quesada', 'campoamor', 'la-marina', 'dolores', 'elche', 'gran-alacant']}
+            product="shade-sails"
+            teaserLocations={['torrevieja', 'ciudad-quesada', 'la-marina', 'benidorm', 'campoamor', 'dolores']}
           />
+          {/* Related products (SEO internal linking) */}
+          <RelatedProducts current="shade-sails" locale={locale} />
 
           {/* CTA */}
           <section className="bg-navy py-20 md:py-24">

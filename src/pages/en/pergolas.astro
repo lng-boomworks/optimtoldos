@@ -8,6 +8,7 @@ import { getAlternateUrls } from '../../i18n/routes';
 const alternateUrls = getAlternateUrls('pergolas');
 
 const serviceSchema = buildServiceSchema({
+  locale: 'en',
   name: t('en', 'pergolas.hero.heading'),
   description: t('en', 'pergolas.hero.description'),
   serviceType: "Bioclimatic Pergola Installation",
@@ -23,10 +24,12 @@ const faqSchema = buildFAQSchema(
   Array.from({ length: 8 }, (_, i) => ({
     question: t('en', `pergolas.faq.${i + 1}.q` as any),
     answer: t('en', `pergolas.faq.${i + 1}.a` as any),
-  }))
+  })),
+  { locale: 'en' }
 );
 
 const productSchema = buildProductSchema({
+  locale: 'en',
   name: "Bioclimatic Pergolas in Alicante",
   description: "Aluminium bioclimatic pergolas with adjustable louvres, motorisation and integrated LED lighting. Custom-made and professionally installed.",
   image: "https://optimtoldos.com/images/pergolas/hero-pergolas.webp",
@@ -38,7 +41,7 @@ const productSchema = buildProductSchema({
 ---
 
 <Base
-  title="Bioclimatic Pergolas | Optim Toldos — Alicante"
+  title="Bioclimatic Pergolas | Optim Toldos - Alicante"
   description="Aluminium pergolas with adjustable louvres. Control light, ventilation and rain protection. Professional installation in Alicante and Costa Blanca."
   locale="en"
   alternateUrls={alternateUrls}

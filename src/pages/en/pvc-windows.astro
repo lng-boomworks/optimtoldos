@@ -18,6 +18,7 @@ const breadcrumbs = [
 ];
 
 const productSchema = buildProductSchema({
+  locale: 'en',
   name: "PVC Windows and Doors in Alicante",
   description: "Sliding, casement and tilt-and-turn PVC windows and doors. Maximum thermal and acoustic insulation. CE certified.",
   image: "https://optimtoldos.com/images/gallery/hero-ventanas.webp",
@@ -27,7 +28,7 @@ const productSchema = buildProductSchema({
 ---
 
 <Base
-  title="PVC Windows & Doors | Optim Toldos — Alicante"
+  title="PVC Windows & Doors | Optim Toldos - Alicante"
   description="High energy-efficiency PVC windows and doors. Superior thermal and acoustic insulation. Professional installation in Alicante."
   locale="en"
   alternateUrls={alternateUrls}
@@ -35,13 +36,14 @@ const productSchema = buildProductSchema({
 >
   <Fragment slot="head">
     <script is:inline type="application/ld+json" set:html={JSON.stringify(buildServiceSchema({
+  locale: 'en',
       name: t('en', 'windows.hero.heading'),
       description: t('en', 'windows.hero.description'),
       serviceType: "PVC Window Installation",
       url: "https://optimtoldos.com/en/pvc-windows",
       offers: [{ name: "Sliding PVC Window" }, { name: "Casement PVC Window" }, { name: "Tilt-and-Turn PVC Window" }],
     }))} />
-    <script is:inline type="application/ld+json" set:html={JSON.stringify(buildFAQSchema(windowsFaqs))} />
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(buildFAQSchema(windowsFaqs, { locale: 'en' }))} />
     <script is:inline type="application/ld+json" set:html={JSON.stringify(productSchema)} />
   </Fragment>
   <VentanasPage client:load locale="en" />

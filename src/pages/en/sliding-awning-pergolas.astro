@@ -1,0 +1,187 @@
+---
+import Base from '../../layouts/Base.astro';
+import { SubProductPage } from '../../components/pages/SubProductPage';
+import {
+  buildServiceSchema,
+  buildFAQSchema,
+  buildBreadcrumbSchema,
+  buildProductSchema,
+} from '../../utils/schema';
+import { getAlternateUrls } from '../../i18n/routes';
+
+const locale = 'en' as const;
+const pageId = 'pergolas-sliding-awning';
+const pageUrl = 'https://optimtoldos.com/en/sliding-awning-pergolas/';
+const productSlug = 'sliding-awning-pergola';
+const alternateUrls = getAlternateUrls(pageId);
+
+const hero = {
+  heading: 'Sliding Awning Pergolas on the Costa Blanca',
+  description: 'Aluminium frame with a technical fabric roof that slides on rails. The roof opens or closes on demand - shade when you want it, open sky when you do not.',
+  image: '/images/pergolas/pergola-lamas.webp',
+  imageAlt: 'Sliding awning pergola with retracted fabric on aluminium structure',
+};
+
+const intro = 'A sliding awning pergola sits between bioclimatic and fixed aluminium pergolas. The frame is extruded aluminium just like the others, but the roof is a technical fabric (waterproof PVC or screen) that slides on two side rails powered by a motor. Retracted, the whole pergola is open to the sky. Extended, dense or filtered shade depending on the fabric chosen.';
+
+const sections = [
+  {
+    heading: 'How it works',
+    body: [
+      'Two aluminium side rails run the length of the pergola. A series of wheeled carriages keep the fabric tensioned, with the cloth winding onto a motorised tube at one end. Operating the motor moves the fabric back and forth on the rails.',
+      'It is mechanically simpler than a bioclimatic (no individual louvres each with its own motor), more versatile than a fixed aluminium pergola (you can retract the cover) and more weatherproof than a folding-arm awning (the fabric stays tensioned between rails, no flapping).',
+    ],
+  },
+  {
+    heading: 'Fabric options',
+    body: [
+      'Two main families: <strong>waterproof PVC</strong> (water-resistant, ideal for storm-prone areas) and <strong>technical screen</strong> (micro-perforated, lets filtered light and ventilation through). PVC suits use cases where water tightness matters more than thermal insulation; screen is the most common choice for residential.',
+      'Common brands: <strong>Sergé Ferrari Précontraint</strong>, <strong>Mehler Texnologies</strong> and <strong>Tempotest Para</strong>. Warranties of 5-10 years on colour and tear strength. Screen fabric still allows outward visibility when extended, keeping the open feel.',
+    ],
+  },
+  {
+    heading: 'Typical use cases',
+    body: [
+      'It is an excellent alternative to a bioclimatic pergola when budget is tight but you want flexibility of use. The price difference is significant (a sliding awning pergola costs 35-50 percent less than a same-size bioclimatic).',
+      'Works well in back patios, gardens and penthouses where the priority is alternating covered and open-sky use. In hospitality it is popular for modular terraces: extended in July, retracted in May and October. Main limitation: it cannot handle constant rain as effectively as a sealed bioclimatic.',
+    ],
+  },
+  {
+    heading: 'Variants and specifications',
+    body: [
+      'We work the <strong>adjoining</strong>, <strong>free-standing</strong> and <strong>island with twin support</strong> versions. Maximum dimensions are slightly smaller than bioclimatic: up to 7 m length by 4.5 m width in single module. We combine modules for larger areas.',
+      'Extruded aluminium frame, RAL lacquer. Rails get a specific anti-corrosion treatment because they sit exposed to salt and dust. Somfy or Nice motor. Factory-set pitch between 5 and 15 degrees for light rain run-off.',
+    ],
+  },
+  {
+    heading: 'Installation',
+    body: [
+      'Manufacturing runs 4-5 weeks. Installation is slightly faster than bioclimatic: 1-3 days for a standard module. Like the other pergolas, it requires an obra menor (minor works) permit in most municipalities. We handle technical specifications, drawings and the full process.',
+      'In projects where a permit is to be avoided or where overall height is constrained, this category is often the easiest to approve because total height can be lower than bioclimatic. Detail by municipality in the <a href="/en/planning-permission-pergola-awning-alicante/" class="text-terracotta hover:underline">permit guide</a>.',
+    ],
+  },
+  {
+    heading: 'Maintenance',
+    body: [
+      'Lower than a traditional awning but higher than a fixed aluminium pergola. Wash fabric and rails every 6 months, grease the carriages every 12 months, service the motor every 24 months and apply aluminium protector annually in salt-air zones.',
+      'Fabric lasts 8 to 12 years in good condition depending on brand and exposure. The frame, 20+ years. Carriage spares are simple and affordable. Full detail in the <a href="/en/awning-maintenance-costa-blanca/" class="text-terracotta hover:underline">maintenance guide</a>.',
+    ],
+  },
+  {
+    heading: '2026 pricing',
+    body: [
+      'A 4 x 3 m adjoining sliding awning pergola starts from 3,200 euros installed with basic Somfy motor and standard screen fabric. A free-standing 5 x 4 m unit with Sergé Ferrari fabric and wind sensor: 5,500-7,500 euros.',
+      'Premium models with waterproof PVC, Somfy io smart-home motor and integrated LED reach 8,500-12,000 euros. Total investment is 35-50 percent less than a same-size, same-quality bioclimatic.',
+    ],
+  },
+];
+
+const comparison = {
+  heading: 'Sliding awning pergola vs bioclimatic vs fixed aluminium',
+  intro: 'Comparison by primary function and budget.',
+  columns: ['Feature', 'Sliding awning', 'Bioclimatic', 'Fixed aluminium'],
+  rows: [
+    ['Retractable cover', 'Yes (sliding fabric)', 'No (rotating louvres)', 'No'],
+    ['Rain tightness', 'Good (not perfect)', 'Certified watertight', 'Permanently watertight'],
+    ['Wind resistance', 'Up to 80 km/h with fabric', 'Up to 110+ km/h', 'Very high'],
+    ['Open sky possible', 'Yes (fabric retracted)', 'Yes (louvres at 90 deg)', 'No'],
+    ['Thermal insulation', 'Medium', 'High (louvres closed)', 'High (sandwich panel)'],
+    ['Price 4x3 m', '3,200 - 5,500 euros', '4,800 - 9,000 euros', '3,500 - 6,500 euros'],
+    ['Cover lifespan', '8-12 years', '20+ years', '20+ years'],
+  ],
+};
+
+const related = {
+  heading: 'Related pages',
+  links: [
+    { label: 'Bioclimatic pergolas', href: '/en/bioclimatic-pergolas/' },
+    { label: 'Fixed aluminium pergolas', href: '/en/aluminium-pergolas/' },
+    { label: 'Back to Pergolas (hub)', href: '/en/pergolas/' },
+    { label: 'Guide: bioclimatic vs aluminium pergola', href: '/en/bioclimatic-vs-aluminium-pergola/' },
+    { label: 'ZIP screen awnings', href: '/en/zip-screen-awnings/' },
+    { label: 'Glass curtains', href: '/en/glass-curtains/' },
+    { label: 'Service in Alicante city', href: '/en/awnings-alicante/' },
+    { label: 'Service in Torrevieja', href: '/en/awnings-torrevieja/' },
+    { label: 'Service in Elche', href: '/en/awnings-elche/' },
+  ],
+};
+
+const faqs = [
+  { question: 'Is it watertight?', answer: 'With PVC fabric, yes - it handles light or moderate rain at the factory pitch of 5-15 degrees. PVC has its limit in heavy rain and the fabric should be retracted. If you need full watertightness in storms, a bioclimatic or fixed aluminium pergola is the better choice.' },
+  { question: 'How much wind does it withstand?', answer: 'Up to 80 km/h with fabric extended (premium models). With a Somfy or Nice wind sensor, the pergola retracts the fabric automatically when gusts are detected. With the fabric retracted, the frame handles winds similar to a fixed pergola.' },
+  { question: 'How does it differ from a bioclimatic?', answer: 'A bioclimatic has rotating aluminium louvres, watertight when closed. A sliding awning has retractable fabric. The bioclimatic is more robust and durable; the sliding awning is more affordable (35-50 percent less) and lets you retract the entire cover.' },
+  { question: 'How long does the fabric last?', answer: '8 to 12 years in good condition, depending on brand and exposure. Sergé Ferrari and Mehler fabrics typically last longest. The frame lasts 20+ years, so replacing the fabric at 10-12 years is a worthwhile operation.' },
+  { question: 'Do I need a permit?', answer: 'Yes, in most municipalities it counts as obra menor (minor works) requiring a permit. We handle technical specifications, drawings and the full process. Average lead time: 1-2 months. Detail by municipality in the permit guide.' },
+  { question: 'Can it be enclosed laterally?', answer: 'Yes, very effectively. Combining it with lateral ZIP screen awnings or glass curtains is the most popular combination for creating a space that is enclosed in winter and open in summer.' },
+  { question: 'PVC or screen fabric?', answer: 'PVC if the priority is light-rain water tightness. Screen if you want more ventilation, sky visibility and filtered light. The vast majority of residential projects choose screen, while hospitality usually goes with PVC.' },
+  { question: 'What warranty?', answer: 'We give 5 years on frame and rails, manufacturer warranty on fabric (5-10 years on Sergé Ferrari, Mehler), 5 years on Somfy/Nice motors.' },
+];
+
+const cta = {
+  heading: 'Bespoke sliding awning pergola',
+  body: 'The most affordable alternative to a bioclimatic pergola, with retractable cover and Somfy motor. Free site survey across Alicante province.',
+  button: 'Get a free quote',
+  buttonHref: `/en/free-quote/?product=${productSlug}`,
+  secondary: { label: 'See all pergolas', href: '/en/pergolas/' },
+};
+
+const breadcrumbs = [
+  { name: 'Home', url: 'https://optimtoldos.com/en/' },
+  { name: 'Pergolas', url: 'https://optimtoldos.com/en/pergolas/' },
+  { name: 'Sliding awning pergolas', url: pageUrl },
+];
+
+const serviceSchema = buildServiceSchema({
+  locale,
+  name: 'Sliding Awning Pergolas on the Costa Blanca',
+  description: hero.description,
+  serviceType: 'Sliding awning pergola installation',
+  url: pageUrl,
+  offers: [
+    { name: 'Adjoining sliding awning pergola' },
+    { name: 'Free-standing sliding awning pergola' },
+    { name: 'Sergé Ferrari Précontraint fabric' },
+    { name: 'Somfy / Nice motorisation' },
+  ],
+});
+
+const faqSchema = buildFAQSchema(faqs, { locale });
+const breadcrumbSchema = buildBreadcrumbSchema(breadcrumbs, { locale });
+const productSchema = buildProductSchema({
+  locale,
+  name: 'Bespoke Sliding Awning Pergola',
+  description: hero.description,
+  image: 'https://optimtoldos.com/images/pergolas/pergola-lamas.webp',
+  url: pageUrl,
+  lowPrice: '3200',
+  highPrice: '12000',
+  category: 'Sliding awning pergolas',
+});
+---
+
+<Base
+  title="Sliding Awning Pergolas | Optim Toldos - Costa Blanca"
+  description="Aluminium pergolas with motorised sliding fabric roof across Alicante. Sergé Ferrari fabric, Somfy motor, Cortizo profiles. Affordable bioclimatic alternative."
+  locale={locale}
+  alternateUrls={alternateUrls}
+  breadcrumbs={breadcrumbs}
+>
+  <Fragment slot="head">
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(serviceSchema)} />
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(productSchema)} />
+  </Fragment>
+  <SubProductPage
+    client:load
+    locale={locale}
+    hero={hero}
+    intro={intro}
+    sections={sections}
+    comparison={comparison}
+    related={related}
+    faqHeading="Frequently asked questions"
+    faqs={faqs}
+    cta={cta}
+  />
+</Base>

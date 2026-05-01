@@ -18,6 +18,7 @@ const breadcrumbs = [
 ];
 
 const productSchema = buildProductSchema({
+  locale: 'es',
   name: "Ventanas y Puertas PVC en Alicante",
   description: "Ventanas y puertas de PVC correderas, abatibles y oscilobatientes. Máximo aislamiento térmico y acústico. Certificación CE.",
   image: "https://optimtoldos.com/images/gallery/hero-ventanas.webp",
@@ -27,7 +28,7 @@ const productSchema = buildProductSchema({
 ---
 
 <Base
-  title="Ventanas y Puertas PVC | Optim Toldos — Alicante"
+  title="Ventanas y Puertas PVC | Optim Toldos - Alicante"
   description="Ventanas y puertas de PVC de alta eficiencia energética. Aislamiento térmico y acústico superior. Instalación profesional en Alicante."
   breadcrumbs={breadcrumbs}
   locale="es"
@@ -35,13 +36,14 @@ const productSchema = buildProductSchema({
 >
   <Fragment slot="head">
     <script is:inline type="application/ld+json" set:html={JSON.stringify(buildServiceSchema({
+  locale: 'es',
       name: "Ventanas y Puertas de PVC en Alicante",
       description: "Instalación de ventanas y puertas de PVC de alta eficiencia energética con aislamiento térmico y acústico superior.",
       serviceType: "Instalación de ventanas PVC",
       url: "https://optimtoldos.com/ventanas-pvc",
       offers: [{ name: "Ventana Corredera PVC" }, { name: "Ventana Abatible PVC" }, { name: "Ventana Oscilobatiente PVC" }],
     }))} />
-    <script is:inline type="application/ld+json" set:html={JSON.stringify(buildFAQSchema(ventanasFaqs))} />
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(buildFAQSchema(ventanasFaqs, { locale: 'es' }))} />
     <script is:inline type="application/ld+json" set:html={JSON.stringify(productSchema)} />
   </Fragment>
   <VentanasPage client:load locale="es" />

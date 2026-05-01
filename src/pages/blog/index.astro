@@ -32,6 +32,7 @@ const categoryLabels: Record<string, string> = {
 };
 
 const collectionSchema = buildCollectionPageSchema({
+  locale: 'es',
   name: "Blog | Optim Toldos",
   description: "Guías, consejos y novedades sobre toldos, pérgolas bioclimáticas, cortinas de cristal, velas de sombra y ventanas PVC en Alicante.",
   url: "https://optimtoldos.com/blog",
@@ -42,7 +43,7 @@ const collectionSchema = buildCollectionPageSchema({
 });
 ---
 
-<Base title="Blog | Optim Toldos — Guías y Consejos de Protección Solar" description="Guías, consejos y novedades sobre toldos, pérgolas bioclimáticas, cortinas de cristal, velas de sombra y ventanas PVC en Alicante." breadcrumbs={breadcrumbs} locale="es" alternateUrls={alternateUrls}>
+<Base title="Blog | Optim Toldos - Guías y Consejos de Protección Solar" description="Guías, consejos y novedades sobre toldos, pérgolas bioclimáticas, cortinas de cristal, velas de sombra y ventanas PVC en Alicante." breadcrumbs={breadcrumbs} locale="es" alternateUrls={alternateUrls}>
   <Fragment slot="head">
     <script is:inline type="application/ld+json" set:html={JSON.stringify(collectionSchema)} />
   </Fragment>

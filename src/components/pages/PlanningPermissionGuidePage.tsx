@@ -8,15 +8,30 @@ import { url, localizedUrl } from "../../utils/paths";
 import { t, type Locale } from "../../i18n/index";
 import { slugMap } from "../../i18n/slugs";
 
+// `slug` matches SEO_LOCATIONS — used to build the per-area URL
+// (/toldos-{slug}/ in ES, /en/awnings-{slug}/ in EN where available).
 const MUNICIPALITIES = [
-  { i: 1, anchor: "torrevieja" },
-  { i: 2, anchor: "orihuela" },
-  { i: 3, anchor: "guardamar-del-segura" },
-  { i: 4, anchor: "elche" },
-  { i: 5, anchor: "santa-pola" },
-  { i: 6, anchor: "benidorm" },
-  { i: 7, anchor: "alicante" },
+  { i: 1, slug: "torrevieja" },
+  { i: 2, slug: "orihuela-costa" },
+  { i: 3, slug: "guardamar" },
+  { i: 4, slug: "elche" },
+  { i: 5, slug: "santa-pola" },
+  { i: 6, slug: "benidorm" },
+  { i: 7, slug: "alicante" },
 ];
+
+const EN_AREA_SLUGS = new Set([
+  "torrevieja","orihuela-costa","ciudad-quesada","guardamar","la-marina","elche",
+  "alicante","santa-pola","gran-alacant","benidorm","cabo-roig","la-zenia",
+  "punta-prima","villamartin",
+]);
+
+function areaHref(slug: string, locale: Locale): string {
+  if (locale === "en" && EN_AREA_SLUGS.has(slug)) {
+    return `/en/awnings-${slug}/`;
+  }
+  return `/toldos-${slug}/`;
+}
 
 const FAQ_COUNT = 8;
 
@@ -144,9 +159,9 @@ export function PlanningPermissionGuidePage({ locale = 'es' }: { locale?: Locale
                 {MUNICIPALITIES.map((m) => {
                   const name = t(locale, `licenceGuide.municipality.${m.i}.name` as any);
                   const body = t(locale, `licenceGuide.municipality.${m.i}.body` as any);
-                  const serviceAreaLink = `${serviceAreasPath}#${m.anchor}`;
+                  const serviceAreaLink = url(areaHref(m.slug, locale));
                   return (
-                    <FadeIn key={m.anchor}>
+                    <FadeIn key={m.slug}>
                       <article className="bg-sand-light rounded-2xl p-6 md:p-7">
                         <h3 className="font-serif text-xl text-navy mb-2">{name}</h3>
                         <p className="text-text-body leading-relaxed mb-3">{body}</p>

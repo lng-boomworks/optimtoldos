@@ -1,0 +1,120 @@
+---
+import Base from '../layouts/Base.astro';
+import { ProductZonePage } from '../components/pages/ProductZonePage';
+import {
+  buildServiceSchema,
+  buildBreadcrumbSchema,
+  buildFAQSchema,
+  buildProductSchema,
+} from '../utils/schema';
+
+const SITE = 'https://optimtoldos.com';
+const slug = 'ciudad-quesada';
+const name = 'Ciudad Quesada';
+const heading = `Pérgola bioclimática en ${name}`;
+const intro = `Pérgolas bioclimáticas exentas sobre piscina o pool deck en Ciudad Quesada: aluminio lacado, motorización Somfy o Nice y montaje sobre solera con dado de hormigón.`;
+
+const pageUrl = `${SITE}/pergola-bioclimatica-${slug}/`;
+const alternateUrls = [
+  { locale: 'es' as const, href: pageUrl },
+];
+
+const locationParagraph = `Ciudad Quesada tiene tipologías de chalet con parcela y dúplex con piscina privada que prácticamente piden una bioclimática exenta sobre el pool deck. La ventaja sobre el toldo es doble: por un lado, la pérgola fija no se descuelga ni se desgarra con las tormentas cortas pero intensas de septiembre que entran de Levante; por otro, las lamas orientables permiten regular el sol seco de tarde sin perder ventilación, algo crítico cuando se está en la piscina. Al estar 5 km tierra adentro la salinidad es menor que en La Mata, así que se puede usar lacado estándar de buena calidad sin la prima del tratamiento marino completo.`;
+
+const whyFitsBullets = [
+  'Pérgola exenta sobre dado de hormigón: ideal sobre pool deck o solera junto a la piscina.',
+  'Lamas orientables para sol seco de tarde: 30 - 45° de apertura ventila y mantiene sombra.',
+  'Lacado estándar suficiente: 5 km tierra adentro, la salinidad es menor que en costa.',
+  'Sensor de lluvia útil en septiembre: tormentas cortas pero muy intensas.',
+  'Iluminación LED y enchufes integrados para barbacoa nocturna.',
+];
+
+const caseStudy = `Caso reciente: pérgola bioclimática Saxun 5×4 m exenta sobre pool deck en chalet de Ciudad Quesada, color blanco perlado RAL 9016, motor Somfy con sensor de lluvia, dos focos LED por viga, anclajes con dados de hormigón 40×40×40 cm y un cerramiento ZIP screen al oeste. Total 2 jornadas de montaje, plazo desde firma 4 semanas.`;
+
+const priceBand = `Pérgola bioclimática 4×3 m exenta motorizada con sensor de lluvia: 4.500 € - 5.500 €. Versión 5×4 m con LED y sensor: 6.500 € - 8.500 €. Versión 6×4 m completa con LED, sensores y cierre ZIP: 9.500 € - 12.500 €.`;
+
+const comunidadNote = `En Ciudad Quesada (término de Rojales) las pérgolas exentas sobre parcela privada normalmente sólo requieren declaración responsable, ya que no aumentan superficie construida (cubierta orientable, no fija). Algunas urbanizaciones tienen normas estéticas; el dossier técnico (plano cotado, ficha del fabricante, certificado del instalador) que entregamos vale tanto para el Ayuntamiento como para la administración de fincas.`;
+
+const faqs = [
+  { q: '¿Una bioclimática exenta sobre la piscina necesita licencia de obra mayor?', a: 'No, normalmente declaración responsable en el Ayuntamiento de Rojales. La obra mayor solo aplica si se considera ampliación de superficie construida; la bioclimática no es cubierta fija (las lamas se abren) y por tanto no aumenta volumen edificado.' },
+  { q: '¿Cómo se ancla en el pool deck si el suelo es porcelánico?', a: 'Dos opciones: dado de hormigón 40×40×40 cm en cada apoyo (4 apoyos para una pérgola estándar), retirando el porcelánico y reponiéndolo después; o placa de reparto sobre la solera si el hormigón es de canto suficiente. Recomendamos el dado por durabilidad.' },
+  { q: '¿Aguanta el sol seco del interior 9 meses al año?', a: 'Sí. El aluminio extruido lacado en horno mantiene su geometría y color durante 15 - 20 años en zonas como Quesada. La diferencia con costa es que la salinidad es mucho menor; con lacado estándar de calidad es suficiente.' },
+  { q: '¿Necesito el motor con sensor de lluvia?', a: 'En Quesada, sí. Las tormentas de septiembre y las gotas frías son cortas pero muy intensas; el sensor cierra las lamas antes de que el agua entre en el pool deck. Coste adicional ~150 - 200 € sobre el motor estándar.' },
+  { q: '¿Puedo controlar la pérgola desde el móvil?', a: 'Sí. Con la pasarela TaHoma de Somfy o el receptor WiFi de Nice. Útil si va y viene a Quesada: cierra automáticamente con previsión de lluvia y abre con la luz del amanecer.' },
+];
+
+const related = [
+  { label: 'Pérgolas en Ciudad Quesada', href: '/pergolas-ciudad-quesada/' },
+  { label: 'Instalación de pérgola en Ciudad Quesada', href: '/instalacion-pergola-ciudad-quesada/' },
+  { label: 'Velas de sombra en Ciudad Quesada', href: '/velas-sombra-ciudad-quesada/' },
+  { label: 'Toldos en Ciudad Quesada', href: '/toldos-ciudad-quesada/' },
+  { label: 'Bioclimática vs aluminio', href: '/pergola-bioclimatica-vs-aluminio/' },
+];
+
+const ctaHref = `/presupuesto/?product=pergola-bioclimatica&location=${slug}`;
+const contactHref = '/contacto/';
+const licenceHref = '/guia-licencias-pergolas-toldos-alicante/';
+
+const breadcrumbs = [
+  { name: 'Inicio', url: `${SITE}/` },
+  { name: 'Pérgolas', url: `${SITE}/pergolas/` },
+  { name: 'Bioclimática Ciudad Quesada', url: pageUrl },
+];
+
+const serviceSchema = buildServiceSchema({
+  locale: 'es',
+  name: heading,
+  description: intro,
+  serviceType: 'Instalación de pérgola bioclimática',
+  url: pageUrl,
+  offers: [
+    { name: 'Pérgola bioclimática motorizada' },
+    { name: 'Pérgola exenta sobre pool deck' },
+    { name: 'Sensores de viento y lluvia' },
+  ],
+});
+const breadcrumbSchema = buildBreadcrumbSchema(breadcrumbs, { locale: 'es' });
+const faqSchema = buildFAQSchema(faqs.map(f => ({ question: f.q, answer: f.a })), { locale: 'es' });
+const productSchema = buildProductSchema({
+  locale: 'es',
+  name: heading,
+  description: intro,
+  image: `${SITE}/images/pergolas/pergola-lamas.webp`,
+  url: pageUrl,
+  category: 'Pérgolas bioclimáticas',
+  lowPrice: '4500',
+  highPrice: '12500',
+});
+---
+
+<Base
+  title={`${heading} - Optim Toldos`}
+  description={intro}
+  locale="es"
+  alternateUrls={alternateUrls}
+  breadcrumbs={breadcrumbs}
+>
+  <Fragment slot="head">
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(serviceSchema)} />
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(productSchema)} />
+  </Fragment>
+  <ProductZonePage
+    client:load
+    locale="es"
+    heading={heading}
+    intro={intro}
+    heroImage="/images/pergolas/pergola-lamas-1280.webp"
+    locationParagraph={locationParagraph}
+    whyFitsBullets={whyFitsBullets}
+    caseStudy={caseStudy}
+    priceBand={priceBand}
+    comunidadNote={comunidadNote}
+    licenceHref={licenceHref}
+    faqs={faqs}
+    related={related}
+    ctaHref={ctaHref}
+    contactHref={contactHref}
+  />
+</Base>

@@ -1,0 +1,109 @@
+---
+import Base from '../layouts/Base.astro';
+import { ProductZonePage } from '../components/pages/ProductZonePage';
+import {
+  buildServiceSchema,
+  buildBreadcrumbSchema,
+  buildFAQSchema,
+} from '../utils/schema';
+
+const SITE = 'https://optimtoldos.com';
+const slug = 'la-marina';
+const name = 'La Marina (San Fulgencio)';
+const heading = `Instalación de pérgola en ${name}`;
+const intro = `Servicio de montaje y obra para pérgolas en La Marina (San Fulgencio): cimentación, anclajes, motorización y tramitación con Ayuntamiento de San Fulgencio.`;
+
+const pageUrl = `${SITE}/instalacion-pergola-${slug}/`;
+const alternateUrls = [
+  { locale: 'es' as const, href: pageUrl },
+];
+
+const locationParagraph = `La Marina (núcleo de San Fulgencio) tiene un parque de viviendas muy específico: bungalows de planta baja y dúplex sobre parcela pequeña en urbanizaciones como La Marina Oasis, Oasis Country, Marina I, II y III. Las parcelas están organizadas alrededor de calles peatonales con normas estéticas estrictas (color, altura, retranqueo), y la mayoría de pérgolas se instalan exentas sobre el patio o el jardín lateral, ancladas con dado de hormigón. Estamos a 1,5 km del mar pero al otro lado de la N-332, así que la salinidad es moderada y el lacado estándar de calidad es suficiente. Los vientos del Vinalopó pueden ser fuertes en septiembre, recomendando sensor de viento.`;
+
+const whyFitsBullets = [
+  'Cimentación con dado de hormigón sobre solera o jardín: la mayoría de viviendas de La Marina lo requieren.',
+  'Cumplimiento de las normas estéticas de las urbanizaciones (Oasis, Marina, La Marina Oasis Country).',
+  'Sensor de viento recomendado: rachas del Vinalopó pueden superar 70 km/h en septiembre.',
+  'Lacado estándar suficiente: salinidad moderada al estar 1,5 km tierra adentro.',
+  'Tramitación con el Ayuntamiento de San Fulgencio incluida.',
+];
+
+const caseStudy = `Caso reciente: instalación de pérgola bioclimática 4×3 m exenta en patio trasero de bungalow en La Marina Oasis. Cimentación con 4 dados 40×40×40 cm en jardín, montaje de estructura en 1 día, motorización con sensor de viento, iluminación LED en 2 vigas. Total 2 jornadas. Documentación presentada al Ayuntamiento de San Fulgencio y junta de la urbanización antes del montaje.`;
+
+const priceBand = `Coste de instalación incluido en la pérgola: cimentación + montaje + eléctrica + tramitación. Servicio sólo de montaje (cliente aporta pérgola): 500 € - 1.000 € según complejidad. Cimentación con 4 dados sobre jardín o solera: incluida.`;
+
+const comunidadNote = `En La Marina (San Fulgencio) las urbanizaciones (La Marina Oasis Country, Marina I, II, III, Oasis) tienen normas estéticas detalladas: color preferentemente blanco o beige, altura máxima 3 m, retranqueo mínimo desde linde de parcela. El Ayuntamiento exige declaración responsable. Le entregamos plano cotado, ficha del fabricante y certificado del montador para presentar a ambas partes.`;
+
+const faqs = [
+  { q: '¿Las urbanizaciones de La Marina aceptan pérgolas bioclimáticas?', a: 'Sí, prácticamente todas. Lo más habitual es exigir color blanco o beige, altura máxima 3 m y retranqueo mínimo desde linde. Si la urbanización tiene un código RAL específico, lacamos en ese color sin coste adicional.' },
+  { q: '¿Hace falta licencia formal o vale declaración responsable?', a: 'En San Fulgencio, declaración responsable suele ser suficiente para una pérgola exenta. Sólo se exige licencia menor con proyecto técnico si la pérgola se considera ampliación de superficie construida (cubierta sólida, no orientable).' },
+  { q: '¿Aguanta el viento del Vinalopó en septiembre?', a: 'Sí, con sensor de viento operativo. Los motores Somfy y Nice cierran las lamas a 60 km/h por defecto; con lamas cerradas la estructura aguanta hasta 130 km/h. Sin sensor activo no instalamos en zonas como La Marina por riesgo a la motorización.' },
+  { q: '¿Cuánto se tarda en obtener la declaración responsable en San Fulgencio?', a: 'Una declaración bien presentada permite empezar la obra a los pocos días; revisión administrativa 4 - 8 semanas. Habitualmente la pérgola está montada antes de que se cierre el expediente.' },
+  { q: '¿Las urbanizaciones de La Marina tienen junta de propietarios?', a: 'Sí, casi todas tienen comunidad de propietarios o asociación de vecinos con normas internas. Antes de empezar, presentamos el dossier a la administración para obtener visto bueno; el coste va incluido en el conjunto pérgola + instalación.' },
+];
+
+const related = [
+  { label: 'Toldos en La Marina', href: '/toldos-la-marina/' },
+  { label: 'Pérgolas (catálogo)', href: '/pergolas/' },
+  { label: 'Pérgola bioclimática (catálogo)', href: '/pergolas-bioclimaticas/' },
+  { label: 'Bioclimática vs aluminio', href: '/pergola-bioclimatica-vs-aluminio/' },
+  { label: 'Guía de licencias en Alicante', href: '/guia-licencias-pergolas-toldos-alicante/' },
+];
+
+const ctaHref = `/presupuesto/?product=instalacion-pergola&location=${slug}`;
+const contactHref = '/contacto/';
+const licenceHref = '/guia-licencias-pergolas-toldos-alicante/';
+
+const breadcrumbs = [
+  { name: 'Inicio', url: `${SITE}/` },
+  { name: 'Pérgolas', url: `${SITE}/pergolas/` },
+  { name: 'Instalación La Marina', url: pageUrl },
+];
+
+const serviceSchema = buildServiceSchema({
+  locale: 'es',
+  name: heading,
+  description: intro,
+  serviceType: 'Instalación y montaje de pérgolas',
+  url: pageUrl,
+  offers: [
+    { name: 'Cimentación con dado de hormigón' },
+    { name: 'Montaje de estructura' },
+    { name: 'Motorización y sensores' },
+    { name: 'Tramitación con Ayuntamiento' },
+  ],
+});
+const breadcrumbSchema = buildBreadcrumbSchema(breadcrumbs, { locale: 'es' });
+const faqSchema = buildFAQSchema(faqs.map(f => ({ question: f.q, answer: f.a })), { locale: 'es' });
+---
+
+<Base
+  title={`${heading} - Optim Toldos`}
+  description={intro}
+  locale="es"
+  alternateUrls={alternateUrls}
+  breadcrumbs={breadcrumbs}
+>
+  <Fragment slot="head">
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(serviceSchema)} />
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+  </Fragment>
+  <ProductZonePage
+    client:load
+    locale="es"
+    heading={heading}
+    intro={intro}
+    heroImage="/images/pergolas/hero-pergolas-1280.webp"
+    locationParagraph={locationParagraph}
+    whyFitsBullets={whyFitsBullets}
+    caseStudy={caseStudy}
+    priceBand={priceBand}
+    comunidadNote={comunidadNote}
+    licenceHref={licenceHref}
+    faqs={faqs}
+    related={related}
+    ctaHref={ctaHref}
+    contactHref={contactHref}
+  />
+</Base>

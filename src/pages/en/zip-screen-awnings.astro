@@ -1,0 +1,177 @@
+---
+import Base from '../../layouts/Base.astro';
+import { SubProductPage } from '../../components/pages/SubProductPage';
+import {
+  buildServiceSchema,
+  buildFAQSchema,
+  buildBreadcrumbSchema,
+  buildProductSchema,
+} from '../../utils/schema';
+import { getAlternateUrls } from '../../i18n/routes';
+
+const locale = 'en' as const;
+const pageId = 'awnings-zip-screen';
+const pageUrl = 'https://optimtoldos.com/en/zip-screen-awnings/';
+const productSlug = 'zip-screen-awning';
+const alternateUrls = getAlternateUrls(pageId);
+
+const hero = {
+  heading: 'ZIP Screen Awnings on the Costa Blanca',
+  description: 'Vertical technical screens guided by hidden zip channels - perfect for closing terraces and pergolas laterally without losing the view.',
+  image: '/images/gallery/toldo-monobloc.webp',
+  imageAlt: 'ZIP screen awning closing a Costa Blanca terrace',
+};
+
+const intro = 'The ZIP screen awning is the fastest-growing product on the Costa Blanca for enclosing pergolas, porches and terraces without sacrificing the outdoor feel. The technical fabric runs in two side channels with a concealed zip, eliminating wind whip, improving water tightness and giving privacy. We work with Soltis, Sergé Ferrari and Tempotest Star Screen fabrics.';
+
+const sections = [
+  {
+    heading: 'How the ZIP system works',
+    body: [
+      'The technical fabric is reinforced along its sides with a continuous cord (the zip) that slides inside two extruded aluminium channels. As the fabric raises or lowers, the zip stays locked into the channels, eliminating the side gaps typical of older vertical awnings.',
+      'This lets the fabric stay tightly tensioned, handle stronger winds (up to 100 km/h on some models), keep mosquitoes out and give a clean, continuous closure. The motor is always electric and sits inside the top cassette - typically Somfy, Nice or Elero.',
+    ],
+  },
+  {
+    heading: 'Technical fabrics: Soltis, Sergé Ferrari, Tempotest',
+    body: [
+      'Three fabric families based on intended use: <strong>micro-perforated screen</strong> (1-5 percent openness) that filters radiation while keeping the view - ideal for porches with sea views; <strong>opaque blackout</strong> for outdoor bedrooms or cinema rooms; and <strong>tinted translucent</strong> for pergolas where the goal is to soften light without darkening the space.',
+      'Reference brands include <strong>Sergé Ferrari Soltis</strong> (86, 92 and 99 lines), <strong>Tempotest Star Screen</strong> and <strong>Mermet Screen</strong>. All come with UV protection, anti-mould treatment and 5-7 year colour warranties.',
+    ],
+  },
+  {
+    heading: 'Typical use cases',
+    body: [
+      'It is the standard solution for closing the sides of a bioclimatic or fixed aluminium pergola, turning it into a 9-month-a-year usable space. It also works as west-facing solar protection on top-floor flats where the sun pours through large windows from 5 pm.',
+      'In hospitality it closes bar and restaurant terraces in winter while keeping transparency. As an outdoor garage or garden pergola enclosure it stops Levante wind from lifting cushions and furniture.',
+    ],
+  },
+  {
+    heading: 'Installation and compatibility',
+    body: [
+      'ZIP channels anchor to walls, pergola posts, columns or steel beams. Standard widths up to 5 m per panel (we combine modules for larger pergolas). Maximum height: 4 m.',
+      'Manufacturing time: 3-5 weeks. Installation: a one-day job for a two-technician team on a standard pergola. If the ZIP fits onto an existing pergola, we run a survey first to confirm the structure can carry the cassette and channel loads.',
+    ],
+  },
+  {
+    heading: 'Maintenance',
+    body: [
+      'It is the lowest-maintenance awning thanks to the sealed motor and constantly tensioned fabric. Wash the fabric every 6 months with mild soap, clear the ZIP channels yearly (Levante dust and sand), and service the motor every 24 months.',
+      'On seafront installs, apply an aluminium protector to the channels yearly to prevent salt-induced white oxidation. Full detail in our <a href="/en/awning-maintenance-costa-blanca/" class="text-terracotta hover:underline">maintenance guide</a>.',
+    ],
+  },
+  {
+    heading: '2026 pricing',
+    body: [
+      'A 3 x 2.5 m ZIP awning with micro-perforated screen and a Somfy motor starts from 1,150 euros installed. For a 5 x 3 m unit with Soltis 86 fabric and a Somfy io smart-home motor, expect 2,200-2,700 euros.',
+      'Closing a full pergola with 4 ZIP panels (three sides plus a front) typically lands between 6,000 and 9,000 euros depending on size and finishes. Compare across awning types in the <a href="/en/awning-prices-alicante-2026/" class="text-terracotta hover:underline">2026 price breakdown</a>.',
+    ],
+  },
+];
+
+const comparison = {
+  heading: 'ZIP fabrics: range comparison',
+  intro: 'Four technical fabrics compared by openness and resistance.',
+  columns: ['Fabric', 'Openness', 'Outward visibility', 'Recommended use'],
+  rows: [
+    ['Soltis 86', '4 %', 'High - landscape visible', 'Porches with views, terraces'],
+    ['Soltis 92', '2 %', 'Medium - filters more light', 'West-facing closures'],
+    ['Soltis 99', 'Under 1 %', 'Low - near-opaque by day', 'Privacy, dense shade'],
+    ['Tempotest Star Screen', '3-5 %', 'Medium-high', 'Hospitality and pergolas'],
+    ['Opaque blackout', '0 %', 'None', 'Outdoor bedrooms, cinema'],
+  ],
+};
+
+const related = {
+  heading: 'Related pages',
+  links: [
+    { label: 'Cassette awnings', href: '/en/cassette-awnings/' },
+    { label: 'Retractable arm awnings', href: '/en/retractable-arm-awnings/' },
+    { label: 'Bioclimatic pergolas', href: '/en/bioclimatic-pergolas/' },
+    { label: 'Glass curtains', href: '/en/glass-curtains/' },
+    { label: 'Back to Awnings (hub)', href: '/en/awnings/' },
+    { label: 'Guide: glass curtains for terraces', href: '/en/glass-curtains-guide/' },
+    { label: 'Service in Orihuela Costa', href: '/en/awnings-orihuela-costa/' },
+    { label: 'Service in Benidorm', href: '/en/awnings-benidorm/' },
+    { label: 'Service in Alicante city', href: '/en/awnings-alicante/' },
+  ],
+};
+
+const faqs = [
+  { question: 'How much wind can a ZIP screen awning handle?', answer: 'Premium models with Soltis 86 fabric and full ZIP channels withstand winds up to 100 km/h with the screen down. Standard models work up to 75-80 km/h. That is why they are popular in Levante-exposed locations.' },
+  { question: 'Does it work as a mosquito screen?', answer: 'Yes - the ZIP fully closes the sides. With screen fabric it is an excellent mosquito filter while preserving visibility and ventilation.' },
+  { question: 'Can it be retrofitted to an existing pergola?', answer: 'Yes, provided the structure can carry the motorised cassette and the channel tension. We always run a survey first and reinforce if needed.' },
+  { question: 'Which motor does it use?', answer: 'Somfy RTS or io as standard for smart-home integration. We also work with Nice TT2 and Elero VariEco. All can be paired with a Somfy Eolis or Nice Era Wind sensor.' },
+  { question: 'What is the difference between Soltis 86, 92 and 99?', answer: 'The number indicates opacity: 86 lets through 4 percent of light, 92 lets through 2 percent and 99 less than 1 percent. Higher numbers mean more privacy but less outward visibility.' },
+  { question: 'How long is manufacturing?', answer: 'Between 3 and 5 weeks. Soltis and Tempotest fabrics ship from European stock so lead times rarely stretch unless a special colour is chosen.' },
+  { question: 'Does it provide thermal insulation?', answer: 'Yes - a pergola enclosed with ZIP screen reduces interior temperature by up to 10 degrees during peak sun and improves winter comfort thanks to the wind barrier.' },
+  { question: 'Do I need a town hall permit?', answer: 'For an enclosure on an existing pergola it depends on the municipality - usually no major permit, but a declaracion responsable (a self-declared notification) is required. See our permit guide for the detail.' },
+];
+
+const cta = {
+  heading: 'Close your pergola with ZIP screen this summer',
+  body: 'Free site survey, physical Soltis, Tempotest and Mermet samples, fixed quote in 48 hours.',
+  button: 'Get a free quote',
+  buttonHref: `/en/free-quote/?product=${productSlug}`,
+  secondary: { label: 'See all awnings', href: '/en/awnings/' },
+};
+
+const breadcrumbs = [
+  { name: 'Home', url: 'https://optimtoldos.com/en/' },
+  { name: 'Awnings', url: 'https://optimtoldos.com/en/awnings/' },
+  { name: 'ZIP screen awnings', url: pageUrl },
+];
+
+const serviceSchema = buildServiceSchema({
+  locale,
+  name: 'ZIP Screen Awnings on the Costa Blanca',
+  description: hero.description,
+  serviceType: 'ZIP screen awning installation',
+  url: pageUrl,
+  offers: [
+    { name: 'Vertical ZIP screen awning' },
+    { name: 'Pergola enclosure with ZIP' },
+    { name: 'Somfy / Nice / Elero motorisation' },
+  ],
+});
+
+const faqSchema = buildFAQSchema(faqs, { locale });
+const breadcrumbSchema = buildBreadcrumbSchema(breadcrumbs, { locale });
+const productSchema = buildProductSchema({
+  locale,
+  name: 'ZIP Screen Awning',
+  description: hero.description,
+  image: 'https://optimtoldos.com/images/gallery/toldo-monobloc.webp',
+  url: pageUrl,
+  lowPrice: '850',
+  highPrice: '2700',
+  category: 'ZIP screen awnings',
+});
+---
+
+<Base
+  title="ZIP Screen Awnings | Optim Toldos - Costa Blanca"
+  description="Vertical ZIP screen awnings with Soltis or Tempotest technical fabric. Motorised lateral enclosures for pergolas and terraces across Alicante."
+  locale={locale}
+  alternateUrls={alternateUrls}
+  breadcrumbs={breadcrumbs}
+>
+  <Fragment slot="head">
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(serviceSchema)} />
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(productSchema)} />
+  </Fragment>
+  <SubProductPage
+    client:load
+    locale={locale}
+    hero={hero}
+    intro={intro}
+    sections={sections}
+    comparison={comparison}
+    related={related}
+    faqHeading="Frequently asked questions"
+    faqs={faqs}
+    cta={cta}
+  />
+</Base>

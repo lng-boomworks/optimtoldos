@@ -1,0 +1,76 @@
+---
+import Base from '../../layouts/Base.astro';
+import { AreaPage } from '../../components/pages/AreaPage';
+import {
+  buildServiceSchema,
+  buildBreadcrumbSchema,
+} from '../../utils/schema';
+import { SEO_LOCATIONS } from '../../data/seoLocations';
+import { t } from '../../i18n/index';
+
+const SITE = 'https://optimtoldos.com';
+
+// EN pergolas-area pages. Originally Torrevieja + Orihuela Costa per PDF §4;
+// expanded 2026-04-30 to cover the high-traffic central + south Costa Blanca
+// areas so the /en/pergolas/ hub chip roster has 6 valid product+area links.
+export async function getStaticPaths() {
+  const allowed = new Set([
+    'torrevieja','orihuela-costa','ciudad-quesada','elche','alicante','benidorm',
+  ]);
+  return SEO_LOCATIONS
+    .filter((loc) => allowed.has(loc.slug))
+    .map((loc) => ({
+      params: { slug: loc.slug },
+      props: { i: loc.i, slug: loc.slug },
+    }));
+}
+
+const { slug, i } = Astro.props;
+const name = t('en', `serviceAreas.location.${i}.name` as any);
+const body = t('en', `serviceAreas.location.${i}.body` as any);
+const heading = t('en', 'areaPage.focus.pergolas.heading').replace('{location}', name);
+const intro = t('en', 'areaPage.focus.pergolas.intro').replace('{location}', name);
+
+// Pairs with the ES product+zone page /pergolas-{slug}/ (PDF §5)
+const alternateUrls = [
+  { locale: 'es' as const, href: `${SITE}/pergolas-${slug}/` },
+  { locale: 'en' as const, href: `${SITE}/en/pergolas-${slug}/` },
+];
+
+const pageUrl = `${SITE}/en/pergolas-${slug}/`;
+
+const serviceSchema = buildServiceSchema({
+  locale: 'en',
+  name: heading,
+  description: body,
+  serviceType: 'Pergola installation',
+  url: pageUrl,
+  offers: [
+    { name: 'Bioclimatic pergolas' },
+    { name: 'Fixed aluminium pergolas' },
+    { name: 'Sliding-awning pergolas' },
+  ],
+});
+
+const breadcrumbs = [
+  { name: 'Home', url: `${SITE}/en/` },
+  { name: 'Pergolas', url: `${SITE}/en/pergolas/` },
+  { name, url: pageUrl },
+];
+
+const breadcrumbSchema = buildBreadcrumbSchema(breadcrumbs, { locale: 'en' });
+---
+
+<Base
+  title={`${heading} - Optim Toldos`}
+  description={intro}
+  locale="en"
+  alternateUrls={alternateUrls}
+  breadcrumbs={breadcrumbs}
+>
+  <Fragment slot="head">
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(serviceSchema)} />
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
+  </Fragment>
+  <AreaPage client:load locale="en" locationSlug={slug} focus="pergolas" />
+</Base>

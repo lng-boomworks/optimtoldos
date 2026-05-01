@@ -1,0 +1,121 @@
+---
+import Base from '../layouts/Base.astro';
+import { ProductZonePage } from '../components/pages/ProductZonePage';
+import {
+  buildServiceSchema,
+  buildBreadcrumbSchema,
+  buildFAQSchema,
+  buildProductSchema,
+} from '../utils/schema';
+
+const SITE = 'https://optimtoldos.com';
+const slug = 'ciudad-quesada';
+const name = 'Ciudad Quesada';
+const heading = `Pérgolas en ${name}`;
+const intro = `Pérgolas adaptadas al chalet y al adosado de Ciudad Quesada: estructuras de aluminio resistentes al sol del interior y montaje coordinado con la urbanización.`;
+
+const pageUrl = `${SITE}/pergolas-${slug}/`;
+const alternateUrls = [
+  { locale: 'es' as const, href: pageUrl },
+  { locale: 'en' as const, href: `${SITE}/en/pergolas-ciudad-quesada/` },
+];
+
+const locationParagraph = `Ciudad Quesada, dentro del término de Rojales, es una urbanización amplia con chalets independientes, dúplex y bungalows orientados habitualmente a piscina privada o comunitaria. Está unos 5 km tierra adentro, así que el viento marino llega más suave que en La Mata, pero el sol del verano es más seco y prolongado, con muchas horas de incidencia directa en terrazas y pool decks. Las parcelas suelen permitir pérgolas exentas sobre solera (no adosadas a fachada), lo que abre opciones de bioclimática o aluminio fijo de mayores dimensiones que en un piso de costa.`;
+
+const whyFitsBullets = [
+  'Pérgola exenta sobre piscina o terraza: la parcela tipo de Quesada lo permite sin tocar la fachada del chalet.',
+  'Lamas bioclimáticas para regular el sol seco de tarde sobre el pool deck.',
+  'Color blanco o beige aceptado por la mayoría de comunidades de Quesada y Rojales.',
+  'Iluminación LED y enchufes integrados para usar la pérgola como zona de barbacoa al anochecer.',
+  'Sensor de lluvia útil aunque llueva poco: las tormentas de septiembre son intensas y cortas.',
+];
+
+const caseStudy = `Caso reciente: pérgola bioclimática Saxun 5×4 m exenta sobre la terraza de la piscina en una vivienda de Ciudad Quesada, color blanco RAL 9016, motor con sensor de lluvia, dos focos LED por viga y un cerramiento ZIP en el lateral oeste. Cimentación con dado de hormigón y placa de anclaje de 30×30 cm.`;
+
+const priceBand = `Pérgola fija de aluminio 4×3 m exenta: 3.200 € - 4.000 €. Pérgola bioclimática 5×4 m motorizada con LED y sensores: 6.000 € - 8.500 €. Cerramiento ZIP lateral 4 m: 1.100 € - 1.600 €.`;
+
+const comunidadNote = `En Ciudad Quesada las pérgolas exentas en parcela privada normalmente sólo requieren declaración responsable en el Ayuntamiento de Rojales si no aumentan superficie construida. Si la urbanización tiene normas estéticas, conviene presentar el proyecto a la administración antes de empezar; preparamos el dossier (plano, ficha del fabricante, certificado del instalador) sin coste adicional.`;
+
+const faqs = [
+  { q: '¿Una pérgola exenta junto a la piscina necesita licencia?', a: 'Normalmente declaración responsable en el Ayuntamiento de Rojales. La obra mayor solo aplica si se considera ampliación de superficie construida (cubierta sólida sobre estructura cerrada), cosa que no ocurre con bioclimática o aluminio abierto.' },
+  { q: '¿Aguanta el sol seco del interior sin decolorar?', a: 'Sí, el lacado en horno con poliéster (estándar) aguanta más de 15 años sin pérdida apreciable de color en zonas como Quesada. En lonas o ZIP screens recomendamos Soltis con tratamiento UV para la misma duración.' },
+  { q: '¿Puedo montar una pérgola sobre el pool deck si el suelo es porcelánico?', a: 'Sí. Anclamos sobre placas de reparto que distribuyen la carga sin romper la baldosa, o picamos en cuatro puntos y reponemos el porcelánico. La placa de reparto suele ser la opción más limpia.' },
+  { q: '¿Cuánto tarda en instalarse?', a: 'Una pérgola estándar 4×3 m, dos jornadas. La bioclimática con cableado LED y sensores requiere medio día más para electricidad. El plazo desde firma de presupuesto suele ser 3 - 4 semanas.' },
+  { q: '¿Hace falta cimentación o sirve atornillarla al suelo?', a: 'Si la solera es de hormigón armado de al menos 12 cm, atornillamos con tacos químicos M12. En soleras finas o terrenos blandos hacemos un dado de hormigón 40×40×40 cm en cada punto de apoyo.' },
+];
+
+const related = [
+  { label: 'Pérgola bioclimática en Ciudad Quesada', href: '/pergola-bioclimatica-ciudad-quesada/' },
+  { label: 'Instalación de pérgola en Ciudad Quesada', href: '/instalacion-pergola-ciudad-quesada/' },
+  { label: 'Velas de sombra en Ciudad Quesada', href: '/velas-sombra-ciudad-quesada/' },
+  { label: 'Toldos en Ciudad Quesada', href: '/toldos-ciudad-quesada/' },
+  { label: 'Pérgolas (catálogo)', href: '/pergolas/' },
+];
+
+const ctaHref = `/presupuesto/?product=pergolas&location=${slug}`;
+const contactHref = '/contacto/';
+const licenceHref = '/guia-licencias-pergolas-toldos-alicante/';
+
+const breadcrumbs = [
+  { name: 'Inicio', url: `${SITE}/` },
+  { name: 'Pérgolas', url: `${SITE}/pergolas/` },
+  { name, url: pageUrl },
+];
+
+const serviceSchema = buildServiceSchema({
+  locale: 'es',
+  name: heading,
+  description: intro,
+  serviceType: 'Instalación de pérgolas',
+  url: pageUrl,
+  offers: [
+    { name: 'Pérgola bioclimática' },
+    { name: 'Pérgola fija de aluminio' },
+    { name: 'Pérgola exenta sobre solera' },
+  ],
+});
+const breadcrumbSchema = buildBreadcrumbSchema(breadcrumbs, { locale: 'es' });
+const faqSchema = buildFAQSchema(faqs.map(f => ({ question: f.q, answer: f.a })), { locale: 'es' });
+const productSchema = buildProductSchema({
+  locale: 'es',
+  name: heading,
+  description: intro,
+  image: `${SITE}/images/pergolas/pergola-bioclimatica.webp`,
+  url: pageUrl,
+  category: 'Pérgolas',
+  lowPrice: '3000',
+  highPrice: '8500',
+});
+---
+
+<Base
+  title={`${heading} - Optim Toldos`}
+  description={intro}
+  locale="es"
+  alternateUrls={alternateUrls}
+  breadcrumbs={breadcrumbs}
+>
+  <Fragment slot="head">
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(serviceSchema)} />
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(productSchema)} />
+  </Fragment>
+  <ProductZonePage
+    client:load
+    locale="es"
+    heading={heading}
+    intro={intro}
+    heroImage="/images/pergolas/hero-pergolas-1280.webp"
+    locationParagraph={locationParagraph}
+    whyFitsBullets={whyFitsBullets}
+    caseStudy={caseStudy}
+    priceBand={priceBand}
+    comunidadNote={comunidadNote}
+    licenceHref={licenceHref}
+    faqs={faqs}
+    related={related}
+    ctaHref={ctaHref}
+    contactHref={contactHref}
+  />
+</Base>

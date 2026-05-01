@@ -20,14 +20,14 @@ const breadcrumbs = [
 ---
 
 <Base
-  title="Optim Toldos — Especialistas en Protección Solar y Vida Exterior | Alicante"
+  title="Optim Toldos - Especialistas en Protección Solar y Vida Exterior | Alicante"
   description="Toldos, pérgolas bioclimáticas, cortinas de cristal, velas de sombra y ventanas PVC. Soluciones a medida con instalación profesional en Alicante y Costa Blanca."
   breadcrumbs={breadcrumbs}
   locale="es"
   alternateUrls={alternateUrls}
 >
   <Fragment slot="head">
-    <script is:inline type="application/ld+json" set:html={JSON.stringify(buildFAQSchema(homeFaqs))} />
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(buildFAQSchema(homeFaqs, { locale: 'es' }))} />
   </Fragment>
   <HomePage client:load locale="es" />
 </Base>

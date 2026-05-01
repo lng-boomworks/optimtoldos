@@ -1,0 +1,121 @@
+---
+import Base from '../layouts/Base.astro';
+import { ProductZonePage } from '../components/pages/ProductZonePage';
+import {
+  buildServiceSchema,
+  buildBreadcrumbSchema,
+  buildFAQSchema,
+  buildProductSchema,
+} from '../utils/schema';
+
+const SITE = 'https://optimtoldos.com';
+const slug = 'alicante';
+const name = 'Alicante';
+const heading = `Toldos para hostelería en ${name}`;
+const intro = `Toldos comerciales para terrazas hosteleras de Alicante: Explanada, Castaños, Mercado, Playa de San Juan. Lonas profesionales, motorización Somfy y rotulación.`;
+
+const pageUrl = `${SITE}/toldos-hosteleria-${slug}/`;
+const alternateUrls = [
+  { locale: 'es' as const, href: pageUrl },
+];
+
+const locationParagraph = `Alicante tiene zonas hosteleras con perfiles muy distintos: la Explanada y los aledaños del puerto con paseo turístico todo el año, Castaños y Mercado con bares con clientela local en zonas peatonales, San Juan con terrazas grandes orientadas al mar y los polígonos comerciales de Vistahermosa con fast-food y franquicias. La Ordenanza Municipal de Terrazas establece colores y dimensiones; en el casco antiguo y entornos de la Explanada hay restricciones adicionales por el Plan Especial. La salinidad en zona portuaria y costa exige motorización profesional con tratamiento marino y mantenimiento programado.`;
+
+const whyFitsBullets = [
+  'Cumplimiento de la Ordenanza Municipal de Terrazas (color, dimensiones, retranqueos).',
+  'Restricciones adicionales en casco antiguo y Explanada gestionadas en el dossier técnico.',
+  'Lonas Tempotest o Soltis con tratamiento UV y antimoho: 8 - 10 años de uso diario.',
+  'Motor Somfy comercial con tratamiento marino para zonas costeras (San Juan, Postiguet).',
+  'Rotulación serigrafiada o impresión digital con calidad publicitaria.',
+];
+
+const caseStudy = `Caso reciente: 5 toldos extensibles 4×3 m sobre terraza de restaurante en Plaza Castaños, lona Sunbrella granate con logo serigrafiado en blanco, motor Somfy comercial con sensor de viento centralizado, anclajes A4 sobre fachada de carga catalogada (con autorización del Plan Especial). Plazo desde firma 6 semanas (más por trámite del Plan Especial), montaje 2 jornadas nocturnas.`;
+
+const priceBand = `Toldo extensible 4×3 m con lona Tempotest: 1.800 € - 2.500 €. Toldo cofre 4×3 m profesional: 2.700 € - 3.700 €. Rotulación serigrafiada: 150 - 350 € por toldo. Sustitución de lona en toldo existente: 750 € - 1.400 €. Servicio nocturno de instalación: incluido.`;
+
+const comunidadNote = `En Alicante la Ordenanza Municipal de Terrazas regula colores, dimensiones y separaciones; en el casco antiguo, Explanada y entornos del Castillo de Santa Bárbara el Plan Especial añade restricciones (colores específicos, materiales, prohibición de elementos publicitarios visibles desde la calle). Tramitamos el expediente municipal y, si aplica, la consulta al Plan Especial.`;
+
+const faqs = [
+  { q: '¿Necesito autorización especial si mi local está en la Explanada?', a: 'Sí. La Explanada y su entorno están dentro de zonas de protección especial; cualquier elemento visible desde el paseo (incluyendo toldos y rotulación) requiere autorización del Plan Especial además de la ordenanza general. Tramitamos el expediente con documentación gráfica y memoria justificativa.' },
+  { q: '¿Cuánto tarda el trámite municipal en Alicante?', a: 'Una ordenanza estándar (zonas no protegidas) se autoriza en 4 - 8 semanas. Casco antiguo y Plan Especial pueden alargarse hasta 12 - 16 semanas. Tramitamos en paralelo con la fabricación para acortar el plazo total.' },
+  { q: '¿Las terrazas de Castaños permiten cualquier color de lona?', a: 'Castaños está fuera de zonas de protección especial pero dentro de la zona regulada por ordenanza, así que se admite la paleta general (sobria, no fluorescente). Algunas calles peatonales (San Francisco, mercado) tienen un código RAL preferido para coherencia visual.' },
+  { q: '¿Puedo montar el toldo fuera de horario sin afectar al servicio?', a: 'Sí. En hostelería siempre planificamos en horario nocturno o de cierre, normalmente franja 22 - 06 h. Para 4 - 5 toldos suele requerir 1 - 2 jornadas. Coordinamos con el local para que el primer servicio del día siguiente esté operativo.' },
+  { q: '¿Cubren mantenimiento postventa?', a: 'Sí. Ofrecemos contrato de mantenimiento anual (revisión + cambio de piezas pequeñas + lubricación de motores) por 80 - 150 € por toldo. Para fallos críticos garantizamos atención en 24 - 48 h dentro de provincia de Alicante.' },
+];
+
+const related = [
+  { label: 'Toldos en Alicante', href: '/toldos-alicante/' },
+  { label: 'Pérgolas en Alicante', href: '/pergolas-alicante/' },
+  { label: 'Pérgola bioclimática en Alicante', href: '/pergola-bioclimatica-alicante/' },
+  { label: 'Pérgolas hostelería Costa Blanca', href: '/pergolas-hosteleria-costa-blanca/' },
+  { label: 'Toldos (catálogo)', href: '/toldos/' },
+];
+
+const ctaHref = `/presupuesto/?product=toldos-hosteleria&location=${slug}`;
+const contactHref = '/contacto/';
+const licenceHref = '/guia-licencias-pergolas-toldos-alicante/';
+
+const breadcrumbs = [
+  { name: 'Inicio', url: `${SITE}/` },
+  { name: 'Toldos', url: `${SITE}/toldos/` },
+  { name: 'Hostelería Alicante', url: pageUrl },
+];
+
+const serviceSchema = buildServiceSchema({
+  locale: 'es',
+  name: heading,
+  description: intro,
+  serviceType: 'Toldos para hostelería',
+  url: pageUrl,
+  offers: [
+    { name: 'Toldo extensible profesional' },
+    { name: 'Toldo cofre comercial' },
+    { name: 'Rotulación impresa o serigrafiada' },
+    { name: 'Mantenimiento postventa' },
+  ],
+});
+const breadcrumbSchema = buildBreadcrumbSchema(breadcrumbs, { locale: 'es' });
+const faqSchema = buildFAQSchema(faqs.map(f => ({ question: f.q, answer: f.a })), { locale: 'es' });
+const productSchema = buildProductSchema({
+  locale: 'es',
+  name: heading,
+  description: intro,
+  image: `${SITE}/images/pergolas/pergola-restaurante.webp`,
+  url: pageUrl,
+  category: 'Toldos hostelería',
+  lowPrice: '1800',
+  highPrice: '4800',
+});
+---
+
+<Base
+  title={`${heading} - Optim Toldos`}
+  description={intro}
+  locale="es"
+  alternateUrls={alternateUrls}
+  breadcrumbs={breadcrumbs}
+>
+  <Fragment slot="head">
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(serviceSchema)} />
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(productSchema)} />
+  </Fragment>
+  <ProductZonePage
+    client:load
+    locale="es"
+    heading={heading}
+    intro={intro}
+    heroImage="/images/pergolas/pergola-restaurante-1280.webp"
+    locationParagraph={locationParagraph}
+    whyFitsBullets={whyFitsBullets}
+    caseStudy={caseStudy}
+    priceBand={priceBand}
+    comunidadNote={comunidadNote}
+    licenceHref={licenceHref}
+    faqs={faqs}
+    related={related}
+    ctaHref={ctaHref}
+    contactHref={contactHref}
+  />
+</Base>

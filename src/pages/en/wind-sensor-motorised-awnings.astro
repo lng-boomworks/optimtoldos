@@ -1,0 +1,53 @@
+---
+import Base from '../../layouts/Base.astro';
+import { WindSensorPage } from '../../components/pages/WindSensorPage';
+import { buildFAQSchema, buildBreadcrumbSchema, buildServiceSchema } from '../../utils/schema';
+import { t } from '../../i18n/index';
+import { getAlternateUrls } from '../../i18n/routes';
+
+const alternateUrls = getAlternateUrls('wind-sensor-guide');
+const pageUrl = 'https://optimtoldos.com/en/wind-sensor-motorised-awnings';
+
+const faqs = Array.from({ length: 8 }, (_, i) => ({
+  question: t('en', `windSensorGuide.faq.${i + 1}.q` as any),
+  answer: t('en', `windSensorGuide.faq.${i + 1}.a` as any),
+}));
+
+const breadcrumbs = [
+  { name: 'Home', url: 'https://optimtoldos.com/en/' },
+  { name: 'Wind sensors for awnings', url: pageUrl },
+];
+
+const faqSchema = buildFAQSchema(faqs, { locale: 'en' });
+const breadcrumbSchema = buildBreadcrumbSchema(breadcrumbs, { locale: 'en' });
+const serviceSchema = buildServiceSchema({
+  locale: 'en',
+  name: 'Wind sensors for motorised awnings in Alicante',
+  description: 'Installation, configuration and retrofit of wind sensors for Somfy, Nice and Elero awnings on the Costa Blanca.',
+  serviceType: 'Wind sensors for motorised awnings',
+  url: pageUrl,
+  offers: [
+    { name: 'Somfy Eolis 3D wireless sensor' },
+    { name: 'Somfy Soliris sun+wind sensor' },
+    { name: 'Nice WSC sensor' },
+    { name: 'Retrofit on existing motor' },
+    { name: 'TaHoma and MyNice integration' },
+  ],
+});
+---
+
+<Base
+  title={t('en', 'windSensorGuide.title')}
+  description={t('en', 'windSensorGuide.meta_description')}
+  breadcrumbs={breadcrumbs}
+  locale="en"
+  alternateUrls={alternateUrls}
+  type="article"
+>
+  <Fragment slot="head">
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(serviceSchema)} />
+  </Fragment>
+  <WindSensorPage client:load locale="en" />
+</Base>

@@ -230,4 +230,4 @@ Cada vivienda en la Vega Baja tiene necesidades diferentes: orientación, exposi
 
 En Optim Toldos realizamos visitas gratuitas en toda la Vega Baja. Tomamos medidas, evaluamos las condiciones específicas de tu vivienda (orientación, viento, exposición salina) y te presentamos un presupuesto detallado en 48 horas.
 
-**[Solicita tu presupuesto gratuito y sin compromiso](/presupuesto)** — trabajamos con los mejores materiales adaptados al exigente clima de la Vega Baja del Segura.
+**[Solicita tu presupuesto gratuito y sin compromiso](/presupuesto)** - trabajamos con los mejores materiales adaptados al exigente clima de la Vega Baja del Segura.

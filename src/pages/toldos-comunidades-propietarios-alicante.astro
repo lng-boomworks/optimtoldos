@@ -1,0 +1,52 @@
+---
+import Base from '../layouts/Base.astro';
+import { CommunitiesPage } from '../components/pages/CommunitiesPage';
+import { buildFAQSchema, buildBreadcrumbSchema, buildServiceSchema } from '../utils/schema';
+import { t } from '../i18n/index';
+import { getAlternateUrls } from '../i18n/routes';
+
+const alternateUrls = getAlternateUrls('communities-guide');
+const pageUrl = 'https://optimtoldos.com/toldos-comunidades-propietarios-alicante';
+
+const faqs = Array.from({ length: 8 }, (_, i) => ({
+  question: t('es', `communitiesGuide.faq.${i + 1}.q` as any),
+  answer: t('es', `communitiesGuide.faq.${i + 1}.a` as any),
+}));
+
+const breadcrumbs = [
+  { name: 'Inicio', url: 'https://optimtoldos.com/' },
+  { name: 'Toldos en comunidades de propietarios', url: pageUrl },
+];
+
+const faqSchema = buildFAQSchema(faqs, { locale: 'es' });
+const breadcrumbSchema = buildBreadcrumbSchema(breadcrumbs, { locale: 'es' });
+const serviceSchema = buildServiceSchema({
+  locale: 'es',
+  name: 'Toldos para comunidades de propietarios en Alicante',
+  description: 'Asesoramiento técnico y propuestas formales para juntas de comunidad: uniformidad estética, ficha técnica y fotomontaje.',
+  serviceType: 'Toldos para comunidades de propietarios',
+  url: pageUrl,
+  offers: [
+    { name: 'Propuesta técnica para junta de propietarios' },
+    { name: 'Fotomontaje sobre fachada' },
+    { name: 'Toldos uniformes para edificio completo' },
+    { name: 'Ficha técnica y datasheet' },
+  ],
+});
+---
+
+<Base
+  title={t('es', 'communitiesGuide.title')}
+  description={t('es', 'communitiesGuide.meta_description')}
+  breadcrumbs={breadcrumbs}
+  locale="es"
+  alternateUrls={alternateUrls}
+  type="article"
+>
+  <Fragment slot="head">
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(serviceSchema)} />
+  </Fragment>
+  <CommunitiesPage client:load locale="es" />
+</Base>

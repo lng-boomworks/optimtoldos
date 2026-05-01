@@ -3,16 +3,27 @@ import { getCollection, render } from 'astro:content';
 import BlogPost from '../../../layouts/BlogPost.astro';
 
 export async function getStaticPaths() {
+  const SITE = 'https://optimtoldos.com';
   const posts = await getCollection('blog');
   return posts
     .filter((p) => (p.data.locale ?? 'es') === 'en')
-    .map((post) => ({
-      params: { slug: post.id.replace(/^en\//, '') },
-      props: { post },
-    }));
+    .map((post) => {
+      const enSlug = post.id.replace(/^en\//, '');
+      const esId = post.data.translationOf;
+      const alternateUrls = esId
+        ? [
+            { locale: 'es' as const, href: `${SITE}/blog/${esId.replace(/^es\//, '')}/` },
+            { locale: 'en' as const, href: `${SITE}/en/blog/${enSlug}/` },
+          ]
+        : [];
+      return {
+        params: { slug: enSlug },
+        props: { post, alternateUrls },
+      };
+    });
 }
 
-const { post } = Astro.props;
+const { post, alternateUrls } = Astro.props;
 const { Content } = await render(post);
 ---
 
@@ -28,6 +39,7 @@ const { Content } = await render(post);
   slug={post.id}
   locale="en"
   pillarGuide={post.data.pillarGuide}
+  alternateUrls={alternateUrls}
 >
   <Content />
 </BlogPost>

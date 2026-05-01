@@ -194,4 +194,4 @@ No cometas el error de comprar un toldo sin confirmar antes el modelo y color ap
 
 En [Optim Toldos](/toldos) conocemos bien las particularidades de cada municipio del área metropolitana de Alicante. Realizamos la visita técnica en toda la zona, tomamos medidas, evaluamos la orientación y el estado de la fachada, y te presentamos una propuesta adaptada a tu vivienda y tu presupuesto.
 
-**[Solicita tu presupuesto gratuito y sin compromiso](/presupuesto)** — te contactamos en menos de 24 horas para coordinar la visita.
+**[Solicita tu presupuesto gratuito y sin compromiso](/presupuesto)** - te contactamos en menos de 24 horas para coordinar la visita.

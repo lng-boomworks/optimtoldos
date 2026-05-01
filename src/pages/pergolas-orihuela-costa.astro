@@ -1,0 +1,121 @@
+---
+import Base from '../layouts/Base.astro';
+import { ProductZonePage } from '../components/pages/ProductZonePage';
+import {
+  buildServiceSchema,
+  buildBreadcrumbSchema,
+  buildFAQSchema,
+  buildProductSchema,
+} from '../utils/schema';
+
+const SITE = 'https://optimtoldos.com';
+const slug = 'orihuela-costa';
+const name = 'Orihuela Costa';
+const heading = `Pérgolas en ${name}`;
+const intro = `Pérgolas para chalets, dúplex y áticos de Orihuela Costa: aluminio marino, lamas bioclimáticas y cierres laterales con visión al campo de golf o al mar.`;
+
+const pageUrl = `${SITE}/pergolas-${slug}/`;
+const alternateUrls = [
+  { locale: 'es' as const, href: pageUrl },
+  { locale: 'en' as const, href: `${SITE}/en/pergolas-${slug}/` },
+];
+
+const locationParagraph = `Orihuela Costa concentra el mayor parque de viviendas turísticas y de segunda residencia de la provincia: Cabo Roig, La Zenia, Playa Flamenca, Villamartín, Campoamor y Las Filipinas tienen tipologías muy distintas, desde adosados sobre solera hasta áticos con grandes terrazas de uso intensivo. La presión solar es alta de mayo a octubre y muchas comunidades exigen pérgolas en colores neutros (blanco, beige, gris claro) para no romper la línea estética. La proximidad al mar -menos de 1 km en La Zenia y Cabo Roig- obliga a tornillería inoxidable A4 y lacados marinos, y los propietarios extranjeros valoran que la documentación de comunidad y licencia se gestione de extremo a extremo.`;
+
+const whyFitsBullets = [
+  'Lacado RAL marino para resistir la sal de Cabo Roig y La Zenia sin oxidación superficial.',
+  'Pérgola bioclimática con lamas inclinables: regula sol y ventilación sin retirar la cubierta como en un toldo.',
+  'Estética neutral aprobada por la mayoría de comunidades de Orihuela Costa.',
+  'Sensor de viento Somfy/Nice obligado en zonas elevadas (Lomas de Cabo Roig, Las Filipinas) por las rachas de poniente.',
+  'Cierres ZIP o cristal corredero opcional para usar la pérgola como salón exterior en invierno.',
+];
+
+const caseStudy = `Caso reciente: pérgola bioclimática 5×3,5 m sobre terraza de ático en La Zenia, color blanco RAL 9016, motor Nice con sensores de viento y lluvia, iluminación LED perimetral y un paño ZIP screen al sur. Coordinada con la administración de fincas para entregar a la junta los planos y la ficha técnica antes de la obra.`;
+
+const priceBand = `Pérgola fija de aluminio 4×3 m: 3.000 € - 3.800 €. Pérgola bioclimática 4×3 m motorizada con sensores: 4.500 € - 6.000 €. Versión 5×4 m completa con LED y un cerramiento lateral: 7.500 € - 9.500 €.`;
+
+const comunidadNote = `En Orihuela Costa la pérgola sobre terraza privada normalmente requiere autorización expresa de la comunidad, además de declaración responsable en el Ayuntamiento de Orihuela. Las urbanizaciones de Cabo Roig, La Zenia y Villamartín suelen exigir colores y alturas concretas. Tramitamos el dossier técnico (plano cotado, ficha del fabricante, certificado de montador) y le acompañamos en la junta si lo necesita.`;
+
+const faqs = [
+  { q: '¿Necesito permiso de la comunidad para una pérgola en Cabo Roig o La Zenia?', a: 'Sí, en prácticamente todas las comunidades de Orihuela Costa la pérgola sobre terraza privada requiere acuerdo de la junta, especialmente si es bioclimática (cubierta fija). Preparamos el dossier técnico para presentar y, si es necesario, asistimos a la junta.' },
+  { q: '¿Cuánto tarda el Ayuntamiento de Orihuela en responder a una declaración responsable?', a: 'Habitualmente 4 - 8 semanas. La declaración responsable permite empezar la obra a los pocos días de presentarla mientras el Ayuntamiento revisa, siempre que cumpla la ordenanza.' },
+  { q: '¿La pérgola bioclimática es mejor que un toldo aquí?', a: 'En Orihuela Costa sí, especialmente en áticos. La bioclimática cierra completamente con la lluvia (raras pero intensas en otoño) y deja pasar la brisa marina abriendo lamas. Un toldo se recoge cuando llueve y se desprotege la terraza.' },
+  { q: '¿Qué color recomiendan para que pase la junta?', a: 'Blanco perlado (RAL 9010 o 9016), beige claro (RAL 1013) y gris cuarzo (RAL 7039) son los más aceptados en Orihuela Costa. Lacamos en cualquier color RAL si la comunidad exige uno concreto.' },
+  { q: '¿Puedo montar una pérgola en una vivienda de alquiler turístico?', a: 'Sí, e incluso compensa por la prima en alquiler que aporta una terraza utilizable todo el año. Necesita el permiso del propietario, la licencia y, si está en comunidad, el acuerdo de junta.' },
+];
+
+const related = [
+  { label: 'Pérgola bioclimática en Orihuela Costa', href: '/pergola-bioclimatica-orihuela-costa/' },
+  { label: 'Cortinas de cristal en Orihuela Costa', href: '/cortinas-de-cristal-orihuela-costa/' },
+  { label: 'Toldos en Orihuela Costa', href: '/toldos-orihuela-costa/' },
+  { label: 'Guía de licencias en Alicante', href: '/guia-licencias-pergolas-toldos-alicante/' },
+  { label: 'Bioclimática vs aluminio', href: '/pergola-bioclimatica-vs-aluminio/' },
+];
+
+const ctaHref = `/presupuesto/?product=pergolas&location=${slug}`;
+const contactHref = '/contacto/';
+const licenceHref = '/guia-licencias-pergolas-toldos-alicante/';
+
+const breadcrumbs = [
+  { name: 'Inicio', url: `${SITE}/` },
+  { name: 'Pérgolas', url: `${SITE}/pergolas/` },
+  { name, url: pageUrl },
+];
+
+const serviceSchema = buildServiceSchema({
+  locale: 'es',
+  name: heading,
+  description: intro,
+  serviceType: 'Instalación de pérgolas',
+  url: pageUrl,
+  offers: [
+    { name: 'Pérgola bioclimática' },
+    { name: 'Pérgola fija de aluminio' },
+    { name: 'Pérgola con toldo deslizante' },
+  ],
+});
+const breadcrumbSchema = buildBreadcrumbSchema(breadcrumbs, { locale: 'es' });
+const faqSchema = buildFAQSchema(faqs.map(f => ({ question: f.q, answer: f.a })), { locale: 'es' });
+const productSchema = buildProductSchema({
+  locale: 'es',
+  name: heading,
+  description: intro,
+  image: `${SITE}/images/pergolas/pergola-bioclimatica.webp`,
+  url: pageUrl,
+  category: 'Pérgolas',
+  lowPrice: '2800',
+  highPrice: '9500',
+});
+---
+
+<Base
+  title={`${heading} - Optim Toldos`}
+  description={intro}
+  locale="es"
+  alternateUrls={alternateUrls}
+  breadcrumbs={breadcrumbs}
+>
+  <Fragment slot="head">
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(serviceSchema)} />
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(productSchema)} />
+  </Fragment>
+  <ProductZonePage
+    client:load
+    locale="es"
+    heading={heading}
+    intro={intro}
+    heroImage="/images/pergolas/hero-pergolas-1280.webp"
+    locationParagraph={locationParagraph}
+    whyFitsBullets={whyFitsBullets}
+    caseStudy={caseStudy}
+    priceBand={priceBand}
+    comunidadNote={comunidadNote}
+    licenceHref={licenceHref}
+    faqs={faqs}
+    related={related}
+    ctaHref={ctaHref}
+    contactHref={contactHref}
+  />
+</Base>

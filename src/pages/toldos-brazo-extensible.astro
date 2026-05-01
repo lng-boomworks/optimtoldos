@@ -1,0 +1,178 @@
+---
+import Base from '../layouts/Base.astro';
+import { SubProductPage } from '../components/pages/SubProductPage';
+import {
+  buildServiceSchema,
+  buildFAQSchema,
+  buildBreadcrumbSchema,
+  buildProductSchema,
+} from '../utils/schema';
+import { getAlternateUrls } from '../i18n/routes';
+
+const locale = 'es' as const;
+const pageId = 'awnings-arm';
+const pageUrl = 'https://optimtoldos.com/toldos-brazo-extensible/';
+const productSlug = 'toldo-brazo-extensible';
+const alternateUrls = getAlternateUrls(pageId);
+
+const hero = {
+  heading: 'Toldos de Brazo Extensible en Alicante',
+  description: 'El clásico de las terrazas españolas: brazos articulados que despliegan la lona y crean sombra inmediata sin obra civil. Soluciones a medida, manuales o motorizadas.',
+  image: '/images/gallery/toldo-brazo-extensible.webp',
+  imageAlt: 'Toldo de brazo extensible desplegado sobre una terraza',
+};
+
+const intro = 'El toldo de brazo extensible es la solución más buscada en la Costa Blanca: simple, eficaz y rentable. Los brazos articulados despliegan la lona horizontalmente y dan sombra inmediata sobre balcones, terrazas y fachadas sin necesidad de obra. En Optim Toldos lo fabricamos a medida en anchuras de hasta 7 metros y voladizos de 3,5 metros, con motorización opcional y lonas de marcas como Sunbrella o Tempotest.';
+
+const sections = [
+  {
+    heading: 'Cómo funciona',
+    body: [
+      'Los brazos articulados, tensados por cables internos de acero o cadena, se pliegan en zigzag contra la pared. Al accionar el toldo (manualmente con manivela o por motor), los brazos se extienden y la lona se enrolla o desenrolla desde el tubo principal anclado a fachada.',
+      'Es la única tipología que ofrece sombra horizontal completa hasta 3,5 metros de voladizo sin pies de apoyo, lo que lo convierte en la opción ideal para balcones de pisos, terrazas comunitarias y fachadas comerciales donde no podemos plantar postes.',
+    ],
+  },
+  {
+    heading: 'Variantes y especificaciones',
+    body: [
+      'Trabajamos tres formatos: <strong>monoblock</strong> (un solo tubo de aluminio extrusionado, sin carcasa), <strong>semi-cofre</strong> (perfil que protege la lona enrollada) y <strong>cofre completo</strong> (carcasa cerrada que protege también los brazos). El monoblock es el más económico y mantiene la estética abierta tradicional.',
+      'Anchuras estándar: de 2,5 a 7 metros (a partir de 5,5 m con dos juegos de brazos acoplados). Voladizo (salida): 1,5 a 3,5 metros. Inclinación regulable entre 5 y 35 grados. Estructura de aluminio extrusionado lacado al horno en cualquier RAL.',
+    ],
+  },
+  {
+    heading: 'Casos de uso típicos',
+    body: [
+      'Es la opción dominante en pisos de Alicante, Elche, Torrevieja y Benidorm porque no requiere apoyos en el suelo y respeta la estética de fachada exigida por la mayoría de comunidades de propietarios. Para áticos y locales hosteleros tipo cafetería con saliente sobre acera funciona perfectamente.',
+      'En cambio, para pérgolas independientes en jardín, estructuras de gran tamaño (más de 7 m) o donde el viento de Levante supera regularmente los 50 km/h conviene plantear una pérgola bioclimática o un toldo cofre con sensor de viento.',
+    ],
+  },
+  {
+    heading: 'Proceso de instalación',
+    body: [
+      'Tras la visita técnica gratuita, definimos anchura, voladizo, inclinación, color de lona (con muestrario físico) y motorización. Pedimos la fabricación al taller con plazo medio de 2-3 semanas para colores estándar.',
+      'La instalación de un toldo de hasta 5 m la realiza una pareja de técnicos en 3-4 horas. Anclamos a fachada con tirafondos químicos en hormigón o ladrillo macizo. En perfil metálico (estructura industrial) usamos pasadores específicos. Si la fachada está en zona protegida o requiere licencia municipal, gestionamos la documentación.',
+    ],
+  },
+  {
+    heading: 'Mantenimiento básico',
+    body: [
+      'Limpiar la lona dos veces al año con jabón neutro y cepillo suave (sin productos químicos), comprobar tornillería tras temporales y engrasar las articulaciones de brazos cada 24 meses son las acciones imprescindibles.',
+      'En zonas de salitre marino conviene revisar los herrajes de acero inoxidable cada año y aplicar un protector de aluminio al tubo principal. Tienes el detalle completo en nuestra <a href="/mantenimiento-toldos-costa-blanca/" class="text-terracotta hover:underline">guía de mantenimiento</a>.',
+    ],
+  },
+  {
+    heading: 'Precios 2026',
+    body: [
+      'Un toldo de brazo extensible monoblock 4 x 2,5 m parte de 650 euros instalado, manual y con lona acrílica básica. La versión motorizada con Somfy y mando radio sube a 950 euros. Modelos premium (cofre completo, lona Sunbrella Plus, motor Somfy io con sensor de sol y viento) alcanzan los 1.500-1.800 euros.',
+      'Para anchuras de 5,5 a 7 m con doble juego de brazos los rangos son 1.100-2.500 euros según especificación. Consulta el <a href="/precio-toldos-alicante-2026/" class="text-terracotta hover:underline">desglose 2026 completo</a>.',
+    ],
+  },
+];
+
+const comparison = {
+  heading: 'Toldos de brazo: comparativa de gamas',
+  intro: 'Tres niveles de gama para diferentes presupuestos y exposiciones.',
+  columns: ['Característica', 'Gama básica', 'Gama media', 'Gama premium'],
+  rows: [
+    ['Formato', 'Monoblock abierto', 'Semi-cofre', 'Cofre completo'],
+    ['Lona', 'Acrílica teñida en masa', 'Sunbrella / Tempotest', 'Sunbrella Plus / Markilux'],
+    ['Motor', 'Manual o Somfy básico', 'Somfy RTS', 'Somfy io con sensor viento+sol'],
+    ['Garantía estructura', '5 años', '5 años', '7 años'],
+    ['Precio 4x2,5 m instalado', '650 - 950 euros', '950 - 1.400 euros', '1.500 - 1.800 euros'],
+  ],
+};
+
+const related = {
+  heading: 'Páginas relacionadas',
+  links: [
+    { label: 'Toldos cofre', href: '/toldos-cofre/' },
+    { label: 'Toldos verticales ZIP', href: '/toldos-verticales-zip/' },
+    { label: 'Motorización de toldos', href: '/toldos-motorizacion/' },
+    { label: 'Volver a Toldos (hub)', href: '/toldos/' },
+    { label: 'Guía: elegir toldo en Costa Blanca', href: '/guia-elegir-toldo-costa-blanca/' },
+    { label: 'Sensor de viento para toldos motorizados', href: '/sensor-viento-toldos-motorizados/' },
+    { label: 'Servicio en Alicante ciudad', href: '/toldos-alicante/' },
+    { label: 'Servicio en Elche', href: '/toldos-elche/' },
+    { label: 'Servicio en Torrevieja', href: '/toldos-torrevieja/' },
+  ],
+};
+
+const faqs = [
+  { question: '¿Cuál es el voladizo máximo de un toldo de brazo?', answer: 'El estándar de mercado es 3,5 metros de voladizo. Por encima de eso la flecha de la lona y la tensión sobre los brazos hacen que sea más eficiente plantear una pérgola con apoyos en el suelo.' },
+  { question: '¿Aguanta el toldo de brazo el viento?', answer: 'Hasta clase 2 según norma EN 13561 (alrededor de 28 km/h con el toldo desplegado). Por encima de ese umbral hay que recogerlo. Con sensor de viento Somfy o Nice, lo hace automáticamente.' },
+  { question: '¿Se puede instalar en una comunidad de propietarios?', answer: 'Sí, pero la mayoría de comunidades exigen aprobación previa en junta y un modelo y color homologado. Hacemos la memoria técnica y aportamos muestrarios para la votación. Más detalle en nuestra guía para comunidades.' },
+  { question: '¿Qué motor recomendáis?', answer: 'Para el 90 % de instalaciones recomendamos Somfy RTS (mando radio bidireccional). Para integración con domótica o sensores avanzados, Somfy io. Nice y Elero son alternativas sólidas con precio similar y buena disponibilidad de recambios.' },
+  { question: '¿Cuánto tiempo de garantía cubre la estructura?', answer: 'Damos 5 años sobre estructura y brazos en gama básica y media; 7 años en premium. Lonas Sunbrella y Tempotest tienen 5-10 años directos del fabricante. Motores Somfy y Nice, 5 años.' },
+  { question: '¿Puedo elegir cualquier color?', answer: 'El aluminio se laca en cualquier RAL. La lona depende del muestrario del fabricante: Sunbrella y Tempotest tienen entre 80 y 150 colores, Markilux más de 200 referencias.' },
+  { question: '¿Cuánto tarda la instalación?', answer: 'En vanos hasta 5 m, una pareja de técnicos lo monta en 3-4 horas. La fabricación previa lleva 2-3 semanas en colores estándar y hasta 5 semanas para premium o RAL especiales.' },
+  { question: '¿Necesito licencia del ayuntamiento?', answer: 'En la mayoría de municipios costeros sí. Cada ayuntamiento tiene su propia ordenanza. Tienes el detalle por municipio en nuestra guía de licencias para pérgolas y toldos en Alicante.' },
+];
+
+const cta = {
+  heading: 'Toldo de brazo a medida en 48 horas de presupuesto',
+  body: 'Visita técnica gratuita, muestrarios físicos y montaje profesional en toda la provincia de Alicante.',
+  button: 'Solicitar presupuesto',
+  buttonHref: `/presupuesto/?product=${productSlug}`,
+  secondary: { label: 'Ver toldos (hub)', href: '/toldos/' },
+};
+
+const breadcrumbs = [
+  { name: 'Inicio', url: 'https://optimtoldos.com/' },
+  { name: 'Toldos', url: 'https://optimtoldos.com/toldos/' },
+  { name: 'Toldos brazo extensible', url: pageUrl },
+];
+
+const serviceSchema = buildServiceSchema({
+  locale,
+  name: 'Toldos de Brazo Extensible en Alicante',
+  description: hero.description,
+  serviceType: 'Instalación de toldos de brazo extensible',
+  url: pageUrl,
+  offers: [
+    { name: 'Toldo monoblock' },
+    { name: 'Toldo semi-cofre' },
+    { name: 'Toldo cofre completo' },
+    { name: 'Motorización Somfy / Nice' },
+  ],
+});
+
+const faqSchema = buildFAQSchema(faqs, { locale });
+const breadcrumbSchema = buildBreadcrumbSchema(breadcrumbs, { locale });
+const productSchema = buildProductSchema({
+  locale,
+  name: 'Toldo de Brazo Extensible a Medida',
+  description: hero.description,
+  image: 'https://optimtoldos.com/images/gallery/toldo-brazo-extensible.webp',
+  url: pageUrl,
+  lowPrice: '350',
+  highPrice: '1800',
+  category: 'Toldos brazo extensible',
+});
+---
+
+<Base
+  title="Toldos de Brazo Extensible a Medida | Optim Toldos - Alicante"
+  description="Toldos brazo extensible a medida en Alicante. Monoblock, semi-cofre y cofre completo, motorización Somfy y lonas Sunbrella o Tempotest. Visita gratuita."
+  locale={locale}
+  alternateUrls={alternateUrls}
+  breadcrumbs={breadcrumbs}
+>
+  <Fragment slot="head">
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(serviceSchema)} />
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(productSchema)} />
+  </Fragment>
+  <SubProductPage
+    client:load
+    locale={locale}
+    hero={hero}
+    intro={intro}
+    sections={sections}
+    comparison={comparison}
+    related={related}
+    faqHeading="Preguntas frecuentes"
+    faqs={faqs}
+    cta={cta}
+  />
+</Base>

@@ -1,0 +1,52 @@
+---
+import Base from '../../layouts/Base.astro';
+import { CommunitiesPage } from '../../components/pages/CommunitiesPage';
+import { buildFAQSchema, buildBreadcrumbSchema, buildServiceSchema } from '../../utils/schema';
+import { t } from '../../i18n/index';
+import { getAlternateUrls } from '../../i18n/routes';
+
+const alternateUrls = getAlternateUrls('communities-guide');
+const pageUrl = 'https://optimtoldos.com/en/awnings-residents-communities-alicante';
+
+const faqs = Array.from({ length: 8 }, (_, i) => ({
+  question: t('en', `communitiesGuide.faq.${i + 1}.q` as any),
+  answer: t('en', `communitiesGuide.faq.${i + 1}.a` as any),
+}));
+
+const breadcrumbs = [
+  { name: 'Home', url: 'https://optimtoldos.com/en/' },
+  { name: 'Awnings in residents communities', url: pageUrl },
+];
+
+const faqSchema = buildFAQSchema(faqs, { locale: 'en' });
+const breadcrumbSchema = buildBreadcrumbSchema(breadcrumbs, { locale: 'en' });
+const serviceSchema = buildServiceSchema({
+  locale: 'en',
+  name: 'Awnings for residents communities in Alicante',
+  description: 'Technical advice and formal AGM proposals for residents communities: visual uniformity, datasheet and facade photo-mockup.',
+  serviceType: 'Awnings for residents communities',
+  url: pageUrl,
+  offers: [
+    { name: 'Technical proposal for AGM' },
+    { name: 'Facade photo-mockup' },
+    { name: 'Building-wide uniform awnings' },
+    { name: 'Datasheet and specifications' },
+  ],
+});
+---
+
+<Base
+  title={t('en', 'communitiesGuide.title')}
+  description={t('en', 'communitiesGuide.meta_description')}
+  breadcrumbs={breadcrumbs}
+  locale="en"
+  alternateUrls={alternateUrls}
+  type="article"
+>
+  <Fragment slot="head">
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(serviceSchema)} />
+  </Fragment>
+  <CommunitiesPage client:load locale="en" />
+</Base>

@@ -1,0 +1,177 @@
+---
+import Base from '../layouts/Base.astro';
+import { SubProductPage } from '../components/pages/SubProductPage';
+import {
+  buildServiceSchema,
+  buildFAQSchema,
+  buildBreadcrumbSchema,
+  buildProductSchema,
+} from '../utils/schema';
+import { getAlternateUrls } from '../i18n/routes';
+
+const locale = 'es' as const;
+const pageId = 'awnings-cassette';
+const pageUrl = 'https://optimtoldos.com/toldos-cofre/';
+const productSlug = 'toldo-cofre';
+const alternateUrls = getAlternateUrls(pageId);
+
+const hero = {
+  heading: 'Toldos Cofre a Medida en Alicante',
+  description: 'Cofre cerrado y semi-cofre de aluminio extrusionado: la lona queda totalmente protegida del polvo, el salitre y la lluvia cuando el toldo está recogido.',
+  image: '/images/gallery/toldo-cofre.webp',
+  imageAlt: 'Toldo cofre instalado en una terraza de Alicante',
+};
+
+const intro = 'El toldo cofre es la opción más duradera para la Costa Blanca. Al cerrar la lona dentro de una carcasa de aluminio extrusionado lacado, evita que el sol, el polvo del Levante y el salitre marino degraden el tejido. Es la opción que recomendamos en primera línea de playa, en zonas con mucho viento o cuando el toldo va a estar recogido durante semanas.';
+
+const sections = [
+  {
+    heading: 'Cofre completo vs semi-cofre',
+    body: [
+      'Existen dos variantes principales: el <strong>cofre completo</strong> y el <strong>semi-cofre</strong>. El cofre completo cierra la lona y los brazos en una carcasa hermética, ideal para residencias de uso ocasional o segundas viviendas en la costa. El semi-cofre protege la lona enrollada pero deja los brazos al aire libre, lo que reduce el coste sin renunciar a la protección del tejido.',
+      'En Optim Toldos trabajamos ambos formatos en perfilería de aluminio extrusionado lacado al horno (color RAL a elegir, acabados estándar y texturizados). La diferencia de precio ronda el 15-20 % a favor del semi-cofre, pero en primera línea de playa siempre recomendamos el cofre completo por durabilidad.',
+    ],
+  },
+  {
+    heading: 'Materiales y especificaciones',
+    body: [
+      'La estructura es de aluminio extrusionado de pared gruesa, lacado en cualquier color RAL con garantía contra corrosión salina. Los brazos pueden ser de doble cable de acero inoxidable o de cadena interna, ambos con tensión regulable.',
+      'Las lonas que ofrecemos por defecto son acrílicas teñidas en masa de las gamas <strong>Sunbrella</strong>, <strong>Tempotest Para</strong> o <strong>Markilux</strong>: resistencia UV, anti-moho y garantía de 5-10 años en colores. Para zonas muy expuestas al viento ofrecemos también lonas técnicas microperforadas Soltis 86 o Serge Ferrari.',
+    ],
+  },
+  {
+    heading: 'Casos de uso típicos',
+    body: [
+      'El toldo cofre brilla en terrazas de áticos donde el viento de poniente azota varios días al mes, en chalés de la línea de playa entre Guardamar y La Marina, y en comunidades de propietarios donde el reglamento exige unificar carcasas cerradas para mantener la estética de la fachada.',
+      'También es la elección habitual de hosteleros que necesitan dejar el toldo recogido durante el invierno: la lona puede pasar 5 o 6 meses cerrada sin manchas de polvo ni decoloración por radiación parcial.',
+    ],
+  },
+  {
+    heading: 'Proceso de instalación',
+    body: [
+      'Tras la visita técnica medimos vano, comprobamos la estructura de anclaje (hormigón, ladrillo macizo, perfil metálico) y elegimos los herrajes adecuados. La fabricación en taller suele tardar entre 2 y 4 semanas dependiendo del color y la lona.',
+      'La instalación de un cofre estándar de hasta 5 metros se realiza en una jornada por dos técnicos. Para vanos superiores a 6 m colocamos un soporte central reforzado. Si la fachada está dentro de comunidad o en suelo protegido, gestionamos previamente la licencia con el ayuntamiento (consulta nuestra guía por municipios).',
+    ],
+  },
+  {
+    heading: 'Mantenimiento',
+    body: [
+      'El cofre cerrado reduce drásticamente el mantenimiento: bastará con limpiar la carcasa exterior con agua jabonosa dos veces al año y revisar tornillería tras temporales fuertes. La lona protegida puede llegar a los 12-15 años en buen estado en zonas costeras.',
+      'Recomendamos un revisado profesional cada 24 meses para reengrasar articulaciones de brazos, comprobar el motor y verificar la tensión de los cables. Tienes más detalles en nuestra <a href="/mantenimiento-toldos-costa-blanca/" class="text-terracotta hover:underline">guía de mantenimiento de toldos en la Costa Blanca</a>.',
+    ],
+  },
+  {
+    heading: 'Precios 2026',
+    body: [
+      'En 2026 un toldo cofre estándar de 4 x 3 m parte desde 1.150 euros instalado, con lona acrílica básica y mando manual. La versión motorizada con motor Somfy y mando radio sube a 1.450-1.700 euros. Modelos premium con cofre completo Markilux y lona Sunbrella Plus alcanzan los 2.800-3.500 euros.',
+      'El semi-cofre del mismo tamaño parte desde 950 euros instalado. Consulta el <a href="/precio-toldos-alicante-2026/" class="text-terracotta hover:underline">desglose completo de precios 2026</a> para comparar configuraciones.',
+    ],
+  },
+];
+
+const comparison = {
+  heading: 'Cofre completo vs Semi-cofre vs Toldo abierto',
+  intro: 'Comparativa rápida de los tres formatos más demandados.',
+  columns: ['Característica', 'Cofre completo', 'Semi-cofre', 'Brazo abierto'],
+  rows: [
+    ['Protección de la lona', 'Total (carcasa cerrada)', 'Parcial (lona protegida, brazos visibles)', 'Ninguna'],
+    ['Vida útil estimada', '12-15 años', '10-12 años', '7-10 años'],
+    ['Idóneo para', '1ª línea de playa, áticos expuestos', 'Terrazas urbanas y residenciales', 'Patios cubiertos'],
+    ['Precio referencia 4x3 m', '1.150 - 3.500 euros', '950 - 2.200 euros', '650 - 1.500 euros'],
+    ['Estética recogida', 'Carcasa lisa de aluminio', 'Lona oculta, brazos vistos', 'Lona y brazos visibles'],
+  ],
+};
+
+const related = {
+  heading: 'Páginas relacionadas',
+  links: [
+    { label: 'Toldos brazo extensible', href: '/toldos-brazo-extensible/' },
+    { label: 'Toldos verticales ZIP', href: '/toldos-verticales-zip/' },
+    { label: 'Motorización de toldos', href: '/toldos-motorizacion/' },
+    { label: 'Volver a Toldos (hub)', href: '/toldos/' },
+    { label: 'Guía: elegir toldo en Costa Blanca', href: '/guia-elegir-toldo-costa-blanca/' },
+    { label: 'Precios de toldos Alicante 2026', href: '/precio-toldos-alicante-2026/' },
+    { label: 'Servicio en Torrevieja', href: '/toldos-torrevieja/' },
+    { label: 'Servicio en Orihuela Costa', href: '/toldos-orihuela-costa/' },
+    { label: 'Servicio en Alicante ciudad', href: '/toldos-alicante/' },
+  ],
+};
+
+const faqs = [
+  { question: '¿Qué diferencia hay entre cofre completo y semi-cofre?', answer: 'El cofre completo cierra la lona y los brazos en una carcasa hermética. El semi-cofre solo cubre la lona enrollada, dejando los brazos a la vista. El completo dura más en zonas costeras, pero el semi-cofre cuesta entre un 15 % y un 20 % menos.' },
+  { question: '¿El toldo cofre aguanta el viento de Levante?', answer: 'Aguanta vientos hasta clase 3 según norma EN 13561 (alrededor de 38 km/h con el toldo extendido). En primera línea de playa recomendamos motorizarlo con sensor de viento Somfy o Nice para que se recoja automáticamente cuando supere el umbral.' },
+  { question: '¿Puedo elegir el color del cofre?', answer: 'Sí, lacamos el aluminio en cualquier color de la carta RAL, incluidos acabados texturizados y efecto madera. El plazo de entrega aumenta una semana cuando se elige un RAL no estándar.' },
+  { question: '¿Cuánto tarda la fabricación e instalación?', answer: 'Entre 2 y 4 semanas desde el pedido en firme. La instalación se hace en una jornada para vanos de hasta 5 m. Lonas y colores premium pueden alargar el plazo hasta 6 semanas.' },
+  { question: '¿Necesito licencia del ayuntamiento?', answer: 'En la mayoría de municipios costeros sí, especialmente si modificas la fachada o si vives en una comunidad de propietarios. Gestionamos la documentación: consulta nuestra guía de licencias por municipios.' },
+  { question: '¿Qué garantía tiene el toldo cofre?', answer: 'Damos 5 años de garantía sobre la estructura y los brazos. La lona y el motor llevan la garantía oficial del fabricante (5-10 años según gama Sunbrella, Tempotest o Markilux; 5 años en motores Somfy y Nice).' },
+  { question: '¿Puedo motorizarlo más tarde?', answer: 'Sí, todos nuestros toldos cofre son compatibles con motorización posterior, aunque resulta entre un 15 % y un 20 % más barato instalarlo motorizado de fábrica. Más detalle en nuestra página de motorización.' },
+  { question: '¿Trabajáis con comunidades de propietarios?', answer: 'Sí, ofrecemos visitas técnicas y memorias para juntas de comunidad, con muestrarios físicos de carcasas y lonas para votación. Tenemos una guía específica para comunidades en la zona de Alicante.' },
+];
+
+const cta = {
+  heading: '¿Listo para tu toldo cofre a medida?',
+  body: 'Visita técnica gratuita en toda la provincia de Alicante. Te enviamos presupuesto cerrado en 48 horas.',
+  button: 'Solicitar presupuesto',
+  buttonHref: `/presupuesto/?product=${productSlug}`,
+  secondary: { label: 'Ver toldos (hub)', href: '/toldos/' },
+};
+
+const breadcrumbs = [
+  { name: 'Inicio', url: 'https://optimtoldos.com/' },
+  { name: 'Toldos', url: 'https://optimtoldos.com/toldos/' },
+  { name: 'Toldos cofre', url: pageUrl },
+];
+
+const serviceSchema = buildServiceSchema({
+  locale,
+  name: 'Toldos Cofre a Medida en Alicante',
+  description: hero.description,
+  serviceType: 'Instalación de toldos cofre',
+  url: pageUrl,
+  offers: [
+    { name: 'Toldo cofre completo' },
+    { name: 'Toldo semi-cofre' },
+    { name: 'Motorización Somfy / Nice' },
+  ],
+});
+
+const faqSchema = buildFAQSchema(faqs, { locale });
+const breadcrumbSchema = buildBreadcrumbSchema(breadcrumbs, { locale });
+const productSchema = buildProductSchema({
+  locale,
+  name: 'Toldo Cofre a Medida',
+  description: hero.description,
+  image: 'https://optimtoldos.com/images/gallery/toldo-cofre.webp',
+  url: pageUrl,
+  lowPrice: '950',
+  highPrice: '3500',
+  category: 'Toldos cofre',
+});
+---
+
+<Base
+  title="Toldos Cofre a Medida | Optim Toldos - Alicante"
+  description="Toldos cofre completo y semi-cofre de aluminio para terrazas y áticos en Alicante. Lona protegida, motorización Somfy y garantía de 5 años."
+  locale={locale}
+  alternateUrls={alternateUrls}
+  breadcrumbs={breadcrumbs}
+>
+  <Fragment slot="head">
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(serviceSchema)} />
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(productSchema)} />
+  </Fragment>
+  <SubProductPage
+    client:load
+    locale={locale}
+    hero={hero}
+    intro={intro}
+    sections={sections}
+    comparison={comparison}
+    related={related}
+    faqHeading="Preguntas frecuentes"
+    faqs={faqs}
+    cta={cta}
+  />
+</Base>

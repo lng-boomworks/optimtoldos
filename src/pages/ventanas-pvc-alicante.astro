@@ -1,0 +1,104 @@
+---
+import Base from '../layouts/Base.astro';
+import { ProductZonePage } from '../components/pages/ProductZonePage';
+import {
+  buildServiceSchema,
+  buildBreadcrumbSchema,
+  buildFAQSchema,
+} from '../utils/schema';
+
+const SITE = 'https://optimtoldos.com';
+const slug = 'alicante';
+const name = 'Alicante';
+const heading = `Ventanas de PVC en ${name}`;
+const intro = `Ventanas de PVC con triple junta y vidrio bajo emisivo en Alicante: aislamiento térmico y acústico para pisos urbanos, áticos con vista y reformas en barrios costeros. Fabricación a medida.`;
+
+const pageUrl = `${SITE}/ventanas-pvc-${slug}/`;
+const alternateUrls = [
+  { locale: 'es' as const, href: pageUrl },
+  { locale: 'en' as const, href: `${SITE}/en/pvc-windows-${slug}/` },
+];
+
+const locationParagraph = `Alicante combina parque urbano denso con barrios costeros: pisos del centro y de barrios como Carolinas, Benalúa o PAU 2 con carpintería de aluminio sin RPT de los años 70 - 90, áticos con grandes ventanales en la zona del Postiguet y Cabo, y chalets en San Juan, Vistahermosa o La Goteta. La sustitución por PVC con doble acristalamiento bajo emisivo y triple junta aporta aislamiento térmico (ahorro 25 - 35 % en climatización), acústico (clave en pisos a vías principales como la Avenida de Dénia o la Vía Parque) y resuelve el deterioro del aluminio antiguo, especialmente afectado por el aire salino en zonas costeras. Trabajamos con perfiles Cortizo, Aluplast y Schüco.`;
+
+const whyFitsBullets = [
+  'Aislamiento acústico de 30 - 38 dB con vidrio doble: imprescindible en pisos a avenidas como Vía Parque, Av. Dénia o Av. Aguilera.',
+  'Resistencia al aire salino: PVC no se corroe ni pica como el aluminio sin tratamiento en zonas costeras (Postiguet, Cabo, Albufereta).',
+  'Ahorro de 25 - 35 % en climatización frente a aluminio sin RPT que predomina en pisos de los 70 - 90.',
+  'Estética moderna disponible en lacados foliados (madera, gris antracita, blanco) y abre opciones de diseño para áticos con vista.',
+  'Mantenimiento mínimo: limpieza con jabón neutro 1 - 2 veces al año, sin pintar ni barnizar.',
+];
+
+const caseStudy = `Caso reciente: sustitución de 6 ventanas y una corredera de 4 m en piso de 110 m² en zona Albufereta, perfil Cortizo Cor 70 con vidrio doble bajo emisivo (4/16/4 con argón), color blanco interior y antracita exterior. Trabajos en 3 jornadas con retirada de las antiguas, sellado perimetral elastómero y reposición del enlucido. Plazo desde firma 4 - 5 semanas.`;
+
+const comunidadNote = `En Alicante la sustitución de ventanas dentro del hueco existente es comunicación previa de obra menor en la mayoría de barrios. En zonas con planeamiento especial (Casco Antiguo, edificios catalogados) puede requerirse autorización urbanística específica: lo verificamos antes de presupuestar. En comunidad de propietarios, si va a cambiar el color exterior, conviene revisar los estatutos: muchas comunidades exigen uniformidad de fachada.`;
+
+const faqs = [
+  { q: '¿Cómo lo gestiono si vivo en piso con vecinos?', a: 'En la mayoría de comunidades de Alicante la sustitución de ventanas en el hueco existente sin cambiar fachada se acepta sin permiso de junta. Si va a alterar color exterior, persiana o cajón visible, hay que revisar estatutos. Le ayudamos con la documentación técnica si la junta lo solicita.' },
+  { q: '¿Aguanta el aire salino del Postiguet?', a: 'El PVC es totalmente inerte al cloruro sódico: no se corroe ni pica como el aluminio sin tratamiento. La vida útil esperada en zona costera es 30 - 40 años. Los herrajes interiores son de acero inoxidable o latón, también resistentes.' },
+  { q: '¿Mejora el aislamiento acústico en avenidas con tráfico denso?', a: 'Sí, significativamente. Una ventana antigua de aluminio simple acristalamiento da unos 24 - 27 dB de reducción. PVC con triple junta y vidrio doble laminado acústico llega a 38 - 42 dB. La diferencia se nota desde el primer día en avenidas como Vía Parque o Av. Dénia.' },
+  { q: '¿Cuánto tarda la fabricación e instalación?', a: 'Fabricación a medida 3 - 5 semanas según fabricante. Instalación de 1 - 4 jornadas según número de huecos, incluyendo retirada, sellado y reposición de enlucido.' },
+];
+
+const related = [
+  { label: 'Ventanas PVC (catálogo)', href: '/ventanas-pvc/' },
+  { label: 'Toldos en Alicante', href: '/toldos-alicante/' },
+  { label: 'Cortinas de cristal en Alicante', href: '/cortinas-de-cristal-alicante/' },
+  { label: 'Pérgolas en Alicante', href: '/pergolas-alicante/' },
+];
+
+const ctaHref = `/presupuesto/?product=ventanas-pvc&location=${slug}`;
+const contactHref = '/contacto/';
+const licenceHref = '/guia-licencias-pergolas-toldos-alicante/';
+
+const breadcrumbs = [
+  { name: 'Inicio', url: `${SITE}/` },
+  { name: 'Ventanas PVC', url: `${SITE}/ventanas-pvc/` },
+  { name, url: pageUrl },
+];
+
+const serviceSchema = buildServiceSchema({
+  locale: 'es',
+  name: heading,
+  description: intro,
+  serviceType: 'Instalación de ventanas de PVC',
+  url: pageUrl,
+  offers: [
+    { name: 'Ventana PVC oscilobatiente' },
+    { name: 'Ventana PVC corredera' },
+    { name: 'Puerta balconera y de entrada PVC' },
+  ],
+});
+const breadcrumbSchema = buildBreadcrumbSchema(breadcrumbs, { locale: 'es' });
+const faqSchema = buildFAQSchema(faqs.map(f => ({ question: f.q, answer: f.a })), { locale: 'es' });
+---
+
+<Base
+  title={`${heading} - Optim Toldos`}
+  description={intro}
+  locale="es"
+  alternateUrls={alternateUrls}
+  breadcrumbs={breadcrumbs}
+>
+  <Fragment slot="head">
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(serviceSchema)} />
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+  </Fragment>
+  <ProductZonePage
+    client:load
+    locale="es"
+    heading={heading}
+    intro={intro}
+    heroImage="/images/ventanas/hero-ventanas-1280.webp"
+    locationParagraph={locationParagraph}
+    whyFitsBullets={whyFitsBullets}
+    caseStudy={caseStudy}
+    comunidadNote={comunidadNote}
+    licenceHref={licenceHref}
+    faqs={faqs}
+    related={related}
+    ctaHref={ctaHref}
+    contactHref={contactHref}
+  />
+</Base>

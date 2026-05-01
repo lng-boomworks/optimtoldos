@@ -1,0 +1,104 @@
+---
+import Base from '../layouts/Base.astro';
+import { ProductZonePage } from '../components/pages/ProductZonePage';
+import {
+  buildServiceSchema,
+  buildBreadcrumbSchema,
+  buildFAQSchema,
+} from '../utils/schema';
+
+const SITE = 'https://optimtoldos.com';
+const slug = 'elche';
+const name = 'Elche';
+const heading = `Ventanas de PVC en ${name}`;
+const intro = `Ventanas de PVC con triple junta y vidrio bajo emisivo en Elche: aislamiento térmico y acústico para pisos del centro, chalets de la Marina Sur y reformas integrales. Fabricación a medida.`;
+
+const pageUrl = `${SITE}/ventanas-pvc-${slug}/`;
+const alternateUrls = [
+  { locale: 'es' as const, href: pageUrl },
+  { locale: 'en' as const, href: `${SITE}/en/pvc-windows-${slug}/` },
+];
+
+const locationParagraph = `Elche reúne tres tipologías de vivienda muy distintas para la sustitución de ventanas: pisos urbanos de los años 70 - 80 en el centro y barrios como Carrús o San Antón con carpintería de aluminio sin RPT, chalets en la zona sur y Marina Sur expuestos al sol del mediodía con grandes vanos, y promociones nuevas que ya integran el PVC desde fábrica. La sustitución por PVC con triple junta y doble acristalamiento bajo emisivo aporta aislamiento térmico (ahorro 25 - 35 % en climatización), acústico (reducción 30 - 38 dB en ventana doble) y elimina el mantenimiento que requiere la madera o el aluminio antiguo. Trabajamos con perfiles Cortizo, Aluplast y Schüco según presupuesto y exigencia técnica.`;
+
+const whyFitsBullets = [
+  'Ahorro real en climatización de 25 - 35 % frente a aluminio sin RPT (la mayoría del parque antiguo de Elche).',
+  'Aislamiento acústico de 30 - 38 dB con vidrio doble, suficiente para ventanas a calles principales o avenidas.',
+  'Triple junta perimetral: estanqueidad total al agua y al aire, comportamiento óptimo ante temporales y vientos del sur.',
+  'Mantenimiento mínimo: PVC no necesita pintar ni barnizar, solo limpieza con jabón neutro 1 - 2 veces al año.',
+  'Fabricación a medida en marca Cortizo (premium), Aluplast (relación calidad-precio) o Schüco según el proyecto.',
+];
+
+const caseStudy = `Caso reciente: sustitución completa de ventanas en piso de 90 m² en zona Altabix, 8 huecos con vidrio doble bajo emisivo y perfil Aluplast Ideal 7000 (5 cámaras), color blanco interior y antracita exterior. Instalación en 3 jornadas con retirada de las antiguas y reposición del enlucido del marco. Plazo desde firma 4 - 5 semanas (fabricación a medida).`;
+
+const comunidadNote = `En Elche la sustitución de ventanas dentro del hueco existente, sin modificar fachada ni carpintería visible, normalmente es comunicación previa de obra menor, no licencia. Si va a cambiar el color exterior, en muchas comunidades se exige uniformidad: conviene revisar los estatutos antes. Le entregamos planos, fichas técnicas del perfil y certificación CE para cualquier trámite. Para reformas integrales coordinamos con su arquitecto.`;
+
+const faqs = [
+  { q: '¿Cuánto tiempo lleva la fabricación e instalación en Elche?', a: 'La fabricación a medida lleva 3 - 5 semanas según fabricante y volumen. La instalación es de 1 - 4 jornadas según número de huecos. Reposición de enlucido y limpieza incluidas.' },
+  { q: '¿Cortizo, Aluplast o Schüco?', a: 'Cortizo es marca premium española con la mejor estética y el mejor servicio postventa local. Aluplast es la mejor relación calidad-precio (alemán, calidad probada). Schüco es premium europeo con prestaciones técnicas top. En visita técnica le orientamos según presupuesto y exigencia.' },
+  { q: '¿Es compatible con persiana existente?', a: 'En la mayoría de casos sí. Si la persiana actual es de aluminio o PVC con cajón monoblock, mantenemos el cajón y sustituimos solo la ventana. Si es persiana antigua de madera o cajón obsoleto, se recomienda renovar todo el conjunto en la misma intervención.' },
+  { q: '¿Qué Uw consigo con un perfil Cortizo o Aluplast?', a: 'Con triple junta + vidrio doble bajo emisivo (4/16/4 con argón) se alcanza un Uw de 1,1 - 1,3 W/m²K. Con triple acristalamiento se baja a 0,8 - 0,9 W/m²K. Para Elche con vidrio doble es más que suficiente.' },
+];
+
+const related = [
+  { label: 'Ventanas PVC (catálogo)', href: '/ventanas-pvc/' },
+  { label: 'Toldos en Elche', href: '/toldos-elche/' },
+  { label: 'Cortinas de cristal en Elche', href: '/cortinas-de-cristal-elche/' },
+  { label: 'Pérgolas en Elche', href: '/pergolas-elche/' },
+];
+
+const ctaHref = `/presupuesto/?product=ventanas-pvc&location=${slug}`;
+const contactHref = '/contacto/';
+const licenceHref = '/guia-licencias-pergolas-toldos-alicante/';
+
+const breadcrumbs = [
+  { name: 'Inicio', url: `${SITE}/` },
+  { name: 'Ventanas PVC', url: `${SITE}/ventanas-pvc/` },
+  { name, url: pageUrl },
+];
+
+const serviceSchema = buildServiceSchema({
+  locale: 'es',
+  name: heading,
+  description: intro,
+  serviceType: 'Instalación de ventanas de PVC',
+  url: pageUrl,
+  offers: [
+    { name: 'Ventana PVC oscilobatiente' },
+    { name: 'Ventana PVC corredera' },
+    { name: 'Puerta balconera y de entrada PVC' },
+  ],
+});
+const breadcrumbSchema = buildBreadcrumbSchema(breadcrumbs, { locale: 'es' });
+const faqSchema = buildFAQSchema(faqs.map(f => ({ question: f.q, answer: f.a })), { locale: 'es' });
+---
+
+<Base
+  title={`${heading} - Optim Toldos`}
+  description={intro}
+  locale="es"
+  alternateUrls={alternateUrls}
+  breadcrumbs={breadcrumbs}
+>
+  <Fragment slot="head">
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(serviceSchema)} />
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+  </Fragment>
+  <ProductZonePage
+    client:load
+    locale="es"
+    heading={heading}
+    intro={intro}
+    heroImage="/images/ventanas/hero-ventanas-1280.webp"
+    locationParagraph={locationParagraph}
+    whyFitsBullets={whyFitsBullets}
+    caseStudy={caseStudy}
+    comunidadNote={comunidadNote}
+    licenceHref={licenceHref}
+    faqs={faqs}
+    related={related}
+    ctaHref={ctaHref}
+    contactHref={contactHref}
+  />
+</Base>

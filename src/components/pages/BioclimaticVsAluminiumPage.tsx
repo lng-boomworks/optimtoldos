@@ -238,7 +238,7 @@ export function BioclimaticVsAluminiumPage({ locale = 'es' }: { locale?: Locale 
               </div>
               <FadeIn className="mt-8 text-center" delay={0.4}>
                 <a href={licencePath} className="text-terracotta hover:underline font-medium text-sm">
-                  {locale === 'es' ? '¿Y la licencia? — consulta nuestra guía por municipios' : 'Planning permission? — see our municipality guide'} →
+                  {locale === 'es' ? '¿Y la licencia? - consulta nuestra guía por municipios' : 'Planning permission? - see our municipality guide'} →
                 </a>
               </FadeIn>
             </div>

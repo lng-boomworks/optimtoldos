@@ -70,7 +70,7 @@ export function GlassCurtainsGuidePage({ locale = 'es' }: { locale?: Locale }) {
             </div>
           </section>
 
-          {/* How — folding vs sliding */}
+          {/* How - folding vs sliding */}
           <section className="bg-sand-light py-14 md:py-16">
             <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
               <FadeIn className="text-center mb-10">

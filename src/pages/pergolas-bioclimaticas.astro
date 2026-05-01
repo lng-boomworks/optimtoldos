@@ -1,0 +1,188 @@
+---
+import Base from '../layouts/Base.astro';
+import { SubProductPage } from '../components/pages/SubProductPage';
+import {
+  buildServiceSchema,
+  buildFAQSchema,
+  buildBreadcrumbSchema,
+  buildProductSchema,
+} from '../utils/schema';
+import { getAlternateUrls } from '../i18n/routes';
+
+const locale = 'es' as const;
+const pageId = 'pergolas-bioclimatic';
+const pageUrl = 'https://optimtoldos.com/pergolas-bioclimaticas/';
+const productSlug = 'pergola-bioclimatica';
+const alternateUrls = getAlternateUrls(pageId);
+
+const hero = {
+  heading: 'Pérgolas Bioclimáticas a Medida en Alicante',
+  description: 'Lamas de aluminio orientables que controlan sol, sombra y ventilación con un mando. La inversión más rentable para usar tu terraza 12 meses al año.',
+  image: '/images/pergolas/pergolas-bioclimaticas.webp',
+  imageAlt: 'Pérgola bioclimática con lamas orientables sobre terraza',
+};
+
+const intro = 'La pérgola bioclimática es el producto que más ha cambiado la forma de vivir el exterior en la Costa Blanca. Con un solo mando regulas la inclinación de las lamas para crear sombra densa al mediodía, ventilación en horas de calor y, cuando llueve, una cubierta estanca que protege la terraza. En Optim Toldos fabricamos pérgolas bioclimáticas adosadas, autoportantes y de gran formato con lamas de aluminio extrusionado y motorización Somfy o Nice.';
+
+const sections = [
+  {
+    heading: 'Cómo funcionan las lamas bioclimáticas',
+    body: [
+      'La cubierta está formada por lamas de aluminio extrusionado huecas que giran sobre su eje longitudinal. Al cerrarse, encajan unas con otras como tejas y forman una cubierta estanca que evacua el agua por canalones integrados en los pilares. Al abrirse a 90 grados, dejan pasar el aire y la luz casi por completo.',
+      'En posiciones intermedias gradúas la cantidad de sombra: a 30 grados sombra parcial con ventilación, a 60 grados sombra densa, a 90 grados máxima ventilación. Toda la operación se controla con mando radio Somfy o Nice y se puede integrar en domótica.',
+    ],
+  },
+  {
+    heading: 'Materiales y especificaciones',
+    body: [
+      'Estructura de aluminio extrusionado de pared gruesa, lacada al horno en cualquier RAL con garantía contra corrosión salina (categoría C5 marina disponible bajo demanda). Las lamas son aluminio extrusionado con motor central, certificadas frente a viento clase 6 (más de 110 km/h) en muchos modelos.',
+      'Tamaños estándar: hasta 30 m² en módulo único; superficies mayores se resuelven con módulos acoplados. Trabajamos con perfilería de fabricante europeo, principalmente <strong>Cortizo</strong> y <strong>Pergotex</strong>, ambos con certificación CE y SKZ.',
+    ],
+  },
+  {
+    heading: 'Tipos de pérgola bioclimática',
+    body: [
+      'Trabajamos tres formatos: <strong>adosada</strong> (apoyada en una pared, ideal para terrazas y porches existentes), <strong>autoportante</strong> (4 pilares, perfecta para jardín o piscina), y <strong>autoportante en isla</strong> (de gran formato con pilares interiores). Para áticos con vistas usamos también versiones acristaladas combinadas con cortinas de cristal.',
+      'Las opciones más demandadas en 2026 son los <strong>complementos LED integrados</strong> en lamas, las <strong>cortinas ZIP screen</strong> laterales para cerrar el espacio en invierno, los <strong>calefactores radiantes</strong> empotrados y la <strong>climatización con ventiladores</strong> de techo en lamas hueca.',
+    ],
+  },
+  {
+    heading: 'Casos de uso típicos',
+    body: [
+      'Es la inversión más rentable para terrazas residenciales de chalets y áticos: amplía el uso del exterior 5-7 meses adicionales al año respecto a un toldo, soporta lluvia y viento, y suele revalorizar la propiedad un 5-8 % en el mercado costero.',
+      'En hostelería es directamente transformador: una pérgola bioclimática sobre una terraza de restaurante permite operar 365 días al año (con cerramientos verticales) y aumenta la facturación notablemente. Para pisos comunidad consulta nuestra <a href="/pergola-bioclimatica-vs-aluminio/" class="text-terracotta hover:underline">comparativa entre pérgola bioclimática y aluminio fijo</a>.',
+    ],
+  },
+  {
+    heading: 'Instalación y licencias',
+    body: [
+      'Tras la visita técnica medimos vano, comprobamos el suelo (solera de hormigón, cerámica, madera) y elegimos el sistema de anclaje. La fabricación lleva 4-6 semanas según acabados.',
+      'La instalación se realiza en 2-4 días por dos técnicos. La licencia municipal es obligatoria en la mayoría de ayuntamientos: hacemos memoria, planos y gestión completa con el ayuntamiento. Tienes el detalle por municipio en nuestra <a href="/guia-licencias-pergolas-toldos-alicante/" class="text-terracotta hover:underline">guía de licencias</a>.',
+    ],
+  },
+  {
+    heading: 'Mantenimiento',
+    body: [
+      'Es muy bajo. Limpiar las lamas y los canalones con agua jabonosa dos veces al año, revisar los motores cada 12 meses, comprobar tornillería tras temporales fuertes y aplicar protector de aluminio en zonas con salitre cada 24 meses.',
+      'La estructura tiene una vida útil mayor a 20 años con mantenimiento básico. Los motores de las lamas, garantía Somfy o Nice de 5 años. Tienes detalle completo en nuestra <a href="/mantenimiento-toldos-costa-blanca/" class="text-terracotta hover:underline">guía de mantenimiento</a>.',
+    ],
+  },
+  {
+    heading: 'Precios 2026',
+    body: [
+      'Los precios dependen mucho de tamaño, acabados y complementos. Como referencia: una pérgola bioclimática adosada de 4 x 3 m parte de 4.800 euros instalada con motor Somfy básico. Una autoportante de 5 x 4 m con LED y ZIP lateral, 8.500-11.000 euros.',
+      'Pérgolas grandes (más de 25 m²) con cerramiento ZIP completo, calefacción y domótica avanzada se sitúan entre 14.000 y 25.000 euros. La inversión se amortiza en valor de uso en 4-6 años en una vivienda residencial habitada todo el año.',
+    ],
+  },
+];
+
+const comparison = {
+  heading: 'Pérgola bioclimática vs aluminio fijo vs toldo cofre',
+  intro: 'Comparativa de los tres sistemas más comunes para terrazas medianas.',
+  columns: ['Característica', 'Bioclimática', 'Aluminio fijo', 'Toldo cofre'],
+  rows: [
+    ['Cubierta orientable', 'Sí (lamas)', 'No (panel fijo)', 'Sí (lona enrolla)'],
+    ['Resistencia agua', 'Estanca al cerrar', 'Estanca permanente', 'No estanca (limpia)'],
+    ['Resistencia viento', 'Hasta clase 6 (110+ km/h)', 'Muy alta (panel rígido)', 'Hasta clase 3 (38 km/h)'],
+    ['Aporta sombra', 'Total a demanda', 'Total permanente', 'Total a demanda'],
+    ['Aporta luz natural', 'Total a demanda', 'No', 'Total al recoger'],
+    ['Precio 4x3 m instalado', '4.800 - 9.000 euros', '3.500 - 6.500 euros', '1.150 - 3.500 euros'],
+    ['Vida útil estructura', '20+ años', '25+ años', '12-15 años'],
+  ],
+};
+
+const related = {
+  heading: 'Páginas relacionadas',
+  links: [
+    { label: 'Pérgolas de aluminio fijo', href: '/pergolas-aluminio/' },
+    { label: 'Pérgola con toldo deslizante', href: '/pergola-toldo-deslizante/' },
+    { label: 'Volver a Pérgolas (hub)', href: '/pergolas/' },
+    { label: 'Guía: pérgola bioclimática vs aluminio', href: '/pergola-bioclimatica-vs-aluminio/' },
+    { label: 'Cortinas de cristal para terrazas', href: '/cortinas-de-cristal/' },
+    { label: 'Toldos verticales ZIP screen', href: '/toldos-verticales-zip/' },
+    { label: 'Servicio en Orihuela Costa', href: '/toldos-orihuela-costa/' },
+    { label: 'Servicio en Benidorm', href: '/toldos-benidorm/' },
+    { label: 'Servicio en Alicante', href: '/toldos-alicante/' },
+  ],
+};
+
+const faqs = [
+  { question: '¿Una pérgola bioclimática es realmente estanca?', answer: 'Sí, cuando las lamas están cerradas forman un sistema de tejas que evacuan agua por canalones integrados en los pilares. Probadas en lluvia intensa de Costa Blanca con caudales superiores a 30 mm/h. Pasan certificación EN 1027 de estanqueidad.' },
+  { question: '¿Qué viento aguanta?', answer: 'Los modelos premium están certificados para viento clase 6 (más de 110 km/h). Los estándar resisten clase 4-5 (hasta 100 km/h). Como referencia, el récord histórico de Levante en Alicante registró 130 km/h en una sola ocasión: las pérgolas premium aguantarían y las estándar deberían recoger lamas.' },
+  { question: '¿Necesito licencia del ayuntamiento?', answer: 'Sí, en prácticamente todos los municipios. Es la categoría con regulación más estricta porque se considera estructura fija. Hacemos memoria técnica, planos y gestión completa. Plazo medio de licencia: 1-3 meses. Detalle en nuestra guía de licencias.' },
+  { question: '¿Se puede acristalar?', answer: 'Sí, con cortinas de cristal laterales. Lo combinamos en muchos proyectos para crear espacios cerrados estancos en invierno y abiertos en verano. Tienes la guía completa de cortinas de cristal.' },
+  { question: '¿Cuánto tarda fabricación e instalación?', answer: 'Fabricación: 4-6 semanas. Instalación: 2-4 días según tamaño y complementos. Plazo total desde firma de pedido a uso, 6-9 semanas, más el tiempo de licencia municipal si aplica.' },
+  { question: '¿Qué garantía tiene?', answer: '7 años sobre estructura y lacado en gama estándar; 10 años en premium con tratamiento C5 marina. Motores Somfy/Nice, 5 años. LED, 3-5 años según fabricante.' },
+  { question: '¿Cuál es la diferencia con una pérgola de aluminio fijo?', answer: 'La bioclimática lleva lamas que giran y se pueden orientar. La fija es un panel sólido inamovible. La bioclimática cuesta 30-50 % más pero da mucha más versatilidad y suele revalorizar más la vivienda. Más detalle en nuestra comparativa.' },
+  { question: '¿Trabajáis con Cortizo y Pergotex?', answer: 'Sí, son nuestros dos proveedores principales por su calidad de perfilería, certificación CE/SKZ y disponibilidad de recambios a largo plazo. Otros fabricantes europeos disponibles bajo proyecto.' },
+];
+
+const cta = {
+  heading: 'Diseña tu pérgola bioclimática a medida',
+  body: 'Visita técnica gratuita, render 3D del proyecto y presupuesto cerrado en 1 semana. Trabajamos en toda la provincia de Alicante.',
+  button: 'Solicitar presupuesto',
+  buttonHref: `/presupuesto/?product=${productSlug}`,
+  secondary: { label: 'Ver pérgolas (hub)', href: '/pergolas/' },
+};
+
+const breadcrumbs = [
+  { name: 'Inicio', url: 'https://optimtoldos.com/' },
+  { name: 'Pérgolas', url: 'https://optimtoldos.com/pergolas/' },
+  { name: 'Pérgolas bioclimáticas', url: pageUrl },
+];
+
+const serviceSchema = buildServiceSchema({
+  locale,
+  name: 'Pérgolas Bioclimáticas a Medida en Alicante',
+  description: hero.description,
+  serviceType: 'Instalación de pérgolas bioclimáticas',
+  url: pageUrl,
+  offers: [
+    { name: 'Pérgola bioclimática adosada' },
+    { name: 'Pérgola bioclimática autoportante' },
+    { name: 'Pérgola bioclimática gran formato' },
+    { name: 'Cerramiento ZIP screen lateral' },
+    { name: 'Iluminación LED y calefacción radiante' },
+  ],
+});
+
+const faqSchema = buildFAQSchema(faqs, { locale });
+const breadcrumbSchema = buildBreadcrumbSchema(breadcrumbs, { locale });
+const productSchema = buildProductSchema({
+  locale,
+  name: 'Pérgola Bioclimática a Medida',
+  description: hero.description,
+  image: 'https://optimtoldos.com/images/pergolas/pergolas-bioclimaticas.webp',
+  url: pageUrl,
+  lowPrice: '4800',
+  highPrice: '25000',
+  category: 'Pérgolas bioclimáticas',
+});
+---
+
+<Base
+  title="Pérgolas Bioclimáticas a Medida | Optim Toldos - Alicante"
+  description="Pérgolas bioclimáticas con lamas orientables para terrazas y jardines en Alicante. Cortizo y Pergotex, motorización Somfy y cerramiento ZIP. Visita gratuita."
+  locale={locale}
+  alternateUrls={alternateUrls}
+  breadcrumbs={breadcrumbs}
+>
+  <Fragment slot="head">
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(serviceSchema)} />
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(productSchema)} />
+  </Fragment>
+  <SubProductPage
+    client:load
+    locale={locale}
+    hero={hero}
+    intro={intro}
+    sections={sections}
+    comparison={comparison}
+    related={related}
+    faqHeading="Preguntas frecuentes"
+    faqs={faqs}
+    cta={cta}
+  />
+</Base>

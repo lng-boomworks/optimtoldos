@@ -275,4 +275,4 @@ Responde a estas preguntas para determinar qué tipo de toldo necesitas:
 
 Ahora que conoces los tipos, materiales, precios y particularidades del clima alicantino, estás en condiciones de tomar una decisión informada. En [Optim Toldos](/toldos) trabajamos exclusivamente con materiales de primera calidad adaptados al clima mediterráneo y ofrecemos instalación profesional con garantía.
 
-**[Solicita tu presupuesto gratuito y sin compromiso](/presupuesto)** — te visitamos, tomamos medidas y te presentamos una propuesta detallada en 48 horas.
+**[Solicita tu presupuesto gratuito y sin compromiso](/presupuesto)** - te visitamos, tomamos medidas y te presentamos una propuesta detallada en 48 horas.

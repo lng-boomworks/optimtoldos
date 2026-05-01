@@ -1,0 +1,121 @@
+---
+import Base from '../layouts/Base.astro';
+import { ProductZonePage } from '../components/pages/ProductZonePage';
+import {
+  buildServiceSchema,
+  buildBreadcrumbSchema,
+  buildFAQSchema,
+  buildProductSchema,
+} from '../utils/schema';
+
+const SITE = 'https://optimtoldos.com';
+const slug = 'alicante';
+const name = 'Alicante';
+const heading = `Pérgolas en ${name}`;
+const intro = `Pérgolas en Alicante capital y área metropolitana: aluminio marino, lamas bioclimáticas y cerramientos cristal para áticos y chalets de Playa de San Juan, Cabo Huertas y Albufereta.`;
+
+const pageUrl = `${SITE}/pergolas-${slug}/`;
+const alternateUrls = [
+  { locale: 'es' as const, href: pageUrl },
+  { locale: 'en' as const, href: `${SITE}/en/pergolas-alicante/` },
+];
+
+const locationParagraph = `Alicante combina la presión urbana del centro y Mercado con barrios costeros muy distintos: Playa de San Juan con bloques modernos sobre paseo, Albufereta con áticos pequeños y vistas a la bahía, Cabo Huertas con chalets en parcela y la zona de Vistahermosa con dúplex de los noventa. La sal del Postiguet y la fuerza del levante exigen pérgolas con tratamiento marino, mientras que el viento del Cabo Huertas obliga a sensores de viento y motorización robusta. En el centro la altura entre forjados y los Planes Especiales reducen las opciones a soluciones bioclimáticas ligeras y de color claro.`;
+
+const whyFitsBullets = [
+  'Aluminio marino imprescindible: zonas como San Juan, Albufereta y Cabo Huertas están a 200 - 800 m del mar.',
+  'Lamas bioclimáticas para gestionar el sol del sur (intensísimo en julio y agosto) sin perder vistas.',
+  'Sensor de viento Somfy/Nice obligatorio en Cabo Huertas y zonas elevadas: rachas de levante > 80 km/h.',
+  'Cumplimiento de la ordenanza municipal de Alicante (color, altura y retranqueo desde fachada).',
+  'Cerramientos cortina de cristal o ZIP screen para usar la terraza en los inviernos suaves de la bahía.',
+];
+
+const caseStudy = `Caso reciente: pérgola bioclimática Pergotex 5×3,5 m sobre terraza de ático en Playa de San Juan, color blanco perlado RAL 9010, motor Nice TT2 con sensor de viento y rain, dos paños de cortina cristal corredera al norte y oeste, e iluminación LED RGB. Total dos jornadas de instalación tras tres semanas de plazo.`;
+
+const priceBand = `Pérgola fija de aluminio 4×3 m: 2.900 € - 3.700 €. Pérgola bioclimática 4×3 m motorizada con sensores: 4.500 € - 6.000 €. Versión completa 5×4 m con LED, sensores y cierre cristal: 8.500 € - 12.000 €.`;
+
+const comunidadNote = `En Alicante, las pérgolas en cubierta o terraza requieren declaración responsable o licencia de obra menor según el caso, y la ordenanza municipal regula colores, alturas y volumen. En zonas como Centro Tradicional, Casco Antiguo o el entorno del Castillo de Santa Bárbara hay restricciones adicionales. Tramitamos el dossier completo y la documentación para junta de propietarios si la pérgola afecta a la fachada o cubierta común.`;
+
+const faqs = [
+  { q: '¿Una pérgola en un ático de Playa de San Juan necesita acuerdo de la comunidad?', a: 'Sí, prácticamente siempre. La cubierta del edificio suele ser elemento común y el ático tiene un derecho de uso, pero modificar la fachada (visible desde la calle) o anclar al forjado requiere acuerdo de la junta. Preparamos el dossier técnico para presentar.' },
+  { q: '¿El levante de Cabo Huertas es problema?', a: 'No con sensor de viento. Los motores Somfy io y Nice TT2 cierran las lamas automáticamente a partir del umbral configurado (60 - 80 km/h habitual). La estructura aguanta hasta 130 km/h con lamas cerradas; el sensor protege el motor.' },
+  { q: '¿Cuánto tarda la licencia en el Ayuntamiento de Alicante?', a: 'Una declaración responsable se acepta a los pocos días si está completa; la revisión administrativa puede tardar 6 - 10 semanas. La obra menor con licencia formal lleva 8 - 12 semanas. Le indicamos cuál aplica en su caso.' },
+  { q: '¿Puedo poner una pérgola sobre la cubierta plana del bloque (no ático privativo)?', a: 'Solo con autorización expresa de la comunidad y mayoría cualificada en junta, ya que se modifica un elemento común. En Alicante esto rara vez se autoriza salvo que toda la comunidad participe; lo más habitual es la pérgola en terraza privativa.' },
+  { q: '¿Qué motor recomiendan en zona de salinidad?', a: 'Somfy io o Nice TT2 con grado de protección IP54 mínimo, montados en cajón estanco y con cableado por interior del perfil. Mantenimiento anual recomendado para limpiar contactos y revisar juntas.' },
+];
+
+const related = [
+  { label: 'Pérgola bioclimática en Alicante', href: '/pergola-bioclimatica-alicante/' },
+  { label: 'Cortinas de cristal en Alicante', href: '/cortinas-de-cristal-alicante/' },
+  { label: 'Toldos en Alicante', href: '/toldos-alicante/' },
+  { label: 'Toldos hostelería en Alicante', href: '/toldos-hosteleria-alicante/' },
+  { label: 'Pérgolas (catálogo)', href: '/pergolas/' },
+];
+
+const ctaHref = `/presupuesto/?product=pergolas&location=${slug}`;
+const contactHref = '/contacto/';
+const licenceHref = '/guia-licencias-pergolas-toldos-alicante/';
+
+const breadcrumbs = [
+  { name: 'Inicio', url: `${SITE}/` },
+  { name: 'Pérgolas', url: `${SITE}/pergolas/` },
+  { name, url: pageUrl },
+];
+
+const serviceSchema = buildServiceSchema({
+  locale: 'es',
+  name: heading,
+  description: intro,
+  serviceType: 'Instalación de pérgolas',
+  url: pageUrl,
+  offers: [
+    { name: 'Pérgola bioclimática' },
+    { name: 'Pérgola fija de aluminio' },
+    { name: 'Pérgola con cierre cristal' },
+  ],
+});
+const breadcrumbSchema = buildBreadcrumbSchema(breadcrumbs, { locale: 'es' });
+const faqSchema = buildFAQSchema(faqs.map(f => ({ question: f.q, answer: f.a })), { locale: 'es' });
+const productSchema = buildProductSchema({
+  locale: 'es',
+  name: heading,
+  description: intro,
+  image: `${SITE}/images/pergolas/pergola-bioclimatica.webp`,
+  url: pageUrl,
+  category: 'Pérgolas',
+  lowPrice: '2900',
+  highPrice: '12000',
+});
+---
+
+<Base
+  title={`${heading} - Optim Toldos`}
+  description={intro}
+  locale="es"
+  alternateUrls={alternateUrls}
+  breadcrumbs={breadcrumbs}
+>
+  <Fragment slot="head">
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(serviceSchema)} />
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(productSchema)} />
+  </Fragment>
+  <ProductZonePage
+    client:load
+    locale="es"
+    heading={heading}
+    intro={intro}
+    heroImage="/images/pergolas/hero-pergolas-1280.webp"
+    locationParagraph={locationParagraph}
+    whyFitsBullets={whyFitsBullets}
+    caseStudy={caseStudy}
+    priceBand={priceBand}
+    comunidadNote={comunidadNote}
+    licenceHref={licenceHref}
+    faqs={faqs}
+    related={related}
+    ctaHref={ctaHref}
+    contactHref={contactHref}
+  />
+</Base>

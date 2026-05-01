@@ -1,4 +1,5 @@
 import { SERVICE_CITIES_SCHEMA } from "../data/cities";
+import type { Locale } from "../i18n/index";
 
 export interface FAQ {
   question: string;
@@ -14,10 +15,13 @@ export interface ServiceOffer {
   name: string;
 }
 
-export function buildFAQSchema(faqs: FAQ[]) {
+type LocaleOpt = { locale?: Locale };
+
+export function buildFAQSchema(faqs: FAQ[], opts: LocaleOpt = {}) {
   return {
     "@context": "https://schema.org",
     "@type": "FAQPage",
+    ...(opts.locale && { inLanguage: opts.locale }),
     mainEntity: faqs.map((faq) => ({
       "@type": "Question",
       name: faq.question,
@@ -29,10 +33,11 @@ export function buildFAQSchema(faqs: FAQ[]) {
   };
 }
 
-export function buildBreadcrumbSchema(items: Breadcrumb[]) {
+export function buildBreadcrumbSchema(items: Breadcrumb[], opts: LocaleOpt = {}) {
   return {
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
+    ...(opts.locale && { inLanguage: opts.locale }),
     itemListElement: items.map((item, i) => ({
       "@type": "ListItem",
       position: i + 1,
@@ -48,10 +53,12 @@ export function buildServiceSchema(opts: {
   serviceType: string;
   url: string;
   offers?: ServiceOffer[];
+  locale?: Locale;
 }) {
   return {
     "@context": "https://schema.org",
     "@type": "Service",
+    ...(opts.locale && { inLanguage: opts.locale }),
     name: opts.name,
     provider: { "@id": "https://optimtoldos.com/#business" },
     areaServed: [
@@ -79,10 +86,12 @@ export function buildCollectionPageSchema(opts: {
   description: string;
   url: string;
   items: { name: string; url: string }[];
+  locale?: Locale;
 }) {
   return {
     "@context": "https://schema.org",
     "@type": "CollectionPage",
+    ...(opts.locale && { inLanguage: opts.locale }),
     name: opts.name,
     description: opts.description,
     url: opts.url,
@@ -103,11 +112,13 @@ export function buildOrganizationSchema(opts: {
   description: string;
   url: string;
   foundingDate: string;
+  locale?: Locale;
 }) {
   return {
     "@context": "https://schema.org",
     "@type": "Organization",
     "@id": "https://optimtoldos.com/#business",
+    ...(opts.locale && { inLanguage: opts.locale }),
     name: opts.name,
     description: opts.description,
     url: opts.url,
@@ -136,10 +147,12 @@ export function buildProductSchema(opts: {
   highPrice?: string;
   priceCurrency?: string;
   category: string;
+  locale?: Locale;
 }) {
   return {
     "@context": "https://schema.org",
     "@type": "Product",
+    ...(opts.locale && { inLanguage: opts.locale }),
     name: opts.name,
     description: opts.description,
     image: opts.image,
@@ -166,10 +179,12 @@ export function buildContactPageSchema(opts: {
   url: string;
   telephone: string;
   email: string;
+  locale?: Locale;
 }) {
   return {
     "@context": "https://schema.org",
     "@type": "ContactPage",
+    ...(opts.locale && { inLanguage: opts.locale }),
     url: opts.url,
     mainEntity: {
       "@type": "ContactPoint",

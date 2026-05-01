@@ -1,0 +1,120 @@
+---
+import Base from '../layouts/Base.astro';
+import { ProductZonePage } from '../components/pages/ProductZonePage';
+import {
+  buildServiceSchema,
+  buildBreadcrumbSchema,
+  buildFAQSchema,
+  buildProductSchema,
+} from '../utils/schema';
+
+const SITE = 'https://optimtoldos.com';
+const name = 'Costa Blanca';
+const heading = `Pérgolas para hostelería en ${name}`;
+const intro = `Pérgolas bioclimáticas y de aluminio para restaurantes, hoteles, chiringuitos y terrazas comerciales de la Costa Blanca: estructura calculada, motorización profesional y rotulación.`;
+
+const pageUrl = `${SITE}/pergolas-hosteleria-costa-blanca/`;
+const alternateUrls = [
+  { locale: 'es' as const, href: pageUrl },
+];
+
+const locationParagraph = `La pérgola bioclimática es la inversión más rentable que puede hacer un local hostelero de la Costa Blanca: convierte la terraza en espacio utilizable 12 meses al año, soporta el viento de levante mejor que cualquier toldo y permite cierre estanco bajo lluvia para no perder servicio. Trabajamos desde Torrevieja y Orihuela Costa al sur hasta Benidorm, Altea y Calpe al norte, en establecimientos que van desde chiringuitos de playa (estructura ligera y desmontable) hasta restaurantes premium de Albir o Moraira (lamas bioclimáticas, calefactores radiantes y cerramientos de cristal). El cálculo estructural firmado, la motorización profesional Somfy o Nice, y la rotulación corporativa son estándar en este segmento.`;
+
+const whyFitsBullets = [
+  'Pérgola bioclimática: terraza utilizable 12 meses al año, recupera la inversión en 2 - 3 temporadas.',
+  'Cálculo estructural firmado por arquitecto técnico para autorización municipal y seguro del local.',
+  'Motorización profesional Somfy o Nice con sensores de viento y lluvia: cierre automático.',
+  'Cerramientos cristal corredera o ZIP screen para la temporada baja sin perder vistas.',
+  'Cumplimiento de la ordenanza local de cada municipio (gestión integral del trámite).',
+];
+
+const caseStudy = `Caso reciente: pérgola bioclimática 8×4 m en restaurante con vistas al mar en Albir, color blanco perlado RAL 9010, motor Somfy con sensores de viento y lluvia, iluminación LED RGB integrada, calefactores radiantes infrarrojos para invierno, dos paños de cortina cristal corredera al norte. Cálculo estructural firmado por arquitecto técnico. Plazo desde firma 8 semanas, montaje 4 jornadas en horario nocturno.`;
+
+const priceBand = `Pérgola bioclimática 5×4 m motorizada con sensores: 6.500 € - 9.000 €. Versión 8×4 m con LED RGB y calefactores radiantes: 14.000 € - 19.000 €. Cerramiento cristal corredera por paño 4 m: 2.000 € - 3.000 €. Cálculo estructural firmado: 400 - 800 €. Rotulación impresa: 200 - 500 €.`;
+
+const comunidadNote = `En la Costa Blanca cada Ayuntamiento regula las terrazas hosteleras con su propia ordenanza: Torrevieja, Orihuela, Alicante, Benidorm, Altea, Calpe y Dénia tienen reglas distintas sobre colores, alturas y volumen. Las pérgolas hosteleras siempre requieren autorización municipal con documentación técnica y, en chiringuitos de playa, además autorización de Costas. Tramitamos el expediente completo con cálculo estructural firmado.`;
+
+const faqs = [
+  { q: '¿Por qué pérgola bioclimática y no toldo en hostelería?', a: 'Por horas de servicio. La pérgola bioclimática es utilizable 12 meses con cierre estanco contra lluvia y cierres laterales contra viento; un toldo se recoge cuando llueve o hay viento, perdiendo el servicio en esas horas. La diferencia de facturación en una temporada paga la diferencia de precio entre toldo y pérgola en 2 - 3 años.' },
+  { q: '¿Hace falta cálculo estructural firmado?', a: 'Sí, en hostelería siempre. Es requisito municipal en la mayoría de Ayuntamientos de la Costa Blanca y, además, es indispensable para que el seguro del local cubra incidentes (responsabilidad civil por desprendimiento, daños por viento). Coste 400 - 800 € que incluimos en el presupuesto.' },
+  { q: '¿En un chiringuito de playa puedo poner pérgola fija?', a: 'No, sólo desmontables. Los chiringuitos en dominio público marítimo-terrestre tienen autorización temporal y por norma deben ser instalaciones desmontables al final de la temporada. Pergolas bioclimáticas con anclaje superficial (no cimentado) son aceptadas en muchos casos.' },
+  { q: '¿Cuánto tarda el trámite municipal?', a: 'Depende del Ayuntamiento. Torrevieja y Alicante 6 - 12 semanas, Benidorm 8 - 14, Orihuela 4 - 8, Altea y Calpe 6 - 10. En chiringuitos hay que sumar la consulta a Costas (4 - 16 semanas adicionales).' },
+  { q: '¿Pueden montar fuera de temporada para no afectar al servicio?', a: 'Sí, y es lo más habitual en hostelería. Planificamos los montajes en noviembre-marzo (temporada baja) para que la pérgola esté operativa en abril cuando arranca la temporada alta. En verano sólo intervenciones urgentes nocturnas.' },
+];
+
+const related = [
+  { label: 'Toldos hostelería en Benidorm', href: '/toldos-hosteleria-benidorm/' },
+  { label: 'Toldos hostelería en Alicante', href: '/toldos-hosteleria-alicante/' },
+  { label: 'Toldos hostelería en Torrevieja', href: '/toldos-hosteleria-torrevieja/' },
+  { label: 'Pérgolas (catálogo)', href: '/pergolas/' },
+  { label: 'Bioclimática vs aluminio', href: '/pergola-bioclimatica-vs-aluminio/' },
+];
+
+const ctaHref = `/presupuesto/?product=pergolas-hosteleria&location=costa-blanca`;
+const contactHref = '/contacto/';
+const licenceHref = '/guia-licencias-pergolas-toldos-alicante/';
+
+const breadcrumbs = [
+  { name: 'Inicio', url: `${SITE}/` },
+  { name: 'Pérgolas', url: `${SITE}/pergolas/` },
+  { name: 'Hostelería Costa Blanca', url: pageUrl },
+];
+
+const serviceSchema = buildServiceSchema({
+  locale: 'es',
+  name: heading,
+  description: intro,
+  serviceType: 'Pérgolas para hostelería',
+  url: pageUrl,
+  offers: [
+    { name: 'Pérgola bioclimática hostelería' },
+    { name: 'Pérgola con cálculo estructural firmado' },
+    { name: 'Cerramientos laterales cristal y ZIP' },
+    { name: 'Iluminación LED y calefactores' },
+  ],
+});
+const breadcrumbSchema = buildBreadcrumbSchema(breadcrumbs, { locale: 'es' });
+const faqSchema = buildFAQSchema(faqs.map(f => ({ question: f.q, answer: f.a })), { locale: 'es' });
+const productSchema = buildProductSchema({
+  locale: 'es',
+  name: heading,
+  description: intro,
+  image: `${SITE}/images/pergolas/pergola-restaurante.webp`,
+  url: pageUrl,
+  category: 'Pérgolas hostelería',
+  lowPrice: '6500',
+  highPrice: '25000',
+});
+---
+
+<Base
+  title={`${heading} - Optim Toldos`}
+  description={intro}
+  locale="es"
+  alternateUrls={alternateUrls}
+  breadcrumbs={breadcrumbs}
+>
+  <Fragment slot="head">
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(serviceSchema)} />
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(productSchema)} />
+  </Fragment>
+  <ProductZonePage
+    client:load
+    locale="es"
+    heading={heading}
+    intro={intro}
+    heroImage="/images/pergolas/pergola-restaurante-1280.webp"
+    locationParagraph={locationParagraph}
+    whyFitsBullets={whyFitsBullets}
+    caseStudy={caseStudy}
+    priceBand={priceBand}
+    comunidadNote={comunidadNote}
+    licenceHref={licenceHref}
+    faqs={faqs}
+    related={related}
+    ctaHref={ctaHref}
+    contactHref={contactHref}
+  />
+</Base>

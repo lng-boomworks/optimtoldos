@@ -1,0 +1,121 @@
+---
+import Base from '../layouts/Base.astro';
+import { ProductZonePage } from '../components/pages/ProductZonePage';
+import {
+  buildServiceSchema,
+  buildBreadcrumbSchema,
+  buildFAQSchema,
+  buildProductSchema,
+} from '../utils/schema';
+
+const SITE = 'https://optimtoldos.com';
+const slug = 'benidorm';
+const name = 'Benidorm';
+const heading = `Toldos para hostelería en ${name}`;
+const intro = `Toldos comerciales de gran formato para bares, restaurantes y terrazas hosteleras de Benidorm: estructura reforzada, lonas Tempotest o Sunbrella y rotulación.`;
+
+const pageUrl = `${SITE}/toldos-hosteleria-${slug}/`;
+const alternateUrls = [
+  { locale: 'es' as const, href: pageUrl },
+];
+
+const locationParagraph = `Benidorm es uno de los mercados hosteleros más exigentes de Europa: terrazas de Levante, Poniente y la zona de Alameda con cientos de metros lineales de paseo, estacionalidad casi nula y rotación turística masiva. La ordenanza municipal de terrazas regula colores, dimensiones y rotulación, así que el toldo no se elige sólo por gusto sino por compatibilidad con el plan de uso del espacio público. Las lonas tienen que aguantar 12 horas diarias de sol, salinidad continua y vientos de levante; los brazos articulados y motores deben ser de gama profesional (Markilux o equivalente con motor Somfy comercial). La rotulación impresa o serigrafiada en lona es prácticamente estándar para identificar el local.`;
+
+const whyFitsBullets = [
+  'Estructura reforzada y motor profesional Somfy: uso intensivo en local con horario amplio.',
+  'Lona Tempotest, Sunbrella o Soltis con tratamiento UV y antimoho: aguantan salinidad y sol diario.',
+  'Cumplimiento de la ordenanza de terrazas de Benidorm (color, dimensiones, retranqueos).',
+  'Rotulación impresa o serigrafiada incluida: nombre del local, logo y elementos corporativos.',
+  'Mantenimiento programado y repuestos rápidos: máximo 24 - 48 h en lonas y motores.',
+];
+
+const caseStudy = `Caso reciente: 3 toldos brazo extensible Markilux 5×3,5 m sobre terraza de restaurante en Avenida del Mediterráneo, lona Tempotest verde corporativo con logo serigrafiado, motorización Somfy con sensor de viento centralizado, anclajes A4 sobre fachada con cálculo previo. Total 2 jornadas de instalación con horario nocturno para no afectar el servicio.`;
+
+const priceBand = `Toldo extensible profesional 4×3 m con lona Tempotest: 1.800 € - 2.500 €. Toldo cofre 5×3,5 m con motor Somfy comercial: 2.800 € - 3.800 €. Rotulación serigrafiada: 150 - 350 € por toldo. Mantenimiento anual (revisión + cambio piezas pequeñas): 80 - 150 € por toldo.`;
+
+const comunidadNote = `En Benidorm el plan de uso del espacio público (Ordenanza Municipal de Terrazas) regula con detalle las terrazas hosteleras: dimensiones, colores, separaciones, mobiliario. La instalación de un toldo nuevo o sustitución requiere autorización específica del Ayuntamiento. Le ayudamos con la documentación gráfica y la justificación técnica para presentar el expediente.`;
+
+const faqs = [
+  { q: '¿La ordenanza municipal me limita el color del toldo?', a: 'Sí. En las zonas reguladas (Levante, Poniente, centro) la ordenanza fija una paleta de colores aceptados, normalmente tonos sobrios (verde botella, granate, beige, gris). Lacas y serigrafías cumplen sin problema con esta paleta. Le indicamos qué aplica a su local.' },
+  { q: '¿Cuántos años aguanta una lona profesional con uso diario en Benidorm?', a: 'Tempotest, Sunbrella o Soltis aguantan 8 - 10 años con uso diario en costa antes de necesitar cambio. La rotulación serigrafiada aguanta lo mismo si la calidad del estampado es industrial. Una lona económica dura 3 - 4 temporadas.' },
+  { q: '¿Aguanta el levante de tarde con la terraza llena?', a: 'Con motor con sensor de viento, sí, hasta 60 - 70 km/h. El sensor cierra el toldo automáticamente. En toldos extensibles la recogida es esencial para no destrozar brazos y lona; en cofres la lona se queda recogida y solo se daña la cubierta si la racha supera 100 km/h.' },
+  { q: '¿Cuánto tarda la autorización del Ayuntamiento?', a: 'En Benidorm 4 - 8 semanas habituales. La sustitución de un toldo existente con misma dimensión y color es más rápida (2 - 4 semanas). Si es un alta nueva o un cambio de configuración, se alarga. Le acompañamos en la presentación.' },
+  { q: '¿Cubren la rotulación en el presupuesto?', a: 'Sí, podemos incluir rotulación serigrafiada o impresión digital directa sobre la lona. La serigrafía es más duradera (7 - 10 años); la impresión digital permite más detalle y color (5 - 7 años de durabilidad). Lo decidimos según diseño y presupuesto.' },
+];
+
+const related = [
+  { label: 'Toldos en Benidorm', href: '/toldos-benidorm/' },
+  { label: 'Pérgolas en Benidorm', href: '/pergolas-benidorm/' },
+  { label: 'Cortinas de cristal en Benidorm', href: '/cortinas-de-cristal-benidorm/' },
+  { label: 'Pérgolas hostelería Costa Blanca', href: '/pergolas-hosteleria-costa-blanca/' },
+  { label: 'Toldos (catálogo)', href: '/toldos/' },
+];
+
+const ctaHref = `/presupuesto/?product=toldos-hosteleria&location=${slug}`;
+const contactHref = '/contacto/';
+const licenceHref = '/guia-licencias-pergolas-toldos-alicante/';
+
+const breadcrumbs = [
+  { name: 'Inicio', url: `${SITE}/` },
+  { name: 'Toldos', url: `${SITE}/toldos/` },
+  { name: 'Hostelería Benidorm', url: pageUrl },
+];
+
+const serviceSchema = buildServiceSchema({
+  locale: 'es',
+  name: heading,
+  description: intro,
+  serviceType: 'Toldos para hostelería',
+  url: pageUrl,
+  offers: [
+    { name: 'Toldo extensible profesional' },
+    { name: 'Toldo cofre comercial' },
+    { name: 'Rotulación impresa o serigrafiada' },
+    { name: 'Mantenimiento programado' },
+  ],
+});
+const breadcrumbSchema = buildBreadcrumbSchema(breadcrumbs, { locale: 'es' });
+const faqSchema = buildFAQSchema(faqs.map(f => ({ question: f.q, answer: f.a })), { locale: 'es' });
+const productSchema = buildProductSchema({
+  locale: 'es',
+  name: heading,
+  description: intro,
+  image: `${SITE}/images/pergolas/pergola-restaurante.webp`,
+  url: pageUrl,
+  category: 'Toldos hostelería',
+  lowPrice: '1800',
+  highPrice: '5000',
+});
+---
+
+<Base
+  title={`${heading} - Optim Toldos`}
+  description={intro}
+  locale="es"
+  alternateUrls={alternateUrls}
+  breadcrumbs={breadcrumbs}
+>
+  <Fragment slot="head">
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(serviceSchema)} />
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(productSchema)} />
+  </Fragment>
+  <ProductZonePage
+    client:load
+    locale="es"
+    heading={heading}
+    intro={intro}
+    heroImage="/images/pergolas/pergola-restaurante-1280.webp"
+    locationParagraph={locationParagraph}
+    whyFitsBullets={whyFitsBullets}
+    caseStudy={caseStudy}
+    priceBand={priceBand}
+    comunidadNote={comunidadNote}
+    licenceHref={licenceHref}
+    faqs={faqs}
+    related={related}
+    ctaHref={ctaHref}
+    contactHref={contactHref}
+  />
+</Base>

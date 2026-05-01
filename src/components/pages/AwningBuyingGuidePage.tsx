@@ -144,7 +144,7 @@ export function AwningBuyingGuidePage({ locale = 'es' }: { locale?: Locale }) {
                 <p className="text-text-body leading-relaxed">{t(locale, 'awningGuide.comunidad.body')}</p>
                 <p className="mt-5">
                   <a href={licencePath} className="text-terracotta hover:underline font-medium">
-                    {locale === 'es' ? '¿Y la licencia? — consulta nuestra guía por municipios' : 'Planning permission? — see our municipality guide'} →
+                    {locale === 'es' ? '¿Y la licencia? - consulta nuestra guía por municipios' : 'Planning permission? - see our municipality guide'} →
                   </a>
                 </p>
               </FadeIn>

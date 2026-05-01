@@ -5,6 +5,7 @@ import { AnimatedHeading } from "../AnimatedHeading";
 import { Button } from "../Button";
 import { FAQSection } from "../FAQSection";
 import { ServiceAreaSection } from "../ServiceAreaSection";
+import { RelatedProducts } from "../RelatedProducts";
 import { url, localizedUrl } from "../../utils/paths";
 import { t, type Locale } from "../../i18n/index";
 import { slugMap } from "../../i18n/slugs";
@@ -264,8 +265,11 @@ export function CortinasPage({ locale = 'es' }: { locale?: Locale }) {
           <ServiceAreaSection
             serviceName={t(locale, 'curtains.serviceArea')}
             locale={locale}
-            teaserLocations={['cabo-roig', 'orihuela-costa', 'benidorm', 'alicante', 'torrevieja', 'elche']}
+            product="glass-curtains"
+            teaserLocations={['torrevieja', 'elche', 'alicante', 'orihuela-costa', 'benidorm']}
           />
+          {/* Related products (SEO internal linking) */}
+          <RelatedProducts current="glass-curtains" locale={locale} />
 
           {/* CTA */}
           <section className="bg-navy py-20 md:py-24">

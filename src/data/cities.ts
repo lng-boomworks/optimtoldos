@@ -3,7 +3,7 @@ export interface City {
 }
 
 export const SERVICE_CITIES: City[] = [
-  // Costa Blanca — Costa
+  // Costa Blanca - Costa
   { name: "Alicante" },
   { name: "Elche" },
   { name: "Torrevieja" },

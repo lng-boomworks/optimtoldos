@@ -8,6 +8,7 @@ import { getAlternateUrls } from '../../i18n/routes';
 const alternateUrls = getAlternateUrls('gallery');
 
 const schema = buildCollectionPageSchema({
+  locale: 'en',
   name: "Project Gallery",
   description: "Gallery of completed projects: awnings, bioclimatic pergolas, glass curtains and more in Alicante and Costa Blanca.",
   url: "https://optimtoldos.com/en/gallery",
@@ -27,7 +28,7 @@ const breadcrumbs = [
 ---
 
 <Base
-  title="Project Gallery | Optim Toldos — Alicante"
+  title="Project Gallery | Optim Toldos - Alicante"
   description="Gallery of completed projects: awnings, bioclimatic pergolas, glass curtains and more in Alicante and Costa Blanca."
   locale="en"
   alternateUrls={alternateUrls}

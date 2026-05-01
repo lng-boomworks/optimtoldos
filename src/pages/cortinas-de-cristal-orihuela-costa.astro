@@ -1,0 +1,121 @@
+---
+import Base from '../layouts/Base.astro';
+import { ProductZonePage } from '../components/pages/ProductZonePage';
+import {
+  buildServiceSchema,
+  buildBreadcrumbSchema,
+  buildFAQSchema,
+  buildProductSchema,
+} from '../utils/schema';
+
+const SITE = 'https://optimtoldos.com';
+const slug = 'orihuela-costa';
+const name = 'Orihuela Costa';
+const heading = `Cortinas de cristal en ${name}`;
+const intro = `Cortinas de cristal correderas y plegables para áticos, dúplex y chalets de Cabo Roig, La Zenia, Villamartín y Playa Flamenca. Tratamiento marino y herrajes A4 inoxidables.`;
+
+const pageUrl = `${SITE}/cortinas-de-cristal-${slug}/`;
+const alternateUrls = [
+  { locale: 'es' as const, href: pageUrl },
+  { locale: 'en' as const, href: `${SITE}/en/glass-curtains-orihuela-costa/` },
+];
+
+const locationParagraph = `En Orihuela Costa la cortina de cristal entra como complemento natural de la pérgola bioclimática: convierte la terraza en un espacio cerrado pero transparente que se puede usar 12 meses al año, lo cual es decisivo cuando la vivienda es de alquiler turístico o segunda residencia. La salinidad de Cabo Roig y La Zenia (a menos de 1 km del mar) y los vientos de poniente en Las Lomas y Las Filipinas obligan a tornillería A4 inoxidable y perfiles con tratamiento marino. La combinación más demandada es pérgola bioclimática + cortina de cristal en uno o dos laterales, dejando los demás abiertos para conservar la brisa marina cuando se desea.`;
+
+const whyFitsBullets = [
+  'Combinación pérgola bioclimática + cortina cristal: terraza utilizable todo el año.',
+  'Tratamiento marino reforzado: imprescindible a menos de 1 km del mar.',
+  'Sistema sin perfiles verticales para no obstruir vistas a campo de golf o al mar.',
+  'Estética neutra (perfil blanco, gris claro o anodizado plata) aceptada por las comunidades.',
+  'Vidrio templado 10 mm con cantos pulidos para máxima seguridad y limpieza estética.',
+];
+
+const caseStudy = `Caso reciente: cortina corredera de 6 paños en lateral oeste de pérgola bioclimática existente en Cabo Roig, vidrio templado 10 mm low-iron, perfil aluminio lacado RAL 7039 (gris cuarzo) por exigencia de la comunidad, herrajes A4 inoxidables, guía superior reforzada y cerradura con llave. Plazo desde encargo 4 semanas, montaje en 1 jornada.`;
+
+const priceBand = `Cortina de cristal corredera 4 paños (3 m): 1.900 € - 2.700 €. Cortina 6 paños (4,5 m): 2.800 € - 3.800 €. Vidrio low-iron extra-claro: +15 - 20 %. Tratamiento marino reforzado: +5 - 8 %. Combinación pérgola + cortina: descuento del 5 - 10 % si es el mismo proyecto.`;
+
+const comunidadNote = `En Orihuela Costa la cortina de cristal en terraza privativa requiere acuerdo de la junta porque modifica el aspecto del inmueble desde la fachada. En la mayoría de comunidades de Cabo Roig, La Zenia y Villamartín basta con presentar plano cotado y ficha del fabricante. Si la cortina se instala junto a una pérgola se aprueban habitualmente como un único expediente.`;
+
+const faqs = [
+  { q: '¿Una cortina de cristal en Cabo Roig necesita licencia urbanística?', a: 'Normalmente no, la cortina es desmontable y no aumenta superficie construida. Comunicación previa al Ayuntamiento de Orihuela suele ser suficiente. Pero requiere acuerdo de la junta de propietarios. Le entregamos la documentación lista.' },
+  { q: '¿Combina con pérgola bioclimática?', a: 'Perfectamente, y es la combinación más solicitada en Orihuela Costa. La pérgola da cubierta orientable, la cortina cierra el lateral expuesto al viento o al sol del oeste. Si lo presupuestamos a la vez, ofrecemos descuento sobre el conjunto.' },
+  { q: '¿Aguanta los vientos de poniente?', a: 'Sí. Con perfil superior reforzado y vidrio templado 10 mm aguanta rachas de hasta 100 km/h. En Las Lomas y Las Filipinas (zonas elevadas) recomendamos cierre superior adicional para extra de seguridad.' },
+  { q: '¿Qué color de perfil aceptan las comunidades de La Zenia?', a: 'Habitualmente blanco perlado, beige claro, gris cuarzo (RAL 7039) o aluminio anodizado plata. Si la comunidad ha homologado un color específico, lacamos en ese RAL sin coste adicional.' },
+  { q: '¿Pierdo la sensación de exterior con la cortina cerrada?', a: 'Casi nada. Sin perfiles verticales y con cristal templado transparente la terraza sigue siendo "exterior" visualmente. Solo se nota en el sonido (atenuación parcial) y en la temperatura (5 - 8°C menor en verano con sombra arriba).' },
+];
+
+const related = [
+  { label: 'Pérgolas en Orihuela Costa', href: '/pergolas-orihuela-costa/' },
+  { label: 'Pérgola bioclimática en Orihuela Costa', href: '/pergola-bioclimatica-orihuela-costa/' },
+  { label: 'Toldos en Orihuela Costa', href: '/toldos-orihuela-costa/' },
+  { label: 'Cortinas de cristal (catálogo)', href: '/cortinas-de-cristal/' },
+  { label: 'Guía de cortinas de cristal', href: '/guia-cortinas-cristal-terraza/' },
+];
+
+const ctaHref = `/presupuesto/?product=cortinas-cristal&location=${slug}`;
+const contactHref = '/contacto/';
+const licenceHref = '/guia-licencias-pergolas-toldos-alicante/';
+
+const breadcrumbs = [
+  { name: 'Inicio', url: `${SITE}/` },
+  { name: 'Cortinas de cristal', url: `${SITE}/cortinas-de-cristal/` },
+  { name, url: pageUrl },
+];
+
+const serviceSchema = buildServiceSchema({
+  locale: 'es',
+  name: heading,
+  description: intro,
+  serviceType: 'Instalación de cortinas de cristal',
+  url: pageUrl,
+  offers: [
+    { name: 'Cortina de cristal corredera' },
+    { name: 'Cortina de cristal plegable' },
+    { name: 'Cerramiento combinado con pérgola' },
+  ],
+});
+const breadcrumbSchema = buildBreadcrumbSchema(breadcrumbs, { locale: 'es' });
+const faqSchema = buildFAQSchema(faqs.map(f => ({ question: f.q, answer: f.a })), { locale: 'es' });
+const productSchema = buildProductSchema({
+  locale: 'es',
+  name: heading,
+  description: intro,
+  image: `${SITE}/images/cortinas/cortina-cristal-1.webp`,
+  url: pageUrl,
+  category: 'Cortinas de cristal',
+  lowPrice: '1900',
+  highPrice: '4500',
+});
+---
+
+<Base
+  title={`${heading} - Optim Toldos`}
+  description={intro}
+  locale="es"
+  alternateUrls={alternateUrls}
+  breadcrumbs={breadcrumbs}
+>
+  <Fragment slot="head">
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(serviceSchema)} />
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(productSchema)} />
+  </Fragment>
+  <ProductZonePage
+    client:load
+    locale="es"
+    heading={heading}
+    intro={intro}
+    heroImage="/images/cortinas/hero-cortinas-1280.webp"
+    locationParagraph={locationParagraph}
+    whyFitsBullets={whyFitsBullets}
+    caseStudy={caseStudy}
+    priceBand={priceBand}
+    comunidadNote={comunidadNote}
+    licenceHref={licenceHref}
+    faqs={faqs}
+    related={related}
+    ctaHref={ctaHref}
+    contactHref={contactHref}
+  />
+</Base>

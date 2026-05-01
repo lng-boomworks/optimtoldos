@@ -1,0 +1,101 @@
+---
+import Base from '../layouts/Base.astro';
+import { ProductZonePage } from '../components/pages/ProductZonePage';
+import {
+  buildServiceSchema,
+  buildBreadcrumbSchema,
+  buildFAQSchema,
+} from '../utils/schema';
+
+const SITE = 'https://optimtoldos.com';
+const slug = 'benidorm';
+const name = 'Benidorm';
+const heading = `Ventanas de PVC en ${name}`;
+const intro = `Ventanas de PVC con triple junta y vidrio bajo emisivo en Benidorm: aislamiento térmico y acústico en torres residenciales, áticos con vista a la bahía y reformas de hostelería. Resistentes al aire salino.`;
+
+const pageUrl = `${SITE}/ventanas-pvc-${slug}/`;
+const alternateUrls = [{ locale: 'es' as const, href: pageUrl }];
+
+const locationParagraph = `Benidorm tiene un perfil de vivienda muy específico: torres residenciales y turísticas de altura (10 - 30 plantas) en el centro y zonas Levante y Poniente, áticos con grandes ventanales y terrazas con vista a la bahía, y un parque de hostelería que renueva con frecuencia. La sustitución de ventanas por PVC con triple junta y vidrio doble bajo emisivo aporta aislamiento térmico (clave para reducir el consumo de aire acondicionado en pisos orientados al sur), aislamiento acústico (relevante en pisos a calles concurridas y zonas de ocio nocturno) y resistencia total al aire salino marino, especialmente abrasivo en torres a primera línea de playa.`;
+
+const whyFitsBullets = [
+  'Inmunidad al aire salino: PVC inerte al cloruro sódico, vida útil 30 - 40 años en primera línea de playa.',
+  'Aislamiento acústico de 30 - 38 dB con vidrio doble: relevante en zonas de ocio nocturno y avenidas concurridas.',
+  'Triple junta y herrajes anti-corrosión: estanqueidad ante levantes que entran por la bahía con fuerza.',
+  'Estética moderna en lacados foliados (madera, gris antracita, blanco) que respeta la imagen de torre residencial.',
+  'Mantenimiento mínimo: limpieza con jabón neutro 1 - 2 veces al año, sin pintar ni barnizar.',
+];
+
+const caseStudy = `Caso reciente: sustitución de 4 ventanas y dos correderas de balcón en piso 12 de torre en zona Levante, perfil Cortizo Cor 70 con vidrio doble bajo emisivo y laminado acústico (8/16/6 con argón), color blanco interior y antracita exterior. Trabajos en 2 jornadas con retirada de las antiguas y sellado elastómero. Plazo desde firma 4 - 5 semanas.`;
+
+const comunidadNote = `En Benidorm la sustitución de ventanas en el hueco existente es comunicación previa de obra menor. En torres residenciales y turísticas la mayoría de comunidades exigen uniformidad de color exterior para preservar la imagen del edificio: revisamos los estatutos antes de presupuestar y le ayudamos con la documentación si la junta lo solicita. Para hostelería coordinamos con su técnico responsable de los trabajos de reforma.`;
+
+const faqs = [
+  { q: '¿Funciona con persianas existentes en torre residencial?', a: 'Sí, en la mayoría de pisos modernos de Benidorm la persiana es monoblock con cajón integrado. Mantenemos el cajón y sustituimos solo la ventana, recolocando el sistema. Si la persiana es antigua, se recomienda renovar el conjunto.' },
+  { q: '¿Aguanta el levante fuerte que entra por la bahía?', a: 'Sí. La triple junta perimetral y la fijación con tornillería específica garantizan estanqueidad incluso en temporales. En pisos a primera línea con vientos sostenidos por encima de 70 km/h también se recomienda añadir un vidrio laminado (PVB) por seguridad pasiva.' },
+  { q: '¿Reduce el ruido de la zona de ocio nocturno?', a: 'Significativamente. Con vidrio doble laminado acústico (capa de PVB intermedia) se llega a 38 - 42 dB de reducción. La diferencia respecto a un vidrio simple antiguo (24 - 27 dB) es muy notable: pasa de oír música y voces a oír solo un murmullo lejano.' },
+  { q: '¿Y para hostelería - hotel, restaurante?', a: 'Sí, trabajamos con hostelería en Benidorm. La instalación se coordina fuera de horario operativo o por fases para no interrumpir el negocio. Asesoramos sobre prestaciones acústicas y certificación CE para licencias de actividad.' },
+];
+
+const related = [
+  { label: 'Ventanas PVC (catálogo)', href: '/ventanas-pvc/' },
+  { label: 'Toldos en Benidorm', href: '/toldos-benidorm/' },
+  { label: 'Cortinas de cristal en Benidorm', href: '/cortinas-de-cristal-benidorm/' },
+  { label: 'Toldos hostelería en Benidorm', href: '/toldos-hosteleria-benidorm/' },
+];
+
+const ctaHref = `/presupuesto/?product=ventanas-pvc&location=${slug}`;
+const contactHref = '/contacto/';
+const licenceHref = '/guia-licencias-pergolas-toldos-alicante/';
+
+const breadcrumbs = [
+  { name: 'Inicio', url: `${SITE}/` },
+  { name: 'Ventanas PVC', url: `${SITE}/ventanas-pvc/` },
+  { name, url: pageUrl },
+];
+
+const serviceSchema = buildServiceSchema({
+  locale: 'es',
+  name: heading,
+  description: intro,
+  serviceType: 'Instalación de ventanas de PVC',
+  url: pageUrl,
+  offers: [
+    { name: 'Ventana PVC oscilobatiente' },
+    { name: 'Ventana PVC corredera' },
+    { name: 'Puerta balconera y de entrada PVC' },
+  ],
+});
+const breadcrumbSchema = buildBreadcrumbSchema(breadcrumbs, { locale: 'es' });
+const faqSchema = buildFAQSchema(faqs.map(f => ({ question: f.q, answer: f.a })), { locale: 'es' });
+---
+
+<Base
+  title={`${heading} - Optim Toldos`}
+  description={intro}
+  locale="es"
+  alternateUrls={alternateUrls}
+  breadcrumbs={breadcrumbs}
+>
+  <Fragment slot="head">
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(serviceSchema)} />
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+  </Fragment>
+  <ProductZonePage
+    client:load
+    locale="es"
+    heading={heading}
+    intro={intro}
+    heroImage="/images/ventanas/hero-ventanas-1280.webp"
+    locationParagraph={locationParagraph}
+    whyFitsBullets={whyFitsBullets}
+    caseStudy={caseStudy}
+    comunidadNote={comunidadNote}
+    licenceHref={licenceHref}
+    faqs={faqs}
+    related={related}
+    ctaHref={ctaHref}
+    contactHref={contactHref}
+  />
+</Base>

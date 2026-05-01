@@ -1,11 +1,12 @@
 import { FadeIn } from "../FadeIn";
 import { AnimatedHeading } from "../AnimatedHeading";
-import { localizedUrl } from "../../utils/paths";
+import { url, localizedUrl } from "../../utils/paths";
 import { t, type Locale } from "../../i18n/index";
 import { slugMap, type PageId } from "../../i18n/slugs";
 
-// Representative locations surfaced on the homepage. Each chip deep-links to
-// the matching Service Areas anchor.
+// Representative locations surfaced on the homepage. Each chip links to
+// the dedicated per-area page (`/toldos-{slug}/` or `/en/awnings-{slug}/`),
+// not the Service Areas anchor — Google can rank these as separate URLs.
 const FEATURED_LOCATIONS: { slug: string; display: string }[] = [
   { slug: "torrevieja", display: "Torrevieja" },
   { slug: "orihuela-costa", display: "Orihuela Costa" },
@@ -14,10 +15,23 @@ const FEATURED_LOCATIONS: { slug: string; display: string }[] = [
   { slug: "benidorm", display: "Benidorm" },
   { slug: "santa-pola", display: "Santa Pola" },
   { slug: "cabo-roig", display: "Cabo Roig" },
-  { slug: "guardamar-del-segura", display: "Guardamar del Segura" },
+  { slug: "guardamar", display: "Guardamar del Segura" },
 ];
 
-// Pillars to surface — the four Phase 2 guides. Titles come from the i18n
+const EN_AREA_SLUGS = new Set([
+  "torrevieja","orihuela-costa","ciudad-quesada","guardamar","la-marina","elche",
+  "alicante","santa-pola","gran-alacant","benidorm","cabo-roig","la-zenia",
+  "punta-prima","villamartin",
+]);
+
+function chipHref(slug: string, locale: Locale): string {
+  if (locale === "en" && EN_AREA_SLUGS.has(slug)) {
+    return url(`/en/awnings-${slug}/`);
+  }
+  return url(`/toldos-${slug}/`);
+}
+
+// Pillars to surface - the four Phase 2 guides. Titles come from the i18n
 // footer keys so they stay consistent with the footer Resources column.
 const FEATURED_GUIDES: {
   pageId: PageId;
@@ -72,7 +86,7 @@ export function HomeResources({ locale = 'es' }: { locale?: Locale }) {
               {FEATURED_LOCATIONS.map((loc) => (
                 <a
                   key={loc.slug}
-                  href={`${serviceAreasPath}#${loc.slug}`}
+                  href={chipHref(loc.slug, locale)}
                   className="inline-block bg-white px-4 py-2 rounded-full text-sm text-navy border border-border hover:bg-terracotta hover:text-white hover:border-terracotta transition-colors"
                 >
                   {loc.display}

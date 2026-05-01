@@ -1,0 +1,187 @@
+---
+import Base from '../layouts/Base.astro';
+import { SubProductPage } from '../components/pages/SubProductPage';
+import {
+  buildServiceSchema,
+  buildFAQSchema,
+  buildBreadcrumbSchema,
+  buildProductSchema,
+} from '../utils/schema';
+import { getAlternateUrls } from '../i18n/routes';
+
+const locale = 'es' as const;
+const pageId = 'pergolas-sliding-awning';
+const pageUrl = 'https://optimtoldos.com/pergola-toldo-deslizante/';
+const productSlug = 'pergola-toldo-deslizante';
+const alternateUrls = getAlternateUrls(pageId);
+
+const hero = {
+  heading: 'Pérgolas con Toldo Deslizante en Alicante',
+  description: 'Estructura de aluminio con cubierta de lona técnica que se desliza sobre rieles. La cubierta se pliega o despliega bajo demanda - sombra cuando la quieres, cielo cuando no.',
+  image: '/images/pergolas/pergola-lamas.webp',
+  imageAlt: 'Pérgola con toldo deslizante recogido sobre estructura de aluminio',
+};
+
+const intro = 'La pérgola con toldo deslizante es la opción intermedia entre la bioclimática y la pérgola de aluminio fijo. La estructura es de aluminio extrusionado, igual que las anteriores, pero la cubierta es una lona técnica (impertranspirable o screen) que se desliza sobre dos rieles laterales con motor. Cuando la recoges, queda toda la pérgola descubierta y disfrutas del cielo abierto. Cuando la despliegas, sombra densa o filtrada según la lona elegida.';
+
+const sections = [
+  {
+    heading: 'Cómo funciona',
+    body: [
+      'Dos rieles laterales de aluminio recorren la longitud de la pérgola. Una serie de carros con ruedas mantienen tensa la lona, que se enrolla en un tubo motorizado en uno de los extremos. Al accionar el motor, la lona avanza o retrocede sobre los rieles.',
+      'Es un sistema mecánicamente más sencillo que la bioclimática (no hay lamas individuales con motores), más versátil que el aluminio fijo (puedes recoger la cubierta) y más estanco que un toldo de brazo (la lona queda tensada entre rieles, sin volar).',
+    ],
+  },
+  {
+    heading: 'Tipos de lona',
+    body: [
+      'Trabajamos dos familias principales: <strong>impermeable PVC</strong> (estanca al agua, ideal para zonas con tormentas frecuentes) y <strong>screen técnico</strong> (microperforado, deja pasar luz filtrada y ventilación). El PVC se reserva para usos donde la estanqueidad importa más que el aislamiento térmico; el screen es la elección más común para residencial.',
+      'Marcas habituales: <strong>Sergé Ferrari Précontraint</strong>, <strong>Mehler Texnologies</strong> y <strong>Tempotest Para</strong>. Garantías de 5-10 años en colores y resistencia al desgarro. La lona screen permite ver al exterior incluso desplegada, manteniendo la sensación de espacio abierto.',
+    ],
+  },
+  {
+    heading: 'Casos de uso típicos',
+    body: [
+      'Es una excelente alternativa a la pérgola bioclimática cuando el presupuesto es ajustado pero quieres flexibilidad de uso. La diferencia económica es significativa (la pérgola con toldo deslizante cuesta entre un 35 y un 50 % menos que una bioclimática de tamaño equivalente).',
+      'Funciona bien en patios traseros, jardines y áticos donde la prioridad es alternar zona cubierta con cielo abierto. En hostelería se usa mucho para crear terrazas modulables: lona desplegada en julio, recogida en mayo y octubre. La principal limitación: no soporta lluvia constante con la misma efectividad que una bioclimática estanca.',
+    ],
+  },
+  {
+    heading: 'Variantes y especificaciones',
+    body: [
+      'Trabajamos las versiones <strong>adosada</strong>, <strong>autoportante</strong> y <strong>en isla con doble apoyo</strong>. Las dimensiones máximas son ligeramente menores que las bioclimáticas: hasta 7 m de longitud por 4,5 m de ancho en módulo único. Para superficies mayores combinamos módulos.',
+      'Estructura aluminio extrusionado lacado RAL. Los rieles llevan tratamiento anticorrosión específico al ir expuestos a salitre y polvo. Motor Somfy o Nice. Inclinación regulable de fábrica entre 5 y 15 grados para evacuación de agua de lluvia ligera.',
+    ],
+  },
+  {
+    heading: 'Instalación',
+    body: [
+      'La fabricación lleva 4-5 semanas. La instalación es algo más rápida que la bioclimática: 1-3 días para módulo estándar. Como en las otras pérgolas, requiere licencia de obra menor en la mayoría de municipios. Hacemos memoria, planos y gestión completa.',
+      'En proyectos donde no se quiere licencia o donde la altura es limitada, esta categoría suele ser la más fácil de aprobar porque la altura total puede ser inferior a las bioclimáticas. Detalle por municipio en la <a href="/guia-licencias-pergolas-toldos-alicante/" class="text-terracotta hover:underline">guía de licencias</a>.',
+    ],
+  },
+  {
+    heading: 'Mantenimiento',
+    body: [
+      'Más bajo que un toldo tradicional pero más alto que una pérgola de aluminio fijo. Limpieza de la lona y los rieles cada 6 meses, engrase de los carros cada 12 meses, revisión del motor cada 24 meses y aplicación de protector de aluminio anual en zonas con salitre.',
+      'La lona dura entre 8 y 12 años en buen estado dependiendo de la marca y la exposición. La estructura, 20+ años. Los recambios de carros son sencillos y económicos. Detalle completo en la <a href="/mantenimiento-toldos-costa-blanca/" class="text-terracotta hover:underline">guía de mantenimiento</a>.',
+    ],
+  },
+  {
+    heading: 'Precios 2026',
+    body: [
+      'Una pérgola con toldo deslizante adosada de 4 x 3 m parte de 3.200 euros instalada con motor Somfy básico y lona screen estándar. La autoportante de 5 x 4 m con lona Sergé Ferrari y sensor de viento, 5.500-7.500 euros.',
+      'Modelos premium con lona PVC estanca, motor Somfy io con domótica y LED integrados alcanzan los 8.500-12.000 euros. La inversión total es entre un 35 y un 50 % menor que una pérgola bioclimática de tamaño y calidad equivalente.',
+    ],
+  },
+];
+
+const comparison = {
+  heading: 'Pérgola toldo deslizante vs bioclimática vs aluminio fijo',
+  intro: 'Comparativa según función principal y presupuesto.',
+  columns: ['Característica', 'Toldo deslizante', 'Bioclimática', 'Aluminio fijo'],
+  rows: [
+    ['Cubierta retráctil', 'Sí (lona desliza)', 'No (lamas giran)', 'No'],
+    ['Estanqueidad lluvia', 'Buena (no perfecta)', 'Estanca certificada', 'Estanca permanente'],
+    ['Resistencia viento', 'Hasta 80 km/h con lona', 'Hasta 110+ km/h', 'Muy alta'],
+    ['Cielo abierto', 'Sí (lona recogida)', 'Sí (lamas a 90 grados)', 'No'],
+    ['Aislamiento térmico', 'Medio', 'Alto (lamas cerradas)', 'Alto (panel sandwich)'],
+    ['Precio 4x3 m', '3.200 - 5.500 euros', '4.800 - 9.000 euros', '3.500 - 6.500 euros'],
+    ['Vida útil lona/cubierta', '8-12 años', '20+ años', '20+ años'],
+  ],
+};
+
+const related = {
+  heading: 'Páginas relacionadas',
+  links: [
+    { label: 'Pérgolas bioclimáticas', href: '/pergolas-bioclimaticas/' },
+    { label: 'Pérgolas de aluminio fijo', href: '/pergolas-aluminio/' },
+    { label: 'Volver a Pérgolas (hub)', href: '/pergolas/' },
+    { label: 'Guía: pérgola bioclimática vs aluminio', href: '/pergola-bioclimatica-vs-aluminio/' },
+    { label: 'Toldos verticales ZIP', href: '/toldos-verticales-zip/' },
+    { label: 'Cortinas de cristal', href: '/cortinas-de-cristal/' },
+    { label: 'Servicio en Alicante ciudad', href: '/toldos-alicante/' },
+    { label: 'Servicio en Torrevieja', href: '/toldos-torrevieja/' },
+    { label: 'Servicio en Elche', href: '/toldos-elche/' },
+  ],
+};
+
+const faqs = [
+  { question: '¿Es estanca al agua?', answer: 'Con lona PVC, sí: aguanta lluvia ligera o moderada con la inclinación de fábrica de 5-15 grados. Con lluvia intensa la lona PVC tiene su límite y conviene recogerla. Si necesitas estanqueidad total ante temporales, una pérgola bioclimática o de aluminio fijo es mejor opción.' },
+  { question: '¿Qué viento aguanta?', answer: 'Hasta 80 km/h con la lona desplegada (modelos premium). Con sensor de viento Somfy o Nice, la pérgola recoge la lona automáticamente al detectar ráfagas. Con la lona recogida la estructura aguanta vientos similares a una pérgola fija.' },
+  { question: '¿Cuál es la diferencia con una bioclimática?', answer: 'La bioclimática tiene cubierta de lamas de aluminio orientables, estanca al cerrar. La de toldo deslizante tiene cubierta de lona retráctil. La bioclimática es más sólida y duradera; la de lona es más económica (35-50 % menos) y permite recoger toda la cubierta.' },
+  { question: '¿Cuánto dura la lona?', answer: 'Entre 8 y 12 años en buen estado, según marca y exposición. Las lonas Sergé Ferrari y Mehler suelen aguantar más. La estructura dura 20+ años, con lo que sustituir la lona a los 10-12 años es una operación rentable.' },
+  { question: '¿Necesito licencia?', answer: 'Sí, en la mayoría de municipios se considera obra menor con licencia. Hacemos memoria, planos y gestión. Plazo medio: 1-2 meses. Detalle por municipio en la guía de licencias.' },
+  { question: '¿Se puede cerrar lateralmente?', answer: 'Sí, perfectamente. Combinarla con toldos ZIP screen laterales o cortinas de cristal es la combinación más usada para crear un espacio cerrado en invierno y abierto en verano.' },
+  { question: '¿Lona PVC o screen?', answer: 'PVC si la prioridad es estanqueidad ante lluvia ligera. Screen si quieres más ventilación, ver el cielo y radiación filtrada. La gran mayoría de proyectos residenciales eligen screen, mientras que hostelería suele ir a PVC.' },
+  { question: '¿Qué garantía?', answer: 'Damos 5 años sobre estructura y rieles, garantía del fabricante en lona (5-10 años Sergé Ferrari, Mehler), 5 años en motor Somfy/Nice.' },
+];
+
+const cta = {
+  heading: 'Pérgola con toldo deslizante a medida',
+  body: 'La alternativa más económica a la pérgola bioclimática, con cubierta retráctil y motor Somfy. Visita técnica gratuita en toda la provincia.',
+  button: 'Solicitar presupuesto',
+  buttonHref: `/presupuesto/?product=${productSlug}`,
+  secondary: { label: 'Ver pérgolas (hub)', href: '/pergolas/' },
+};
+
+const breadcrumbs = [
+  { name: 'Inicio', url: 'https://optimtoldos.com/' },
+  { name: 'Pérgolas', url: 'https://optimtoldos.com/pergolas/' },
+  { name: 'Pérgola con toldo deslizante', url: pageUrl },
+];
+
+const serviceSchema = buildServiceSchema({
+  locale,
+  name: 'Pérgolas con Toldo Deslizante en Alicante',
+  description: hero.description,
+  serviceType: 'Instalación de pérgolas con toldo deslizante',
+  url: pageUrl,
+  offers: [
+    { name: 'Pérgola con toldo deslizante adosada' },
+    { name: 'Pérgola con toldo deslizante autoportante' },
+    { name: 'Lona Sergé Ferrari Précontraint' },
+    { name: 'Motorización Somfy / Nice' },
+  ],
+});
+
+const faqSchema = buildFAQSchema(faqs, { locale });
+const breadcrumbSchema = buildBreadcrumbSchema(breadcrumbs, { locale });
+const productSchema = buildProductSchema({
+  locale,
+  name: 'Pérgola con Toldo Deslizante a Medida',
+  description: hero.description,
+  image: 'https://optimtoldos.com/images/pergolas/pergola-lamas.webp',
+  url: pageUrl,
+  lowPrice: '3200',
+  highPrice: '12000',
+  category: 'Pérgolas con toldo deslizante',
+});
+---
+
+<Base
+  title="Pérgola con Toldo Deslizante a Medida | Optim Toldos - Alicante"
+  description="Pérgolas de aluminio con toldo deslizante motorizado en Alicante. Lona Sergé Ferrari, motor Somfy y estructura Cortizo. Alternativa económica a la bioclimática."
+  locale={locale}
+  alternateUrls={alternateUrls}
+  breadcrumbs={breadcrumbs}
+>
+  <Fragment slot="head">
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(serviceSchema)} />
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(productSchema)} />
+  </Fragment>
+  <SubProductPage
+    client:load
+    locale={locale}
+    hero={hero}
+    intro={intro}
+    sections={sections}
+    comparison={comparison}
+    related={related}
+    faqHeading="Preguntas frecuentes"
+    faqs={faqs}
+    cta={cta}
+  />
+</Base>

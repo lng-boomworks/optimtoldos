@@ -18,6 +18,7 @@ const breadcrumbs = [
 ];
 
 const productSchema = buildProductSchema({
+  locale: 'es',
   name: "Velas de Sombra en Alicante",
   description: "Velas de sombra triangulares, rectangulares y personalizadas. 95% protección UV certificada. Diseño arquitectónico a medida.",
   image: "https://optimtoldos.com/images/velas/hero-velas.webp",
@@ -29,7 +30,7 @@ const productSchema = buildProductSchema({
 ---
 
 <Base
-  title="Velas de Sombra | Optim Toldos — Alicante"
+  title="Velas de Sombra | Optim Toldos - Alicante"
   description="Velas de sombra tensadas con protección UV certificada. Diseño triangular, rectangular y personalizado para terrazas y jardines en Alicante."
   breadcrumbs={breadcrumbs}
   locale="es"
@@ -37,13 +38,14 @@ const productSchema = buildProductSchema({
 >
   <Fragment slot="head">
     <script is:inline type="application/ld+json" set:html={JSON.stringify(buildServiceSchema({
+  locale: 'es',
       name: "Velas de Sombra en Alicante",
       description: "Diseño e instalación de velas de sombra tensadas con protección UV certificada para terrazas, jardines y piscinas.",
       serviceType: "Instalación de velas de sombra",
       url: "https://optimtoldos.com/velas-de-sombra",
       offers: [{ name: "Vela Triangular" }, { name: "Vela Rectangular" }, { name: "Vela Personalizada" }],
     }))} />
-    <script is:inline type="application/ld+json" set:html={JSON.stringify(buildFAQSchema(velasFaqs))} />
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(buildFAQSchema(velasFaqs, { locale: 'es' }))} />
     <script is:inline type="application/ld+json" set:html={JSON.stringify(productSchema)} />
   </Fragment>
   <VelasPage client:load locale="es" />

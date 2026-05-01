@@ -7,6 +7,7 @@ import { getAlternateUrls } from '../i18n/routes';
 const alternateUrls = getAlternateUrls('gallery');
 
 const schema = buildCollectionPageSchema({
+  locale: 'es',
   name: "Galería de Proyectos",
   description: "Galería de proyectos realizados: toldos, pérgolas bioclimáticas, cortinas de cristal y más en Alicante y Costa Blanca.",
   url: "https://optimtoldos.com/galeria",
@@ -25,7 +26,7 @@ const breadcrumbs = [
 ];
 ---
 
-<Base title="Galería de Proyectos | Optim Toldos — Alicante" description="Galería de proyectos realizados: toldos, pérgolas bioclimáticas, cortinas de cristal y más en Alicante y Costa Blanca." breadcrumbs={breadcrumbs} locale="es" alternateUrls={alternateUrls}>
+<Base title="Galería de Proyectos | Optim Toldos - Alicante" description="Galería de proyectos realizados: toldos, pérgolas bioclimáticas, cortinas de cristal y más en Alicante y Costa Blanca." breadcrumbs={breadcrumbs} locale="es" alternateUrls={alternateUrls}>
   <Fragment slot="head">
     <script is:inline type="application/ld+json" set:html={JSON.stringify(schema)} />
   </Fragment>

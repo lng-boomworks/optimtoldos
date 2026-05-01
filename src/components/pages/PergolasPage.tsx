@@ -5,6 +5,7 @@ import { AnimatedHeading } from "../AnimatedHeading";
 import { Button } from "../Button";
 import { FAQSection } from "../FAQSection";
 import { ServiceAreaSection } from "../ServiceAreaSection";
+import { RelatedProducts } from "../RelatedProducts";
 import { url, localizedUrl } from "../../utils/paths";
 import { t, type Locale } from "../../i18n/index";
 import { slugMap } from "../../i18n/slugs";
@@ -155,7 +156,7 @@ export function PergolasPage({ locale = 'es' }: { locale?: Locale }) {
             </div>
           </section>
 
-          {/* Installation types — freestanding vs wall-mounted */}
+          {/* Installation types - freestanding vs wall-mounted */}
           <section className="bg-sand-light py-16 md:py-20">
             <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
               <FadeIn className="text-center mb-10">
@@ -306,8 +307,11 @@ export function PergolasPage({ locale = 'es' }: { locale?: Locale }) {
           <ServiceAreaSection
             serviceName={t(locale, 'pergolas.serviceArea')}
             locale={locale}
-            teaserLocations={['orihuela-costa', 'cabo-roig', 'villamartin', 'ciudad-quesada', 'benidorm', 'elche']}
+            product="pergolas"
+            teaserLocations={['torrevieja', 'orihuela-costa', 'ciudad-quesada', 'alicante', 'benidorm', 'elche']}
           />
+          {/* Related products (SEO internal linking) */}
+          <RelatedProducts current="pergolas" locale={locale} />
 
           {/* CTA */}
           <section className="bg-navy py-20 md:py-24">

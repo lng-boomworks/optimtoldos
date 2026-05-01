@@ -1,0 +1,121 @@
+---
+import Base from '../layouts/Base.astro';
+import { ProductZonePage } from '../components/pages/ProductZonePage';
+import {
+  buildServiceSchema,
+  buildBreadcrumbSchema,
+  buildFAQSchema,
+  buildProductSchema,
+} from '../utils/schema';
+
+const SITE = 'https://optimtoldos.com';
+const slug = 'benidorm';
+const name = 'Benidorm';
+const heading = `Cortinas de cristal en ${name}`;
+const intro = `Cortinas de cristal sin perfiles verticales para áticos en altura de Levante, Poniente, Rincón de Loix y Sierra Helada. Vidrio templado 10 mm y herrajes A4 con tratamiento marino reforzado.`;
+
+const pageUrl = `${SITE}/cortinas-de-cristal-${slug}/`;
+const alternateUrls = [
+  { locale: 'es' as const, href: pageUrl },
+  { locale: 'en' as const, href: `${SITE}/en/glass-curtains-benidorm/` },
+];
+
+const locationParagraph = `Benidorm es donde la cortina de cristal demuestra su mayor valor: áticos a 80 - 250 m de altura sometidos a vientos de levante de tarde y a salinidad continua. Sin un cerramiento ligero, la terraza es prácticamente inutilizable de marzo a mayo y de octubre a enero por viento. La cortina sin perfiles verticales mantiene las vistas espectaculares al mar y a la sierra mientras protege del viento, y es la única solución de cerramiento aceptada por la mayoría de comunidades porque no modifica la fachada visible desde el paseo. La altura impone tornillería A4 inoxidable, perfiles superiores reforzados y, frecuentemente, cierres de seguridad superiores.`;
+
+const whyFitsBullets = [
+  'Único cerramiento aceptado por muchas comunidades de Benidorm (no modifica fachada visible).',
+  'Vidrio templado 10 mm con guía superior reforzada por viento de levante en altura.',
+  'Tornillería A4 y perfiles con tratamiento marino reforzado: salinidad agresiva en altura.',
+  'Cierre de seguridad superior obligatorio a partir de planta 10 (caída accidental).',
+  'Mantiene las vistas a la bahía mientras protege del viento de marzo a mayo.',
+];
+
+const caseStudy = `Caso reciente: cortina corredera 8 paños en ático planta 28 de la Avenida del Mediterráneo, vidrio templado 10 mm low-iron, perfil aluminio anodizado plata, herrajes A4 inoxidables, guía superior reforzada por viento, cerradura central y cierre de seguridad superior por altura. Total 1 jornada de instalación con uso de ascensor de carga; plazo desde firma 5 semanas.`;
+
+const priceBand = `Cortina de cristal corredera 4 paños (3 m): 2.000 € - 2.800 €. Cortina 6 paños (4,5 m): 3.000 € - 4.000 €. Cortina 8 paños (6 m): 4.000 € - 5.300 €. Cierre de seguridad superior (obligatorio en altura): 200 - 350 €. Tratamiento marino reforzado: +8 - 12 %.`;
+
+const comunidadNote = `En Benidorm la cortina de cristal en terraza privativa requiere acuerdo de la junta de propietarios; muchos rascacielos exigen el voto unánime o mayoría cualificada cuando es visible desde la calle. El Ayuntamiento normalmente acepta comunicación previa. Le acompañamos en la junta y entregamos toda la documentación técnica para que el proyecto se apruebe a la primera.`;
+
+const faqs = [
+  { q: '¿Una cortina en un ático de la Avenida del Mediterráneo necesita el voto de toda la junta?', a: 'Depende del estatuto. Algunas comunidades de los rascacielos de Levante requieren unanimidad para modificaciones visibles desde la calle. Otras solo mayoría simple. Le entregamos un dossier técnico claro y documentación gráfica para presentar a la junta.' },
+  { q: '¿La cortina aguanta el levante en altura?', a: 'Sí, con guía superior reforzada y vidrio templado 10 mm aguanta hasta 100 km/h. En altura siempre añadimos cierre de seguridad superior adicional para protección contra desprendimientos accidentales por presión negativa de viento.' },
+  { q: '¿La salinidad en altura es peor que a pie de paseo?', a: 'Sí. La salinidad en plantas altas se concentra por arrastre de viento marino y es más agresiva con herrajes que a nivel de calle. Por eso siempre montamos con tornillería A4 y tratamiento marino reforzado en Benidorm; el sobrecoste se amortiza en 4 - 5 años por durabilidad.' },
+  { q: '¿Cuánto tarda el montaje en planta alta?', a: '1 - 2 jornadas según altura y logística (ascensor de carga, ventana de uso, etc.). En algunos rascacielos hay franja horaria limitada para uso del montacargas, lo que alarga la planificación.' },
+  { q: '¿Pierdo aislamiento térmico cerrando con cristal?', a: 'No, al contrario. La cortina reduce 5 - 8°C la temperatura de la terraza en verano (con sombra superior) y conserva calor en invierno. En Benidorm con viento de levante el efecto cortavientos es lo más valorado: la terraza pasa de inutilizable a estar disponible la mayor parte del año.' },
+];
+
+const related = [
+  { label: 'Pérgolas en Benidorm', href: '/pergolas-benidorm/' },
+  { label: 'Toldos en Benidorm', href: '/toldos-benidorm/' },
+  { label: 'Toldos hostelería en Benidorm', href: '/toldos-hosteleria-benidorm/' },
+  { label: 'Cortinas de cristal (catálogo)', href: '/cortinas-de-cristal/' },
+  { label: 'Guía de cortinas de cristal', href: '/guia-cortinas-cristal-terraza/' },
+];
+
+const ctaHref = `/presupuesto/?product=cortinas-cristal&location=${slug}`;
+const contactHref = '/contacto/';
+const licenceHref = '/guia-licencias-pergolas-toldos-alicante/';
+
+const breadcrumbs = [
+  { name: 'Inicio', url: `${SITE}/` },
+  { name: 'Cortinas de cristal', url: `${SITE}/cortinas-de-cristal/` },
+  { name, url: pageUrl },
+];
+
+const serviceSchema = buildServiceSchema({
+  locale: 'es',
+  name: heading,
+  description: intro,
+  serviceType: 'Instalación de cortinas de cristal',
+  url: pageUrl,
+  offers: [
+    { name: 'Cortina de cristal corredera' },
+    { name: 'Cortina de cristal en altura' },
+    { name: 'Cierre de seguridad superior' },
+  ],
+});
+const breadcrumbSchema = buildBreadcrumbSchema(breadcrumbs, { locale: 'es' });
+const faqSchema = buildFAQSchema(faqs.map(f => ({ question: f.q, answer: f.a })), { locale: 'es' });
+const productSchema = buildProductSchema({
+  locale: 'es',
+  name: heading,
+  description: intro,
+  image: `${SITE}/images/cortinas/cortina-cristal-1.webp`,
+  url: pageUrl,
+  category: 'Cortinas de cristal',
+  lowPrice: '2000',
+  highPrice: '5300',
+});
+---
+
+<Base
+  title={`${heading} - Optim Toldos`}
+  description={intro}
+  locale="es"
+  alternateUrls={alternateUrls}
+  breadcrumbs={breadcrumbs}
+>
+  <Fragment slot="head">
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(serviceSchema)} />
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(productSchema)} />
+  </Fragment>
+  <ProductZonePage
+    client:load
+    locale="es"
+    heading={heading}
+    intro={intro}
+    heroImage="/images/cortinas/hero-cortinas-1280.webp"
+    locationParagraph={locationParagraph}
+    whyFitsBullets={whyFitsBullets}
+    caseStudy={caseStudy}
+    priceBand={priceBand}
+    comunidadNote={comunidadNote}
+    licenceHref={licenceHref}
+    faqs={faqs}
+    related={related}
+    ctaHref={ctaHref}
+    contactHref={contactHref}
+  />
+</Base>

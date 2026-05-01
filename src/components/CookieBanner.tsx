@@ -4,6 +4,21 @@ import { slugMap } from "../i18n/slugs";
 import { localizedUrl } from "../utils/paths";
 import { getConsent, setConsent } from "../utils/consent";
 
+declare global {
+  interface Window {
+    gtag?: (...args: unknown[]) => void;
+  }
+}
+
+const GRANT_ANALYTICS = {
+  analytics_storage: "granted",
+} as const;
+
+function pushConsentGrant() {
+  if (typeof window === "undefined" || typeof window.gtag !== "function") return;
+  window.gtag("consent", "update", GRANT_ANALYTICS);
+}
+
 interface CookieBannerProps {
   locale?: Locale;
 }
@@ -12,13 +27,17 @@ export function CookieBanner({ locale = "es" }: CookieBannerProps) {
   const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
-    if (!getConsent()) {
+    const existing = getConsent();
+    if (!existing) {
       setIsVisible(true);
+    } else if (existing.choice === "accepted") {
+      pushConsentGrant();
     }
   }, []);
 
   const handleAccept = () => {
     setConsent("accepted");
+    pushConsentGrant();
     setIsVisible(false);
   };
 

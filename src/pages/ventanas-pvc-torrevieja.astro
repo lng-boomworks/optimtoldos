@@ -1,0 +1,101 @@
+---
+import Base from '../layouts/Base.astro';
+import { ProductZonePage } from '../components/pages/ProductZonePage';
+import {
+  buildServiceSchema,
+  buildBreadcrumbSchema,
+  buildFAQSchema,
+} from '../utils/schema';
+
+const SITE = 'https://optimtoldos.com';
+const slug = 'torrevieja';
+const name = 'Torrevieja';
+const heading = `Ventanas de PVC en ${name}`;
+const intro = `Ventanas de PVC con triple junta y vidrio bajo emisivo en Torrevieja: aislamiento térmico y acústico para apartamentos costeros, áticos con vista y reformas de chalet. Resistentes al aire salino, mantenimiento mínimo.`;
+
+const pageUrl = `${SITE}/ventanas-pvc-${slug}/`;
+const alternateUrls = [{ locale: 'es' as const, href: pageUrl }];
+
+const locationParagraph = `Torrevieja tiene un parque de vivienda dominado por apartamentos turísticos y residenciales construidos entre 1970 y 2000, gran parte con carpintería de aluminio sin RPT que ha sufrido la abrasión salina del aire marino durante décadas. La sustitución por PVC con triple junta y vidrio doble bajo emisivo aporta tres mejoras simultáneas: aislamiento térmico (clave para reducir el aire acondicionado en verano y el frío del levante en invierno), aislamiento acústico (importante en zonas como Punta Prima, Aguas Nuevas o el centro), y resistencia al aire salino (el PVC es inerte al cloruro sódico, vida útil 30 - 40 años en costa).`;
+
+const whyFitsBullets = [
+  'Inmunidad total al aire salino: el PVC no se corroe ni pica como el aluminio sin tratamiento (especialmente afectado en Torrevieja).',
+  'Triple junta perimetral: estanqueidad ante levantes fuertes y temporales del Mediterráneo.',
+  'Aislamiento térmico Uw 1,1 - 1,3 W/m²K con vidrio doble bajo emisivo, ahorro 25 - 35 % en climatización.',
+  'Aislamiento acústico 30 - 38 dB con vidrio doble: relevante en apartamentos a pie de avenida o paseo.',
+  'Mantenimiento mínimo: limpieza con jabón neutro 1 - 2 veces al año, sin pintar ni barnizar.',
+];
+
+const caseStudy = `Caso reciente: sustitución de 5 ventanas y una corredera de 3 m en apartamento de 75 m² en Aguas Nuevas, perfil Aluplast Energeto 8000 con vidrio doble bajo emisivo (4/16/4 con argón), color blanco interior y antracita exterior. Trabajos en 2 jornadas con retirada de las antiguas y sellado elastómero. Plazo desde firma 4 semanas.`;
+
+const comunidadNote = `En Torrevieja la sustitución de ventanas dentro del hueco es comunicación previa de obra menor. En comunidades de propietarios (la mayoría de apartamentos costeros lo son), si va a cambiar el color exterior conviene revisar los estatutos: muchas comunidades exigen uniformidad de fachada para mantener la estética del edificio. Le entregamos planos y fichas técnicas para cualquier trámite.`;
+
+const faqs = [
+  { q: '¿Vale la pena el PVC frente al aluminio en Torrevieja?', a: 'Sí, claramente. El aluminio sin RPT (mayoría del parque antiguo de Torrevieja) tiene Uw 5 - 6 W/m²K (mal aislante) y se corroe en costa. El aluminio nuevo con RPT mejora pero sigue siendo costoso y conduce calor. El PVC con triple junta da Uw 1,1 - 1,3, es inerte al salino y tiene mejor relación calidad-precio.' },
+  { q: '¿Aguanta el levante fuerte de la zona?', a: 'Sí. La triple junta perimetral garantiza estanqueidad ante temporales y se han realizado pruebas con velocidades de viento de 200 km/h sin pérdida de estanqueidad. La fijación al hueco se hace con tornillería específica y sellado elastómero perimetral.' },
+  { q: '¿Cómo se gestiona la persiana existente?', a: 'En la mayoría de apartamentos de Torrevieja la persiana es monoblock con cajón integrado. Mantenemos el cajón y sustituimos solo la ventana, recolocando el sistema de subida-bajada. Si la persiana es antigua o el cajón está deteriorado, se recomienda renovar el conjunto en la misma intervención.' },
+  { q: '¿Cuánto tarda fabricación e instalación?', a: 'Fabricación 3 - 5 semanas. Instalación 1 - 3 jornadas según número de huecos. Si está fuera de Torrevieja durante el plazo, podemos coordinar con un familiar o vecino para acceso, dejándole el piso entregado y limpio.' },
+];
+
+const related = [
+  { label: 'Ventanas PVC (catálogo)', href: '/ventanas-pvc/' },
+  { label: 'Toldos en Torrevieja', href: '/toldos-torrevieja/' },
+  { label: 'Cortinas de cristal en Torrevieja', href: '/cortinas-de-cristal-torrevieja/' },
+  { label: 'Pérgolas en Torrevieja', href: '/pergolas-torrevieja/' },
+];
+
+const ctaHref = `/presupuesto/?product=ventanas-pvc&location=${slug}`;
+const contactHref = '/contacto/';
+const licenceHref = '/guia-licencias-pergolas-toldos-alicante/';
+
+const breadcrumbs = [
+  { name: 'Inicio', url: `${SITE}/` },
+  { name: 'Ventanas PVC', url: `${SITE}/ventanas-pvc/` },
+  { name, url: pageUrl },
+];
+
+const serviceSchema = buildServiceSchema({
+  locale: 'es',
+  name: heading,
+  description: intro,
+  serviceType: 'Instalación de ventanas de PVC',
+  url: pageUrl,
+  offers: [
+    { name: 'Ventana PVC oscilobatiente' },
+    { name: 'Ventana PVC corredera' },
+    { name: 'Puerta balconera y de entrada PVC' },
+  ],
+});
+const breadcrumbSchema = buildBreadcrumbSchema(breadcrumbs, { locale: 'es' });
+const faqSchema = buildFAQSchema(faqs.map(f => ({ question: f.q, answer: f.a })), { locale: 'es' });
+---
+
+<Base
+  title={`${heading} - Optim Toldos`}
+  description={intro}
+  locale="es"
+  alternateUrls={alternateUrls}
+  breadcrumbs={breadcrumbs}
+>
+  <Fragment slot="head">
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(serviceSchema)} />
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+  </Fragment>
+  <ProductZonePage
+    client:load
+    locale="es"
+    heading={heading}
+    intro={intro}
+    heroImage="/images/ventanas/hero-ventanas-1280.webp"
+    locationParagraph={locationParagraph}
+    whyFitsBullets={whyFitsBullets}
+    caseStudy={caseStudy}
+    comunidadNote={comunidadNote}
+    licenceHref={licenceHref}
+    faqs={faqs}
+    related={related}
+    ctaHref={ctaHref}
+    contactHref={contactHref}
+  />
+</Base>
