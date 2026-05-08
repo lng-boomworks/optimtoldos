@@ -405,7 +405,7 @@ def main() -> int:
         try:
             assignments = match_bucket_with_vision(client, sources, bucket_targets)
         except Exception as e:
-            print(f"  VISION ERROR: {e}", file=sys.stderr)
+            print(f"  VISION ERROR for bucket {folder_tuple}: {e}", file=sys.stderr)
             for t in bucket_targets:
                 results.append(MatchResult(
                     target_subfolder=t.subfolder, target_filename=t.filename,
@@ -446,7 +446,7 @@ def main() -> int:
                     reasoning=a["reasoning"], status="matched",
                 ))
                 print(f"    WROTE {dst.relative_to(REPO_ROOT)}")
-            except RuntimeError as e:
+            except (RuntimeError, OSError) as e:
                 results.append(MatchResult(
                     target_subfolder=t.subfolder, target_filename=t.filename,
                     source_path=a["source_path"], confidence=a["confidence"],
@@ -455,7 +455,7 @@ def main() -> int:
 
     write_audit_csv(REPORT_CSV, results)
     matched_count = sum(1 for r in results if r.status == "matched")
-    print(f"\nDone. {matched_count}/{len(results)} matched. Audit: {REPORT_CSV.relative_to(REPO_ROOT)}")
+    print(f"\nDone. {matched_count}/{len(all_targets)} matched. Audit: {REPORT_CSV.relative_to(REPO_ROOT)}")
     return 0
 
 
