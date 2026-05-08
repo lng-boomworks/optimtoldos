@@ -164,3 +164,19 @@ def test_route_toldo_with_ventana_in_description_routes_to_toldo_folders():
     folders = bci.source_folders_for_target(row)
     assert "Ventanas pvc" not in folders
     assert "toldo brazos extensible" in folders
+
+
+def test_build_cwebp_command_uses_q82_and_max_width_1600():
+    src = Path("/tmp/source.jpg")
+    dst = Path("/tmp/output.webp")
+    cmd = bci.build_cwebp_command(src, dst)
+    assert cmd[0] == "cwebp"
+    assert "-q" in cmd and "82" in cmd
+    assert "-resize" in cmd
+    # cwebp -resize <width> <height>; height 0 means preserve aspect
+    resize_idx = cmd.index("-resize")
+    assert cmd[resize_idx + 1] == "1600"
+    assert cmd[resize_idx + 2] == "0"
+    assert str(src) in cmd
+    assert "-o" in cmd
+    assert str(dst) in cmd

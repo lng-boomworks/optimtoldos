@@ -21,6 +21,7 @@ from __future__ import annotations
 
 import csv
 import os
+import subprocess
 import sys
 from dataclasses import dataclass
 from pathlib import Path
@@ -183,6 +184,27 @@ def source_folders_for_target(row: TargetRow) -> list[str]:
 
     # Generic home/gallery/blog covers — every outdoor folder is a candidate
     return PERGOLA_FOLDERS + TOLDO_FOLDERS + CORTINAS_FOLDERS + VELAS_FOLDERS
+
+
+def build_cwebp_command(src: Path, dst: Path) -> list[str]:
+    """Return the cwebp argv for converting src JPEG/PNG to a max-1600px WebP at q82."""
+    return [
+        "cwebp",
+        "-q", str(CWEBP_QUALITY),
+        "-resize", str(CWEBP_MAX_WIDTH), "0",  # height 0 = preserve aspect ratio
+        "-mt",                                  # multi-threaded encoding
+        str(src),
+        "-o", str(dst),
+    ]
+
+
+def convert_to_webp(src: Path, dst: Path) -> None:
+    """Convert src to dst via cwebp. Creates parent dirs. Raises on non-zero exit."""
+    dst.parent.mkdir(parents=True, exist_ok=True)
+    cmd = build_cwebp_command(src, dst)
+    result = subprocess.run(cmd, capture_output=True, text=True)
+    if result.returncode != 0:
+        raise RuntimeError(f"cwebp failed for {src}: {result.stderr}")
 
 
 def main() -> int:
