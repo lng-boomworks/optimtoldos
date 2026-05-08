@@ -42,6 +42,57 @@ VISION_MODEL = "claude-sonnet-4-6"
 CONFIDENCE_THRESHOLD = 0.5
 
 
+@dataclass(frozen=True)
+class TargetRow:
+    subfolder: str       # e.g. "core", "productos"
+    filename: str        # e.g. "home-toldos-pergolas-costa-blanca.webp"
+    description: str     # "what should the photo show"
+    area: str            # area / GPS hint, may be empty
+
+
+def parse_checklist(xlsx_path: Path) -> list[TargetRow]:
+    """Parse the CHECKLIST sheet of optimtoldos_checklist_fotos.xlsx.
+
+    The sheet layout is:
+        row 1: title
+        row 2: subtitle
+        row 3: blank
+        row 4: header row (SUBFOLDER, FILE NAME, WHAT SHOULD..., AREA / GPS, DONE, NOTES)
+        row 5: blank
+        rows 6+: data, with section-divider rows (col B is None) interspersed
+
+    A data row is identified by col B (filename) ending in '.webp'.
+    """
+    import openpyxl
+
+    wb = openpyxl.load_workbook(xlsx_path, data_only=True)
+    ws = wb["CHECKLIST"]
+
+    rows: list[TargetRow] = []
+    for raw in ws.iter_rows(min_row=6, values_only=True):
+        subfolder_cell = raw[0] or ""
+        filename = raw[1]
+        description = raw[2] or ""
+        area = raw[3] or ""
+
+        if not isinstance(filename, str) or not filename.endswith(".webp"):
+            continue  # skip section dividers and blanks
+
+        # Subfolder cell looks like "📁 core" — strip the emoji + whitespace
+        subfolder = str(subfolder_cell).replace("📁", "").strip()
+        if not subfolder:
+            continue
+
+        rows.append(TargetRow(
+            subfolder=subfolder,
+            filename=filename.strip(),
+            description=description.strip(),
+            area=str(area).strip(),
+        ))
+
+    return rows
+
+
 def main() -> int:
     print("build-client-images: not yet implemented", file=sys.stderr)
     return 1
