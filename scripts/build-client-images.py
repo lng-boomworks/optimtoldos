@@ -93,6 +93,37 @@ def parse_checklist(xlsx_path: Path) -> list[TargetRow]:
     return rows
 
 
+# Description keyword fragments that indicate a subject we have NO source photo of.
+# These are matched case-insensitively against the description.
+NO_SOURCE_KEYWORDS = (
+    "team",          # team photo / installer team
+    "uniform",
+    "office",        # office facade
+    "facade",
+    "phone",         # person on phone
+    "client",        # client + installer with quote
+    "installer explaining",
+    "aerial",
+    "landscape of the costa blanca",
+    "town hall",
+    "ayuntamiento",
+    "official document",
+)
+
+
+def classify_target(row: TargetRow) -> str:
+    """Return one of: 'matchable', 'unmatched-no-geo', 'unmatched-no-source'."""
+    if row.subfolder in {"zonas-es", "zonas-en", "prod-zona"}:
+        return "unmatched-no-geo"
+
+    desc_lower = row.description.lower()
+    for keyword in NO_SOURCE_KEYWORDS:
+        if keyword in desc_lower:
+            return "unmatched-no-source"
+
+    return "matchable"
+
+
 def main() -> int:
     print("build-client-images: not yet implemented", file=sys.stderr)
     return 1
