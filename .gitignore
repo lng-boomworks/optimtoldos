@@ -9,3 +9,5 @@ dist/
 OptimToldos_RemainingTasks.pdf
 blog-image.html
 image-requirements.csv
+scripts/build-client-images.report.csv
+scripts/__pycache__/
