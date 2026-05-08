@@ -133,6 +133,51 @@ def classify_target(row: TargetRow) -> str:
     return "matchable"
 
 
+# Source folder names exactly as they appear under PHOTOS_ROOT.
+TOLDO_FOLDERS = [
+    "toldos cofre",
+    "toldo brazos extensible",
+    "toldos punto recto",
+    "toldos stor balcon",
+    "Toldos Screen ZIP",
+]
+PERGOLA_FOLDERS = ["pergolas", "pergolas bioclimaticas"]
+CORTINAS_FOLDERS = ["cortinas de cristal"]
+VELAS_FOLDERS = ["velas", "lonas piscina"]
+VENTANAS_FOLDERS = ["Ventanas pvc"]
+
+
+def source_folders_for_target(row: TargetRow) -> list[str]:
+    """Return the source folder names whose photos are candidates for this target.
+
+    Routing is by keyword on filename + description. A target may map to multiple
+    folders (e.g. 'toldos category' covers all five toldo subtypes).
+    """
+    haystack = (row.filename + " " + row.description).lower()
+
+    # Specific product mentions take priority
+    if "cortina" in haystack or "cristal" in haystack or "glass curtain" in haystack:
+        return list(CORTINAS_FOLDERS)
+    if "ventana" in haystack or "pvc window" in haystack:
+        return list(VENTANAS_FOLDERS)
+    if "vela" in haystack or "shade sail" in haystack or "lona" in haystack:
+        return list(VELAS_FOLDERS)
+
+    # Pergola vs awning — these can co-occur (e.g. "pergola vs toldo")
+    has_pergola = "pergola" in haystack or "pérgola" in haystack
+    has_toldo = "toldo" in haystack or "awning" in haystack
+
+    if has_pergola and has_toldo:
+        return PERGOLA_FOLDERS + TOLDO_FOLDERS
+    if has_pergola:
+        return list(PERGOLA_FOLDERS)
+    if has_toldo:
+        return list(TOLDO_FOLDERS)
+
+    # Generic home/gallery/blog covers — every folder is a candidate
+    return PERGOLA_FOLDERS + TOLDO_FOLDERS + CORTINAS_FOLDERS + VELAS_FOLDERS
+
+
 def main() -> int:
     print("build-client-images: not yet implemented", file=sys.stderr)
     return 1

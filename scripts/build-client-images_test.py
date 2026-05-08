@@ -107,3 +107,46 @@ def test_classify_spanish_team_description_is_unmatched_no_source():
         area="Torrevieja",
     )
     assert bci.classify_target(row) == "unmatched-no-source"
+
+
+def test_route_pergola_target_to_pergola_folders():
+    row = bci.TargetRow(subfolder="productos", filename="pergolas-categoria-alicante.webp",
+                        description="Pergolas category page hero", area="Alicante")
+    assert set(bci.source_folders_for_target(row)) == {"pergolas", "pergolas bioclimaticas"}
+
+
+def test_route_cortinas_target_to_cortinas_folder():
+    row = bci.TargetRow(subfolder="productos", filename="cortinas-cristal-terraza-alicante.webp",
+                        description="Glass curtains category page hero", area="Alicante")
+    assert bci.source_folders_for_target(row) == ["cortinas de cristal"]
+
+
+def test_route_velas_target_to_velas_folder():
+    row = bci.TargetRow(subfolder="productos", filename="velas-sombra-jardin-alicante.webp",
+                        description="Tensioned shade sail in a garden", area="Alicante")
+    assert set(bci.source_folders_for_target(row)) == {"velas", "lonas piscina"}
+
+
+def test_route_ventanas_target_to_ventanas_folder():
+    row = bci.TargetRow(subfolder="productos", filename="ventanas-pvc-alicante-instalacion.webp",
+                        description="PVC window installation", area="Alicante")
+    assert bci.source_folders_for_target(row) == ["Ventanas pvc"]
+
+
+def test_route_toldos_target_to_all_toldo_folders():
+    row = bci.TargetRow(subfolder="productos", filename="toldos-categoria-costa-blanca.webp",
+                        description="Awnings category page hero", area="Costa Blanca")
+    expected = {"toldos cofre", "toldo brazos extensible", "toldos punto recto",
+                "toldos stor balcon", "Toldos Screen ZIP"}
+    assert set(bci.source_folders_for_target(row)) == expected
+
+
+def test_route_generic_home_target_to_all_folders():
+    """Generic home/gallery/blog covers can pull from any folder — return them all."""
+    row = bci.TargetRow(subfolder="core", filename="home-toldos-pergolas-costa-blanca.webp",
+                        description="Awning or pergola installed — main website image",
+                        area="Costa Blanca")
+    folders = bci.source_folders_for_target(row)
+    # Should include both pergola and toldo folders
+    assert "pergolas" in folders or "pergolas bioclimaticas" in folders
+    assert any(f.startswith("toldo") or f.startswith("Toldo") for f in folders)
