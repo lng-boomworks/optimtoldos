@@ -337,9 +337,126 @@ def match_bucket_with_vision(
     return results
 
 
+def _list_source_jpegs(folder: Path) -> list[Path]:
+    """Return sorted JPEG/PNG paths directly under the folder (no recursion)."""
+    if not folder.is_dir():
+        return []
+    exts = {".jpg", ".jpeg", ".png"}
+    return sorted(p for p in folder.iterdir() if p.is_file() and p.suffix.lower() in exts)
+
+
+def _bucket_matchable_targets(
+    targets: list[TargetRow],
+) -> dict[tuple[str, ...], list[TargetRow]]:
+    """Group matchable targets by the tuple of source folders they route to."""
+    buckets: dict[tuple[str, ...], list[TargetRow]] = {}
+    for t in targets:
+        key = tuple(source_folders_for_target(t))
+        buckets.setdefault(key, []).append(t)
+    return buckets
+
+
 def main() -> int:
-    print("build-client-images: not yet implemented", file=sys.stderr)
-    return 1
+    api_key = os.environ.get("ANTHROPIC_API_KEY")
+    if not api_key:
+        print("ERROR: ANTHROPIC_API_KEY not set in environment.", file=sys.stderr)
+        return 2
+
+    if not CHECKLIST_XLSX.exists():
+        print(f"ERROR: checklist xlsx not found at {CHECKLIST_XLSX}", file=sys.stderr)
+        return 2
+    if not PHOTOS_ROOT.is_dir():
+        print(f"ERROR: photos root not found at {PHOTOS_ROOT}", file=sys.stderr)
+        return 2
+
+    from anthropic import Anthropic
+    client = Anthropic(api_key=api_key)
+
+    print(f"Parsing {CHECKLIST_XLSX.name}...")
+    all_targets = parse_checklist(CHECKLIST_XLSX)
+    print(f"  {len(all_targets)} target rows parsed.")
+
+    matchable: list[TargetRow] = []
+    results: list[MatchResult] = []
+    for t in all_targets:
+        cls = classify_target(t)
+        if cls == "matchable":
+            matchable.append(t)
+        else:
+            results.append(MatchResult(
+                target_subfolder=t.subfolder, target_filename=t.filename,
+                source_path="", confidence=0.0,
+                reasoning="Pre-filtered by classifier", status=cls,
+            ))
+    print(f"  {len(matchable)} matchable, {len(results)} pre-filtered as unmatched.")
+
+    buckets = _bucket_matchable_targets(matchable)
+    print(f"Matching {len(matchable)} targets across {len(buckets)} vision call(s)...")
+
+    used_sources: set[str] = set()
+    for folder_tuple, bucket_targets in buckets.items():
+        sources: list[Path] = []
+        for folder in folder_tuple:
+            for p in _list_source_jpegs(PHOTOS_ROOT / folder):
+                if str(p) not in used_sources:
+                    sources.append(p)
+        print(f"  bucket {folder_tuple}: {len(sources)} sources, {len(bucket_targets)} targets")
+
+        try:
+            assignments = match_bucket_with_vision(client, sources, bucket_targets)
+        except Exception as e:
+            print(f"  VISION ERROR: {e}", file=sys.stderr)
+            for t in bucket_targets:
+                results.append(MatchResult(
+                    target_subfolder=t.subfolder, target_filename=t.filename,
+                    source_path="", confidence=0.0, reasoning=str(e),
+                    status="unmatched-vision-error",
+                ))
+            continue
+
+        by_filename = {a["target_filename"]: a for a in assignments}
+        for t in bucket_targets:
+            a = by_filename.get(t.filename)
+            if not a or a["source_path"] is None:
+                results.append(MatchResult(
+                    target_subfolder=t.subfolder, target_filename=t.filename,
+                    source_path="", confidence=a["confidence"] if a else 0.0,
+                    reasoning=a["reasoning"] if a else "Not returned by vision",
+                    status="unmatched-low-confidence",
+                ))
+                continue
+
+            if a["confidence"] < CONFIDENCE_THRESHOLD:
+                results.append(MatchResult(
+                    target_subfolder=t.subfolder, target_filename=t.filename,
+                    source_path=a["source_path"], confidence=a["confidence"],
+                    reasoning=a["reasoning"], status="unmatched-low-confidence",
+                ))
+                continue
+
+            # Convert + write
+            src = Path(a["source_path"])
+            dst = OUTPUT_ROOT / t.subfolder / t.filename
+            try:
+                convert_to_webp(src, dst)
+                used_sources.add(a["source_path"])
+                results.append(MatchResult(
+                    target_subfolder=t.subfolder, target_filename=t.filename,
+                    source_path=a["source_path"], confidence=a["confidence"],
+                    reasoning=a["reasoning"], status="matched",
+                ))
+                print(f"    WROTE {dst.relative_to(REPO_ROOT)}")
+            except RuntimeError as e:
+                results.append(MatchResult(
+                    target_subfolder=t.subfolder, target_filename=t.filename,
+                    source_path=a["source_path"], confidence=a["confidence"],
+                    reasoning=f"cwebp failed: {e}", status="unmatched-cwebp-error",
+                ))
+
+    write_audit_csv(REPORT_CSV, results)
+    matched_count = sum(1 for r in results if r.status == "matched")
+    print(f"\nDone. {matched_count}/{len(results)} matched. Audit: {REPORT_CSV.relative_to(REPO_ROOT)}")
+    return 0
 
 
 if __name__ == "__main__":
