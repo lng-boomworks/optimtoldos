@@ -150,3 +150,17 @@ def test_route_generic_home_target_to_all_folders():
     # Should include both pergola and toldo folders
     assert "pergolas" in folders or "pergolas bioclimaticas" in folders
     assert any(f.startswith("toldo") or f.startswith("Toldo") for f in folders)
+
+
+def test_route_toldo_with_ventana_in_description_routes_to_toldo_folders():
+    """Awning descriptions often mention windows. The ventana keyword must
+    not hijack the toldo-context routing."""
+    row = bci.TargetRow(
+        subfolder="prod-zona",
+        filename="toldo-brazo-extensible-fachada.webp",
+        description="Toldo de brazo extensible sobre ventana o balcón",
+        area="Costa Blanca",
+    )
+    folders = bci.source_folders_for_target(row)
+    assert "Ventanas pvc" not in folders
+    assert "toldo brazos extensible" in folders

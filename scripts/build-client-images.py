@@ -152,18 +152,17 @@ def source_folders_for_target(row: TargetRow) -> list[str]:
 
     Routing is by keyword on filename + description. A target may map to multiple
     folders (e.g. 'toldos category' covers all five toldo subtypes).
+
+    Priority order matters: 'ventana' must be checked AFTER 'toldo'/'pergola'
+    because awning descriptions often mention windows ("toldo sobre ventana").
     """
     haystack = (row.filename + " " + row.description).lower()
 
-    # Specific product mentions take priority
+    # Cortinas first — 'cristal'/'cortina' are specific enough to win
     if "cortina" in haystack or "cristal" in haystack or "glass curtain" in haystack:
         return list(CORTINAS_FOLDERS)
-    if "ventana" in haystack or "pvc window" in haystack:
-        return list(VENTANAS_FOLDERS)
-    if "vela" in haystack or "shade sail" in haystack or "lona" in haystack:
-        return list(VELAS_FOLDERS)
 
-    # Pergola vs awning — these can co-occur (e.g. "pergola vs toldo")
+    # Pergola / toldo BEFORE ventana — awning descriptions often mention windows
     has_pergola = "pergola" in haystack or "pérgola" in haystack
     has_toldo = "toldo" in haystack or "awning" in haystack
 
@@ -174,7 +173,15 @@ def source_folders_for_target(row: TargetRow) -> list[str]:
     if has_toldo:
         return list(TOLDO_FOLDERS)
 
-    # Generic home/gallery/blog covers — every folder is a candidate
+    # Ventana only reaches here when no toldo/pergola signal is present
+    if "ventana" in haystack or "pvc window" in haystack:
+        return list(VENTANAS_FOLDERS)
+
+    # Vela / lona — no toldo signal at this point, so 'lona' is safe to route to velas
+    if "vela" in haystack or "shade sail" in haystack or "lona" in haystack:
+        return list(VELAS_FOLDERS)
+
+    # Generic home/gallery/blog covers — every outdoor folder is a candidate
     return PERGOLA_FOLDERS + TOLDO_FOLDERS + CORTINAS_FOLDERS + VELAS_FOLDERS
 
 
