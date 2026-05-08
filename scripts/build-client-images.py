@@ -199,12 +199,17 @@ def build_cwebp_command(src: Path, dst: Path) -> list[str]:
 
 
 def convert_to_webp(src: Path, dst: Path) -> None:
-    """Convert src to dst via cwebp. Creates parent dirs. Raises on non-zero exit."""
+    """Convert src to dst via cwebp. Creates parent dirs.
+
+    Raises RuntimeError if cwebp exits non-zero; OSError if dst.parent
+    cannot be created.
+    """
     dst.parent.mkdir(parents=True, exist_ok=True)
     cmd = build_cwebp_command(src, dst)
     result = subprocess.run(cmd, capture_output=True, text=True)
     if result.returncode != 0:
-        raise RuntimeError(f"cwebp failed for {src}: {result.stderr}")
+        detail = result.stderr.strip() or result.stdout.strip() or "(no output)"
+        raise RuntimeError(f"cwebp failed for {src} (exit {result.returncode}): {detail}")
 
 
 def main() -> int:

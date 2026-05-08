@@ -180,3 +180,4 @@ def test_build_cwebp_command_uses_q82_and_max_width_1600():
     assert str(src) in cmd
     assert "-o" in cmd
     assert str(dst) in cmd
+    assert "-mt" in cmd
