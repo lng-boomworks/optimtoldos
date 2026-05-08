@@ -181,3 +181,36 @@ def test_build_cwebp_command_uses_q82_and_max_width_1600():
     assert "-o" in cmd
     assert str(dst) in cmd
     assert "-mt" in cmd
+
+
+def test_write_audit_csv_round_trip(tmp_path):
+    results = [
+        bci.MatchResult(
+            target_subfolder="productos",
+            target_filename="pergolas-categoria-alicante.webp",
+            source_path="/dropbox/Photos/pergolas/IMG_001.jpg",
+            confidence=0.92,
+            reasoning="Bioclimatic pergola in landscape format",
+            status="matched",
+        ),
+        bci.MatchResult(
+            target_subfolder="zonas-es",
+            target_filename="toldos-torrevieja-instalacion.webp",
+            source_path="",
+            confidence=0.0,
+            reasoning="Location-specific row; no geo-labelled photos available",
+            status="unmatched-no-geo",
+        ),
+    ]
+    out = tmp_path / "report.csv"
+    bci.write_audit_csv(out, results)
+
+    import csv
+    with out.open() as f:
+        rows = list(csv.DictReader(f))
+    assert len(rows) == 2
+    assert rows[0]["target_filename"] == "pergolas-categoria-alicante.webp"
+    assert rows[0]["status"] == "matched"
+    assert rows[0]["confidence"] == "0.92"
+    assert rows[1]["status"] == "unmatched-no-geo"
+    assert rows[1]["source_path"] == ""

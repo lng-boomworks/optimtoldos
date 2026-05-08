@@ -212,6 +212,41 @@ def convert_to_webp(src: Path, dst: Path) -> None:
         raise RuntimeError(f"cwebp failed for {src} (exit {result.returncode}): {detail}")
 
 
+@dataclass
+class MatchResult:
+    target_subfolder: str
+    target_filename: str
+    source_path: str        # empty string if unmatched
+    confidence: float       # 0.0 if unmatched
+    reasoning: str
+    status: str             # 'matched' | 'unmatched-no-geo' | 'unmatched-no-source'
+                            # | 'unmatched-low-confidence' | 'unmatched-vision-error'
+                            # | 'unmatched-cwebp-error'
+
+
+AUDIT_COLUMNS = [
+    "target_subfolder", "target_filename", "source_path",
+    "confidence", "reasoning", "status",
+]
+
+
+def write_audit_csv(out_path: Path, results: list[MatchResult]) -> None:
+    """Write all results to a CSV with a stable column order."""
+    out_path.parent.mkdir(parents=True, exist_ok=True)
+    with out_path.open("w", newline="") as f:
+        writer = csv.DictWriter(f, fieldnames=AUDIT_COLUMNS)
+        writer.writeheader()
+        for r in results:
+            writer.writerow({
+                "target_subfolder": r.target_subfolder,
+                "target_filename": r.target_filename,
+                "source_path": r.source_path,
+                "confidence": f"{r.confidence:.2f}",
+                "reasoning": r.reasoning,
+                "status": r.status,
+            })
+
+
 def main() -> int:
     print("build-client-images: not yet implemented", file=sys.stderr)
     return 1
