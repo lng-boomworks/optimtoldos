@@ -19,7 +19,10 @@ Outputs:
 """
 from __future__ import annotations
 
+import base64
 import csv
+import io
+import json
 import os
 import subprocess
 import sys
@@ -245,6 +248,82 @@ def write_audit_csv(out_path: Path, results: list[MatchResult]) -> None:
                 "reasoning": r.reasoning,
                 "status": r.status,
             })
+
+
+def _encode_image_for_vision(src: Path, max_dim: int = 1024, quality: int = 70) -> tuple[str, str]:
+    """Resize + JPEG-encode + base64 an image for the Anthropic API. Returns (b64, media_type)."""
+    from PIL import Image
+    with Image.open(src) as img:
+        img = img.convert("RGB")
+        img.thumbnail((max_dim, max_dim))
+        buf = io.BytesIO()
+        img.save(buf, format="JPEG", quality=quality)
+    return base64.standard_b64encode(buf.getvalue()).decode("ascii"), "image/jpeg"
+
+
+def _build_vision_prompt(targets: list[TargetRow], n_sources: int) -> str:
+    """Construct the user-text portion of the vision prompt."""
+    target_lines = "\n".join(
+        f"  {i}: filename={t.filename!r}, needs={t.description!r}, area={t.area!r}"
+        for i, t in enumerate(targets)
+    )
+    return (
+        f"You are matching client photos to website image slots.\n\n"
+        f"Above are {n_sources} candidate photos (indexed 0..{n_sources - 1}).\n\n"
+        f"There are {len(targets)} target slots to fill:\n{target_lines}\n\n"
+        f"For EACH target slot, pick the best candidate photo OR null if none fit. "
+        f"Score 0.0–1.0. Each candidate may be assigned to AT MOST ONE target. "
+        f"Score < 0.5 means weak match; prefer null in that case.\n\n"
+        f"Reply with ONLY a JSON array (no prose, no markdown fences). Each element:\n"
+        f'  {{"target_filename": "<exact filename>", "source_index": <int or null>, '
+        f'"confidence": <float>, "reasoning": "<one short sentence>"}}'
+    )
+
+
+def match_bucket_with_vision(
+    client,
+    sources: list[Path],
+    targets: list[TargetRow],
+) -> list[dict]:
+    """Send one bucket of (sources, targets) to Claude vision. Return list of dicts:
+    {target_filename, source_path (str|None), confidence (float), reasoning (str)}.
+    """
+    if not sources or not targets:
+        return [{"target_filename": t.filename, "source_path": None,
+                 "confidence": 0.0, "reasoning": "no sources or targets in bucket"}
+                for t in targets]
+
+    content_blocks: list[dict] = []
+    for src in sources:
+        b64, media_type = _encode_image_for_vision(src)
+        content_blocks.append({
+            "type": "image",
+            "source": {"type": "base64", "media_type": media_type, "data": b64},
+        })
+    content_blocks.append({"type": "text", "text": _build_vision_prompt(targets, len(sources))})
+
+    response = client.messages.create(
+        model=VISION_MODEL,
+        max_tokens=2048,
+        messages=[{"role": "user", "content": content_blocks}],
+    )
+    raw = response.content[0].text.strip()
+    # Strip any accidental markdown fences
+    if raw.startswith("```"):
+        raw = raw.split("\n", 1)[1].rsplit("```", 1)[0].strip()
+    parsed = json.loads(raw)
+
+    results: list[dict] = []
+    for item in parsed:
+        idx = item.get("source_index")
+        source_path = str(sources[idx]) if isinstance(idx, int) and 0 <= idx < len(sources) else None
+        results.append({
+            "target_filename": item["target_filename"],
+            "source_path": source_path,
+            "confidence": float(item.get("confidence", 0.0)),
+            "reasoning": item.get("reasoning", ""),
+        })
+    return results
 
 
 def main() -> int:

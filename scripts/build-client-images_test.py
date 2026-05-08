@@ -214,3 +214,68 @@ def test_write_audit_csv_round_trip(tmp_path):
     assert rows[0]["confidence"] == "0.92"
     assert rows[1]["status"] == "unmatched-no-geo"
     assert rows[1]["source_path"] == ""
+
+
+def test_match_bucket_with_vision_assigns_by_index(tmp_path):
+    # Create two tiny dummy JPEGs so the function can read them
+    from PIL import Image
+    src1 = tmp_path / "a.jpg"
+    src2 = tmp_path / "b.jpg"
+    Image.new("RGB", (100, 100), color="red").save(src1, "JPEG")
+    Image.new("RGB", (100, 100), color="blue").save(src2, "JPEG")
+
+    targets = [
+        bci.TargetRow("productos", "x.webp", "red thing", ""),
+        bci.TargetRow("productos", "y.webp", "blue thing", ""),
+    ]
+
+    # Fake response: source 0 -> x.webp, source 1 -> y.webp
+    fake_response_text = (
+        '[{"target_filename":"x.webp","source_index":0,"confidence":0.9,"reasoning":"red"},'
+        '{"target_filename":"y.webp","source_index":1,"confidence":0.85,"reasoning":"blue"}]'
+    )
+
+    class FakeContent:
+        def __init__(self, text): self.text = text
+    class FakeMessage:
+        def __init__(self, text): self.content = [FakeContent(text)]
+    class FakeMessagesAPI:
+        def create(self, **kwargs): return FakeMessage(fake_response_text)
+    class FakeClient:
+        def __init__(self): self.messages = FakeMessagesAPI()
+
+    results = bci.match_bucket_with_vision(
+        client=FakeClient(),
+        sources=[src1, src2],
+        targets=targets,
+    )
+
+    assert len(results) == 2
+    by_target = {r["target_filename"]: r for r in results}
+    assert by_target["x.webp"]["source_path"] == str(src1)
+    assert by_target["x.webp"]["confidence"] == 0.9
+    assert by_target["y.webp"]["source_path"] == str(src2)
+
+
+def test_match_bucket_with_vision_handles_null_source(tmp_path):
+    from PIL import Image
+    src = tmp_path / "a.jpg"
+    Image.new("RGB", (100, 100), color="red").save(src, "JPEG")
+
+    targets = [bci.TargetRow("productos", "x.webp", "purple thing", "")]
+    fake_response_text = '[{"target_filename":"x.webp","source_index":null,"confidence":0.0,"reasoning":"no match"}]'
+
+    class FakeContent:
+        def __init__(self, text): self.text = text
+    class FakeMessage:
+        def __init__(self, text): self.content = [FakeContent(text)]
+    class FakeMessagesAPI:
+        def create(self, **kwargs): return FakeMessage(fake_response_text)
+    class FakeClient:
+        def __init__(self): self.messages = FakeMessagesAPI()
+
+    results = bci.match_bucket_with_vision(
+        client=FakeClient(), sources=[src], targets=targets,
+    )
+    assert results[0]["source_path"] is None
+    assert results[0]["confidence"] == 0.0
