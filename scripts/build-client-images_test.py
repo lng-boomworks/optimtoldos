@@ -77,3 +77,33 @@ def test_classify_authority_guide_is_matchable():
     row = bci.TargetRow(subfolder="guias", filename="elegir-toldo-costa-blanca-guia.webp",
                         description="Awning fabric and structure samples", area="Costa Blanca")
     assert bci.classify_target(row) == "matchable"
+
+
+def test_classify_spanish_office_description_is_unmatched_no_source():
+    row = bci.TargetRow(
+        subfolder="core",
+        filename="contacto-optimtoldos-torrevieja.webp",
+        description="Fachada de la oficina o persona hablando por teléfono",
+        area="Torrevieja",
+    )
+    assert bci.classify_target(row) == "unmatched-no-source"
+
+
+def test_classify_spanish_aerial_description_is_unmatched_no_source():
+    row = bci.TargetRow(
+        subfolder="core",
+        filename="zonas-servicio-costa-blanca-alicante.webp",
+        description="Vista aérea o paisaje de la Costa Blanca",
+        area="Costa Blanca",
+    )
+    assert bci.classify_target(row) == "unmatched-no-source"
+
+
+def test_classify_spanish_team_description_is_unmatched_no_source():
+    row = bci.TargetRow(
+        subfolder="core",
+        filename="about-us-optimtoldos-team.webp",
+        description="Foto equipo — versión EN (puede ser la misma que ES)",
+        area="Torrevieja",
+    )
+    assert bci.classify_target(row) == "unmatched-no-source"

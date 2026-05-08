@@ -94,20 +94,29 @@ def parse_checklist(xlsx_path: Path) -> list[TargetRow]:
 
 
 # Description keyword fragments that indicate a subject we have NO source photo of.
-# These are matched case-insensitively against the description.
+# Matched case-insensitively against the description. Bilingual (ES + EN) — the
+# checklist xlsx mixes Spanish and English descriptions, so each subject needs both.
 NO_SOURCE_KEYWORDS = (
-    "team",          # team photo / installer team
-    "uniform",
-    "office",        # office facade
-    "facade",
-    "phone",         # person on phone
-    "client",        # client + installer with quote
-    "installer explaining",
-    "aerial",
+    # team photo / installer team
+    "team", "equipo",
+    "uniform", "uniforme",
+    # office facade / building
+    "office", "oficina",
+    "facade", "fachada",
+    # person on phone
+    "phone", "teléfono", "telefono",  # accent-stripped fallback
+    # client + installer with quote (e.g. "client signing", "cliente firmando")
+    "client", "cliente",
+    # explainer / sales scenes
+    "instalador explicando",
+    # aerial / landscape views we don't have
+    "aerial", "aérea", "aerea",        # accent-stripped fallback
+    "vista aérea",
     "landscape of the costa blanca",
-    "town hall",
-    "ayuntamiento",
-    "official document",
+    "paisaje de la costa blanca",
+    # municipal / official documents
+    "town hall", "ayuntamiento",
+    "official document", "documento oficial",
 )
 
 
