@@ -279,3 +279,81 @@ def test_match_bucket_with_vision_handles_null_source(tmp_path):
     )
     assert results[0]["source_path"] is None
     assert results[0]["confidence"] == 0.0
+
+
+def test_match_bucket_with_vision_strips_markdown_fences(tmp_path):
+    from PIL import Image
+    src = tmp_path / "a.jpg"
+    Image.new("RGB", (100, 100), color="red").save(src, "JPEG")
+
+    targets = [bci.TargetRow("productos", "x.webp", "red thing", "")]
+    fake_response_text = (
+        '```json\n'
+        '[{"target_filename":"x.webp","source_index":0,"confidence":0.9,"reasoning":"red"}]\n'
+        '```'
+    )
+
+    class FakeContent:
+        def __init__(self, text): self.text = text
+    class FakeMessage:
+        def __init__(self, text): self.content = [FakeContent(text)]
+    class FakeMessagesAPI:
+        def create(self, **kwargs): return FakeMessage(fake_response_text)
+    class FakeClient:
+        def __init__(self): self.messages = FakeMessagesAPI()
+
+    results = bci.match_bucket_with_vision(client=FakeClient(), sources=[src], targets=targets)
+    assert results[0]["source_path"] == str(src)
+    assert results[0]["confidence"] == 0.9
+
+
+def test_match_bucket_with_vision_empty_sources_returns_no_match_per_target():
+    targets = [
+        bci.TargetRow("productos", "a.webp", "anything", ""),
+        bci.TargetRow("productos", "b.webp", "anything", ""),
+    ]
+    # Client should never be called when sources is empty
+    class FailingClient:
+        class messages:
+            @staticmethod
+            def create(**kwargs):
+                raise AssertionError("client should not be called when sources is empty")
+
+    results = bci.match_bucket_with_vision(client=FailingClient(), sources=[], targets=targets)
+    assert len(results) == 2
+    assert all(r["source_path"] is None for r in results)
+    assert all(r["confidence"] == 0.0 for r in results)
+
+
+def test_match_bucket_with_vision_dedupes_within_bucket(tmp_path):
+    """If vision wrongly assigns the same source to two targets, only the first wins."""
+    from PIL import Image
+    src = tmp_path / "a.jpg"
+    Image.new("RGB", (100, 100), color="red").save(src, "JPEG")
+
+    targets = [
+        bci.TargetRow("productos", "x.webp", "red thing", ""),
+        bci.TargetRow("productos", "y.webp", "another red thing", ""),
+    ]
+    # Both targets get source_index 0 — should be a programming error,
+    # but the parser must defend against it.
+    fake_response_text = (
+        '[{"target_filename":"x.webp","source_index":0,"confidence":0.9,"reasoning":"r1"},'
+        '{"target_filename":"y.webp","source_index":0,"confidence":0.85,"reasoning":"r2"}]'
+    )
+
+    class FakeContent:
+        def __init__(self, text): self.text = text
+    class FakeMessage:
+        def __init__(self, text): self.content = [FakeContent(text)]
+    class FakeMessagesAPI:
+        def create(self, **kwargs): return FakeMessage(fake_response_text)
+    class FakeClient:
+        def __init__(self): self.messages = FakeMessagesAPI()
+
+    results = bci.match_bucket_with_vision(client=FakeClient(), sources=[src], targets=targets)
+    assert len(results) == 2
+    by_target = {r["target_filename"]: r for r in results}
+    # First-come-first-served: x.webp gets the source, y.webp does not.
+    assert by_target["x.webp"]["source_path"] == str(src)
+    assert by_target["y.webp"]["source_path"] is None

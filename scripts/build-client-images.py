@@ -288,10 +288,12 @@ def match_bucket_with_vision(
     """Send one bucket of (sources, targets) to Claude vision. Return list of dicts:
     {target_filename, source_path (str|None), confidence (float), reasoning (str)}.
     """
-    if not sources or not targets:
+    if not sources:
         return [{"target_filename": t.filename, "source_path": None,
-                 "confidence": 0.0, "reasoning": "no sources or targets in bucket"}
+                 "confidence": 0.0, "reasoning": "no sources in bucket"}
                 for t in targets]
+    if not targets:
+        return []
 
     content_blocks: list[dict] = []
     for src in sources:
@@ -312,11 +314,20 @@ def match_bucket_with_vision(
     if raw.startswith("```"):
         raw = raw.split("\n", 1)[1].rsplit("```", 1)[0].strip()
     parsed = json.loads(raw)
+    if not isinstance(parsed, list):
+        raise ValueError(f"Expected JSON array from vision API, got {type(parsed).__name__}: {raw[:200]}")
 
+    used_indices: set[int] = set()
     results: list[dict] = []
     for item in parsed:
         idx = item.get("source_index")
-        source_path = str(sources[idx]) if isinstance(idx, int) and 0 <= idx < len(sources) else None
+        # bool is a subclass of int in Python — exclude it explicitly.
+        is_valid_int = isinstance(idx, int) and not isinstance(idx, bool)
+        if is_valid_int and 0 <= idx < len(sources) and idx not in used_indices:
+            source_path = str(sources[idx])
+            used_indices.add(idx)
+        else:
+            source_path = None
         results.append({
             "target_filename": item["target_filename"],
             "source_path": source_path,
