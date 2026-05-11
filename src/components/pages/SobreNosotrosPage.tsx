@@ -8,7 +8,6 @@ import { t, type Locale } from "../../i18n/index";
 
 const valueCount = 4;
 const certCount = 5;
-const teamCount = 3;
 
 const cityKeys = [
   'cities.alicante', 'cities.elche', 'cities.torrevieja', 'cities.benidorm',
@@ -25,11 +24,6 @@ export function SobreNosotrosPage({ locale = 'es' }: { locale?: Locale }) {
   const certifications = Array.from({ length: certCount }, (_, i) =>
     t(locale, `about.certifications.${i + 1}` as any)
   );
-
-  const team = Array.from({ length: teamCount }, (_, i) => ({
-    name: t(locale, `about.team.${i + 1}.name` as any),
-    role: t(locale, `about.team.${i + 1}.role` as any),
-  }));
 
   const areas = cityKeys.map((key) => t(locale, key as any));
 
@@ -173,32 +167,6 @@ export function SobreNosotrosPage({ locale = 'es' }: { locale?: Locale }) {
                     </span>
                   </div>
                 </FadeIn>
-              </div>
-            </div>
-          </section>
-
-          {/* Team */}
-          <section className="bg-sand-light py-20 md:py-28">
-            <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-              <FadeIn className="text-center mb-16">
-                <AnimatedHeading
-                  text={t(locale, 'about.team.heading')}
-                  tag="h2"
-                  className="text-navy"
-                />
-              </FadeIn>
-              <div className="grid sm:grid-cols-3 gap-8">
-                {team.map((member, i) => (
-                  <FadeIn key={member.name} delay={i * 0.1}>
-                    <div className="text-center">
-                      <div className="w-32 h-32 rounded-full bg-gradient-to-br from-terracotta-pale via-sand to-gold-pale mx-auto mb-5" />
-                      <h3 className="font-serif text-lg text-navy mb-1">
-                        {member.name}
-                      </h3>
-                      <p className="text-text-muted text-sm">{member.role}</p>
-                    </div>
-                  </FadeIn>
-                ))}
               </div>
             </div>
           </section>

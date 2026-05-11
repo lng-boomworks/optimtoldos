@@ -100,7 +100,7 @@ With 5-chamber PVC windows and low-emissivity double glazing with argon:
 | Cumulative savings over 20 years | 9,240 euros |
 | Increase in property value | 5 %–8 % (3,500–8,000 euros for an average flat) |
 
-If you add in the increase in property value (PVC windows improve your energy performance certificate, which translates into a higher sale price), the investment is clearly worthwhile. If you also have a terrace, you can further improve insulation by [enclosing it with glass curtains](/en/blog/en/glass-curtain-terrace-enclosure).
+If you add in the increase in property value (PVC windows improve your energy performance certificate, which translates into a higher sale price), the investment is clearly worthwhile. If you also have a terrace, you can further improve insulation by [enclosing it with glass curtains](/en/blog/glass-curtain-terrace-enclosure-alicante/).
 
 ## Why is PVC especially beneficial in Alicante's climate?
 

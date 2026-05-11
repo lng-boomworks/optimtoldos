@@ -10,7 +10,7 @@ image: "/images/blog/pergola-bioclimatica-vs-toldo.jpg"
 translationOf: "es/pergola-bioclimatica-vs-toldo"
 ---
 
-**Neither the bioclimatic pergola nor the awning is universally better - the right choice depends on your budget, how you use your terrace and the level of protection you need.** A quality retractable awning costs between 1,000 € and 3,000 € installed and is the quickest, most affordable way to create shade (see our [complete guide to awnings in Alicante](/en/blog/en/guide-awnings-alicante) for more detail). A bioclimatic pergola starts at 4,500 € and can exceed 15,000 €, but it provides total protection against rain, wind and sun, with a lifespan two to three times that of an awning.
+**Neither the bioclimatic pergola nor the awning is universally better - the right choice depends on your budget, how you use your terrace and the level of protection you need.** A quality retractable awning costs between 1,000 € and 3,000 € installed and is the quickest, most affordable way to create shade (see our [complete guide to awnings in Alicante](/en/blog/guide-awnings-alicante/) for more detail). A bioclimatic pergola starts at 4,500 € and can exceed 15,000 €, but it provides total protection against rain, wind and sun, with a lifespan two to three times that of an awning.
 
 In Alicante, with over 300 days of sunshine and a climate that invites outdoor living from March through November, this decision can be the difference between a terrace you only use in summer and an outdoor space that is liveable almost all year round. Below, we compare both solutions point by point so you can choose based on the facts.
 

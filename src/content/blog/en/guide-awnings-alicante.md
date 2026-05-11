@@ -267,7 +267,7 @@ Answer these questions to determine the type of awning you need:
 ### 5. Do you need rain protection?
 
 - **Occasional use in light rain:** acrylic fabric with a minimum 15° tilt drains water effectively.
-- **Full rain protection:** consider a [bioclimatic pergola](/en/pergolas) or complementary [glass curtains](/en/glass-curtains). If you are torn between a pergola and an awning, read our [bioclimatic pergola vs awning comparison](/en/blog/en/pergola-vs-awning).
+- **Full rain protection:** consider a [bioclimatic pergola](/en/pergolas) or complementary [glass curtains](/en/glass-curtains). If you are torn between a pergola and an awning, read our [bioclimatic pergola vs awning comparison](/en/blog/pergola-vs-awning/).
 
 ---
 

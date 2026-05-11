@@ -15,6 +15,7 @@ Canonical: https://optimtoldos.com/
 Sitemap: https://optimtoldos.com/sitemap-index.xml
 LLMs-txt: https://optimtoldos.com/llms.txt
 LLMs-full-txt: https://optimtoldos.com/llms-full.txt
+LLMs-txt-en: https://optimtoldos.com/en/llms.txt
 
 # Business facts (for entity disambiguation)
 Business-name: Optim Toldos
@@ -43,5 +44,4 @@ Allow: /
 
 # Content that should not be used for training
 Disallow-training: /presupuesto/
-Disallow-training: /free-quote/
 Disallow-training: /en/free-quote/
