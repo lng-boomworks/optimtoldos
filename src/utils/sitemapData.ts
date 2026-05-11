@@ -15,6 +15,10 @@ import {
   ES_PVC_WINDOWS_ZONES,
   ES_HOSPITALITY_AWNINGS_ZONES,
 } from "../data/seoLocations";
+import { HREFLANG_PAIRS, PATH_TO_PAIR, EN_AWNINGS_ZONES } from "../data/hreflangPairs";
+
+// Re-export for endpoints that already import them from this module.
+export { HREFLANG_PAIRS };
 
 export const SITE = "https://optimtoldos.com";
 
@@ -158,12 +162,6 @@ export const ZONAS_ES_PATHS = SEO_LOCATIONS.map(
   (l) => `/toldos-${l.slug}/`,
 );
 
-/** 20 EN area-equivalent pages: 14 awnings + 2 pergolas + 2 bioclimatic + 2 glass-curtains */
-const EN_AWNINGS_ZONES = [
-  "torrevieja","orihuela-costa","ciudad-quesada","guardamar","la-marina","elche",
-  "alicante","santa-pola","gran-alacant","benidorm","cabo-roig","la-zenia",
-  "punta-prima","villamartin",
-];
 export const ZONAS_EN_PATHS = [
   ...EN_AWNINGS_ZONES.map((s) => `/en/awnings-${s}/`),
   ...EN_PERGOLAS_LOCATIONS.map((s) => `/en/pergolas-${s}/`),
@@ -206,87 +204,6 @@ export const GUIAS_PATHS = [
   "/en/awnings-residents-communities-alicante/",
   "/en/wind-sensor-motorised-awnings/",
 ];
-
-/* ------------------------------------------------------------------ */
-/* Hreflang lookup — segmented sitemaps need to emit xhtml:link too   */
-/* ------------------------------------------------------------------ */
-
-/**
- * Reciprocal ES↔EN URL pairs. Mirrored from astro.config.mjs HREFLANG_PAIRS.
- * Kept in sync manually — a unit-test could be added later to assert parity.
- */
-export const HREFLANG_PAIRS: Array<{ es: string; en: string }> = [
-  // Home + product hubs
-  { es: "/", en: "/en/" },
-  { es: "/toldos/", en: "/en/awnings/" },
-  { es: "/pergolas/", en: "/en/pergolas/" },
-  { es: "/cortinas-de-cristal/", en: "/en/glass-curtains/" },
-  { es: "/velas-de-sombra/", en: "/en/shade-sails/" },
-  { es: "/ventanas-pvc/", en: "/en/pvc-windows/" },
-  // Discovery / conversion
-  { es: "/galeria/", en: "/en/gallery/" },
-  { es: "/zonas-de-servicio/", en: "/en/service-areas/" },
-  { es: "/sobre-nosotros/", en: "/en/about-us/" },
-  { es: "/blog/", en: "/en/blog/" },
-  { es: "/contacto/", en: "/en/contact/" },
-  { es: "/presupuesto/", en: "/en/free-quote/" },
-  // Guides (existing)
-  { es: "/guia-licencias-pergolas-toldos-alicante/", en: "/en/planning-permission-pergola-awning-alicante/" },
-  { es: "/pergola-bioclimatica-vs-aluminio/", en: "/en/bioclimatic-vs-aluminium-pergola/" },
-  { es: "/guia-elegir-toldo-costa-blanca/", en: "/en/choosing-the-right-awning-costa-blanca/" },
-  { es: "/guia-cortinas-cristal-terraza/", en: "/en/glass-curtains-guide/" },
-  // Guides (new)
-  { es: "/precio-toldos-alicante-2026/", en: "/en/awning-prices-alicante-2026/" },
-  { es: "/mantenimiento-toldos-costa-blanca/", en: "/en/awning-maintenance-costa-blanca/" },
-  { es: "/toldos-comunidades-propietarios-alicante/", en: "/en/awnings-residents-communities-alicante/" },
-  { es: "/sensor-viento-toldos-motorizados/", en: "/en/wind-sensor-motorised-awnings/" },
-  // Sub-product pairs
-  { es: "/toldos-cofre/", en: "/en/cassette-awnings/" },
-  { es: "/toldos-brazo-extensible/", en: "/en/retractable-arm-awnings/" },
-  { es: "/toldos-verticales-zip/", en: "/en/zip-screen-awnings/" },
-  { es: "/toldos-punto-recto/", en: "/en/straight-drop-awnings/" },
-  { es: "/toldos-motorizacion/", en: "/en/awning-motorisation/" },
-  { es: "/pergolas-bioclimaticas/", en: "/en/bioclimatic-pergolas/" },
-  { es: "/pergolas-aluminio/", en: "/en/aluminium-pergolas/" },
-  { es: "/pergola-toldo-deslizante/", en: "/en/sliding-awning-pergolas/" },
-  // Area pairs (14)
-  ...EN_AWNINGS_ZONES.map((slug) => ({
-    es: `/toldos-${slug}/`,
-    en: `/en/awnings-${slug}/`,
-  })),
-  // Product+zone bilingual pairs — derived from the EN allowed-sets so the
-  // list stays in sync when new EN combo pages are unlocked.
-  ...EN_PERGOLAS_LOCATIONS.map((slug) => ({
-    es: `/pergolas-${slug}/`,
-    en: `/en/pergolas-${slug}/`,
-  })),
-  ...EN_BIOCLIMATIC_LOCATIONS.map((slug) => ({
-    es: `/pergola-bioclimatica-${slug}/`,
-    en: `/en/bioclimatic-pergola-${slug}/`,
-  })),
-  ...EN_GLASS_CURTAINS_LOCATIONS.map((slug) => ({
-    es: `/cortinas-de-cristal-${slug}/`,
-    en: `/en/glass-curtains-${slug}/`,
-  })),
-  ...EN_SHADE_SAILS_LOCATIONS.map((slug) => ({
-    es: `/velas-sombra-${slug}/`,
-    en: `/en/shade-sails-${slug}/`,
-  })),
-  ...EN_PVC_WINDOWS_LOCATIONS.map((slug) => ({
-    es: `/ventanas-pvc-${slug}/`,
-    en: `/en/pvc-windows-${slug}/`,
-  })),
-  // Legal
-  { es: "/aviso-legal/", en: "/en/legal-notice/" },
-  { es: "/politica-privacidad/", en: "/en/privacy-policy/" },
-  { es: "/politica-cookies/", en: "/en/cookie-policy/" },
-];
-
-const PATH_TO_PAIR = new Map<string, { es: string; en: string }>();
-for (const pair of HREFLANG_PAIRS) {
-  PATH_TO_PAIR.set(pair.es, pair);
-  PATH_TO_PAIR.set(pair.en, pair);
-}
 
 /**
  * Render a single <url> entry with optional hreflang xhtml:link blocks.

@@ -5,6 +5,7 @@ import type { Locale } from '../i18n/index';
 import { ogLocales } from '../i18n/index';
 import { WhatsAppButton } from '../components/WhatsAppButton';
 import { CookieBanner } from '../components/CookieBanner';
+import { alternateLocaleUrl } from '../data/hreflangPairs';
 
 interface Breadcrumb {
   name: string;
@@ -35,6 +36,12 @@ const {
 
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 const ogImageURL = new URL(ogImage, Astro.site);
+
+// Server-compute the alternate-locale URL for this page. Used by the inline
+// script below to set every `[data-lang-switcher]` anchor's href as soon as
+// the body is parsed — eliminates the SSR/hydration race window where the
+// language switcher would briefly point at the homepage.
+const langAltPath = url(alternateLocaleUrl(Astro.url.pathname, locale));
 
 // Non-production builds (dev preview, staging) must not be indexed by search
 // engines — they would compete with the real production site for the same
@@ -222,6 +229,21 @@ const isProductionBuild = !isPreviewBuild;
     )}
 
     <slot />
+
+    <!-- Eliminates the SSR/hydration race on the language switcher: runs
+         synchronously during HTML parse, after the navbar markup, sets the
+         correct alternate-locale href on every `[data-lang-switcher]` anchor
+         before any user interaction is possible. The React component still
+         re-applies the same value on hydration as defence-in-depth. -->
+    <script is:inline define:vars={{ langAltPath }}>
+      (function() {
+        var anchors = document.querySelectorAll('a[data-lang-switcher]');
+        for (var i = 0; i < anchors.length; i++) {
+          anchors[i].setAttribute('href', langAltPath);
+        }
+      })();
+    </script>
+
     <WhatsAppButton client:load locale={locale} />
     <CookieBanner client:load locale={locale} />
   </body>

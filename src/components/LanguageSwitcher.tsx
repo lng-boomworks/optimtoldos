@@ -1,7 +1,6 @@
 import { useMemo } from "react";
 import type { Locale } from "../i18n/index";
-import { slugMap, type PageId } from "../i18n/slugs";
-import { url } from "../utils/paths";
+import { alternateLocaleUrl } from "../data/hreflangPairs";
 
 interface LanguageSwitcherProps {
   currentLocale: Locale;
@@ -10,61 +9,29 @@ interface LanguageSwitcherProps {
 
 const BASE = (typeof import.meta !== "undefined" && import.meta.env?.BASE_URL || "/").replace(/\/$/, "");
 
-/** Build a map from current path → other locale path */
-function buildPathMap(): Map<string, string> {
-  const map = new Map<string, string>();
-
-  for (const [pageId, slugs] of Object.entries(slugMap)) {
-    const esPath = slugs.es ? `${BASE}/${slugs.es}` : `${BASE}/`;
-    const enPath = slugs.en ? `${BASE}/en/${slugs.en}` : `${BASE}/en/`;
-
-    // ES → EN
-    map.set(esPath, enPath);
-    map.set(esPath + "/", enPath);
-    // EN → ES
-    map.set(enPath, esPath);
-    map.set(enPath + "/", esPath);
-  }
-
-  // Blog index
-  map.set(`${BASE}/blog`, `${BASE}/en/blog`);
-  map.set(`${BASE}/blog/`, `${BASE}/en/blog`);
-  map.set(`${BASE}/en/blog`, `${BASE}/blog`);
-  map.set(`${BASE}/en/blog/`, `${BASE}/blog`);
-
-  return map;
-}
-
-const pathMap = buildPathMap();
-
-function getAlternatePath(currentPath: string, currentLocale: Locale): string {
-  // Exact match
-  const exact = pathMap.get(currentPath) || pathMap.get(currentPath.replace(/\/$/, ""));
-  if (exact) return exact;
-
-  // Blog post: swap /blog/slug ↔ /en/blog/slug (keep same slug)
-  if (currentLocale === "es" && currentPath.startsWith(`${BASE}/blog/`)) {
-    return currentPath.replace(`${BASE}/blog/`, `${BASE}/en/blog/`);
-  }
-  if (currentLocale === "en" && currentPath.startsWith(`${BASE}/en/blog/`)) {
-    return currentPath.replace(`${BASE}/en/blog/`, `${BASE}/blog/`);
-  }
-
-  // Fallback: other locale's home
-  return currentLocale === "es" ? `${BASE}/en/` : `${BASE}/`;
-}
-
+/**
+ * The link's href is initially server-rendered as the home page (we have no
+ * URL access in SSR). [Base.astro](src/layouts/Base.astro) emits an inline
+ * script after the body that selects all `[data-lang-switcher]` anchors and
+ * sets their href to the precomputed alternate-locale URL — that runs during
+ * HTML parse, before any user click can happen.
+ *
+ * The useMemo below is a defence-in-depth fallback for the (unlikely) case
+ * that the inline script is bypassed: once React hydrates, useMemo recomputes
+ * from `window.location.pathname` and updates the href.
+ */
 export function LanguageSwitcher({ currentLocale, className = "" }: LanguageSwitcherProps) {
   const href = useMemo(() => {
     if (typeof window === "undefined") {
       return currentLocale === "es" ? `${BASE}/en/` : `${BASE}/`;
     }
-    return getAlternatePath(window.location.pathname, currentLocale);
+    return `${BASE}${alternateLocaleUrl(window.location.pathname, currentLocale)}`;
   }, [currentLocale]);
 
   return (
     <a
       href={href}
+      data-lang-switcher
       className={`inline-flex items-center gap-1.5 text-sm font-medium transition-colors ${className}`}
       aria-label={currentLocale === "es" ? "Switch to English" : "Cambiar a Español"}
     >

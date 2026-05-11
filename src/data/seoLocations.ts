@@ -82,11 +82,17 @@ export const EN_GLASS_CURTAINS_LOCATIONS = [
   "torrevieja", "elche", "alicante", "benidorm", "orihuela-costa",
 ] as const;
 
-/** Subset that get /en/shade-sails-X/ pages (added 2026-04-30, mirrors ES). */
-export const EN_SHADE_SAILS_LOCATIONS = ["torrevieja", "ciudad-quesada"] as const;
+/** Subset that get /en/shade-sails-X/ pages. Mirrors ES_SHADE_SAILS_ZONES so
+ *  the chip roster on /en/shade-sails/ matches the ES hub (2026-05-01). */
+export const EN_SHADE_SAILS_LOCATIONS = [
+  "torrevieja", "ciudad-quesada", "la-marina", "benidorm", "campoamor", "dolores",
+] as const;
 
-/** Subset that get /en/pvc-windows-X/ pages (added 2026-04-30). */
-export const EN_PVC_WINDOWS_LOCATIONS = ["elche", "alicante"] as const;
+/** Subset that get /en/pvc-windows-X/ pages. Mirrors ES_PVC_WINDOWS_ZONES
+ *  for chip-roster parity (2026-05-01). */
+export const EN_PVC_WINDOWS_LOCATIONS = [
+  "elche", "alicante", "torrevieja", "benidorm", "orihuela-costa", "santa-pola",
+] as const;
 
 /** ES product+zone combinations (PDF §5). Each maps to a unique page. */
 export const ES_PERGOLAS_ZONES = [
