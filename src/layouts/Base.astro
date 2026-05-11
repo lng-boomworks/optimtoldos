@@ -4,6 +4,7 @@ import { url } from '../utils/paths';
 import type { Locale } from '../i18n/index';
 import { ogLocales } from '../i18n/index';
 import { WhatsAppButton } from '../components/WhatsAppButton';
+import { CallButton } from '../components/CallButton';
 import { CookieBanner } from '../components/CookieBanner';
 import { alternateLocaleUrl } from '../data/hreflangPairs';
 
@@ -245,6 +246,7 @@ const isProductionBuild = !isPreviewBuild;
     </script>
 
     <WhatsAppButton client:load locale={locale} />
+    <CallButton client:load locale={locale} />
     <CookieBanner client:load locale={locale} />
   </body>
 </html>
