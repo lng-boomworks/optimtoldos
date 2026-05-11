@@ -7,7 +7,11 @@ dist/
 
 # Local working files — client briefs, dev utilities, internal references
 OptimToldos_RemainingTasks.pdf
+optimtoldos-image-brief-EN.pdf
 blog-image.html
 image-requirements.csv
 scripts/build-client-images.report.csv
 scripts/__pycache__/
+
+# Project-local Claude Code state
+.claude/
