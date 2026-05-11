@@ -26,6 +26,7 @@ import json
 import os
 import subprocess
 import sys
+import time
 from dataclasses import dataclass
 from pathlib import Path
 
@@ -44,6 +45,9 @@ CWEBP_QUALITY = 82
 CWEBP_MAX_WIDTH = 1600
 VISION_MODEL = "claude-sonnet-4-6"
 CONFIDENCE_THRESHOLD = 0.5
+# Anthropic's ITPM cap is per rolling minute. The big "fallback" bucket can use most
+# of the budget in a single call, so we wait one full window before the next bucket.
+BUCKET_DELAY_SEC = 65
 
 
 @dataclass(frozen=True)
@@ -250,8 +254,13 @@ def write_audit_csv(out_path: Path, results: list[MatchResult]) -> None:
             })
 
 
-def _encode_image_for_vision(src: Path, max_dim: int = 1024, quality: int = 70) -> tuple[str, str]:
-    """Resize + JPEG-encode + base64 an image for the Anthropic API. Returns (b64, media_type)."""
+def _encode_image_for_vision(src: Path, max_dim: int = 512, quality: int = 65) -> tuple[str, str]:
+    """Resize + JPEG-encode + base64 an image for the Anthropic API. Returns (b64, media_type).
+
+    max_dim is kept small (512px) so a bucket of ~60-100 source photos stays
+    under Anthropic's 30K input-tokens-per-minute cap in a single request.
+    Scene-level matching (awning vs pergola, color, layout) survives the downscale.
+    """
     from PIL import Image
     with Image.open(src) as img:
         img = img.convert("RGB")
@@ -370,7 +379,7 @@ def main() -> int:
         return 2
 
     from anthropic import Anthropic
-    client = Anthropic(api_key=api_key)
+    client = Anthropic(api_key=api_key, max_retries=8)
 
     print(f"Parsing {CHECKLIST_XLSX.name}...")
     all_targets = parse_checklist(CHECKLIST_XLSX)
@@ -394,7 +403,10 @@ def main() -> int:
     print(f"Matching {len(matchable)} targets across {len(buckets)} vision call(s)...")
 
     used_sources: set[str] = set()
-    for folder_tuple, bucket_targets in buckets.items():
+    for bucket_idx, (folder_tuple, bucket_targets) in enumerate(buckets.items()):
+        if bucket_idx > 0:
+            print(f"  sleeping {BUCKET_DELAY_SEC}s before next bucket to respect ITPM cap...")
+            time.sleep(BUCKET_DELAY_SEC)
         sources: list[Path] = []
         for folder in folder_tuple:
             for p in _list_source_jpegs(PHOTOS_ROOT / folder):
