@@ -26,7 +26,7 @@ export function ContactoPage({ locale = 'es' }: { locale?: Locale }) {
     e.preventDefault();
     const form = e.currentTarget;
     setStatus("sending");
-    const ok = await submitForm(form);
+    const ok = await submitForm(form, { formName: "contact" });
     if (ok) {
       setStatus("success");
       form.reset();

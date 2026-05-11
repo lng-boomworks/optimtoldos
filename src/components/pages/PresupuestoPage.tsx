@@ -80,7 +80,7 @@ export function PresupuestoPage({ locale = 'es' }: { locale?: Locale }) {
     e.preventDefault();
     const form = e.currentTarget;
     setStatus("sending");
-    const ok = await submitForm(form);
+    const ok = await submitForm(form, { formName: "quote" });
     if (ok) {
       setStatus("success");
       form.reset();
