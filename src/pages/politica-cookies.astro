@@ -41,7 +41,7 @@ const breadcrumbs = [
     </section>
 
     <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24">
-      <p class="text-text-muted text-sm mb-10">Última actualización: 17 de abril de 2026</p>
+      <p class="text-text-muted text-sm mb-10">Última actualización: 11 de mayo de 2026</p>
 
       <div class="prose prose-lg max-w-none prose-headings:font-serif prose-headings:text-navy prose-a:text-terracotta">
         <h2>1. ¿Qué son las cookies?</h2>
@@ -76,12 +76,12 @@ const breadcrumbs = [
           </tbody>
         </table>
 
-        <h3>Cookies de análisis (opcionales)</h3>
+        <h3>Cookies de análisis y publicidad (opcionales)</h3>
         <p>
-          Si aceptas cookies mediante el banner, cargamos Google Tag Manager (GTM) en la página, que activa Google Analytics 4 (GA4). Estas cookies nos ayudan a entender cómo se utiliza el sitio web y a mejorar nuestros servicios. No utilizamos cookies de publicidad ni de remarketing.
+          Si aceptas cookies mediante el banner, cargamos Google Tag Manager (GTM) en la página, que activa Google Analytics 4 (GA4) para medir el tráfico y Google Ads para medir conversiones de campañas publicitarias y servir anuncios personalizados (incluido remarketing).
         </p>
         <p>
-          Implementamos el <strong>Consent Mode v2</strong> de Google con denegación por defecto: hasta que aceptes, ninguna cookie de análisis se almacena en tu dispositivo. Si rechazas o no aceptas, GTM puede cargarse pero no escribirá cookies de medición.
+          Implementamos el <strong>Consent Mode v2</strong> de Google con denegación por defecto: hasta que aceptes, ninguna cookie de análisis ni publicidad se almacena en tu dispositivo. Si rechazas o no aceptas, las etiquetas de Google pueden cargarse pero operan en modo redactado (<code>ads_data_redaction</code>): se envían solicitudes sin cookies ni identificadores para que Google pueda modelar conversiones agregadas sin tratamiento de datos personales.
         </p>
 
         <h3>Cookies de terceros</h3>
@@ -111,11 +111,44 @@ const breadcrumbs = [
               <td>Identificar visitantes únicos y sesiones para análisis de tráfico agregado.</td>
               <td>Hasta 2 años</td>
             </tr>
+            <tr>
+              <td>Google Ads</td>
+              <td><code>_gcl_au</code></td>
+              <td>Conversion Linker: atribuye clics en anuncios a conversiones en el sitio.</td>
+              <td>~90 días</td>
+            </tr>
+            <tr>
+              <td>Google Ads</td>
+              <td><code>_gcl_aw</code>, <code>_gcl_dc</code>, <code>_gcl_gb</code></td>
+              <td>Almacenan el identificador de clic en anuncio (gclid) para atribución cross-page.</td>
+              <td>~90 días</td>
+            </tr>
+            <tr>
+              <td>Google Ads / DoubleClick</td>
+              <td><code>IDE</code></td>
+              <td>Mide la eficacia de los anuncios y permite audiencias de remarketing.</td>
+              <td>~13 meses</td>
+            </tr>
+            <tr>
+              <td>Google Ads / DoubleClick</td>
+              <td><code>test_cookie</code></td>
+              <td>Verifica si el navegador admite cookies antes de servir anuncios.</td>
+              <td>Sesión</td>
+            </tr>
+            <tr>
+              <td>Google (general)</td>
+              <td><code>NID</code>, <code>1P_JAR</code></td>
+              <td>Cookies de sesión y preferencias establecidas por dominios de Google cuando se concede consentimiento.</td>
+              <td>6 meses / 1 mes</td>
+            </tr>
           </tbody>
         </table>
 
         <p>
           Más información sobre las cookies de Google: <a href="https://policies.google.com/technologies/cookies" target="_blank" rel="noopener noreferrer">policies.google.com/technologies/cookies</a>.
+        </p>
+        <p>
+          Google trata los datos de Google Analytics y Google Ads como encargado del tratamiento. Estos datos pueden transferirse a EE. UU. al amparo del <strong>Marco de Privacidad de Datos UE-EE. UU.</strong> (EU-US Data Privacy Framework), bajo el que Google Ireland Limited y Google LLC están certificados.
         </p>
 
         <h2>3. Gestión de cookies</h2>

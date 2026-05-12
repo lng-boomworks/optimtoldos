@@ -75,6 +75,11 @@ const isProductionBuild = !isPreviewBuild;
             'security_storage': 'granted',
             'wait_for_update': 500
           });
+          // ads_data_redaction: when ad_storage='denied', strip cookies/identifiers
+          // from outgoing ads requests so Google Ads can still model conversions.
+          // url_passthrough: pass consent state via URL params (helps cross-domain).
+          gtag('set', 'ads_data_redaction', true);
+          gtag('set', 'url_passthrough', true);
         </script>
 
         <!-- Google Tag Manager -->

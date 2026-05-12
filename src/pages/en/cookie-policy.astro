@@ -41,7 +41,7 @@ const breadcrumbs = [
     </section>
 
     <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24">
-      <p class="text-text-muted text-sm mb-10">Last updated: 17 April 2026</p>
+      <p class="text-text-muted text-sm mb-10">Last updated: 11 May 2026</p>
 
       <div class="prose prose-lg max-w-none prose-headings:font-serif prose-headings:text-navy prose-a:text-terracotta">
         <h2>1. What are cookies?</h2>
@@ -76,12 +76,12 @@ const breadcrumbs = [
           </tbody>
         </table>
 
-        <h3>Analytics cookies (optional)</h3>
+        <h3>Analytics and advertising cookies (optional)</h3>
         <p>
-          If you accept cookies via the banner, we load Google Tag Manager (GTM) on the page, which fires Google Analytics 4 (GA4). These cookies help us understand how the website is used and improve our services. We do not use advertising or remarketing cookies.
+          If you accept cookies via the banner, we load Google Tag Manager (GTM) on the page, which fires Google Analytics 4 (GA4) for traffic measurement and Google Ads for campaign conversion tracking and personalised ads (including remarketing).
         </p>
         <p>
-          We implement Google's <strong>Consent Mode v2</strong> with default-deny: until you accept, no analytics cookies are stored on your device. If you reject or do not accept, GTM may still load but will not write measurement cookies.
+          We implement Google's <strong>Consent Mode v2</strong> with default-deny: until you accept, no analytics or advertising cookies are stored on your device. If you reject or do not accept, Google tags may still load but operate in redacted mode (<code>ads_data_redaction</code>): requests are sent without cookies or identifiers so that Google can model aggregated conversions without processing personal data.
         </p>
 
         <h3>Third-party cookies</h3>
@@ -111,11 +111,44 @@ const breadcrumbs = [
               <td>Identify unique visitors and sessions for aggregated traffic analysis.</td>
               <td>Up to 2 years</td>
             </tr>
+            <tr>
+              <td>Google Ads</td>
+              <td><code>_gcl_au</code></td>
+              <td>Conversion Linker: attributes ad clicks to on-site conversions.</td>
+              <td>~90 days</td>
+            </tr>
+            <tr>
+              <td>Google Ads</td>
+              <td><code>_gcl_aw</code>, <code>_gcl_dc</code>, <code>_gcl_gb</code></td>
+              <td>Store the ad-click identifier (gclid) for cross-page attribution.</td>
+              <td>~90 days</td>
+            </tr>
+            <tr>
+              <td>Google Ads / DoubleClick</td>
+              <td><code>IDE</code></td>
+              <td>Measures ad effectiveness and enables remarketing audiences.</td>
+              <td>~13 months</td>
+            </tr>
+            <tr>
+              <td>Google Ads / DoubleClick</td>
+              <td><code>test_cookie</code></td>
+              <td>Checks whether the browser supports cookies before serving ads.</td>
+              <td>Session</td>
+            </tr>
+            <tr>
+              <td>Google (general)</td>
+              <td><code>NID</code>, <code>1P_JAR</code></td>
+              <td>Session and preference cookies set by Google domains when consent is granted.</td>
+              <td>6 months / 1 month</td>
+            </tr>
           </tbody>
         </table>
 
         <p>
           More about Google's cookies: <a href="https://policies.google.com/technologies/cookies" target="_blank" rel="noopener noreferrer">policies.google.com/technologies/cookies</a>.
+        </p>
+        <p>
+          Google processes Google Analytics and Google Ads data as our data processor. This data may be transferred to the United States under the <strong>EU-US Data Privacy Framework</strong>, under which Google Ireland Limited and Google LLC are certified.
         </p>
 
         <h2>3. Managing cookies</h2>

@@ -647,7 +647,7 @@ export default {
   'forms.status.error': 'We couldn’t send your message. Please try again or email info@optimtoldos.com.',
 
   // -- Cookie banner --
-  'cookie_banner.message': 'We use essential cookies for the site to function. With your consent, we may also use analytics cookies in the future to improve the experience.',
+  'cookie_banner.message': 'We use essential cookies for the site to function. With your consent, we also use analytics and advertising cookies (Google Analytics and Google Ads) to measure traffic and show relevant ads.',
   'cookie_banner.accept': 'Accept all',
   'cookie_banner.reject': 'Essential only',
   'cookie_banner.learn_more': 'Learn more',

@@ -10,13 +10,20 @@ declare global {
   }
 }
 
-const GRANT_ANALYTICS = {
+// Granting all four categories on a single Accept click is what unblocks
+// Google Ads + remarketing + GA4 conversion attribution in the EU. Reject
+// is implicit: the default-deny in Base.astro covers it, and ads_data_redaction
+// keeps modelled conversions working even without consent.
+const GRANT_ALL = {
+  ad_storage: "granted",
+  ad_user_data: "granted",
+  ad_personalization: "granted",
   analytics_storage: "granted",
 } as const;
 
 function pushConsentGrant() {
   if (typeof window === "undefined" || typeof window.gtag !== "function") return;
-  window.gtag("consent", "update", GRANT_ANALYTICS);
+  window.gtag("consent", "update", GRANT_ALL);
 }
 
 interface CookieBannerProps {
