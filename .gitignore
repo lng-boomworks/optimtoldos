@@ -12,6 +12,7 @@ blog-image.html
 image-requirements.csv
 scripts/build-client-images.report.csv
 scripts/__pycache__/
+docs/image-matrix.csv
 
 # Project-local Claude Code state
 .claude/
