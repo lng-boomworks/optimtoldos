@@ -41,7 +41,7 @@ const breadcrumbs = [
     </section>
 
     <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24">
-      <p class="text-text-muted text-sm mb-10">Last updated: 11 May 2026</p>
+      <p class="text-text-muted text-sm mb-10">Last updated: 13 May 2026</p>
 
       <div class="prose prose-lg max-w-none prose-headings:font-serif prose-headings:text-navy prose-a:text-terracotta">
         <h2>1. What are cookies?</h2>
@@ -64,24 +64,32 @@ const breadcrumbs = [
           </thead>
           <tbody>
             <tr>
-              <td><code>optimtoldos-cookie-consent</code></td>
-              <td>Stores your decision about the use of cookies.</td>
-              <td>1 year</td>
+              <td><code>cc_cookie</code></td>
+              <td>Set by our consent manager (vanilla-cookieconsent). Stores your per-category decision: necessary, functional, analytics and advertising.</td>
+              <td>6 months</td>
             </tr>
             <tr>
               <td><code>localStorage: language preference</code></td>
               <td>Remembers the selected language.</td>
               <td>Permanent</td>
             </tr>
+            <tr>
+              <td><code>cf_chl_*</code> (Cloudflare Turnstile)</td>
+              <td>Anti-bot protection on the contact and quote forms. Strictly necessary for site security and exempt from consent under ePrivacy.</td>
+              <td>Up to 30 minutes</td>
+            </tr>
           </tbody>
         </table>
 
         <h3>Analytics and advertising cookies (optional)</h3>
         <p>
-          If you accept cookies via the banner, we load Google Tag Manager (GTM) on the page, which fires Google Analytics 4 (GA4) for traffic measurement and Google Ads for campaign conversion tracking and personalised ads (including remarketing).
+          If you accept cookies via the banner, we load Google Tag Manager (GTM) on the page, which fires Google Analytics 4 (GA4) for traffic measurement and Google Ads for campaign conversion tracking and <strong>personalised and non-personalised ads</strong>, including remarketing. For <strong>ad personalisation</strong>, Google and we may use cookies and, in mobile apps, <strong>mobile advertising identifiers</strong>.
         </p>
         <p>
-          We implement Google's <strong>Consent Mode v2</strong> with default-deny: until you accept, no analytics or advertising cookies are stored on your device. If you reject or do not accept, Google tags may still load but operate in redacted mode (<code>ads_data_redaction</code>): requests are sent without cookies or identifiers so that Google can model aggregated conversions without processing personal data.
+          We implement Google's <strong>Consent Mode v2</strong> with default-deny. Until you accept, all four signals — <code>analytics_storage</code>, <code>ad_storage</code>, <code>ad_user_data</code> and <code>ad_personalization</code> — remain <em>denied</em> and no analytics or advertising cookies are stored on your device. If you reject or do not accept, Google tags may still load but operate in redacted mode (<code>ads_data_redaction</code>): requests are sent without cookies or identifiers so that Google can model aggregated conversions without processing personal data.
+        </p>
+        <p>
+          For more information on how Google uses data from its advertising business partners, see <a href="https://business.safety.google/privacy/" target="_blank" rel="noopener noreferrer">business.safety.google/privacy</a>.
         </p>
 
         <h3>Third-party cookies</h3>
@@ -153,7 +161,7 @@ const breadcrumbs = [
 
         <h2>3. Managing cookies</h2>
         <p>
-          You can accept or reject non-essential cookies via the banner that appears when you enter the website. You can also manage cookies from your browser settings:
+          You can accept or reject non-essential cookies via the banner that appears when you enter the website. To review or change your choice at any time, use the <strong>"Manage cookies"</strong> link in the footer. You can also manage cookies from your browser settings:
         </p>
         <ul>
           <li>Google Chrome: Settings → Privacy and security → Cookies</li>

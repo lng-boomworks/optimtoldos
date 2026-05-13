@@ -646,11 +646,8 @@ export default {
   'forms.status.success': '¡Gracias! Hemos recibido tu mensaje y te responderemos en breve.',
   'forms.status.error': 'No se pudo enviar el mensaje. Inténtalo de nuevo o escríbenos a info@optimtoldos.com.',
 
-  // -- Cookie banner --
-  'cookie_banner.message': 'Utilizamos cookies esenciales para el funcionamiento del sitio. Con tu consentimiento, también usamos cookies de análisis y publicidad (Google Analytics y Google Ads) para medir el tráfico y mostrar anuncios relevantes.',
-  'cookie_banner.accept': 'Aceptar todas',
-  'cookie_banner.reject': 'Solo esenciales',
-  'cookie_banner.learn_more': 'Más información',
+  // -- Cookie banner (vanilla-cookieconsent copy lives in src/lib/cookie-consent.ts) --
+  'cookie_banner.manage': 'Gestionar cookies',
 
   // -- Service Areas page --
   'serviceAreas.title': 'Zonas de Servicio | Optim Toldos - Costa Blanca',

@@ -1,0 +1,9 @@
+# Cloudflare Pages local-dev config for `wrangler pages dev`.
+#
+# Production env vars + secrets are configured in the Cloudflare dashboard
+# (Pages → Settings → Environment variables). This file is for `npm run
+# pages:dev` only — see .dev.vars.example for the keys to populate locally.
+
+name = "optimtoldos"
+compatibility_date = "2024-09-23"
+pages_build_output_dir = "dist"

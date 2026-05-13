@@ -1,0 +1,10 @@
+# Copy to .dev.vars (gitignored) before running `wrangler pages dev`.
+# Cloudflare publishes always-pass Turnstile test keys we use locally:
+#   https://developers.cloudflare.com/turnstile/troubleshooting/testing/
+
+TURNSTILE_SECRET=1x0000000000000000000000000000000AA
+RESEND_API_KEY=re_test_replace_me
+# Production uses forms@send.optimtoldos.com once the subdomain is verified
+# in Resend. Locally, the resend.dev sandbox works without DNS setup.
+RESEND_FROM=Optim Toldos <onboarding@resend.dev>
+RESEND_TO=info@optimtoldos.com

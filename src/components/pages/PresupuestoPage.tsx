@@ -3,6 +3,7 @@ import { Navbar } from "../Navbar";
 import { Footer } from "../Footer";
 import { FadeIn } from "../FadeIn";
 import { AnimatedHeading } from "../AnimatedHeading";
+import { Turnstile } from "../Turnstile";
 import { t, type Locale } from "../../i18n/index";
 import { slugMap } from "../../i18n/slugs";
 import { url, localizedUrl } from "../../utils/paths";
@@ -51,6 +52,7 @@ const inputClasses =
 
 export function PresupuestoPage({ locale = 'es' }: { locale?: Locale }) {
   const [status, setStatus] = useState<FormStatus>("idle");
+  const [turnstileReady, setTurnstileReady] = useState(false);
   const [defaultProduct, setDefaultProduct] = useState<string>("");
   const [defaultLocation, setDefaultLocation] = useState<string>("");
 
@@ -84,6 +86,7 @@ export function PresupuestoPage({ locale = 'es' }: { locale?: Locale }) {
     if (ok) {
       setStatus("success");
       form.reset();
+      setTurnstileReady(false);
     } else {
       setStatus("error");
     }
@@ -253,10 +256,16 @@ export function PresupuestoPage({ locale = 'es' }: { locale?: Locale }) {
                       <span className="text-red-500 ml-1">*</span>
                     </span>
                   </label>
+                  <div className="pt-2">
+                    <Turnstile
+                      onToken={() => setTurnstileReady(true)}
+                      onExpire={() => setTurnstileReady(false)}
+                    />
+                  </div>
                   <div className="pt-4">
                     <button
                       type="submit"
-                      disabled={status === 'sending'}
+                      disabled={status === 'sending' || !turnstileReady}
                       className="w-full bg-terracotta hover:bg-terracotta-dark text-white font-medium rounded-xl px-8 py-4 text-lg transition-colors duration-200 disabled:opacity-60 disabled:cursor-not-allowed"
                     >
                       {status === 'sending' ? t(locale, 'forms.status.sending') : t(locale, 'quote.form.submit')}

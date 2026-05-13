@@ -41,7 +41,7 @@ const breadcrumbs = [
     </section>
 
     <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24">
-      <p class="text-text-muted text-sm mb-10">Última actualización: 11 de mayo de 2026</p>
+      <p class="text-text-muted text-sm mb-10">Última actualización: 13 de mayo de 2026</p>
 
       <div class="prose prose-lg max-w-none prose-headings:font-serif prose-headings:text-navy prose-a:text-terracotta">
         <h2>1. ¿Qué son las cookies?</h2>
@@ -64,24 +64,32 @@ const breadcrumbs = [
           </thead>
           <tbody>
             <tr>
-              <td><code>optimtoldos-cookie-consent</code></td>
-              <td>Almacena tu decisión sobre el uso de cookies.</td>
-              <td>1 año</td>
+              <td><code>cc_cookie</code></td>
+              <td>Establecida por nuestro gestor de consentimiento (vanilla-cookieconsent). Almacena tu decisión por categoría: necesarias, funcionales, analíticas y publicidad.</td>
+              <td>6 meses</td>
             </tr>
             <tr>
               <td><code>localStorage: preferencia de idioma</code></td>
               <td>Recuerda el idioma seleccionado.</td>
               <td>Permanente</td>
             </tr>
+            <tr>
+              <td><code>cf_chl_*</code> (Cloudflare Turnstile)</td>
+              <td>Protección anti-bots en los formularios de contacto y presupuesto. Estrictamente necesaria para la seguridad del sitio y exenta de consentimiento según la ePrivacy.</td>
+              <td>Hasta 30 minutos</td>
+            </tr>
           </tbody>
         </table>
 
         <h3>Cookies de análisis y publicidad (opcionales)</h3>
         <p>
-          Si aceptas cookies mediante el banner, cargamos Google Tag Manager (GTM) en la página, que activa Google Analytics 4 (GA4) para medir el tráfico y Google Ads para medir conversiones de campañas publicitarias y servir anuncios personalizados (incluido remarketing).
+          Si aceptas cookies mediante el banner, cargamos Google Tag Manager (GTM) en la página, que activa Google Analytics 4 (GA4) para medir el tráfico y Google Ads para medir conversiones de campañas publicitarias y servir anuncios <strong>personalizados y no personalizados</strong>, incluido remarketing. Para la <strong>personalización de anuncios</strong>, Google y nosotros podemos utilizar cookies y, en aplicaciones móviles, <strong>identificadores de anuncio para móviles</strong>.
         </p>
         <p>
-          Implementamos el <strong>Consent Mode v2</strong> de Google con denegación por defecto: hasta que aceptes, ninguna cookie de análisis ni publicidad se almacena en tu dispositivo. Si rechazas o no aceptas, las etiquetas de Google pueden cargarse pero operan en modo redactado (<code>ads_data_redaction</code>): se envían solicitudes sin cookies ni identificadores para que Google pueda modelar conversiones agregadas sin tratamiento de datos personales.
+          Implementamos el <strong>Consent Mode v2</strong> de Google con denegación por defecto. Hasta que aceptes, las cuatro señales — <code>analytics_storage</code>, <code>ad_storage</code>, <code>ad_user_data</code> y <code>ad_personalization</code> — permanecen en <em>denied</em> y ninguna cookie de análisis ni publicidad se almacena en tu dispositivo. Si rechazas o no aceptas, las etiquetas de Google pueden cargarse pero operan en modo redactado (<code>ads_data_redaction</code>): se envían solicitudes sin cookies ni identificadores para que Google pueda modelar conversiones agregadas sin tratamiento de datos personales.
+        </p>
+        <p>
+          Puedes consultar más información sobre cómo Google trata los datos de las empresas anunciantes en <a href="https://business.safety.google/privacy/" target="_blank" rel="noopener noreferrer">business.safety.google/privacy</a>.
         </p>
 
         <h3>Cookies de terceros</h3>
@@ -153,7 +161,7 @@ const breadcrumbs = [
 
         <h2>3. Gestión de cookies</h2>
         <p>
-          Puedes aceptar o rechazar las cookies no esenciales mediante el banner que aparece al entrar en el sitio web. Además, puedes gestionar las cookies desde la configuración de tu navegador:
+          Puedes aceptar o rechazar las cookies no esenciales mediante el banner que aparece al entrar en el sitio web. Para revisar o cambiar tu decisión en cualquier momento, utiliza el enlace <strong>«Gestionar cookies»</strong> que encontrarás en el pie de página. Además, puedes gestionar las cookies desde la configuración de tu navegador:
         </p>
         <ul>
           <li>Google Chrome: Configuración → Privacidad y seguridad → Cookies</li>

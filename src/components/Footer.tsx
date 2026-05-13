@@ -139,7 +139,7 @@ export function Footer({ locale = 'es' }: FooterProps) {
 
         {/* Bottom bar */}
         <div className="mt-10 pt-6 border-t border-border flex flex-col gap-4">
-          <nav aria-label={t(locale, 'footer.legal_heading')} className="flex flex-wrap justify-center sm:justify-start gap-x-6 gap-y-2">
+          <nav aria-label={t(locale, 'footer.legal_heading')} className="flex flex-wrap justify-center sm:justify-start items-center gap-x-6 gap-y-2">
             {legalLinks.map((link) => (
               <a
                 key={link.path}
@@ -149,6 +149,17 @@ export function Footer({ locale = 'es' }: FooterProps) {
                 {link.name}
               </a>
             ))}
+            {/* vanilla-cookieconsent auto-binds clicks via `data-cc` attr.
+                aria-haspopup is pre-set to match what vcc adds at runtime —
+                without it React reports a hydration mismatch on every page. */}
+            <button
+              type="button"
+              data-cc="show-preferencesModal"
+              aria-haspopup="dialog"
+              className="text-text-muted text-sm hover:text-terracotta transition-colors text-left"
+            >
+              {t(locale, 'cookie_banner.manage')}
+            </button>
           </nav>
           <div className="flex flex-col sm:flex-row justify-between items-center gap-3">
             <p className="text-text-muted text-sm">

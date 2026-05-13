@@ -5,7 +5,6 @@ import type { Locale } from '../i18n/index';
 import { ogLocales } from '../i18n/index';
 import { WhatsAppButton } from '../components/WhatsAppButton';
 import { CallButton } from '../components/CallButton';
-import { CookieBanner } from '../components/CookieBanner';
 import { alternateLocaleUrl } from '../data/hreflangPairs';
 
 interface Breadcrumb {
@@ -82,13 +81,15 @@ const isProductionBuild = !isPreviewBuild;
           gtag('set', 'url_passthrough', true);
         </script>
 
-        <!-- Google Tag Manager -->
-        <script is:inline>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-        new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-        j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-        'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-        })(window,document,'script','dataLayer','GTM-WQ2VG5R7');</script>
-        <!-- End Google Tag Manager -->
+        <!-- GTM bootstrap: dataLayer + gtm.start event are always pushed (no
+             cookies, no network). The external gtm.js loader is gated by
+             vanilla-cookieconsent and only loads after analytics consent. -->
+        <script is:inline>
+          window.dataLayer = window.dataLayer || [];
+          window.dataLayer.push({ 'gtm.start': new Date().getTime(), event: 'gtm.js' });
+        </script>
+        <script is:inline type="text/plain" data-category="analytics" async
+          src="https://www.googletagmanager.com/gtm.js?id=GTM-WQ2VG5R7"></script>
       </>
     )}
 
@@ -225,15 +226,6 @@ const isProductionBuild = !isPreviewBuild;
     <slot name="head" />
   </head>
   <body class="min-h-screen flex flex-col bg-background text-foreground">
-    {isProductionBuild && (
-      <>
-        <!-- Google Tag Manager (noscript) -->
-        <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WQ2VG5R7"
-        height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-        <!-- End Google Tag Manager (noscript) -->
-      </>
-    )}
-
     <slot />
 
     <!-- Eliminates the SSR/hydration race on the language switcher: runs
@@ -252,6 +244,13 @@ const isProductionBuild = !isPreviewBuild;
 
     <WhatsAppButton client:load locale={locale} />
     <CallButton client:load locale={locale} />
-    <CookieBanner client:load locale={locale} />
+
+    <!-- vanilla-cookieconsent: GDPR-compliant banner + preferences modal.
+         Reads `<html lang>` via `language.autoDetect: 'document'` so the UI
+         renders in ES or EN automatically. Bundled CSS/JS rides with this
+         module. Footer `Manage cookies` button reopens via `data-cc` attr. -->
+    <script>
+      import '../lib/cookie-consent';
+    </script>
   </body>
 </html>

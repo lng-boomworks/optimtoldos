@@ -3,6 +3,7 @@ import { Navbar } from "../Navbar";
 import { Footer } from "../Footer";
 import { FadeIn } from "../FadeIn";
 import { AnimatedHeading } from "../AnimatedHeading";
+import { Turnstile } from "../Turnstile";
 import { t, type Locale } from "../../i18n/index";
 import { slugMap } from "../../i18n/slugs";
 import { url, localizedUrl } from "../../utils/paths";
@@ -17,6 +18,7 @@ const inputClasses =
 export function ContactoPage({ locale = 'es' }: { locale?: Locale }) {
   const [mapAllowed, setMapAllowed] = useState(false);
   const [status, setStatus] = useState<FormStatus>("idle");
+  const [turnstileReady, setTurnstileReady] = useState(false);
 
   useEffect(() => {
     if (hasConsent()) setMapAllowed(true);
@@ -30,6 +32,7 @@ export function ContactoPage({ locale = 'es' }: { locale?: Locale }) {
     if (ok) {
       setStatus("success");
       form.reset();
+      setTurnstileReady(false);
     } else {
       setStatus("error");
     }
@@ -214,9 +217,13 @@ export function ContactoPage({ locale = 'es' }: { locale?: Locale }) {
                         <span className="text-red-500 ml-1">*</span>
                       </span>
                     </label>
+                    <Turnstile
+                      onToken={() => setTurnstileReady(true)}
+                      onExpire={() => setTurnstileReady(false)}
+                    />
                     <button
                       type="submit"
-                      disabled={status === 'sending'}
+                      disabled={status === 'sending' || !turnstileReady}
                       className="bg-terracotta hover:bg-terracotta-dark text-white font-medium rounded-xl px-6 py-3 transition-colors disabled:opacity-60 disabled:cursor-not-allowed"
                     >
                       {status === 'sending' ? t(locale, 'forms.status.sending') : t(locale, 'contact.form.submit')}
